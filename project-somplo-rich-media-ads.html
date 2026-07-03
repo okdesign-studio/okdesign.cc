@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+
+<!--[if IE 8]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <title>Somplo Rich Media Ads - OK Design</title>
+    <meta name="author" content="themesflat.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description"
+        content="Davies - Personal Portfolio is a sleek and modern HTML template designed for developers, designers, freelancers, and professionals who want to showcase their work online.">
+
+    <!-- font -->
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <link rel="stylesheet" href="assets/icon/icomoon/style.css">
+    <!-- css -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/odometer.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+
+    <!-- Favicon and Touch Icons  -->
+    <link rel="shortcut icon" href="assets/images/logo/favicon.svg">
+    <link rel="apple-touch-icon-precomposed" href="assets/images/logo/favicon.svg">
+
+    <!-- СТИЛИ ДЛЯ ГАЛЕРЕИ И МОДАЛКИ SOMPLO -->
+    <style>
+        .portfolio-text-content { margin-bottom: 40px; }
+        .portfolio-text-content h4 { margin-top: 30px; margin-bottom: 15px; font-weight: 600; color: #fff; }
+        
+        .brand-group { margin-bottom: 50px; }
+        .brand-title { margin-bottom: 20px; font-size: 24px; font-weight: 600; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        
+        .somplo-video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .demo-card {
+            position: relative; border-radius: 12px; overflow: hidden;
+            cursor: pointer; aspect-ratio: 9 / 16; background: #111;
+            transform: translateZ(0);
+        }
+
+        .demo-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .hover-overlay {
+            position: absolute; inset: 0; background: rgba(0, 174, 255, 0.9);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+
+        .demo-card:hover .hover-overlay { opacity: 1; }
+
+        .hover-text {
+            color: #ffffff; font-size: 14px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1px; text-align: center; padding: 0 15px;
+            transform: translateY(15px); transition: transform 0.3s ease;
+        }
+
+        .demo-card:hover .hover-text { transform: translateY(0); }
+
+        /* Модальное окно */
+        .custom-modal {
+            display: none; position: fixed; z-index: 99999; top: 0; left: 0;
+            width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.95);
+            align-items: center; justify-content: center; backdrop-filter: blur(8px);
+        }
+        .custom-modal.active { display: flex; animation: fadeIn 0.3s ease forwards; }
+        .modal-content-somplo {
+            width: 90%; max-width: 400px; height: 85vh; max-height: 850px;
+            background: #000; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,174,255,0.15); border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+        }
+        .modal-content-somplo iframe { width: 100%; height: 100%; border: none; }
+        .close-modal {
+            position: absolute; top: 20px; right: 30px; background: none; border: none;
+            color: #fff; font-size: 32px; cursor: pointer; z-index: 2; transition: transform 0.2s;
+        }
+        .close-modal:hover { transform: scale(1.1) rotate(90deg); color: #00aeff; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+
+<body class="counter-scroll">
+    <canvas class="cursor-trail d-none d-xl-block" id="trail"></canvas>
+
+    <!-- Scroll Top -->
+    <button id="goTop">
+        <span class="border-progress"></span>
+        <span class="ic-wrap">
+            <span class="icon icon-arrow-caret-right"></span>
+        </span>
+    </button>
+    <!-- /Scroll Top -->
+
+    <main id="wrapper">
+        <!-- Header -->
+        <header class="tf-header m-0">
+            <div class="header-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6 col-md-1">
+                            <a href="index.html" class="logo-site">
+                                <i class="icon icon-davies-logo"></i>
+                            </a>
+                        </div>
+                        <div class="col-7 d-none d-md-block">
+                            <div class="box-navigation">
+                                <ul class="nav-menu-main">
+                                    <li class="menu-item"><a href="index.html" class="item-link link text-caption"><span>01 /</span>HOME</a></li>
+                                    <li class="menu-item has-child">
+                                        <a href="#" class="item-link link text-caption"><span>02 /</span>BLOG</a>
+                                        <ul class="sub-menu">
+                                            <li class="sub-menu-item"><a href="blog-standard.html" class="item-link link text-caption">BLOG
+                                                    STANDARD</a></li>
+                                            <li class="sub-menu-item"><a href="blog-two-columns.html" class="item-link link text-caption">BLOG GRID
+                                                    2</a></li>
+                                            <li class="sub-menu-item"><a href="blog-three-columns.html" class="item-link link text-caption">BLOG GRID
+                                                    3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu-item"><a href="index.html" class="item-link link text-caption"><span>03
+                                                /</span>ABOUT</a></li>
+                                    <li class="menu-item"><a href="index.html" class="item-link link text-caption"><span>04
+                                                /</span>CONTACT</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-2 d-none d-sm-block">
+                            <div class="header-contact">
+                                <a href="mailto:davies@gmail.com" class="link text-caption">DAVIES@GMAIL.COM</a>
+                                <p class="text-caption">
+                                    CUP <span class="clock"></span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-sm-3 col-md-2 d-flex justify-content-end align-items-start">
+                            <a href="#mobileMenu" data-bs-toggle="offcanvas" class="btn-mobile-menu text-caption link d-md-none">
+                                <i class="icon icon-menu"></i>
+                                MENU
+                            </a>
+                            <a href="index.html" class="tf-btn d-none d-md-flex">
+                                <span class="text-caption">
+                                    CONTACT
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- /Header -->
+        <div class="section-page-title">
+            <div class="container text-center">
+                <h1 class="page-title fw-semibold effectFade fadeZoom">Somplo Rich Media Ads</h1>
+                <div class="breadcrumbs effectFade fadeUp">
+                    <a href="index.html" class="link">Home</a>
+                    <div>/</div>
+                    <div>Projects</div>
+                </div>
+            </div>
+        </div>
+        <!-- Blog With Sidebar -->
+        <section class="section-blog flat-spacing">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-lg-7">
+                        <div class="blog-single-wrap">
+                            <div class="image effectFade fadeZoom">
+                                <img loading="lazy" width="777" height="548" src="assets/images/blog/blog-4.jpg" alt="Image">
+                            </div>
+                            <div class="meta-list">
+                                <div class="meta-item">
+                                    <i class="icon icon-user"></i>
+                                    <a href="#" class="link text-body-3 text-white-64">Oleksandr Kukharyk</a>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="icon icon-clock"></i>
+                                    <a href="#" class="link text-body-3 text-white-64">July 2026</a>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="icon icon-dou-comments"></i>
+                                    <span class="text-body-3 text-white-64">0 Comments</span>
+                                </div>
+                            </div>
+                            
+                            <!-- НАШ НОВЫЙ КОНТЕНТ SOMPLO -->
+                            <div class="portfolio-text-content">
+                                <h4>Project Overview</h4>
+                                <p class="text-body-2">My collaboration with Somplo extended beyond crafting UI/UX animations and promotional content for their core platform. I also designed and developed interactive Rich Media display ads for their global roster of clients.</p>
+                                
+                                <h4>The Approach</h4>
+                                <p class="text-body-2">By merging my core design and animation skills with Somplo’s robust platform capabilities, I built premium, high-engagement ad experiences tailored to each brand's unique identity.</p>
+                                
+                                <h4>The Showcase</h4>
+                                <p class="text-body-2">Below is a curated selection of these interactive campaigns. <br><strong>(Click on any preview to experience the live interactive demo).</strong></p>
+                            </div>
+
+                            <!-- Giorgio Armani -->
+                            <div class="brand-group">
+                                <h3 class="brand-title">Giorgio Armani</h3>
+                                <div class="somplo-video-grid">
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/676517942">
+                                        <video src="assets/videos/armani-1.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">Play Interactive Demo</span></div>
+                                    </div>
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/640281579">
+                                        <video src="assets/videos/armani-2.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">Play Interactive Demo</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Nestle -->
+                            <div class="brand-group">
+                                <h3 class="brand-title">Nestle</h3>
+                                <div class="somplo-video-grid">
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/864490176">
+                                        <video src="assets/videos/nestle-1.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">Play Interactive Demo</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mazda -->
+                            <div class="brand-group">
+                                <h3 class="brand-title">Mazda</h3>
+                                <div class="somplo-video-grid">
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/605048049">
+                                        <video src="assets/videos/mazda-1.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">RichBox Double Cube</span></div>
+                                    </div>
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/431615699">
+                                        <video src="assets/videos/mazda-2.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">VideoBox 360 Product</span></div>
+                                    </div>
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/619818018">
+                                        <video src="assets/videos/mazda-3.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">RichBox 5050</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Lottusse -->
+                            <div class="brand-group">
+                                <h3 class="brand-title">Lottusse</h3>
+                                <div class="somplo-video-grid">
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/660652421">
+                                        <video src="assets/videos/lottusse-1.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">Motion Transitions</span></div>
+                                    </div>
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/988475337">
+                                        <video src="assets/videos/lottusse-2.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">RichBox Double Cube</span></div>
+                                    </div>
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/718666854">
+                                        <video src="assets/videos/lottusse-3.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">VideoBox Carousel</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Toyota -->
+                            <div class="brand-group">
+                                <h3 class="brand-title">Toyota</h3>
+                                <div class="somplo-video-grid">
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/886992250">
+                                        <video src="assets/videos/toyota-1.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">RichBox Cube Parallax</span></div>
+                                    </div>
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/636769703">
+                                        <video src="assets/videos/toyota-2.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">RichBox Flip Parallax</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ralph Lauren -->
+                            <div class="brand-group">
+                                <h3 class="brand-title">Ralph Lauren</h3>
+                                <div class="somplo-video-grid">
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/704150469">
+                                        <video src="assets/videos/ralph-1.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">Multisize Double Cube</span></div>
+                                    </div>
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/949034728">
+                                        <video src="assets/videos/ralph-2.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">Multisize Cube Flow</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- L'Oréal -->
+                            <div class="brand-group">
+                                <h3 class="brand-title">L'Oréal</h3>
+                                <div class="somplo-video-grid">
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/779331275">
+                                        <video src="assets/videos/loreal-1.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">Elseve Scratch Overlay</span></div>
+                                    </div>
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/180994816">
+                                        <video src="assets/videos/loreal-2.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">Garnier Carousel Set</span></div>
+                                    </div>
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/955271171">
+                                        <video src="assets/videos/loreal-3.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">Garnier Scratch</span></div>
+                                    </div>
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/970292938">
+                                        <video src="assets/videos/loreal-4.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">Elseve Flip Parallax</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Maybelline & Others -->
+                            <div class="brand-group">
+                                <h3 class="brand-title">Maybelline & Others</h3>
+                                <div class="somplo-video-grid">
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/764278779">
+                                        <video src="assets/videos/maybelline-1.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">VideoBox Depth Card</span></div>
+                                    </div>
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/269352865">
+                                        <video src="assets/videos/maybelline-2.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">VideoBox Pages</span></div>
+                                    </div>
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/184907748">
+                                        <video src="assets/videos/other-1.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">Play Interactive Demo</span></div>
+                                    </div>
+                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/926137894">
+                                        <video src="assets/videos/other-2.mp4" autoplay loop muted playsinline></video>
+                                        <div class="hover-overlay"><span class="hover-text">Play Interactive Demo</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- КОНЕЦ НОВОГО КОНТЕНТА -->
+
+                            <div class="entry-footer">
+                                <div class="tags-links">
+                                    <h6 class="text-body-1">Tags:</h6>
+                                    <ul class="list-tags flex-wrap">
+                                        <li><a class="text-body-3" href="#">Rich Media</a></li>
+                                        <li><a class="text-body-3" href="#">Motion Design</a></li>
+                                        <li><a class="text-body-3" href="#">Interactive Ads</a></li>
+                                    </ul>
+                                </div>
+                                <ul class="social-links justify-content-center">
+                                    <li>
+                                        <a href="#"><i class="icon icon-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icon icon-dribbble"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icon icon-instagram"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="icon icon-facebook"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="comment-wrap">
+                                <h4 class="heading">Comments</h4>
+                                <div class="author">
+                                    <div class="image">
+                                        <img loading="lazy" width="48" height="48" src="assets/images/section/tes-1.jpg" alt="Image">
+                                    </div>
+                                    <div class="content">
+                                        <div class="info">
+                                            <h6 class="name text-body-1">
+                                                <a class="link" href="#">Davies</a>
+                                            </h6>
+                                            <p class="time text-body-3 text-white-64">July 8, 2025 at 7:35 am</p>
+                                        </div>
+                                        <a href="#post-comment" class="reply link">Reply<i class="icon icon-arrow-top-right"></i></a>
+                                        <p class="desc">“ Sed vitae velit erat. Pellentesque lobortis felis vel mi congue, in
+                                            sollicitudin orci tincidunt. Praesent turpis justo, posuere eget justo sit
+                                            amet, efficitur suscipit elit. “</p>
+                                    </div>
+                                </div>
+                                <div class="author type-reply">
+                                    <div class="image">
+                                        <img loading="lazy" width="48" height="48" src="assets/images/section/tes-2.jpg" alt="Image">
+                                    </div>
+                                    <div class="content">
+                                        <div class="info">
+                                            <h6 class="name text-body-1">
+                                                <a class="link" href="#">Shin</a>
+                                            </h6>
+                                            <p class="time text-body-3 text-white-64">July 8, 2025 at 7:35 am</p>
+                                        </div>
+                                        <a href="#post-comment" class="reply link">Reply<i class="icon icon-arrow-top-right"></i></a>
+                                        <p class="desc">"Thank you"</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="post-comment" id="post-comment">
+                                <h4 class="heading">Post a Comments</h4>
+                                <p class="text text-body-1">Your email address will not be published. Required fields are marked *</p>
+                                <form class="form-cta style-2">
+                                    <div class="form-content">
+                                        <fieldset class="tf-field">
+                                            <input class="tf-input" type="text" placeholder="" required="">
+                                            <label class="tf-lable">Your name <span class="text-primary">*</span></label>
+                                        </fieldset>
+                                        <fieldset class="tf-field">
+                                            <input class="tf-input" type="email" placeholder="" required="">
+                                            <label class="tf-lable">Your Email <span class="text-primary">*</span></label>
+                                        </fieldset>
+                                        <fieldset class="tf-field">
+                                            <textarea class="tf-input rounded-0" placeholder="" required=""></textarea>
+                                            <label class="tf-lable">Messenger</label>
+                                        </fieldset>
+                                    </div>
+                                    <div class="form-action">
+                                        <button type="submit" class="tf-btn">
+                                            <span class="text-caption">SUBMIT MESSAGE</span>
+                                        </button>
+                                        <p class="text-body-1">
+                                            say hello - <a href="#" class="text-primary">davies@gmail.com</a>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="blog-sidebar m-lg-0">
+                            <div class="sidebar-item effectFade fadeUp no-div">
+                                <h5 class="sidebar-title">
+                                    Search
+                                </h5>
+                                <form class="form-search">
+                                    <fieldset class="text">
+                                        <input type="text" placeholder="Search" class="" name="search" tabindex="0" value="" aria-required="true"
+                                            required="">
+                                    </fieldset>
+                                    <button type="submit" class="link text-white">
+                                        <i class="icon icon-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="sidebar-item effectFade fadeUp no-div">
+                                <h5 class="sidebar-title">
+                                    Recent posts
+                                </h5>
+                                <div class="list-relatest-post">
+                                    <div class="relatest-post-item">
+                                        <div class="image">
+                                            <img loading="lazy" width="80" height="80" src="assets/images/blog/blog-1.jpg" alt="Recenter">
+                                        </div>
+                                        <div class="content">
+                                            <h6 class="title text-body-1">
+                                                <a href="blog-single.html" class="link">
+                                                    Helve Tica Website Redesign
+                                                </a>
+                                            </h6>
+                                            <p class="time text-body-3 text-white-64">August 23, 2024</p>
+                                        </div>
+                                    </div>
+                                    <div class="relatest-post-item">
+                                        <div class="image">
+                                            <img loading="lazy" width="80" height="80" src="assets/images/blog/blog-2.jpg" alt="Recenter">
+                                        </div>
+                                        <div class="content">
+                                            <h6 class="title text-body-1">
+                                                <a href="blog-single.html" class="link">
+                                                    X-direct Mobile App
+                                                </a>
+                                            </h6>
+                                            <p class="time text-body-3 text-white-64">August 23, 2024</p>
+                                        </div>
+                                    </div>
+                                    <div class="relatest-post-item">
+                                        <div class="image">
+                                            <img loading="lazy" width="80" height="80" src="assets/images/blog/blog-3.jpg" alt="Recenter">
+                                        </div>
+                                        <div class="content">
+                                            <h6 class="title text-body-1">
+                                                <a href="blog-single.html" class="link">
+                                                    UIXOR Agency Website
+                                                </a>
+                                            </h6>
+                                            <p class="time text-body-3 text-white-64">August 23, 2024</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sidebar-item effectFade fadeUp no-div">
+                                <h5 class="sidebar-title">
+                                    Category
+                                </h5>
+                                <div class="sidebar-categories">
+                                    <div class="item">
+                                        <a href="#" class="text-body-1 link">Developer</a>
+                                        <span class="text-body-3 text-white-64">(4)</span>
+                                    </div>
+                                    <div class="item">
+                                        <a href="#" class="text-body-1 link">Programmer</a>
+                                        <span class="text-body-3 text-white-64">(2)</span>
+                                    </div>
+                                    <div class="item">
+                                        <a href="#" class="text-body-1 link">Web Design</a>
+                                        <span class="text-body-3 text-white-64">(1)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sidebar-item effectFade fadeUp no-div">
+                                <h5 class="sidebar-title">
+                                    Popular tag
+                                </h5>
+                                <ul class="list-tags">
+                                    <li><a class="text-body-2" href="#">Branding</a></li>
+                                    <li><a class="text-body-2" href="#">Art Direction</a></li>
+                                    <li><a class="text-body-2" href="#">UI Design</a></li>
+                                    <li><a class="text-body-2" href="#">Webflow Development</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Blog With Sidebar -->
+        <!-- Footer -->
+        <footer class="tf-footer">
+            <div class="container">
+                <div class="br-line"></div>
+            </div>
+            <div class="footer-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="title text-has-dot text-caption fw-medium mb-md-0">
+                                <span class="br-dot"></span>
+                                WORKING GLOBALLY
+                            </p>
+                        </div>
+                        <div class="col-6 col-sm-2 col-md-1">
+                            <p class="footer-heading text-caption fw-medium text-white-64">
+                                SITEMAP
+                            </p>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3">
+                            <ul class="footer-menu-list mb-sm-0">
+                                <li><a href="index.html" class="link letter-space--2 h5">About</a></li>
+                                <li><a href="index.html" class="link letter-space--2 h5">Contact</a></li>
+                                <li><a href="index.html" class="link letter-space--2 h5">Service</a></li>
+                                <li><a href="blog-standard.html" class="link letter-space--2 h5">Blog</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-sm-2 col-md-1">
+                            <p class="footer-heading text-caption fw-medium text-white-64">
+                                SOCIALS
+                            </p>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3">
+                            <ul class="footer-menu-list mb-0">
+                                <li><a href="#" class="link letter-space--2 h5">Twitter (X)</a></li>
+                                <li><a href="#" class="link letter-space--2 h5">Dribbble</a></li>
+                                <li><a href="#" class="link letter-space--2 h5">LinkedIn</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="img-agency">
+                        <img class="effectFade fadeZoom" loading="lazy" width="1293" height="269" src="assets/images/logo/agency.png" alt="Image">
+                    </div>
+                    <div class="bottom">
+                        <p class="text-nocopy text-caption fw-medium letter-space--1">
+                            © DAVIES'S PERSONAL PORTFOLIO
+                        </p>
+
+                        <a href="#" class="action-go-top tf-link-icon link text-caption fw-medium letter-space--1">
+                            BACK TO TOP
+                            <i class="icon icon-arrow-long-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- /Footer -->
+    </main>
+    <!-- Mobile Menu -->
+    <div class="offcanvas offcanvas-bottom offcanvas-menu" id="mobileMenu">
+        <div class="offcanvas-content">
+            <div class="container h-100">
+                <div class="offcanvas-content_wrapin">
+                    <div class="canvas_head">
+                        <a href="index.html" class="logo-site">
+                            <i class="icon icon-davies-logo"></i>
+                        </a>
+                        <a href="#" data-bs-dismiss="offcanvas" class="btn-mobile-menu text-caption link">
+                            <i class="icon icon-close"></i>
+                            CLOSE
+                        </a>
+                    </div>
+                    <div class="canvas_center">
+                        <ul class="nav-ul-mb">
+                            <li>
+                                <div class="item">
+                                    <a href="index.html" class="mb-menu-link text-display-1">
+                                        <span class="text">Home</span>
+                                        <div class="infiniteSlide_text_main">
+                                            <div class="infiniteSlide infiniteSlide_text" data-clone="5">
+                                                <p class="text-body-2 letter-space--1">
+                                                    <span class="text-primary">//</span> View Home
+                                                </p>
+                                                <p class="text-body-2 letter-space--1">
+                                                    <span class="text-primary">//</span> View Home
+                                                </p>
+                                                <p class="text-body-2 letter-space--1">
+                                                    <span class="text-primary">//</span> View Home
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item">
+                                    <div class="has-sub-menu">
+                                        <a href="#dropdown-menu-1" class="mb-menu-link text-display-1 collapsed" data-bs-toggle="collapse"
+                                            aria-expanded="false" aria-controls="dropdown-menu-1">
+                                            <span class="text">Blog</span>
+                                            <div class="infiniteSlide_text_main">
+                                                <div class="infiniteSlide infiniteSlide_text" data-clone="5">
+                                                    <p class="text-body-2 letter-space--1">
+                                                        <span class="text-primary">//</span> View Blog
+                                                    </p>
+                                                    <p class="text-body-2 letter-space--1">
+                                                        <span class="text-primary">//</span> View Blog
+                                                    </p>
+                                                    <p class="text-body-2 letter-space--1">
+                                                        <span class="text-primary">//</span> View Blog
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div id="dropdown-menu-1" class="collapse">
+                                            <ul class="sub-nav-menu">
+                                                <li><a href="blog-standard.html" class="sub-nav-link">Blog Standard</a></li>
+                                                <li><a href="blog-two-columns.html" class="sub-nav-link">Blog Grid 2</a></li>
+                                                <li><a href="blog-three-columns.html" class="sub-nav-link">Blog Grid 3</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item">
+                                    <a href="index.html" class="mb-menu-link text-display-1">
+                                        <span class="text">About</span>
+                                        <div class="infiniteSlide_text_main">
+                                            <div class="infiniteSlide infiniteSlide_text" data-clone="5">
+                                                <p class="text-body-2 letter-space--1">
+                                                    <span class="text-primary">//</span> View About
+                                                </p>
+                                                <p class="text-body-2 letter-space--1">
+                                                    <span class="text-primary">//</span> View About
+                                                </p>
+                                                <p class="text-body-2 letter-space--1">
+                                                    <span class="text-primary">//</span> View About
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="item">
+                                    <a href="index.html" class="mb-menu-link text-display-1">
+                                        <span class="text">Contact</span>
+                                        <div class="infiniteSlide_text_main">
+                                            <div class="infiniteSlide infiniteSlide_text" data-clone="5">
+                                                <p class="text-body-2 letter-space--1">
+                                                    <span class="text-primary">//</span> View Contact
+                                                </p>
+                                                <p class="text-body-2 letter-space--1">
+                                                    <span class="text-primary">//</span> View Contact
+                                                </p>
+                                                <p class="text-body-2 letter-space--1">
+                                                    <span class="text-primary">//</span> View Contact
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="canvas_foot">
+                        <div class="left">
+                            <a href="mailto:davies@gmail.com" class="link text-caption">DAVIES@GMAIL.COM</a>
+                            <p class="text-caption">
+                                CUP <span class="clock"></span>
+                            </p>
+                        </div>
+                        <div class="right">
+                            <a href="#" class="tf-link-icon text-caption link">
+                                <i class="icon icon-arrow-top-right"></i>
+                                TWITTER (X)
+                            </a>
+                            <a href="#" class="tf-link-icon text-caption link">
+                                <i class="icon icon-arrow-top-right"></i>
+                                DRIBBBLE
+                            </a>
+                            <a href="#" class="tf-link-icon text-caption link">
+                                <i class="icon icon-arrow-top-right"></i>
+                                LINKEDIN
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Mobile Menu -->
+
+    <!-- Модальное окно Somplo (Вне основного контента, чтобы z-index работал корректно) -->
+    <div id="somplo-modal" class="custom-modal">
+        <button class="close-modal"><i class="icon icon-close"></i></button>
+        <div class="modal-content-somplo" id="iframe-container">
+            <!-- Сюда вставляется iframe -->
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/carousel.js"></script>
+
+    <script src="assets/js/infinityslide.js"></script>
+    <script src="assets/js/ScrollSmooth.js"></script>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/gsapAnimation.js"></script>
+    <script src="assets/js/SplitText.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="assets/js/odometer.min.js"></script>
+    <script src="assets/js/jquery.nice-select.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- Скрипт модалки Somplo -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.demo-card');
+            const modal = document.getElementById('somplo-modal');
+            const iframeContainer = document.getElementById('iframe-container');
+            const closeBtn = document.querySelector('.close-modal');
+
+            // Открытие
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const iframeSrc = card.getAttribute('data-iframe-src');
+                    iframeContainer.innerHTML = `<iframe src="${iframeSrc}" allow="autoplay; fullscreen"></iframe>`;
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; 
+                });
+            });
+
+            // Закрытие
+            const closeModal = () => {
+                modal.classList.remove('active');
+                iframeContainer.innerHTML = ''; 
+                document.body.style.overflow = ''; 
+            };
+
+            if (closeBtn) closeBtn.addEventListener('click', closeModal);
+            
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
