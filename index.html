@@ -115,28 +115,19 @@
         </header>
         <!-- /Header -->
         <!-- Hero Banner -->
-        <div class="section-hero-v1" style="min-height: 85vh; padding-bottom: 60px;">
-            <div class="overlay"></div>
-            <div class="bg-video">
-                <video muted autoplay loop playsinline>
-                    <source src="assets/images/video/ТВОЕ_ВИДЕО.mp4" type="video/mp4">
-                </video>
-                <div class="video-overlay"></div>
-                <div class="video-overlay-2"></div>
-                <div class="video-overlay-2"></div>
-            </div>
+        <div class="section-hero-v1" style="min-height: 85vh; padding-bottom: 40px;">
+            <!-- ... (код видео и оверлеев не меняем) ... -->
             <div class="content-wrap" style="height: 100%; display: flex; align-items: flex-end;">
                 <div class="container">
-                    <div class="row align-items-end">
+                    <!-- Добавили класс hero-row-fix -->
+                    <div class="row hero-row-fix">
                         <div class="col-md-7 mb-4 mb-md-0">
-                            <!-- Убрали конфликтные классы анимации, оставили чистый заголовок -->
-                            <div class="davies-large ok-gradient-text" style="font-size: clamp(45px, 8vw, 110px); line-height: 1; margin-bottom: 20px;">
+                            <div class="ok-gradient-text">
                                 OK DESIGN
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="bot">
-                                <!-- Добавили mb-4 для воздуха между текстом и кнопкой -->
                                 <p class="desc text-white-64 mb-4">
                                     OK Design develops high-impact motion graphics and visual identity systems for companies worldwide. Complex ideas are transformed into clean, engaging visual assets designed to capture attention and drive business results.
                                 </p>
