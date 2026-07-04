@@ -115,10 +115,10 @@
         </header>
         <!-- /Header -->
         <!-- Hero Banner -->
-        <div class="section-hero-v1">
+        <!-- Добавили min-height: 95vh и убрали нижний паддинг, чтобы прижать всё к низу -->
+        <div class="section-hero-v1" style="min-height: 95vh; padding-bottom: 20px;">
             <div class="overlay"></div>
             <div class="bg-video">
-                <!-- ВСТАВЬ ПУТЬ К СВОЕМУ ВИДЕО В АТРИБУТ src -->
                 <video class="" muted="" autoplay="" loop="" playsinline="">
                     <source src="assets/images/video/ТВОЕ_ВИДЕО.mp4" type="video/mp4">
                 </video>
@@ -130,8 +130,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 d-flex flex-column">
-                            <div class="col-left mt-auto">
-                                <!-- Размер текста OK DESIGN уменьшен, подчеркивание убрано -->
+                            <!-- Добавили mb-3 (margin-bottom) и style="height: auto;", чтобы убрать старую дыру 50px -->
+                            <div class="col-left mb-3 mt-auto" style="height: auto;">
                                 <div class="davies-large" style="font-size: clamp(45px, 8vw, 110px); line-height: 1;">
                                     <div class="effectFade fadeRotateX">
                                         OK DESIGN
@@ -140,9 +140,10 @@
                             </div>
                         </div>
                         <div class="col-md-4 d-flex flex-column">
-                            <div class="col-right mt-auto">
+                            <!-- Убрали лишние отступы тут -->
+                            <div class="col-right mt-0 mb-0" style="padding-bottom: 10px;">
                                 <div class="bot">
-                                    <p class="desc text-white-64 effectFade fadeRight view-visible">
+                                    <p class="desc text-white-64 effectFade fadeRight view-visible" style="margin-bottom: 25px;">
                                         OK Design develops high-impact motion graphics and visual identity systems for companies worldwide. Complex ideas are transformed into clean, engaging visual assets designed to capture attention and drive business results.
                                     </p>
                                     <div class="effectFade fadeRight view-visible">
