@@ -114,9 +114,8 @@
             </div>
         </header>
         <!-- /Header -->
-        <!-- Hero Banner -->
-        <!-- Добавили min-height: 95vh и убрали нижний паддинг, чтобы прижать всё к низу -->
-        <div class="section-hero-v1" style="min-height: 95vh; padding-bottom: 20px;">
+ <!-- Hero Banner -->
+        <div class="section-hero-v1">
             <div class="overlay"></div>
             <div class="bg-video">
                 <video class="" muted="" autoplay="" loop="" playsinline="">
@@ -128,29 +127,24 @@
             </div>
             <div class="content-wrap">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 d-flex flex-column">
-                            <!-- Добавили mb-3 (margin-bottom) и style="height: auto;", чтобы убрать старую дыру 50px -->
-                            <div class="col-left mb-3 mt-auto" style="height: auto;">
-                                <div class="davies-large" style="font-size: clamp(45px, 8vw, 110px); line-height: 1;">
-                                    <div class="effectFade fadeRotateX">
-                                        OK DESIGN
-                                    </div>
+                    <!-- Добавили align-items-end и отступ снизу 10vh для безопасной зоны на мобилках -->
+                    <div class="row align-items-end" style="padding-bottom: 10vh;">
+                        <div class="col-md-7 mb-4 mb-md-0">
+                            <div class="davies-large" style="font-size: clamp(45px, 8vw, 110px); line-height: 1;">
+                                <div class="effectFade fadeRotateX">
+                                    OK DESIGN
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 d-flex flex-column">
-                            <!-- Убрали лишние отступы тут -->
-                            <div class="col-right mt-0 mb-0" style="padding-bottom: 10px;">
-                                <div class="bot">
-                                    <p class="desc text-white-64 effectFade fadeRight view-visible" style="margin-bottom: 25px;">
-                                        OK Design develops high-impact motion graphics and visual identity systems for companies worldwide. Complex ideas are transformed into clean, engaging visual assets designed to capture attention and drive business results.
-                                    </p>
-                                    <div class="effectFade fadeRight view-visible">
-                                        <a href="#contactScroll" class="tf-btn ">
-                                            START A PROJECT
-                                        </a>
-                                    </div>
+                        <div class="col-md-5">
+                            <div class="bot">
+                                <p class="desc text-white-64 effectFade fadeRight view-visible mb-4">
+                                    OK Design develops high-impact motion graphics and visual identity systems for companies worldwide. Complex ideas are transformed into clean, engaging visual assets designed to capture attention and drive business results.
+                                </p>
+                                <div class="effectFade fadeRight view-visible">
+                                    <a href="#contactScroll" class="tf-btn">
+                                        START A PROJECT
+                                    </a>
                                 </div>
                             </div>
                         </div>
