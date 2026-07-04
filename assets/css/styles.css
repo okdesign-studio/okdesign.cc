@@ -7428,7 +7428,7 @@ button.animate-btn::after,
     font-display: swap;
 }
 
-/* Применение шрифта и градиента из Figma */
+/* Применение шрифта и градиента  из Figma */
 .ok-gradient-text {
     font-family: 'Druk Wide Cyr', sans-serif !important;
     font-weight: 700 !important;
