@@ -7433,24 +7433,18 @@ button.animate-btn::after,
     font-family: 'Druk Wide Cyr', sans-serif !important;
     font-weight: 700 !important;
     
-    /* Линейный градиент по скриншоту */
-    background: linear-gradient(105deg, #FFFFFF 16%, #F6F6FB 68%, rgba(71, 74, 181, 0) 100%);
+    /* Добавляем fallback шрифты, чтобы мобилка не "тупила" */
+    font-family: 'Druk Wide Cyr', Helvetica, Arial, sans-serif !important;
     
-    /* Обрезка фона по контуру текста */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-}
-/* Уточненный стиль для градиентного текста */
-.ok-gradient-text {
-    font-family: 'Druk Wide Cyr', sans-serif !important;
-    font-weight: 700 !important;
     background: linear-gradient(105deg, #FFFFFF 16%, #F6F6FB 68%, rgba(71, 74, 181, 0) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    /* Уменьшаем размер на ПК, чтобы не перекрывал всё */
+    
+    /* Принудительная отрисовка для мобильных */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
     font-size: clamp(40px, 6vw, 85px) !important;
     line-height: 0.9 !important; 
     display: inline-block;
