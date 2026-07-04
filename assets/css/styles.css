@@ -4412,7 +4412,8 @@ button.animate-btn::after,
 }
 @media (max-width: 1599px) {
   .section-hero-v1 {
-    min-height: 100vh;
+    min-height: 100vh; /* fallback для старых браузеров */
+    min-height: 100dvh;
   }
   .section-hero-v1 .col-left .tf-list {
     margin-bottom: 150px;
@@ -7455,5 +7456,10 @@ button.animate-btn::after,
     .hero-row-fix {
         align-items: flex-end !important;
         padding-bottom: 8vh;
+    }
+}
+@media (max-width: 767px) {
+    .section-hero-v1 .col-md-7 {
+        margin-bottom: 3rem !important;
     }
 }
