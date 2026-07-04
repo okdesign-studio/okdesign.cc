@@ -7416,3 +7416,13 @@ button.animate-btn::after,
 }
 
 /*# sourceMappingURL=styles.css.map */
+/* Фикс для первого экрана на мобильных устройствах */
+@media (max-width: 767px) {
+  .section-hero-v1 {
+    min-height: 90vh !important; /* Растягиваем блок почти на весь экран */
+    padding-bottom: 30px !important; /* Уменьшаем отступ от самого низа */
+  }
+  .section-hero-v1 .col-left {
+    margin-bottom: 15px !important; /* Прижимаем заголовок ближе к описанию */
+  }
+}
