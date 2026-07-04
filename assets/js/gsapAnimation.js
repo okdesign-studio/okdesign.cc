@@ -679,7 +679,6 @@
     };
 
     var runAnimations = () => {
-        serviceScroll();
         stackElement();
         scrollSmooth();
         stackElement2();
