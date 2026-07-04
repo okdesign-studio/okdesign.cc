@@ -4437,11 +4437,7 @@ button.animate-btn::after,
     margin-bottom: 30px;
   }
 }
-@media (max-width: 575px) {
-  .section-hero-v1 {
-    min-height: 500px;
-  }
-}
+
 
 .section-hero-v2 {
   padding-top: 100px;
