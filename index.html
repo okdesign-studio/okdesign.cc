@@ -951,15 +951,12 @@
                 <img loading="lazy" width="1440" height="906" src="assets/images/section/bg-about.jpg" alt="Background">
             </div>
             <div class="container position-relative z-5">
-                <div class="row">
+                <!-- Добавили align-items-center для выравнивания по вертикали -->
+                <div class="row align-items-center">
                     <div class="col-lg-5">
                         <div class="col-left mb-lg-0">
-                            <!-- Обертка davies-video вернет нам правильные пропорции -->
                             <div class="davies-video">
-                                <!-- Убрали filter: grayscale(100%), теперь фото в цвете -->
                                 <img src="assets/images/Profile_photo.webp" alt="Oleksandr Kukharyk" style="width: 100%; height: 100%; object-fit: cover; max-height: 666px; aspect-ratio: 0.8;">
-                                
-                                <!-- Эти дивы создают то самое плавное затемнение по краям (фейд) -->
                                 <div class="overlay v1"></div>
                                 <div class="overlay mark-1"></div>
                                 <div class="overlay mark-2"></div>
@@ -969,14 +966,13 @@
                     <div class="offset-lg-1 col-lg-6 offset-xl-2 col-xl-5">
                         <div class="col-right">
                             <h2 class="text-display-2 fw-semibold letter-space--3 mb-4 effectFade fadeUp">
-                                About
+                                ABOUT
                             </h2>
                             <div class="text-color-change">
-                                <!-- Первый абзац: белый цвет, стандартный читаемый размер -->
-                                <p class="text-body-1 mb-5 text-white" style="line-height: 1.6;">
+                                <!-- Задали кастомный отступ margin-bottom: 24px вместо mb-5 -->
+                                <p class="text-body-1 text-white" style="line-height: 1.6; margin-bottom: 24px;">
                                     My name is Oleksandr Kukharyk, and I’m the creative mind behind the studio. At the start of 2026, I established OK Design as my independent practice in Belgium, turning 15+ years of international experience in motion graphics and visual design into a dedicated B2B service.
                                 </p>
-                                <!-- Второй абзац: слегка приглушенный цвет для баланса -->
                                 <p class="text-body-1 text-white-64" style="line-height: 1.6;">
                                     I deeply believe that good collaboration is built on trust and simplicity. That’s why I operate as an independent studio - to remain close to my clients, understand their real goals, and deliver flawless technical execution without the agency overhead. Based in Tervuren, working worldwide.
                                 </p>
