@@ -446,11 +446,10 @@
         </section>
         <!-- / PROJECTS -->
         <!-- SERVICES -->
-        <section class="section-pricing flat-spacing flat-animate-tab" style="overflow: hidden;">
-            <div class="bg-img">
-                <img loading="lazy" width="1440" height="1081" src="assets/images/item/bg-4.png" alt="Image" style="max-width: 1920px;">
-                <!-- Маска для растворения краев (сверху и снизу) -->
-                <div style="position: absolute; inset: 0; background: linear-gradient(180deg, #000 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, #000 100%); pointer-events: none; z-index: 1;"></div>
+        <section class="section-pricing flat-spacing flat-animate-tab" style="overflow: hidden;" id="serviceScroll">
+            <div class="bg-img" style="align-items: center;">
+                <img loading="lazy" width="1440" height="1081" src="assets/images/item/bg-4.png" alt="Image" style="width: 100%; height: 100%; max-width: 1920px; object-fit: cover; object-position: center; transform: none;">
+                <div style="position: absolute; inset: 0; background: linear-gradient(180deg, #000 0%, rgba(0,0,0,0) 5%, rgba(0,0,0,0) 95%, #000 100%); pointer-events: none; z-index: 1;"></div>
             </div>
             <div class="container">
                 <div class="s-header justify-content-center">
@@ -798,86 +797,173 @@
         </div>
         <!-- /SELECTED CLIENTS -->
  <!-- FEEDBACK -->
-<section class="section-testimonial flat-spacing tf-btn-swiper-main">
-    <div class="container">
+<style>
+    /* Кастомные стили для гибридной карточки отзывов (Basic -> Pro) */
+    .wg-testimonial-card {
+        border: 1px solid rgba(255,255,255,0.05);
+        padding: 40px 32px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+        transition: all 0.4s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        cursor: grab;
+        background: transparent;
+    }
+    .wg-testimonial-card:active {
+        cursor: grabbing;
+    }
+    /* Фоновые картинки (скрыты по умолчанию) */
+    .wg-testimonial-card .bg-img {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 0;
+    }
+    .wg-testimonial-card .bg-img.bg-img_1 {
+        background-image: url("assets/images/item/start.png");
+        background-repeat: repeat-y;
+        background-position: center;
+        animation: moveUp 60s linear infinite;
+    }
+    .wg-testimonial-card .bg-img.bg-img_2 {
+        display: flex;
+        bottom: 0; left: 0; right: 0;
+        overflow: hidden;
+    }
+    .wg-testimonial-card .bg-img.bg-img_2 img {
+        width: 100%; height: 100%; object-fit: cover;
+    }
+    
+    /* Контент поверх фона */
+    .wg-testimonial-card .card-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    /* Линия-разделитель */
+    .wg-testimonial-card .br-line {
+        background-color: var(--white-16);
+        height: 2px;
+        transition: background-color 0.4s ease;
+    }
+
+    /* ==== ЛОГИКА ПОДСВЕТКИ (Центр по умолчанию ИЛИ Ховер) ==== */
+    
+    /* 1. Состояние по умолчанию: центральный (active) слайд светится */
+    .swiper-slide.swiper-slide-active .wg-testimonial-card {
+        transform: scale(1.05);
+        border-color: rgba(0, 81, 255, 0.4);
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+        z-index: 10;
+    }
+    .swiper-slide.swiper-slide-active .wg-testimonial-card .bg-img { opacity: 1; }
+    .swiper-slide.swiper-slide-active .wg-testimonial-card .br-line { background-color: var(--primary); }
+    
+    /* 2. Если мы навели мышь на карусель в целом - гасим центральный (чтобы не было 2х активных) */
+    .swiper-testimonial:hover .swiper-slide .wg-testimonial-card {
+        transform: scale(1);
+        border-color: rgba(255,255,255,0.05);
+        background: transparent;
+        backdrop-filter: none;
+        z-index: 1;
+    }
+    .swiper-testimonial:hover .swiper-slide .wg-testimonial-card .bg-img { opacity: 0; }
+    .swiper-testimonial:hover .swiper-slide .wg-testimonial-card .br-line { background-color: var(--white-16); }
+
+    /* 3. Подсвечиваем ТОЛЬКО ту карточку, на которую навели сейчас */
+    .swiper-testimonial .swiper-slide:hover .wg-testimonial-card {
+        transform: scale(1.05);
+        border-color: rgba(0, 81, 255, 0.4);
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+        z-index: 10;
+    }
+    .swiper-testimonial .swiper-slide:hover .wg-testimonial-card .bg-img { opacity: 1; }
+    .swiper-testimonial .swiper-slide:hover .wg-testimonial-card .br-line { background-color: var(--primary); }
+    
+    /* Боковые стрелки */
+    .testimonial-nav-wrap {
+        position: absolute;
+        top: 50%;
+        left: -60px;
+        right: -60px;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+        z-index: 10;
+        pointer-events: none;
+    }
+    .testimonial-nav-wrap .btn-nav-swiper {
+        pointer-events: auto;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+    .testimonial-nav-wrap .btn-nav-swiper:hover {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: black;
+    }
+    
+    @media (max-width: 1400px) {
+        .testimonial-nav-wrap { left: 15px; right: 15px; }
+    }
+    @media (max-width: 991px) {
+        .testimonial-nav-wrap { display: none; } /* На мобилках прячем стрелки, оставляем точки и свайп */
+    }
+</style>
+
+<section class="section-testimonial flat-spacing">
+    <div class="container position-relative">
         <h6 class="mini-title text-caption text-white-64 text-center mb-5">
             FEEDBACK
         </h6>
         
-        <!-- Добавили правильные классы swiper и container -->
-        <div dir="ltr" class="swiper tf-swiper swiper-testimonial" data-preview="1" data-tablet="1" data-mobile-sm="1" data-mobile="1" data-loop="true" data-init="1">
-            <div class="swiper-wrapper">
-                
-                <!-- Слайд 1 -->
-                <div class="swiper-slide">
-                    <div class="testimonial-v01" style="display: flex; flex-direction: column; padding: 40px; text-align: left; background: rgba(255,255,255,0.03); border-radius: 16px; height: 100%;">
-                        <p class="text-white" style="font-size: 18px; line-height: 1.6; font-style: italic; flex-grow: 1;">
-                            “The cinematic horror themed commercial developed by OK Design exceeded all our expectations. The motion graphics and overall visual direction perfectly captured the high-impact attention we needed. A truly professional B2B experience from start to finish.”
-                        </p>
-                        <div style="margin-top: 32px;">
-                            <div class="br-line" style="margin-bottom: 24px;"></div>
-                            <div style="display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 60px; height: 60px; border-radius: 50%; overflow: hidden;">
-                                    <img src="assets/images/section/tes-1.jpg" alt="Van Calster" style="width: 100%; height: 100%; object-fit: cover;">
-                                </div>
-                                <div>
-                                    <h6 class="text-body-1 letter-space--1 mb-0">Marketing Team</h6>
-                                    <p class="text-caption text-white-64 mb-0">Van Calster</p>
-                                </div>
-                            </div>
+        <div dir="ltr" class="swiper tf-swiper swiper-testimonial" 
+             data-preview="3" 
+             data-tablet="2" 
+             data-mobile-sm="1" 
+             data-mobile="1" 
+             data-space-lg="30" 
+             data-space-md="24" 
+             data-space="16" 
+             data-loop="true" 
+             data-centered="true"
+             data-pagination="1" 
+             data-pagination-sm="1" 
+             data-pagination-md="1" 
+             data-pagination-lg="1">
+            
+            <div class="swiper-wrapper" style="padding: 30px 0;"> <div class="swiper-slide">
+                    <div class="wg-testimonial-card">
+                        <div class="bg-img bg-img_1"></div>
+                        <div class="bg-img bg-img_2">
+                            <img loading="lazy" src="assets/images/item/bg-2.png" alt="Image">
                         </div>
-                    </div>
-                </div>
-                <!-- Слайд 2 -->
-                <div class="swiper-slide">
-                    <div class="testimonial-v01" style="display: flex; flex-direction: column; padding: 40px; text-align: left; background: rgba(255,255,255,0.03); border-radius: 16px; height: 100%;">
-                        <p class="text-white" style="font-size: 18px; line-height: 1.6; font-style: italic; flex-grow: 1;">
-                            “The cinematic horror themed commercial developed by OK Design exceeded all our expectations. The motion graphics and overall visual direction perfectly captured the high-impact attention we needed. A truly professional B2B experience from start to finish.”
-                        </p>
-                        <div style="margin-top: 32px;">
+                        
+                        <div class="card-content">
+                            <p class="text-white" style="font-size: 16px; line-height: 1.6; font-style: italic; flex-grow: 1; margin-bottom: 32px;">
+                                “The cinematic horror themed commercial developed by OK Design exceeded all our expectations. The motion graphics and overall visual direction perfectly captured the high-impact attention we needed. A truly professional B2B experience from start to finish.”
+                            </p>
                             <div class="br-line" style="margin-bottom: 24px;"></div>
                             <div style="display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 60px; height: 60px; border-radius: 50%; overflow: hidden;">
-                                    <img src="assets/images/section/tes-1.jpg" alt="Van Calster" style="width: 100%; height: 100%; object-fit: cover;">
-                                </div>
-                                <div>
-                                    <h6 class="text-body-1 letter-space--1 mb-0">Marketing Team</h6>
-                                    <p class="text-caption text-white-64 mb-0">Van Calster</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Слайд 3 -->
-                <div class="swiper-slide">
-                    <div class="testimonial-v01" style="display: flex; flex-direction: column; padding: 40px; text-align: left; background: rgba(255,255,255,0.03); border-radius: 16px; height: 100%;">
-                        <p class="text-white" style="font-size: 18px; line-height: 1.6; font-style: italic; flex-grow: 1;">
-                            “The cinematic horror themed commercial developed by OK Design exceeded all our expectations. The motion graphics and overall visual direction perfectly captured the high-impact attention we needed. A truly professional B2B experience from start to finish.”
-                        </p>
-                        <div style="margin-top: 32px;">
-                            <div class="br-line" style="margin-bottom: 24px;"></div>
-                            <div style="display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 60px; height: 60px; border-radius: 50%; overflow: hidden;">
-                                    <img src="assets/images/section/tes-1.jpg" alt="Van Calster" style="width: 100%; height: 100%; object-fit: cover;">
-                                </div>
-                                <div>
-                                    <h6 class="text-body-1 letter-space--1 mb-0">Marketing Team</h6>
-                                    <p class="text-caption text-white-64 mb-0">Van Calster</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Слайд 4 -->
-                <div class="swiper-slide">
-                    <div class="testimonial-v01" style="display: flex; flex-direction: column; padding: 40px; text-align: left; background: rgba(255,255,255,0.03); border-radius: 16px; height: 100%;">
-                        <p class="text-white" style="font-size: 18px; line-height: 1.6; font-style: italic; flex-grow: 1;">
-                            “The cinematic horror themed commercial developed by OK Design exceeded all our expectations. The motion graphics and overall visual direction perfectly captured the high-impact attention we needed. A truly professional B2B experience from start to finish.”
-                        </p>
-                        <div style="margin-top: 32px;">
-                            <div class="br-line" style="margin-bottom: 24px;"></div>
-                            <div style="display: flex; align-items: center; gap: 16px;">
-                                <div style="width: 60px; height: 60px; border-radius: 50%; overflow: hidden;">
+                                <div style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; flex-shrink: 0;">
                                     <img src="assets/images/section/tes-1.jpg" alt="Van Calster" style="width: 100%; height: 100%; object-fit: cover;">
                                 </div>
                                 <div>
@@ -889,14 +975,92 @@
                     </div>
                 </div>
 
+                <div class="swiper-slide">
+                    <div class="wg-testimonial-card">
+                        <div class="bg-img bg-img_1"></div>
+                        <div class="bg-img bg-img_2">
+                            <img loading="lazy" src="assets/images/item/bg-2.png" alt="Image">
+                        </div>
+                        
+                        <div class="card-content">
+                            <p class="text-white" style="font-size: 16px; line-height: 1.6; font-style: italic; flex-grow: 1; margin-bottom: 32px;">
+                                “Working with OK Design was seamless. He captured our vision and delivered a modern, functional website that feels distinctly ours.”
+                            </p>
+                            <div class="br-line" style="margin-bottom: 24px;"></div>
+                            <div style="display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; flex-shrink: 0;">
+                                    <img src="assets/images/section/tes-2.jpg" alt="Liam Carter" style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div>
+                                    <h6 class="text-body-1 letter-space--1 mb-0">Liam Carter</h6>
+                                    <p class="text-caption text-white-64 mb-0">Founder, Arcadia Tech</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="wg-testimonial-card">
+                        <div class="bg-img bg-img_1"></div>
+                        <div class="bg-img bg-img_2">
+                            <img loading="lazy" src="assets/images/item/bg-2.png" alt="Image">
+                        </div>
+                        
+                        <div class="card-content">
+                            <p class="text-white" style="font-size: 16px; line-height: 1.6; font-style: italic; flex-grow: 1; margin-bottom: 32px;">
+                                “From first concept to launch, the studio exceeded expectations. Every choice was intentional, making our platform beautiful and easy to use.”
+                            </p>
+                            <div class="br-line" style="margin-bottom: 24px;"></div>
+                            <div style="display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; flex-shrink: 0;">
+                                    <img src="assets/images/section/tes-3.jpg" alt="Sofia Carson" style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div>
+                                    <h6 class="text-body-1 letter-space--1 mb-0">Sofia Carson</h6>
+                                    <p class="text-caption text-white-64 mb-0">Product Manager, Lumos Studio</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="swiper-slide">
+                    <div class="wg-testimonial-card">
+                        <div class="bg-img bg-img_1"></div>
+                        <div class="bg-img bg-img_2">
+                            <img loading="lazy" src="assets/images/item/bg-2.png" alt="Image">
+                        </div>
+                        
+                        <div class="card-content">
+                            <p class="text-white" style="font-size: 16px; line-height: 1.6; font-style: italic; flex-grow: 1; margin-bottom: 32px;">
+                                “OK Design reimagined our digital presence. The site is striking, fast, and intuitive—engaging visitors while clearly expressing our brand.”
+                            </p>
+                            <div class="br-line" style="margin-bottom: 24px;"></div>
+                            <div style="display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 50px; height: 50px; border-radius: 50%; overflow: hidden; flex-shrink: 0;">
+                                    <img src="assets/images/section/tes-2.jpg" alt="Ethan Morales" style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div>
+                                    <h6 class="text-body-1 letter-space--1 mb-0">Ethan Morales</h6>
+                                    <p class="text-caption text-white-64 mb-0">Marketing Director, Horizon</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             
-            <!-- Навигация -->
-            <div class="group-btn-slider" style="margin-top: 40px;">
-                <div class="nav-prev-swiper"><i class="icon icon-arrow-caret-left"></i></div>
-                <div class="sw-dot-default tf-sw-pagination"></div>
-                <div class="nav-next-swiper"><i class="icon icon-arrow-caret-right"></i></div>
+            <div class="testimonial-nav-wrap">
+                <div class="btn-nav-swiper nav-prev-swiper"><i class="icon icon-arrow-caret-left"></i></div>
+                <div class="btn-nav-swiper nav-next-swiper"><i class="icon icon-arrow-caret-right"></i></div>
             </div>
+
+            <div class="group-btn-slider d-lg-none" style="margin-top: 0px;">
+                <div class="sw-dot-default tf-sw-pagination"></div>
+            </div>
+
         </div>
     </div>
 </section>
@@ -1024,10 +1188,9 @@
         <!-- /FAQ -->
         <!-- CONTACT -->
         <section class="section-cta flat-spacing" id="contactScroll" style="overflow: hidden;">
-            <div class="bg-img">
-                <img loading="lazy" width="1440" height="1081" src="assets/images/item/bg-3.png" alt="Image" style="max-width: 1920px;">
-                <!-- Маска для растворения краев -->
-                <div style="position: absolute; inset: 0; background: linear-gradient(180deg, #000 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, #000 100%); pointer-events: none; z-index: 1;"></div>
+            <div class="bg-img" style="align-items: center;">
+                <img loading="lazy" width="1440" height="1081" src="assets/images/item/bg-3.png" alt="Image" style="width: 100%; height: 100%; max-width: 1920px; object-fit: cover; object-position: center; transform: none;">
+                <div style="position: absolute; inset: 0; background: linear-gradient(180deg, #000 0%, rgba(0,0,0,0) 5%, rgba(0,0,0,0) 95%, #000 100%); pointer-events: none; z-index: 1;"></div>
             </div>
     <div class="container">
         <div class="row">
