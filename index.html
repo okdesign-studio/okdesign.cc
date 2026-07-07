@@ -621,27 +621,22 @@
 <style>
     /* Кастомные стили для гибридной карточки отзывов (Basic -> Pro) */
     .wg-testimonial-card {
-        /* Убрали скругления, добавили прозрачную базовую рамку */
         border: 1px solid rgba(255, 255, 255, 0.05);
         border-radius: 0px; 
         padding: 40px 32px;
         position: relative;
-        /* Убрали overflow: hidden, чтобы свечение не срезалось */
         transition: all 0.4s ease;
         height: 100%;
         display: flex;
         flex-direction: column;
         cursor: grab;
-        /* Матовое стекло (Basic state) */
+        /* Легкий блюр для неактивных карточек */
         background: rgba(255, 255, 255, 0.02);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
     }
-    .wg-testimonial-card:active {
-        cursor: grabbing;
-    }
+    .wg-testimonial-card:active { cursor: grabbing; }
     
-    /* 4 линии для эффекта PRO тарифа */
     .wg-testimonial-card .line-vertical { position: absolute; width: 1px; top: -1px; bottom: -1px; background: transparent; transition: 0.4s; z-index: 5; }
     .wg-testimonial-card .line-vertical.left { left: -1px; }
     .wg-testimonial-card .line-vertical.right { right: -1px; }
@@ -649,53 +644,22 @@
     .wg-testimonial-card .line-horizontal.top { top: -1px; }
     .wg-testimonial-card .line-horizontal.bottom { bottom: -1px; }
 
-    /* Фоновые картинки (скрыты по умолчанию) */
-    .wg-testimonial-card .bg-img {
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        z-index: 0;
-    }
-    .wg-testimonial-card .bg-img.bg-img_1 {
-        background-image: url("assets/images/item/start.png");
-        background-repeat: repeat-y;
-        background-position: center;
-        animation: moveUp 60s linear infinite;
-    }
-    .wg-testimonial-card .bg-img.bg-img_2 {
-        display: flex;
-        bottom: 0; left: 0; right: 0;
-        overflow: hidden;
-    }
-    .wg-testimonial-card .bg-img.bg-img_2 img {
-        width: 100%; height: 100%; object-fit: cover;
-    }
+    .wg-testimonial-card .bg-img { position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s ease; z-index: 0; }
+    .wg-testimonial-card .bg-img.bg-img_1 { background-image: url("assets/images/item/start.png"); background-repeat: repeat-y; background-position: center; animation: moveUp 60s linear infinite; }
+    .wg-testimonial-card .bg-img.bg-img_2 { display: flex; bottom: 0; left: 0; right: 0; overflow: hidden; }
+    .wg-testimonial-card .bg-img.bg-img_2 img { width: 100%; height: 100%; object-fit: cover; }
     
-    /* Контент поверх фона */
-    .wg-testimonial-card .card-content {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-    }
+    .wg-testimonial-card .card-content { position: relative; z-index: 2; display: flex; flex-direction: column; flex-grow: 1; }
+    .wg-testimonial-card .br-line { background-color: var(--white-16); height: 2px; transition: background-color 0.4s ease; }
 
-    /* Линия-разделитель внутри */
-    .wg-testimonial-card .br-line {
-        background-color: var(--white-16);
-        height: 2px;
-        transition: background-color 0.4s ease;
-    }
-
-    /* ==== ЛОГИКА ПОДСВЕТКИ (Центр по умолчанию + Ховер) ==== */
+    /* ==== ЛОГИКА ПОДСВЕТКИ И БЛЮРА ==== */
     
-    /* 1. Состояние по умолчанию: центральный слайд (active) четкий и подсвечен */
+    /* 1. Центральный слайд (active) четкий, подсвечен + сильный блюр */
     .swiper-testimonial .swiper-slide-active .wg-testimonial-card {
         transform: scale(1.05);
         border-color: transparent;
-        background: rgba(255, 255, 255, 0.03); /* Тинт для матового стекла */
-        backdrop-filter: blur(24px); /* Усиленный блюр */
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(24px); /* Тот самый блюр */
         -webkit-backdrop-filter: blur(24px);
         z-index: 10;
         box-shadow: 0px 20px 40px rgba(0,0,0,0.4);
@@ -710,8 +674,8 @@
         transform: scale(1);
         border-color: rgba(255,255,255,0.05);
         background: rgba(255, 255, 255, 0.02);
-        backdrop-filter: blur(12px); /* Возвращаем дефолтный блюр */
-        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
         box-shadow: none;
         z-index: 1;
     }
@@ -720,12 +684,12 @@
     .swiper-testimonial:hover .swiper-slide-active .wg-testimonial-card .bg-img { opacity: 0; }
     .swiper-testimonial:hover .swiper-slide-active .wg-testimonial-card .br-line { background-color: var(--white-16); }
 
-    /* 3. Делаем четкой именно ту карточку, на которую навели (переопределяем всё) */
+    /* 3. Делаем подсвеченной именно ту карточку, на которую навели */
     .swiper-testimonial .swiper-slide:hover .wg-testimonial-card {
         transform: scale(1.05) !important;
         border-color: transparent !important;
-        background: rgba(255, 255, 255, 0.03) !important; /* Тинт для матового стекла */
-        backdrop-filter: blur(24px) !important; /* Усиленный блюр */
+        background: rgba(255, 255, 255, 0.05) !important;
+        backdrop-filter: blur(24px) !important; /* Тот самый блюр на ховере */
         -webkit-backdrop-filter: blur(24px) !important;
         z-index: 10 !important;
         box-shadow: 0px 20px 40px rgba(0,0,0,0.4) !important;
@@ -734,16 +698,14 @@
     .swiper-testimonial .swiper-slide:hover .wg-testimonial-card .line-horizontal { background: var(--primary) !important; }
     .swiper-testimonial .swiper-slide:hover .wg-testimonial-card .bg-img { opacity: 1 !important; }
     .swiper-testimonial .swiper-slide:hover .wg-testimonial-card .br-line { background-color: var(--primary) !important; }
-    
 </style>
 
-<section class="section-testimonial flat-spacing position-relative overflow-hidden">
-    <div class="bg-img" style="position: absolute; inset: 0; z-index: 0; pointer-events: none; display: flex; justify-content: center; align-items: center; background: #000;">
-        <img loading="lazy" src="assets/images/item/bg-4.png" alt="Image" style="width: 100%; max-width: 1600px; height: 100%; object-fit: contain;">
-        <div style="position: absolute; inset: 0; background: linear-gradient(90deg, #000 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, #000 100%), linear-gradient(180deg, #000 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, #000 100%); pointer-events: none;"></div>
+<section class="section-testimonial flat-spacing position-relative">
+    <div class="bg-img" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; z-index: -1; display: flex; justify-content: center; align-items: flex-end;">
+        <img loading="lazy" width="1440" height="1081" src="assets/images/item/bg-4.png" alt="Image" style="width: 100%; transform: translateY(25%);">
     </div>
 
-    <div class="container position-relative z-5">
+    <div class="container">
         <h6 class="mini-title text-caption text-white-64 text-center mb-5">
             FEEDBACK
         </h6>
@@ -1020,12 +982,11 @@
         </section>
         <!-- /FAQ -->
         <!-- CONTACT -->
-        <section class="section-cta flat-spacing position-relative overflow-hidden" id="contactScroll">
-            <div class="bg-img" style="position: absolute; inset: 0; z-index: 0; pointer-events: none; display: flex; justify-content: center; align-items: center; background: #000;">
-                <img loading="lazy" src="assets/images/item/bg-3.png" alt="Image" style="width: 100%; max-width: 1600px; height: 100%; object-fit: contain;">
-                <div style="position: absolute; inset: 0; background: linear-gradient(90deg, #000 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, #000 100%), linear-gradient(180deg, #000 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, #000 100%); pointer-events: none;"></div>
+        <section class="section-cta flat-spacing" id="contactScroll">
+            <div class="bg-img">
+                <img loading="lazy" width="1440" height="1081" src="assets/images/item/bg-3.png" alt="Image">
             </div>
-    <div class="container position-relative z-5">
+    <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <!-- Заголовок -->
