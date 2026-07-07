@@ -332,19 +332,32 @@
         <!-- /SELECTED PROJECTS -->
         <!-- SERVICES -->
 <style>
+    /* Уменьшаем иконки, чтобы они не распирали строку на мобилках и имели "воздух" */
+    .wg-tech .app_icon img {
+        height: 40px !important; 
+        width: auto !important;  
+        object-fit: contain;
+    }
+
+    /* Слегка уменьшаем размер шрифта категорий и делаем его тоньше */
+    .wg-tech .tech_text .h1 {
+        font-size: clamp(26px, 3.5vw, 48px) !important; /* Плавный адаптив: от 26px до 48px */
+        font-weight: 300 !important; /* Устанавливаем тонкое начертание (Light) */
+    }
+
     /* 1. Убиваем флексбокс шаблона, чтобы элементы складывались строго друг под друга */
     .tech-stack-list .wg-tech {
         display: block !important;
-        padding: 0 !important; /* Убиваем расширение паддингов шаблона */
+        padding: 0 !important; 
         height: auto !important;
-        background: transparent !important; /* Убираем фон с li, чтобы он не красил весь блок с тегами */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Легкий разделитель между категориями */
+        background: transparent !important; 
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
     }
 
     /* 2. Изолированная обертка для самой полосы - она жестко держит высоту строки */
     .wg-tech-bar-wrapper {
         position: relative;
-        padding: 36px 0; /* Управляет толщиной полосы */
+        padding: 36px 0; 
         width: 100%;
         display: flex;
         justify-content: center;
@@ -372,10 +385,27 @@
         opacity: 0;
     }
 
-    /* Уменьшаем размер шрифта категорий и делаем его тонким */
-    .wg-tech .tech_text .h1 {
-        font-size: clamp(26px, 3.5vw, 48px) !important; /* Уменьшенный размер (было 32-64) */
-        font-weight: 300 !important; /* Тонкое начертание */
+    /* ===== УБИЙЦА ФАНТОМНЫХ ХОВЕРОВ НА МОБИЛКАХ ===== */
+    @media (hover: none), (pointer: coarse) {
+        /* 1. Глушим появление бегущей строки при касании пальцем.
+              Она появится ТОЛЬКО если категория открыта по клику (.active) */
+        .wg-tech:not(.active) .infiniteSlide_tech_main {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            transition: none !important;
+        }
+        
+        /* 2. Жестко включаем бегущую строку, когда категория открыта */
+        .wg-tech.active .infiniteSlide_tech_main {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        /* 3. Жестко запрещаем статичному тексту исчезать при скролле пальцем.
+              Он исчезнет ТОЛЬКО когда категория станет .active */
+        .wg-tech:not(.active):hover > .wg-tech-bar-wrapper > .tech_text {
+            opacity: 1 !important;
+        }
     }
 
     /* 4. Запираем бегущую строку строго внутри wg-tech-bar-wrapper */
@@ -388,13 +418,6 @@
         margin: 0 !important;
         height: 100% !important; /* Не даем ей растягиваться вниз на теги */
         z-index: 1;
-    }
-
-    /* Ограничиваем размер иконок для "воздуха" */
-    .wg-tech .app_icon img {
-        height: 40px !important; 
-        width: auto !important;
-        object-fit: contain;
     }
 
     /* 5. Контейнер тегов (строго под wg-tech-bar-wrapper) */
@@ -410,12 +433,17 @@
         justify-content: center;
     }
 
+    /* 6. Полностью глушим hover/бегущую строку, если палец реально скроллит */
+    body.is-touch-scrolling .tech-stack-list .wg-tech {
+        pointer-events: none !important;
+    }
+
     /* Раскрытие тегов при ховере / тапе */
     .wg-tech.active .service-tags-wrap {
-        max-height: 400px; /* Увеличил max-height на случай большого кол-ва тегов */
+        max-height: 400px;
         opacity: 1;
         padding: 24px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        border-top: 1px solid rgba(255, 255, 255, 0.05); /* Линия, отделяющая теги от цветной полосы */
     }
 
     /* Стили плашек (сервисов) */
@@ -427,7 +455,7 @@
         padding: 0;
         margin: 0;
         justify-content: center;
-        max-width: 900px; /* Чтобы длинные списки красиво переносились */
+        max-width: 900px; /* Чтобы длинные списки вроде Print красиво переносились */
     }
     
     .list-tags-custom li a {
@@ -445,22 +473,6 @@
         background: #fff;
         color: #000;
     }
-
-    /* ===== УБИЙЦА ФАНТОМНЫХ ХОВЕРОВ НА МОБИЛКАХ ===== */
-    @media (hover: none), (pointer: coarse) {
-        .wg-tech:not(.active) .infiniteSlide_tech_main {
-            opacity: 0 !important;
-            visibility: hidden !important;
-            transition: none !important;
-        }
-        .wg-tech.active .infiniteSlide_tech_main {
-            opacity: 1 !important;
-            visibility: visible !important;
-        }
-        .wg-tech:not(.active):hover > .wg-tech-bar-wrapper > .tech_text {
-            opacity: 1 !important;
-        }
-    }
 </style>
 
 <section class="section-tech-stack flat-spacing" id="serviceScroll">
@@ -470,21 +482,21 @@
         </h2>
     </div>
     
-    <ul class="tech-stack-list services-accordion-list mt-5">
+    <ul class="tech-stack-list main-action-active mt-5">
         
         <li class="wg-tech btn-active active">
             <div class="wg-tech-bar-wrapper">
                 <div class="tech_text letter-space--2">
-                    <p class="h1 text-center">Motion</p>
+                    <p class="h1 fw-normal text-center">Motion</p>
                 </div>
                 <div class="infiniteSlide_tech_main">
                     <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Motion</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-motion.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-motion.png" alt="Image"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Motion</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-motion.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-motion.png" alt="Image"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Motion</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-motion.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-motion.png" alt="Image"></div>
                     </div>
                 </div>
             </div>
@@ -501,16 +513,16 @@
         <li class="wg-tech btn-active">
             <div class="wg-tech-bar-wrapper">
                 <div class="tech_text letter-space--2">
-                    <p class="h1 text-center">Digital</p>
+                    <p class="h1 fw-normal text-center">Digital</p>
                 </div>
                 <div class="infiniteSlide_tech_main">
                     <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Digital</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-digital.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-digital.png" alt="Image"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Digital</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-digital.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-digital.png" alt="Image"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Digital</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-digital.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-digital.png" alt="Image"></div>
                     </div>
                 </div>
             </div>
@@ -526,16 +538,16 @@
         <li class="wg-tech btn-active">
             <div class="wg-tech-bar-wrapper">
                 <div class="tech_text letter-space--2">
-                    <p class="h1 text-center">Content Creation</p>
+                    <p class="h1 fw-normal text-center">Content Creation</p>
                 </div>
                 <div class="infiniteSlide_tech_main">
                     <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Content Creation</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-content.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-content.png" alt="Image"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Content Creation</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-content.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-content.png" alt="Image"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Content Creation</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-content.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-content.png" alt="Image"></div>
                     </div>
                 </div>
             </div>
@@ -553,16 +565,16 @@
         <li class="wg-tech btn-active">
             <div class="wg-tech-bar-wrapper">
                 <div class="tech_text letter-space--2">
-                    <p class="h1 text-center">AI Production</p>
+                    <p class="h1 fw-normal text-center">AI Production</p>
                 </div>
                 <div class="infiniteSlide_tech_main">
                     <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">AI Production</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-ai.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">AI Production</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-ai.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">AI Production</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-ai.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image"></div>
                     </div>
                 </div>
             </div>
@@ -580,16 +592,16 @@
         <li class="wg-tech btn-active">
             <div class="wg-tech-bar-wrapper">
                 <div class="tech_text letter-space--2">
-                    <p class="h1 text-center">Print</p>
+                    <p class="h1 fw-normal text-center">Print</p>
                 </div>
                 <div class="infiniteSlide_tech_main">
                     <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Print</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-print.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-print.png" alt="Image"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Print</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-print.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-print.png" alt="Image"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Print</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-print.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-print.png" alt="Image"></div>
                     </div>
                 </div>
             </div>
@@ -614,58 +626,23 @@
         <li class="wg-tech btn-active">
             <div class="wg-tech-bar-wrapper">
                 <div class="tech_text letter-space--2">
-                    <p class="h1 text-center">UI / UX</p>
+                    <p class="h1 fw-normal text-center">UI / UX</p>
                 </div>
                 <div class="infiniteSlide_tech_main">
                     <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">UI / UX</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-uiux.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-uiux.png" alt="Image"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">UI / UX</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-uiux.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-uiux.png" alt="Image"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">UI / UX</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-uiux.png" alt="Icon"></div>
+                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-uiux.png" alt="Image"></div>
                     </div>
                 </div>
             </div>
             <div class="service-tags-wrap">
                 <ul class="list-tags-custom">
                     <li><a class="text-body-2" href="projects.html?filter=app-design">App Design</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=interface">Interface</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=aso">ASO</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=email-design">Email Design</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=landing-pages">Landing Pages</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=websites">Websites</a></li>
-                </ul>
-            </div>
-        </li>
-
-        <li class="wg-tech btn-active">
-            <div class="wg-tech-bar-wrapper">
-                <div class="tech_text letter-space--2">
-                    <p class="h1 text-center">Branding & Identity</p>
-                </div>
-                <div class="infiniteSlide_tech_main">
-                    <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
-                        <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Branding & Identity</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-branding.png" alt="Icon"></div>
-                        <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Branding & Identity</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-branding.png" alt="Icon"></div>
-                        <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Branding & Identity</p></div></div>
-                        <div class="app_icon"><img loading="lazy" src="assets/images/section/icon-branding.png" alt="Icon"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="service-tags-wrap">
-                <ul class="list-tags-custom">
-                    <li><a class="text-body-2" href="projects.html?filter=visual-identity">Visual Identity</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=logos">Logos</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=guidelines">Guidelines</a></li>
-                </ul>
-            </div>
-        </li>
-
-    </ul>
-</section>
+                    <li>
 <!-- /SERVICES -->
 <!-- PROJECTS -->
         <section class="section-feature flat-spacing tf-btn-swiper-main">
