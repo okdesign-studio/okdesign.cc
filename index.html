@@ -360,11 +360,39 @@
         z-index: 2; /* Текст поверх всего */
     }
 
-    /* 3.1 Плавно прячем статичный заголовок при наведении,
-       чтобы он не накладывался на бегущую строку */
+/* 3.1 Защита текста от наложения (Десктоп + Мобайл) */
 .wg-tech > .wg-tech-bar-wrapper > .tech_text {
     opacity: 1;
     transition: opacity 0.3s ease;
+}
+
+/* Прячем статичный заголовок при ховере (для ПК) ИЛИ когда блок раскрыт (для всех) */
+.wg-tech:hover > .wg-tech-bar-wrapper > .tech_text,
+.wg-tech.active > .wg-tech-bar-wrapper > .tech_text {
+    opacity: 0;
+}
+
+/* ===== УБИЙЦА ФАНТОМНЫХ ХОВЕРОВ НА МОБИЛКАХ ===== */
+@media (hover: none), (pointer: coarse) {
+    /* 1. Глушим появление бегущей строки при касании пальцем.
+          Она появится ТОЛЬКО если категория открыта по клику (.active) */
+    .wg-tech:not(.active) .infiniteSlide_tech_main {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition: none !important;
+    }
+    
+    /* 2. Жестко включаем бегущую строку, когда категория открыта */
+    .wg-tech.active .infiniteSlide_tech_main {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* 3. Жестко запрещаем статичному тексту исчезать при скролле пальцем.
+          Он исчезнет ТОЛЬКО когда категория станет .active */
+    .wg-tech:not(.active):hover > .wg-tech-bar-wrapper > .tech_text {
+        opacity: 1 !important;
+    }
 }
 
 .wg-tech.active > .wg-tech-bar-wrapper > .tech_text {
