@@ -1450,7 +1450,7 @@
     <script src="assets/js/gsapAnimation.js"></script>
 
     <script src="assets/js/main.js"></script>
-<script>
+    <script>
 $(document).ready(function() {
     const $techList = $('.tech-stack-list.main-action-active');
     const $items = $techList.find('.wg-tech');
@@ -1458,44 +1458,51 @@ $(document).ready(function() {
     const isDesktopHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches && window.innerWidth > 991;
 
     if (isDesktopHover) {
-        // ДЕСКТОП: раскрываем плавно по наведению мыши + умная компенсация скролла
-        let hoverTimer;
-        
+        // ДЕСКТОП: раскрываем плавно по наведению мыши
+
+        let compensateRAF = null;
+
+        function stopCompensation() {
+            if (compensateRAF) {
+                cancelAnimationFrame(compensateRAF);
+                compensateRAF = null;
+            }
+        }
+
+        // Компенсируем скроллом сдвиг, который вызывают схлопывающиеся строки ВЫШЕ курсора,
+        // чтобы наведённая строка визуально оставалась на месте, а не "убегала" вверх/вниз.
+        function compensateScrollFor($el, duration) {
+            stopCompensation();
+            const target = $el[0];
+            let lastTop = target.getBoundingClientRect().top;
+            const start = performance.now();
+
+            function step(now) {
+                const currentTop = target.getBoundingClientRect().top;
+                const delta = currentTop - lastTop;
+                if (Math.abs(delta) > 0.1) {
+                    window.scrollBy({ top: delta, left: 0, behavior: 'instant' });
+                }
+                lastTop = target.getBoundingClientRect().top;
+
+                if (now - start < duration) {
+                    compensateRAF = requestAnimationFrame(step);
+                } else {
+                    compensateRAF = null;
+                }
+            }
+            compensateRAF = requestAnimationFrame(step);
+        }
+
         $items.on('mouseenter', function() {
             const $this = $(this);
             if ($this.hasClass('active')) return;
 
-            clearTimeout(hoverTimer);
-            
-            // Задержка (hover intent), чтобы избежать хаоса при быстром движении мыши через весь список
-            hoverTimer = setTimeout(function() {
-                const $prevActive = $this.siblings('.active');
-                
-                // Если предыдущий открытый блок находится ВЫШЕ текущего
-                if ($prevActive.length && $prevActive.index() < $this.index()) {
-                    
-                    // 1. Вычисляем высоту тегов, которые сейчас будут плавно исчезать
-                    const collapseHeight = $prevActive.find('.service-tags-wrap').outerHeight();
-                    
-                    // 2. Переключаем классы
-                    $prevActive.removeClass('active');
-                    $this.addClass('active');
-                    
-                    // 3. Магия: плавно скроллим страницу вверх на ту же высоту и с той же скоростью (400ms),
-                    // с которой схлопывается верхний блок. В итоге курсор остается ровно на заголовке!
-                    $('html, body').animate({
-                        scrollTop: $(window).scrollTop() - collapseHeight
-                    }, { duration: 400, queue: false });
-                    
-                } else {
-                    // Если движемся снизу вверх — просто открываем (ничего не уезжает)
-                    $this.addClass('active').siblings().removeClass('active');
-                }
-            }, 70); // 70мс — идеальное окно для считывания намерения пользователя
-        }).on('mouseleave', function() {
-            clearTimeout(hoverTimer);
+            $this.addClass('active').siblings().removeClass('active');
+            // 500мс с запасом — CSS-переход max-height у .service-tags-wrap идёт 0.4s
+            compensateScrollFor($this, 500);
         });
-        
+
         return;
     }
 
@@ -1510,6 +1517,7 @@ $(document).ready(function() {
     });
 
     // 2. Блокировка hover/бегущей строки на время реального скролла пальцем.
+    //    Отличаем скролл от тапа по смещению (порог 10px) — джиттер пальца при тапе не в счёт.
     let startX = 0, startY = 0, isRealScroll = false, scrollEndTimer = null;
 
     $techList.on('touchstart', function(e) {
@@ -1532,6 +1540,7 @@ $(document).ready(function() {
 
     $techList.on('touchend touchcancel', function() {
         if (isRealScroll) {
+            // задержка гасит инерционный скролл iOS и "хвостовые" синтетические события
             scrollEndTimer = setTimeout(function() {
                 document.body.classList.remove('is-touch-scrolling');
             }, 150);
