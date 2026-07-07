@@ -688,23 +688,50 @@
         transition: background-color 0.4s ease;
     }
 
-    /* ==== ЛОГИКА ПОДСВЕТКИ (Только Ховер) ==== */
+    /* ==== ЛОГИКА ПОДСВЕТКИ (Центр по умолчанию + Ховер) ==== */
     
-    .swiper-testimonial .swiper-slide:hover .wg-testimonial-card {
+    /* 1. Состояние по умолчанию: центральный слайд (active) четкий и подсвечен */
+    .swiper-testimonial .swiper-slide-active .wg-testimonial-card {
         transform: scale(1.05);
         border-color: transparent;
         background: rgba(0, 0, 0, 0.4);
         z-index: 10;
         box-shadow: 0px 20px 40px rgba(0,0,0,0.4);
     }
+    .swiper-testimonial .swiper-slide-active .wg-testimonial-card .line-vertical,
+    .swiper-testimonial .swiper-slide-active .wg-testimonial-card .line-horizontal { background: var(--primary); }
+    .swiper-testimonial .swiper-slide-active .wg-testimonial-card .bg-img { opacity: 1; }
+    .swiper-testimonial .swiper-slide-active .wg-testimonial-card .br-line { background-color: var(--primary); }
+
+    /* 2. Гасим центральный слайд, когда мышь заходит в область карусели */
+    .swiper-testimonial:hover .swiper-slide-active .wg-testimonial-card {
+        transform: scale(1);
+        border-color: rgba(255,255,255,0.05);
+        background: rgba(255, 255, 255, 0.02);
+        box-shadow: none;
+        z-index: 1;
+    }
+    .swiper-testimonial:hover .swiper-slide-active .wg-testimonial-card .line-vertical,
+    .swiper-testimonial:hover .swiper-slide-active .wg-testimonial-card .line-horizontal { background: transparent; }
+    .swiper-testimonial:hover .swiper-slide-active .wg-testimonial-card .bg-img { opacity: 0; }
+    .swiper-testimonial:hover .swiper-slide-active .wg-testimonial-card .br-line { background-color: var(--white-16); }
+
+    /* 3. Делаем четкой именно ту карточку, на которую навели (переопределяем всё) */
+    .swiper-testimonial .swiper-slide:hover .wg-testimonial-card {
+        transform: scale(1.05) !important;
+        border-color: transparent !important;
+        background: rgba(0, 0, 0, 0.4) !important;
+        z-index: 10 !important;
+        box-shadow: 0px 20px 40px rgba(0,0,0,0.4) !important;
+    }
     .swiper-testimonial .swiper-slide:hover .wg-testimonial-card .line-vertical,
-    .swiper-testimonial .swiper-slide:hover .wg-testimonial-card .line-horizontal { background: var(--primary); }
-    .swiper-testimonial .swiper-slide:hover .wg-testimonial-card .bg-img { opacity: 1; }
-    .swiper-testimonial .swiper-slide:hover .wg-testimonial-card .br-line { background-color: var(--primary); }
+    .swiper-testimonial .swiper-slide:hover .wg-testimonial-card .line-horizontal { background: var(--primary) !important; }
+    .swiper-testimonial .swiper-slide:hover .wg-testimonial-card .bg-img { opacity: 1 !important; }
+    .swiper-testimonial .swiper-slide:hover .wg-testimonial-card .br-line { background-color: var(--primary) !important; }
     
 </style>
 
-<section class="section-testimonial flat-spacing">
+<section class="section-testimonial flat-spacing position-relative overflow-hidden">
     <div class="bg-img">
         <img loading="lazy" width="1440" height="1081" src="assets/images/item/bg-4.png" alt="Image">
     </div>
@@ -723,7 +750,7 @@
              data-space-md="24" 
              data-space="16" 
              data-loop="true" 
-             data-centered="true"
+             data-center="true"
              data-pagination="1">
             
             <div class="swiper-wrapper">
@@ -909,14 +936,15 @@
         <!-- /ABOUT -->
         <!-- Faq -->
         <section class="section-faq flat-spacing">
-            <div class="s-header d-block">
-                    <h2 class="text-display-2 letter-space--3 effectFade fadeUp">
-                        Frequently <br>
-                        asked questions
-                    </h2>
-                </div>
+            <div class="container">
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
+                        <div class="s-header d-block mb-4">
+                            <h2 class="text-display-2 letter-space--3 effectFade fadeUp">
+                                Frequently <br>
+                                asked questions
+                            </h2>
+                        </div>
                         <div class="accordion-faq_list" id="accordion-faq_list">
                             <div class="accordion-faq_item" role="presentation">
                                 <div class="accordion-action text-body-1 letter-space--1 fw-medium collapsed" data-bs-target="#faq-1" role="button"
@@ -985,7 +1013,7 @@
         </section>
         <!-- /FAQ -->
         <!-- CONTACT -->
-        <section class="section-cta flat-spacing" id="contactScroll">
+        <section class="section-cta flat-spacing position-relative overflow-hidden" id="contactScroll">
             <div class="bg-img">
                 <img loading="lazy" width="1440" height="1081" src="assets/images/item/bg-3.png" alt="Image">
             </div>
