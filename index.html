@@ -332,46 +332,60 @@
         <!-- /SELECTED PROJECTS -->
         <!-- SERVICES -->
 <style>
-    /* Отменяем жесткую высоту строк шаблона, чтобы они могли раздвигаться */
+    /* Превращаем li в строгую сетку из двух этажей */
     .tech-stack-list .wg-tech {
+        display: grid !important;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 0fr; /* 1 этаж - контент, 2 этаж - скрытые теги */
+        align-items: center;
+        padding: 0 !important; /* Убираем родной паддинг с li, переносим на контент */
         height: auto !important;
-        position: relative;
-    }
-    
-    /* Контейнер для тегов. Используем grid для плавного слайд-эффекта вниз */
-    .service-tags-wrap {
-        display: grid;
-        grid-template-rows: 0fr;
         transition: grid-template-rows 0.4s ease;
-        /* Жестко задаем черный фон, чтобы перекрыть фиолетовый цвет от wg-tech.active */
-        background-color: #000 !important; 
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Легкий разделитель */
+    }
+
+    /* Раскрываем 2 этаж при ховере */
+    .tech-stack-list .wg-tech.active {
+        grid-template-rows: auto 1fr;
+    }
+
+    /* Этаж 1: Оригинальный контент (накладываем друг на друга в верхней ячейке) */
+    .wg-tech > .tech_text,
+    .wg-tech > .infiniteSlide_tech_main {
+        grid-row: 1;
+        grid-column: 1;
+        padding: 30px 0; /* Именно здесь задаем толщину цветной полосы */
+        margin: 0 !important;
         width: 100%;
-        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Этаж 2: Контейнер для тегов */
+    .wg-tech > .service-tags-wrap {
+        grid-row: 2;
+        grid-column: 1;
+        background-color: #000; /* Заливаем черным, чтобы отсечь фиолетовый фон при ховере */
+        overflow: hidden;
+        width: 100%;
+        display: flex;
+        justify-content: center;
         z-index: 10;
     }
-    
-    /* Раскрываем блок при наведении (шаблон сам вешает класс .active) */
-    .wg-tech.active .service-tags-wrap {
-        grid-template-rows: 1fr;
-    }
-    
-    /* Внутренний контейнер для отступов */
+
+    /* Внутренний контейнер для плавных отступов при раскрытии */
     .service-tags-inner {
-        min-height: 0;
-        overflow: hidden;
         padding-top: 0;
         padding-bottom: 0;
         transition: padding 0.4s ease;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
     }
-    
+
     .wg-tech.active .service-tags-inner {
-        padding-top: 24px;
-        padding-bottom: 24px;
+        padding-top: 15px;
+        padding-bottom: 35px;
     }
-    
+
     /* Стили самих плашек-тегов */
     .list-tags-custom {
         display: flex;
@@ -411,34 +425,16 @@
         
         <li class="wg-tech btn-active active">
             <div class="tech_text letter-space--2">
-                <p class="h1 fw-normal">Motion Design</p>
+                <p class="h1 fw-normal text-center">Motion Design</p>
             </div>
             <div class="infiniteSlide_tech_main">
                 <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">Motion Design</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-motion.png" alt="Image">
-                    </div>
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">Motion Design</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-motion.png" alt="Image">
-                    </div>
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">Motion Design</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-motion.png" alt="Image">
-                    </div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Motion Design</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-motion.png" alt="Image"></div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Motion Design</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-motion.png" alt="Image"></div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Motion Design</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-motion.png" alt="Image"></div>
                 </div>
             </div>
             <div class="service-tags-wrap">
@@ -455,34 +451,16 @@
 
         <li class="wg-tech btn-active">
             <div class="tech_text letter-space--2">
-                <p class="h1 fw-normal">UI / UX Design</p>
+                <p class="h1 fw-normal text-center">UI / UX Design</p>
             </div>
             <div class="infiniteSlide_tech_main">
                 <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">UI / UX Design</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-uiux.png" alt="Image">
-                    </div>
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">UI / UX Design</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-uiux.png" alt="Image">
-                    </div>
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">UI / UX Design</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-uiux.png" alt="Image">
-                    </div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">UI / UX Design</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-uiux.png" alt="Image"></div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">UI / UX Design</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-uiux.png" alt="Image"></div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">UI / UX Design</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-uiux.png" alt="Image"></div>
                 </div>
             </div>
             <div class="service-tags-wrap">
@@ -498,34 +476,16 @@
 
         <li class="wg-tech btn-active">
             <div class="tech_text letter-space--2">
-                <p class="h1 fw-normal">Print Design</p>
+                <p class="h1 fw-normal text-center">Print Design</p>
             </div>
             <div class="infiniteSlide_tech_main">
                 <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">Print Design</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-print.png" alt="Image">
-                    </div>
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">Print Design</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-print.png" alt="Image">
-                    </div>
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">Print Design</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-print.png" alt="Image">
-                    </div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Print Design</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-print.png" alt="Image"></div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Print Design</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-print.png" alt="Image"></div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Print Design</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-print.png" alt="Image"></div>
                 </div>
             </div>
             <div class="service-tags-wrap">
@@ -541,34 +501,16 @@
 
         <li class="wg-tech btn-active">
             <div class="tech_text letter-space--2">
-                <p class="h1 fw-normal">Branding & Identity</p>
+                <p class="h1 fw-normal text-center">Branding & Identity</p>
             </div>
             <div class="infiniteSlide_tech_main">
                 <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">Branding & Identity</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-branding.png" alt="Image">
-                    </div>
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">Branding & Identity</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-branding.png" alt="Image">
-                    </div>
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">Branding & Identity</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-branding.png" alt="Image">
-                    </div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Branding & Identity</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-branding.png" alt="Image"></div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Branding & Identity</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-branding.png" alt="Image"></div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Branding & Identity</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-branding.png" alt="Image"></div>
                 </div>
             </div>
             <div class="service-tags-wrap">
@@ -584,34 +526,16 @@
 
         <li class="wg-tech btn-active">
             <div class="tech_text letter-space--2">
-                <p class="h1 fw-normal">Sound Design</p>
+                <p class="h1 fw-normal text-center">Sound Design</p>
             </div>
             <div class="infiniteSlide_tech_main">
                 <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">Sound Design</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-sound.png" alt="Image">
-                    </div>
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">Sound Design</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-sound.png" alt="Image">
-                    </div>
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">Sound Design</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-sound.png" alt="Image">
-                    </div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Sound Design</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-sound.png" alt="Image"></div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Sound Design</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-sound.png" alt="Image"></div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Sound Design</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-sound.png" alt="Image"></div>
                 </div>
             </div>
             <div class="service-tags-wrap">
@@ -627,34 +551,16 @@
 
         <li class="wg-tech btn-active">
             <div class="tech_text letter-space--2">
-                <p class="h1 fw-normal">AI Production</p>
+                <p class="h1 fw-normal text-center">AI Production</p>
             </div>
             <div class="infiniteSlide_tech_main">
                 <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">AI Production</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image">
-                    </div>
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">AI Production</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image">
-                    </div>
-                    <div class="app_name">
-                        <div class="tech_text letter-space--2">
-                            <p class="h1 text">AI Production</p>
-                        </div>
-                    </div>
-                    <div class="app_icon">
-                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image">
-                    </div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">AI Production</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image"></div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">AI Production</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image"></div>
+                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">AI Production</p></div></div>
+                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image"></div>
                 </div>
             </div>
             <div class="service-tags-wrap">
