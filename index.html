@@ -719,8 +719,7 @@
              data-space-md="24" 
              data-space="16" 
              data-loop="true" 
-             data-center="true"
-             data-pagination="1">
+             data-center="true">
             
             <div class="swiper-wrapper">
                 
@@ -847,12 +846,13 @@
             </div>
             
            <div class="group-btn-slider" style="margin-top: 30px;">
-                <div class="nav-prev-swiper lh-1 cs-pointer">
-                    <i class="icon icon-arrow-caret-left fs-8"></i>
+                <div class="btn-nav-swiper text-caption fw-medium link nav-prev-swiper cs-pointer">
+                    <i class="icon icon-arrow-long-left"></i>
+                    PREV
                 </div>
-                <div class="sw-dot-default tf-sw-pagination"></div>
-                <div class="nav-next-swiper lh-1 cs-pointer">
-                    <i class="icon icon-arrow-caret-right fs-8"></i>
+                <div class="btn-nav-swiper text-caption fw-medium link nav-next-swiper cs-pointer">
+                    NEXT
+                    <i class="icon icon-arrow-long-right"></i>
                 </div>
             </div>
 
@@ -861,13 +861,9 @@
 </section>
 <!-- /FEEDBACK -->
         <!-- ABOUT -->
-        <section class="section-about-me flat-spacing" id="aboutScroll" style="overflow: hidden;">
-            <div class="s-img-bg" style="display: flex; justify-content: center; background-color: #000;">
-                <!-- Ограничиваем рост картинки до 1920px -->
+        <section class="section-about-me flat-spacing" id="aboutScroll">
+            <div class="s-img-bg">
                 <img loading="lazy" width="1440" height="906" src="assets/images/section/bg-about.jpg" alt="Background" style="width: 100%; height: 100%; max-width: 1920px; object-fit: cover;">
-                
-                <!-- Маска: плавно уводит верх, низ и бока в глубокий черный цвет -->
-                <div style="position: absolute; inset: 0; background: linear-gradient(180deg, #000 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, #000 100%), linear-gradient(90deg, #000 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, #000 100%); pointer-events: none; z-index: 1;"></div>
             </div>
             <div class="container position-relative z-5">
                 <!-- Добавили align-items-center для выравнивания по вертикали -->
@@ -878,8 +874,6 @@
                             <div class="davies-video">
                                 <img src="assets/images/Profile_photo.webp" alt="Oleksandr Kukharyk" style="width: 100%; height: 100%; object-fit: cover; max-height: 666px; aspect-ratio: 0.8;">
                                 <div class="overlay v1"></div>
-                                <div class="overlay mark-1"></div>
-                                <div class="overlay mark-2"></div>
                             </div>
                         </div>
                     </div>
