@@ -1469,16 +1469,19 @@ $(document).ready(function() {
 
         function compensateScrollFor(el, duration) {
             stopCompensation();
-            let lastTop = el.getBoundingClientRect().top;
+            // Считаем позицию элемента В ДОКУМЕНТЕ, а не относительно viewport —
+            // это значение не меняется от обычного скролла колесом мыши,
+            // а меняется только от реальной перестройки лейаута (схлопывания строки выше).
+            let lastDocTop = el.getBoundingClientRect().top + window.scrollY;
             const start = performance.now();
 
             function step(now) {
-                const currentTop = el.getBoundingClientRect().top;
-                const delta = currentTop - lastTop;
+                const currentDocTop = el.getBoundingClientRect().top + window.scrollY;
+                const delta = currentDocTop - lastDocTop;
                 if (Math.abs(delta) > 0.1) {
                     window.scrollBy({ top: delta, left: 0, behavior: 'instant' });
                 }
-                lastTop = el.getBoundingClientRect().top;
+                lastDocTop = el.getBoundingClientRect().top + window.scrollY;
 
                 if (now - start < duration) {
                     compensateRAF = requestAnimationFrame(step);
