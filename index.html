@@ -360,6 +360,17 @@
         z-index: 2; /* Текст поверх всего */
     }
 
+    /* 3.1 Плавно прячем статичный заголовок при наведении,
+       чтобы он не накладывался на бегущую строку */
+.wg-tech > .wg-tech-bar-wrapper > .tech_text {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.wg-tech.active > .wg-tech-bar-wrapper > .tech_text {
+    opacity: 0;
+}
+
     /* 4. Запираем бегущую строку строго внутри wg-tech-bar-wrapper */
     .wg-tech .infiniteSlide_tech_main {
         position: absolute !important;
