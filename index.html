@@ -688,35 +688,8 @@
         transition: background-color 0.4s ease;
     }
 
-    /* ==== ЛОГИКА ПОДСВЕТКИ (Центр по умолчанию ИЛИ Ховер) ==== */
+    /* ==== ЛОГИКА ПОДСВЕТКИ (Только Ховер) ==== */
     
-    /* 1. Состояние по умолчанию: центральный (active) слайд светится */
-    .swiper-slide.swiper-slide-active .wg-testimonial-card {
-        transform: scale(1.05);
-        border-color: transparent;
-        background: rgba(0, 0, 0, 0.4);
-        z-index: 10;
-        box-shadow: 0px 20px 40px rgba(0,0,0,0.4);
-    }
-    .swiper-slide.swiper-slide-active .wg-testimonial-card .line-vertical,
-    .swiper-slide.swiper-slide-active .wg-testimonial-card .line-horizontal { background: var(--primary); }
-    .swiper-slide.swiper-slide-active .wg-testimonial-card .bg-img { opacity: 1; }
-    .swiper-slide.swiper-slide-active .wg-testimonial-card .br-line { background-color: var(--primary); }
-    
-    /* 2. Если мы навели мышь на карусель - гасим центральный */
-    .swiper-testimonial:hover .swiper-slide .wg-testimonial-card {
-        transform: scale(1);
-        border-color: rgba(255,255,255,0.05);
-        background: rgba(255, 255, 255, 0.02);
-        box-shadow: none;
-        z-index: 1;
-    }
-    .swiper-testimonial:hover .swiper-slide .wg-testimonial-card .line-vertical,
-    .swiper-testimonial:hover .swiper-slide .wg-testimonial-card .line-horizontal { background: transparent; }
-    .swiper-testimonial:hover .swiper-slide .wg-testimonial-card .bg-img { opacity: 0; }
-    .swiper-testimonial:hover .swiper-slide .wg-testimonial-card .br-line { background-color: var(--white-16); }
-
-    /* 3. Подсвечиваем ТОЛЬКО ту карточку, на которую навели сейчас */
     .swiper-testimonial .swiper-slide:hover .wg-testimonial-card {
         transform: scale(1.05);
         border-color: transparent;
@@ -729,49 +702,11 @@
     .swiper-testimonial .swiper-slide:hover .wg-testimonial-card .bg-img { opacity: 1; }
     .swiper-testimonial .swiper-slide:hover .wg-testimonial-card .br-line { background-color: var(--primary); }
     
-    /* Навигация стрелки */
-    .testimonial-nav-wrap {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        right: 0;
-        transform: translateY(-50%);
-        display: flex;
-        justify-content: space-between;
-        z-index: 20;
-        pointer-events: none;
-    }
-    .testimonial-nav-wrap .btn-nav-swiper {
-        pointer-events: auto;
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        transition: all 0.3s;
-        cursor: pointer;
-        /* Сдвигаем внутрь, чтобы не обрезались */
-        margin: 0 10px;
-    }
-    .testimonial-nav-wrap .btn-nav-swiper:hover {
-        background: var(--primary);
-        border-color: var(--primary);
-        color: black;
-    }
-    
-    @media (max-width: 991px) {
-        .testimonial-nav-wrap { display: none; }
-    }
 </style>
 
-<section class="section-testimonial flat-spacing position-relative" style="overflow: hidden;">
-    <div class="bg-img" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 0;">
-        <img loading="lazy" src="assets/images/item/bg-4.png" alt="Image" style="width: 100%; height: 100%; max-width: 1920px; object-fit: cover; object-position: center; opacity: 0.5;">
-        <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(0,0,0,0) 30%, #000 100%); pointer-events: none; z-index: 1;"></div>
+<section class="section-testimonial flat-spacing">
+    <div class="bg-img">
+        <img loading="lazy" width="1440" height="1081" src="assets/images/item/bg-4.png" alt="Image">
     </div>
 
     <div class="container position-relative z-5">
@@ -915,13 +850,14 @@
 
             </div>
             
-            <div class="testimonial-nav-wrap">
-                <div class="btn-nav-swiper nav-prev-swiper"><i class="icon icon-arrow-caret-left"></i></div>
-                <div class="btn-nav-swiper nav-next-swiper"><i class="icon icon-arrow-caret-right"></i></div>
-            </div>
-
-            <div class="group-btn-slider d-lg-none" style="margin-top: 10px;">
+           <div class="group-btn-slider" style="margin-top: 30px;">
+                <div class="nav-prev-swiper lh-1 cs-pointer">
+                    <i class="icon icon-arrow-caret-left fs-8"></i>
+                </div>
                 <div class="sw-dot-default tf-sw-pagination"></div>
+                <div class="nav-next-swiper lh-1 cs-pointer">
+                    <i class="icon icon-arrow-caret-right fs-8"></i>
+                </div>
             </div>
 
         </div>
@@ -973,9 +909,8 @@
         <!-- /ABOUT -->
         <!-- Faq -->
         <section class="section-faq flat-spacing">
-            <div class="container">
-                <div class="s-header d-block">
-                    <h2 class="text-display-2 letter-space--3 text-center effectFade fadeUp">
+            <div class="s-header d-block">
+                    <h2 class="text-display-2 letter-space--3 effectFade fadeUp">
                         Frequently <br>
                         asked questions
                     </h2>
@@ -999,7 +934,7 @@
                                 </div>
                             </div>
                             <div class="accordion-faq_item" role="presentation">
-                                <div class="accordion-action text-body-1 letter-space--1 fw-medium " data-bs-target="#faq-2" role="button"
+                                <div class="accordion-action text-body-1 letter-space--1 fw-medium collapsed" data-bs-target="#faq-2" role="button"
                                     data-bs-toggle="collapse" aria-controls="faq-2" aria-expanded="false">
                                     <span class="accordion-order">02</span>
                                     <p class="accordion-text">How is the cooperation handled legally?</p>
@@ -1007,7 +942,7 @@
                                         <i class="icon icon-arrow-caret-down fs-10"></i>
                                     </div>
                                 </div>
-                                <div id="faq-2" class="collapse show" data-bs-parent="#accordion-faq_list">
+                                <div id="faq-2" class="collapse" data-bs-parent="#accordion-faq_list">
                                     <p class="accordion-content">
                                         OK Design is an officially registered business entity based in Belgium (VAT/BTW registered). The studio operates under transparent B2B contracts and issues official invoices for local and international corporate clients.
                                     </p>
@@ -1050,10 +985,9 @@
         </section>
         <!-- /FAQ -->
         <!-- CONTACT -->
-        <section class="section-cta flat-spacing" id="contactScroll" style="overflow: hidden;">
-            <div class="bg-img" style="align-items: center;">
-                <img loading="lazy" width="1440" height="1081" src="assets/images/item/bg-3.png" alt="Image" style="width: 100%; height: 100%; max-width: 1920px; object-fit: cover; object-position: center; transform: none;">
-                <div style="position: absolute; inset: 0; background: linear-gradient(180deg, #000 0%, rgba(0,0,0,0) 5%, rgba(0,0,0,0) 95%, #000 100%); pointer-events: none; z-index: 1;"></div>
+        <section class="section-cta flat-spacing" id="contactScroll">
+            <div class="bg-img">
+                <img loading="lazy" width="1440" height="1081" src="assets/images/item/bg-3.png" alt="Image">
             </div>
     <div class="container">
         <div class="row">
