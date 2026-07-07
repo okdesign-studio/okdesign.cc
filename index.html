@@ -694,7 +694,9 @@
     .swiper-testimonial .swiper-slide-active .wg-testimonial-card {
         transform: scale(1.05);
         border-color: transparent;
-        background: rgba(0, 0, 0, 0.4);
+        background: rgba(255, 255, 255, 0.03); /* Тинт для матового стекла */
+        backdrop-filter: blur(24px); /* Усиленный блюр */
+        -webkit-backdrop-filter: blur(24px);
         z-index: 10;
         box-shadow: 0px 20px 40px rgba(0,0,0,0.4);
     }
@@ -708,6 +710,8 @@
         transform: scale(1);
         border-color: rgba(255,255,255,0.05);
         background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(12px); /* Возвращаем дефолтный блюр */
+        -webkit-backdrop-filter: blur(12px);
         box-shadow: none;
         z-index: 1;
     }
@@ -720,7 +724,9 @@
     .swiper-testimonial .swiper-slide:hover .wg-testimonial-card {
         transform: scale(1.05) !important;
         border-color: transparent !important;
-        background: rgba(0, 0, 0, 0.4) !important;
+        background: rgba(255, 255, 255, 0.03) !important; /* Тинт для матового стекла */
+        backdrop-filter: blur(24px) !important; /* Усиленный блюр */
+        -webkit-backdrop-filter: blur(24px) !important;
         z-index: 10 !important;
         box-shadow: 0px 20px 40px rgba(0,0,0,0.4) !important;
     }
@@ -732,8 +738,9 @@
 </style>
 
 <section class="section-testimonial flat-spacing position-relative overflow-hidden">
-    <div class="bg-img" style="position: absolute; inset: 0; z-index: 0; pointer-events: none;">
-        <img loading="lazy" width="1440" height="1081" src="assets/images/item/bg-4.png" alt="Image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+    <div class="bg-img" style="position: absolute; inset: 0; z-index: 0; pointer-events: none; display: flex; justify-content: center; align-items: center; background: #000;">
+        <img loading="lazy" src="assets/images/item/bg-4.png" alt="Image" style="width: 100%; max-width: 1600px; height: 100%; object-fit: contain;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(90deg, #000 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, #000 100%), linear-gradient(180deg, #000 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, #000 100%); pointer-events: none;"></div>
     </div>
 
     <div class="container position-relative z-5">
@@ -1014,8 +1021,9 @@
         <!-- /FAQ -->
         <!-- CONTACT -->
         <section class="section-cta flat-spacing position-relative overflow-hidden" id="contactScroll">
-            <div class="bg-img" style="position: absolute; inset: 0; z-index: 0; pointer-events: none;">
-                <img loading="lazy" width="1440" height="1081" src="assets/images/item/bg-3.png" alt="Image" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+            <div class="bg-img" style="position: absolute; inset: 0; z-index: 0; pointer-events: none; display: flex; justify-content: center; align-items: center; background: #000;">
+                <img loading="lazy" src="assets/images/item/bg-3.png" alt="Image" style="width: 100%; max-width: 1600px; height: 100%; object-fit: contain;">
+                <div style="position: absolute; inset: 0; background: linear-gradient(90deg, #000 0%, rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, #000 100%), linear-gradient(180deg, #000 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0) 90%, #000 100%); pointer-events: none;"></div>
             </div>
     <div class="container position-relative z-5">
         <div class="row">
