@@ -1458,8 +1458,6 @@ $(document).ready(function() {
     const isDesktopHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches && window.innerWidth > 991;
 
     if (isDesktopHover) {
-        // ДЕСКТОП: раскрываем плавно по наведению мыши
-
         let compensateRAF = null;
 
         function stopCompensation() {
@@ -1469,21 +1467,18 @@ $(document).ready(function() {
             }
         }
 
-        // Компенсируем скроллом сдвиг, который вызывают схлопывающиеся строки ВЫШЕ курсора,
-        // чтобы наведённая строка визуально оставалась на месте, а не "убегала" вверх/вниз.
-        function compensateScrollFor($el, duration) {
+        function compensateScrollFor(el, duration) {
             stopCompensation();
-            const target = $el[0];
-            let lastTop = target.getBoundingClientRect().top;
+            let lastTop = el.getBoundingClientRect().top;
             const start = performance.now();
 
             function step(now) {
-                const currentTop = target.getBoundingClientRect().top;
+                const currentTop = el.getBoundingClientRect().top;
                 const delta = currentTop - lastTop;
                 if (Math.abs(delta) > 0.1) {
                     window.scrollBy({ top: delta, left: 0, behavior: 'instant' });
                 }
-                lastTop = target.getBoundingClientRect().top;
+                lastTop = el.getBoundingClientRect().top;
 
                 if (now - start < duration) {
                     compensateRAF = requestAnimationFrame(step);
@@ -1494,13 +1489,20 @@ $(document).ready(function() {
             compensateRAF = requestAnimationFrame(step);
         }
 
-        $items.on('mouseenter', function() {
-            const $this = $(this);
-            if ($this.hasClass('active')) return;
+        // Активность строки переключает родной clickActive() из main.js — мы его не трогаем.
+        // Вместо своего mouseenter просто следим за появлением класса .active через MutationObserver:
+        // так компенсация сработает независимо от того, чей обработчик отработал первым.
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((m) => {
+                const el = m.target;
+                if (el.classList.contains('active')) {
+                    compensateScrollFor(el, 500);
+                }
+            });
+        });
 
-            $this.addClass('active').siblings().removeClass('active');
-            // 500мс с запасом — CSS-переход max-height у .service-tags-wrap идёт 0.4s
-            compensateScrollFor($this, 500);
+        $items.each(function () {
+            observer.observe(this, { attributes: true, attributeFilter: ['class'] });
         });
 
         return;
