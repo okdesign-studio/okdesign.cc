@@ -396,6 +396,12 @@
         justify-content: center;
     }
 
+    /* 6. Полностью глушим hover/бегущую строку, если палец реально скроллит,
+      а не тапает по строке */
+body.is-touch-scrolling .tech-stack-list .wg-tech {
+    pointer-events: none !important;
+}
+
     /* Раскрытие тегов при ховере (через класс active, который вешает JS шаблона) */
     .wg-tech.active .service-tags-wrap {
         max-height: 300px;
@@ -1365,33 +1371,61 @@
 
     <script src="assets/js/main.js"></script>
     <script>
-    $(document).ready(function() {
-        const $serviceItems = $('.tech-stack-list .wg-tech');
-        
-        // Проверяем: это десктоп с настоящей мышью или тач-устройство / малый экран?
-        const isDesktopHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches && window.innerWidth > 991;
-        
-        if (isDesktopHover) {
-            // ДЕСКТОП: раскрываем плавно по наведению мыши
-            $serviceItems.on('mouseenter', function() {
-                $(this).addClass('active').siblings().removeClass('active');
-            });
-        } else {
-            // МОБИЛЬНЫЕ И ПЛАНШЕТЫ: раскрываем ТОЛЬКО по чистому тапу (клику)
-            // При скролле пальцем событие click в браузерах НЕ срабатывает, поэтому ложных открытий больше не будет!
-            $serviceItems.find('.wg-tech-bar-wrapper').on('click', function(e) {
-                const $parentLi = $(this).closest('.wg-tech');
-                
-                // Если тапнули по закрытому блоку — открываем его, а остальные сворачиваем
-                if (!$parentLi.hasClass('active')) {
-                    $parentLi.addClass('active').siblings().removeClass('active');
-                } 
-                // (Опционально): если хочешь, чтобы повторный тап по открытому блоку закрывал его, 
-                // раскомментируй строку ниже:
-                // else { $parentLi.removeClass('active'); }
-            });
+$(document).ready(function() {
+    const $techList = $('.tech-stack-list.main-action-active');
+    const $items = $techList.find('.wg-tech');
+
+    const isDesktopHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches && window.innerWidth > 991;
+
+    if (isDesktopHover) {
+        // ДЕСКТОП: раскрываем плавно по наведению мыши
+        $items.on('mouseenter', function() {
+            $(this).addClass('active').siblings().removeClass('active');
+        });
+        return;
+    }
+
+    // ===== МОБИЛЬНЫЕ И ПЛАНШЕТЫ =====
+
+    // 1. Раскрытие тегов — строго по тапу
+    $items.find('.wg-tech-bar-wrapper').on('click', function() {
+        const $parentLi = $(this).closest('.wg-tech');
+        if (!$parentLi.hasClass('active')) {
+            $parentLi.addClass('active').siblings().removeClass('active');
         }
     });
+
+    // 2. Блокировка hover/бегущей строки на время реального скролла пальцем.
+    //    Отличаем скролл от тапа по смещению (порог 10px) — джиттер пальца при тапе не в счёт.
+    let startX = 0, startY = 0, isRealScroll = false, scrollEndTimer = null;
+
+    $techList.on('touchstart', function(e) {
+        const t = e.originalEvent.touches[0];
+        startX = t.clientX;
+        startY = t.clientY;
+        isRealScroll = false;
+    });
+
+    $techList.on('touchmove', function(e) {
+        const t = e.originalEvent.touches[0];
+        const dx = Math.abs(t.clientX - startX);
+        const dy = Math.abs(t.clientY - startY);
+        if (!isRealScroll && (dx > 10 || dy > 10)) {
+            isRealScroll = true;
+            document.body.classList.add('is-touch-scrolling');
+            clearTimeout(scrollEndTimer);
+        }
+    });
+
+    $techList.on('touchend touchcancel', function() {
+        if (isRealScroll) {
+            // задержка гасит инерционный скролл iOS и "хвостовые" синтетические события
+            scrollEndTimer = setTimeout(function() {
+                document.body.classList.remove('is-touch-scrolling');
+            }, 150);
+        }
+    });
+});
 </script>
 </body>
 
