@@ -1450,70 +1450,44 @@
     <script src="assets/js/gsapAnimation.js"></script>
 
     <script src="assets/js/main.js"></script>
-    <script>
+<script>
 $(document).ready(function() {
-    const $techList = $('.tech-stack-list.main-action-active');
+    const $techList = $('.tech-stack-list');
     const $items = $techList.find('.wg-tech');
+
+    // 1. ЖЕСТКО ОТКЛЮЧАЕМ РОДНОЙ СКРИПТ ШАБЛОНА
+    // Убираем класс btn-active, за который цепляется main.js, чтобы он не конфликтовал с нашей логикой
+    $items.removeClass('btn-active').off('mouseenter mouseleave');
 
     const isDesktopHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches && window.innerWidth > 991;
 
     if (isDesktopHover) {
-        let compensateRAF = null;
+        let hoverTimer;
 
-        function stopCompensation() {
-            if (compensateRAF) {
-                cancelAnimationFrame(compensateRAF);
-                compensateRAF = null;
-            }
-        }
+        $items.on('mouseenter', function() {
+            const $this = $(this);
+            // Если блок уже открыт — ничего не делаем
+            if ($this.hasClass('active')) return;
 
-        function compensateScrollFor(el, duration) {
-            stopCompensation();
-            // Считаем позицию элемента В ДОКУМЕНТЕ, а не относительно viewport —
-            // это значение не меняется от обычного скролла колесом мыши,
-            // а меняется только от реальной перестройки лейаута (схлопывания строки выше).
-            let lastDocTop = el.getBoundingClientRect().top + window.scrollY;
-            const start = performance.now();
-
-            function step(now) {
-                const currentDocTop = el.getBoundingClientRect().top + window.scrollY;
-                const delta = currentDocTop - lastDocTop;
-                if (Math.abs(delta) > 0.1) {
-                    window.scrollBy({ top: delta, left: 0, behavior: 'instant' });
-                }
-                lastDocTop = el.getBoundingClientRect().top + window.scrollY;
-
-                if (now - start < duration) {
-                    compensateRAF = requestAnimationFrame(step);
-                } else {
-                    compensateRAF = null;
-                }
-            }
-            compensateRAF = requestAnimationFrame(step);
-        }
-
-        // Активность строки переключает родной clickActive() из main.js — мы его не трогаем.
-        // Вместо своего mouseenter просто следим за появлением класса .active через MutationObserver:
-        // так компенсация сработает независимо от того, чей обработчик отработал первым.
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((m) => {
-                const el = m.target;
-                if (el.classList.contains('active')) {
-                    compensateScrollFor(el, 500);
-                }
-            });
+            clearTimeout(hoverTimer);
+            
+            // 2. HOVER INTENT: Задержка 150мс перед раскрытием.
+            // Спасает от судорожного открытия всех блоков подряд при проходе мыши сверху вниз
+            hoverTimer = setTimeout(function() {
+                $this.addClass('active').siblings().removeClass('active');
+            }, 150);
+            
+        }).on('mouseleave', function() {
+            // Если мышь ушла с блока до того, как истекли 150мс — отменяем открытие
+            clearTimeout(hoverTimer);
         });
 
-        $items.each(function () {
-            observer.observe(this, { attributes: true, attributeFilter: ['class'] });
-        });
-
-        return;
+        return; // На десктопе дальше не идем
     }
 
-    // ===== МОБИЛЬНЫЕ И ПЛАНШЕТЫ =====
+    // ===== МОБИЛЬНЫЕ И ПЛАНШЕТЫ (Оставляем как было, тут логика идеальна) =====
 
-    // 1. Раскрытие тегов — строго по тапу
+    // Раскрытие тегов строго по тапу на заголовок
     $items.find('.wg-tech-bar-wrapper').on('click', function() {
         const $parentLi = $(this).closest('.wg-tech');
         if (!$parentLi.hasClass('active')) {
@@ -1521,8 +1495,7 @@ $(document).ready(function() {
         }
     });
 
-    // 2. Блокировка hover/бегущей строки на время реального скролла пальцем.
-    //    Отличаем скролл от тапа по смещению (порог 10px) — джиттер пальца при тапе не в счёт.
+    // Блокировка hover/бегущей строки на время реального скролла пальцем
     let startX = 0, startY = 0, isRealScroll = false, scrollEndTimer = null;
 
     $techList.on('touchstart', function(e) {
@@ -1545,7 +1518,6 @@ $(document).ready(function() {
 
     $techList.on('touchend touchcancel', function() {
         if (isRealScroll) {
-            // задержка гасит инерционный скролл iOS и "хвостовые" синтетические события
             scrollEndTimer = setTimeout(function() {
                 document.body.classList.remove('is-touch-scrolling');
             }, 150);
