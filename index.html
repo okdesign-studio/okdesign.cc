@@ -332,31 +332,47 @@
         <!-- /SELECTED PROJECTS -->
         <!-- SERVICES -->
 <style>
-    /* Плавное раскрытие тегов */
-    .wg-tech .service-tags-wrap {
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.4s ease;
-        display: flex;
-        justify-content: center;
-        /* Ключевой фикс: заливаем фон тегов черным, чтобы отсечь растянутый фиолетовый фон строки */
-        background-color: #000; 
-        width: 100%;
+    /* Отменяем жесткую высоту строк шаблона, чтобы они могли раздвигаться */
+    .tech-stack-list .wg-tech {
+        height: auto !important;
         position: relative;
     }
     
-    /* Раскрываем теги строго под цветной полосой */
+    /* Контейнер для тегов. Используем grid для плавного слайд-эффекта вниз */
+    .service-tags-wrap {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.4s ease;
+        /* Жестко задаем черный фон, чтобы перекрыть фиолетовый цвет от wg-tech.active */
+        background-color: #000 !important; 
+        width: 100%;
+        position: relative;
+        z-index: 10;
+    }
+    
+    /* Раскрываем блок при наведении (шаблон сам вешает класс .active) */
     .wg-tech.active .service-tags-wrap {
-        max-height: 150px;
-        opacity: 1;
+        grid-template-rows: 1fr;
+    }
+    
+    /* Внутренний контейнер для отступов */
+    .service-tags-inner {
+        min-height: 0;
+        overflow: hidden;
+        padding-top: 0;
+        padding-bottom: 0;
+        transition: padding 0.4s ease;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .wg-tech.active .service-tags-inner {
         padding-top: 24px;
         padding-bottom: 24px;
-        /* Тонкая линия, чтобы визуально отделить черную зону от фиолетовой полосы (по желанию) */
-        border-top: 1px solid rgba(255, 255, 255, 0.05); 
     }
-
-    /* Стили самих тегов (плашки) */
+    
+    /* Стили самих плашек-тегов */
     .list-tags-custom {
         display: flex;
         flex-wrap: wrap;
@@ -395,142 +411,262 @@
         
         <li class="wg-tech btn-active active">
             <div class="tech_text letter-space--2">
-                <p class="h1 fw-normal text-center">Motion Design</p>
+                <p class="h1 fw-normal">Motion Design</p>
             </div>
             <div class="infiniteSlide_tech_main">
                 <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Motion Design</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-motion.png" alt="Image"></div>
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Motion Design</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-motion.png" alt="Image"></div>
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Motion Design</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-motion.png" alt="Image"></div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">Motion Design</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-motion.png" alt="Image">
+                    </div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">Motion Design</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-motion.png" alt="Image">
+                    </div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">Motion Design</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-motion.png" alt="Image">
+                    </div>
                 </div>
             </div>
             <div class="service-tags-wrap">
-                <ul class="list-tags-custom">
-                    <li><a class="text-body-2" href="projects.html?filter=promo">Promo Videos</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=tv-ads">TV Ads</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=kinetic">Kinetic Typography</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=explainer">Explainer Videos</a></li>
-                </ul>
+                <div class="service-tags-inner">
+                    <ul class="list-tags-custom">
+                        <li><a class="text-body-2" href="projects.html?filter=promo">Promo Videos</a></li>
+                        <li><a class="text-body-2" href="projects.html?filter=tv-ads">TV Ads</a></li>
+                        <li><a class="text-body-2" href="projects.html?filter=kinetic">Kinetic Typography</a></li>
+                        <li><a class="text-body-2" href="projects.html?filter=explainer">Explainer Videos</a></li>
+                    </ul>
+                </div>
             </div>
         </li>
 
         <li class="wg-tech btn-active">
             <div class="tech_text letter-space--2">
-                <p class="h1 fw-normal text-center">UI / UX Design</p>
+                <p class="h1 fw-normal">UI / UX Design</p>
             </div>
             <div class="infiniteSlide_tech_main">
                 <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">UI / UX Design</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-uiux.png" alt="Image"></div>
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">UI / UX Design</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-uiux.png" alt="Image"></div>
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">UI / UX Design</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-uiux.png" alt="Image"></div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">UI / UX Design</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-uiux.png" alt="Image">
+                    </div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">UI / UX Design</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-uiux.png" alt="Image">
+                    </div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">UI / UX Design</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-uiux.png" alt="Image">
+                    </div>
                 </div>
             </div>
             <div class="service-tags-wrap">
-                <ul class="list-tags-custom">
-                    <li><a class="text-body-2" href="projects.html?filter=mobile-apps">Mobile Apps</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=web-interfaces">Web Interfaces</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=wireframing">Wireframing</a></li>
-                </ul>
+                <div class="service-tags-inner">
+                    <ul class="list-tags-custom">
+                        <li><a class="text-body-2" href="projects.html?filter=mobile-apps">Mobile Apps</a></li>
+                        <li><a class="text-body-2" href="projects.html?filter=web-interfaces">Web Interfaces</a></li>
+                        <li><a class="text-body-2" href="projects.html?filter=wireframing">Wireframing</a></li>
+                    </ul>
+                </div>
             </div>
         </li>
 
         <li class="wg-tech btn-active">
             <div class="tech_text letter-space--2">
-                <p class="h1 fw-normal text-center">Print Design</p>
+                <p class="h1 fw-normal">Print Design</p>
             </div>
             <div class="infiniteSlide_tech_main">
                 <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Print Design</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-print.png" alt="Image"></div>
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Print Design</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-print.png" alt="Image"></div>
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Print Design</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-print.png" alt="Image"></div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">Print Design</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-print.png" alt="Image">
+                    </div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">Print Design</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-print.png" alt="Image">
+                    </div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">Print Design</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-print.png" alt="Image">
+                    </div>
                 </div>
             </div>
             <div class="service-tags-wrap">
-                <ul class="list-tags-custom">
-                    <li><a class="text-body-2" href="projects.html?filter=business-cards">Business Cards</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=flyers">Flyers</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=posters">Posters</a></li>
-                </ul>
+                <div class="service-tags-inner">
+                    <ul class="list-tags-custom">
+                        <li><a class="text-body-2" href="projects.html?filter=business-cards">Business Cards</a></li>
+                        <li><a class="text-body-2" href="projects.html?filter=flyers">Flyers</a></li>
+                        <li><a class="text-body-2" href="projects.html?filter=posters">Posters</a></li>
+                    </ul>
+                </div>
             </div>
         </li>
 
         <li class="wg-tech btn-active">
             <div class="tech_text letter-space--2">
-                <p class="h1 fw-normal text-center">Branding & Identity</p>
+                <p class="h1 fw-normal">Branding & Identity</p>
             </div>
             <div class="infiniteSlide_tech_main">
                 <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Branding & Identity</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-branding.png" alt="Image"></div>
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Branding & Identity</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-branding.png" alt="Image"></div>
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Branding & Identity</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-branding.png" alt="Image"></div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">Branding & Identity</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-branding.png" alt="Image">
+                    </div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">Branding & Identity</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-branding.png" alt="Image">
+                    </div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">Branding & Identity</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-branding.png" alt="Image">
+                    </div>
                 </div>
             </div>
             <div class="service-tags-wrap">
-                <ul class="list-tags-custom">
-                    <li><a class="text-body-2" href="projects.html?filter=logo-design">Logo Design</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=brand-guidelines">Brand Guidelines</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=visual-strategy">Visual Strategy</a></li>
-                </ul>
+                <div class="service-tags-inner">
+                    <ul class="list-tags-custom">
+                        <li><a class="text-body-2" href="projects.html?filter=logo-design">Logo Design</a></li>
+                        <li><a class="text-body-2" href="projects.html?filter=brand-guidelines">Brand Guidelines</a></li>
+                        <li><a class="text-body-2" href="projects.html?filter=visual-strategy">Visual Strategy</a></li>
+                    </ul>
+                </div>
             </div>
         </li>
 
         <li class="wg-tech btn-active">
             <div class="tech_text letter-space--2">
-                <p class="h1 fw-normal text-center">Sound Design</p>
+                <p class="h1 fw-normal">Sound Design</p>
             </div>
             <div class="infiniteSlide_tech_main">
                 <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Sound Design</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-sound.png" alt="Image"></div>
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Sound Design</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-sound.png" alt="Image"></div>
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">Sound Design</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-sound.png" alt="Image"></div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">Sound Design</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-sound.png" alt="Image">
+                    </div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">Sound Design</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-sound.png" alt="Image">
+                    </div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">Sound Design</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-sound.png" alt="Image">
+                    </div>
                 </div>
             </div>
             <div class="service-tags-wrap">
-                <ul class="list-tags-custom">
-                    <li><a class="text-body-2" href="projects.html?filter=audio-routing">Audio Routing</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=sound-fx">Sound FX</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=music-production">Music Production</a></li>
-                </ul>
+                <div class="service-tags-inner">
+                    <ul class="list-tags-custom">
+                        <li><a class="text-body-2" href="projects.html?filter=audio-routing">Audio Routing</a></li>
+                        <li><a class="text-body-2" href="projects.html?filter=sound-fx">Sound FX</a></li>
+                        <li><a class="text-body-2" href="projects.html?filter=music-production">Music Production</a></li>
+                    </ul>
+                </div>
             </div>
         </li>
 
         <li class="wg-tech btn-active">
             <div class="tech_text letter-space--2">
-                <p class="h1 fw-normal text-center">AI Production</p>
+                <p class="h1 fw-normal">AI Production</p>
             </div>
             <div class="infiniteSlide_tech_main">
                 <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">AI Production</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image"></div>
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">AI Production</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image"></div>
-                    <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">AI Production</p></div></div>
-                    <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image"></div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">AI Production</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image">
+                    </div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">AI Production</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image">
+                    </div>
+                    <div class="app_name">
+                        <div class="tech_text letter-space--2">
+                            <p class="h1 text">AI Production</p>
+                        </div>
+                    </div>
+                    <div class="app_icon">
+                        <img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image">
+                    </div>
                 </div>
             </div>
             <div class="service-tags-wrap">
-                <ul class="list-tags-custom">
-                    <li><a class="text-body-2" href="projects.html?filter=prompt-engineering">Prompt Engineering</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=generative-media">Generative Media</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=audio-synthesis">Audio Synthesis</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=code-automation">Code & Automation</a></li>
-                    <li><a class="text-body-2" href="projects.html?filter=asset-polishing">Asset Polishing</a></li>
-                </ul>
+                <div class="service-tags-inner">
+                    <ul class="list-tags-custom">
+                        <li><a class="text-body-2" href="projects.html?filter=prompt-engineering">Prompt Engineering</a></li>
+                        <li><a class="text-body-2" href="projects.html?filter=generative-media">Generative Media</a></li>
+                        <li><a class="text-body-2" href="projects.html?filter=audio-synthesis">Audio Synthesis</a></li>
+                        <li><a class="text-body-2" href="projects.html?filter=code-automation">Code & Automation</a></li>
+                        <li><a class="text-body-2" href="projects.html?filter=asset-polishing">Asset Polishing</a></li>
+                    </ul>
+                </div>
             </div>
         </li>
 
