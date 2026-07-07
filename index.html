@@ -194,7 +194,7 @@
                             <div class="col-right">
                                 <div class="slick-for">
                                     <!-- Clone 1 -->
-                                    <<div>
+                                    <div>
                                         <a href="project.html" class="image effectFade fadeZoom">
                                             <img src="assets/images/section/work-1.jpg" alt="Image">
                                         </a>
@@ -339,9 +339,10 @@
     object-fit: contain;
 }
 
-/* Слегка уменьшаем размер шрифта категорий */
+/* Слегка уменьшаем размер шрифта категорий и делаем его тоньше */
 .wg-tech .tech_text .h1 {
-    font-size: clamp(32px, 4vw, 64px) !important; /* Плавный адаптив: 32px на мобилках, до 64px на ПК */
+    font-size: clamp(32px, 4vw, 64px) !important; /* Плавный адаптив */
+    font-weight: 300 !important; /* Устанавливаем тонкое начертание (Light) */
 }
     /* 1. Убиваем флексбокс шаблона, чтобы элементы складывались строго друг под друга */
     .tech-stack-list .wg-tech {
@@ -1231,7 +1232,7 @@ body.is-touch-scrolling .tech-stack-list .wg-tech {
                             </p>
                         </div>
                         <div class="col-6 col-sm-4 col-md-3">
-                            <<ul class="footer-menu-list mb-sm-0">
+                            <ul class="footer-menu-list mb-sm-0">
                                 <li><a href="#serviceScroll" class="link letter-space--2 h5">Services</a></li>
                                 <li><a href="projects.html" class="link letter-space--2 h5">Projects</a></li>
                                 <li><a href="#aboutScroll" class="link letter-space--2 h5">About</a></li>
