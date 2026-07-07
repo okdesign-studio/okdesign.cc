@@ -1364,6 +1364,35 @@
     <script src="assets/js/gsapAnimation.js"></script>
 
     <script src="assets/js/main.js"></script>
+    <script>
+    $(document).ready(function() {
+        const $serviceItems = $('.tech-stack-list .wg-tech');
+        
+        // Проверяем: это десктоп с настоящей мышью или тач-устройство / малый экран?
+        const isDesktopHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches && window.innerWidth > 991;
+        
+        if (isDesktopHover) {
+            // ДЕСКТОП: раскрываем плавно по наведению мыши
+            $serviceItems.on('mouseenter', function() {
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+        } else {
+            // МОБИЛЬНЫЕ И ПЛАНШЕТЫ: раскрываем ТОЛЬКО по чистому тапу (клику)
+            // При скролле пальцем событие click в браузерах НЕ срабатывает, поэтому ложных открытий больше не будет!
+            $serviceItems.find('.wg-tech-bar-wrapper').on('click', function(e) {
+                const $parentLi = $(this).closest('.wg-tech');
+                
+                // Если тапнули по закрытому блоку — открываем его, а остальные сворачиваем
+                if (!$parentLi.hasClass('active')) {
+                    $parentLi.addClass('active').siblings().removeClass('active');
+                } 
+                // (Опционально): если хочешь, чтобы повторный тап по открытому блоку закрывал его, 
+                // раскомментируй строку ниже:
+                // else { $parentLi.removeClass('active'); }
+            });
+        }
+    });
+</script>
 </body>
 
 </html>
