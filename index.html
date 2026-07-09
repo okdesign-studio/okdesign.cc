@@ -12,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description"
         content="Davies - Personal Portfolio is a sleek and modern HTML template designed for developers, designers, freelancers, and professionals who want to showcase their work online. Fully responsive, SEO-friendly, and easy to customize, it helps you create a strong personal brand and impress potential clients or employers.">
-
     <!-- font -->
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/icon/icomoon/style.css">
@@ -24,7 +23,6 @@
     <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/slick.theme.css">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
-
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="assets/images/logo/favicon.svg">
     <link rel="apple-touch-icon-precomposed" href="assets/images/logo/favicon.svg">
@@ -41,7 +39,6 @@
         </span>
     </button>
     <!-- /Scroll Top -->
-
     <!-- Preload -->
     <div class="preloader overflow-hidden">
         <div class="site-name"><span>OK DESIGN</span></div>
@@ -114,10 +111,11 @@
         </header>
         <!-- /Header -->
         <!-- Hero Banner -->
-        <div class="section-hero-v1">
+        <div class="section-hero-v1" style="background-color: #000;">
             <div class="overlay"></div>
-            <div class="bg-video">
-                <video class="" muted="" autoplay="" loop="" playsinline="">
+            <!-- Ограничиваем контейнер видео на 2000px и центрируем его -->
+            <div class="bg-video" style="max-width: 2000px; margin: 0 auto; left: 0; right: 0;">
+                <video class="" muted="" autoplay="" loop="" playsinline="" style="width: 100%; height: 100%; object-fit: cover;">
                     <source src="assets/images/video/Clean Opener.mp4" type="video/mp4">
                 </video>
                 <div class="video-overlay"></div>
@@ -833,8 +831,8 @@
                 </div>
             </div>
         </div>
-        <!-- /SELECTED CLIENTS -->
- <!-- FEEDBACK -->
+<!-- /SELECTED CLIENTS -->
+<!-- FEEDBACK -->
 <style>
     /* Кастомные стили для гибридной карточки отзывов (Basic -> Pro) */
     .wg-testimonial-card {
