@@ -958,10 +958,19 @@
                         </div>
                         
                         <div class="card-content">
-                            <!-- Размер шрифта уменьшен до 14px, так как текст отзыва довольно объемный -->
-                            <p class="text-white" style="font-size: 14px; line-height: 1.5; font-style: italic; flex-grow: 1; margin-bottom: 24px;">
-                                “Ik beveel Oleksandr graag aan als een zeer creatieve en professionele designer. Ik ben heel tevreden over onze samenwerking en de projecten die we samen hebben gerealiseerd. Oleksandr denkt actief mee, begrijpt snel wat er nodig is en weet ideeën op een sterke visuele manier tot leven te brengen. Zijn ontwerpen zijn niet alleen creatief, maar ook doordacht en afgestemd op de juiste doelgroep. Daarnaast werkt hij nauwkeurig, betrouwbaar en met veel gevoel voor detail. Voor creatieve ideeën en een sterke visuele uitwerking klop ik met veel plezier bij Oleksandr aan — en ik kan hem dan ook van harte aanbevelen aan anderen.”
-                            </p>
+                            <!-- Обертка для текста: flex-column и gap задают идеальные отступы между абзацами -->
+                            <div style="flex-grow: 1; margin-bottom: 24px; display: flex; flex-direction: column; gap: 12px;">
+                                <p class="text-white" style="font-size: 14px; line-height: 1.6; font-style: italic; margin: 0;">
+                                    “Ik beveel Oleksandr graag aan als een zeer creatieve en professionele designer. Ik ben heel tevreden over onze samenwerking en de projecten die we samen hebben gerealiseerd.
+                                </p>
+                                <p class="text-white" style="font-size: 14px; line-height: 1.6; font-style: italic; margin: 0;">
+                                    Oleksandr denkt actief mee, begrijpt snel wat er nodig is en weet ideeën op een sterke visuele manier tot leven te brengen. Zijn ontwerpen zijn niet alleen creatief, maar ook doordacht en afgestemd op de juiste doelgroep.
+                                </p>
+                                <p class="text-white" style="font-size: 14px; line-height: 1.6; font-style: italic; margin: 0;">
+                                    Daarnaast werkt hij nauwkeurig, betrouwbaar en met veel gevoel voor detail. Voor creatieve ideeën en een sterke visuele uitwerking klop ik met veel plezier bij Oleksandr aan - en ik kan hem dan ook van harte aanbevelen aan anderen.”
+                                </p>
+                            </div>
+                            
                             <div class="br-line" style="margin-bottom: 20px;"></div>
                             <div style="display: flex; align-items: center; gap: 16px;">
                                 <!-- Не забудь заменить tes-1.jpg на ее реальную фотографию -->
