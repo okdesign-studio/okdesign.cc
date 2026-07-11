@@ -835,21 +835,26 @@
 <!-- /SELECTED CLIENTS -->
 <!-- FEEDBACK -->
 <style>
-    /* ФИКС СХЛОПЫВАНИЯ КАРТОЧЕК */
+    <style>
+    /* ФИКС СХЛОПЫВАНИЯ КАРТОЧЕК В КАРУСЕЛИ */
+    .swiper-testimonial .swiper-wrapper {
+        align-items: stretch; /* Растягиваем все слайды на одинаковую высоту */
+    }
     .swiper-testimonial .swiper-slide {
-        height: auto; /* Заставляет слайды быть одинаковой высоты */
+        height: auto !important; 
         display: flex;
+        flex-direction: column;
     }
 
     /* Кастомные стили для гибридной карточки отзывов (Basic -> Pro) */
     .wg-testimonial-card {
-        width: 100%; /* Запрещаем тегу <a> схлопываться по ширине */
+        flex: 1; /* Заставляем ссылку-карточку заполнять всю высоту и ширину слайда */
+        width: 100%; 
         border: 1px solid rgba(255, 255, 255, 0.05);
         border-radius: 0px; 
         padding: 40px 32px;
         position: relative;
         transition: all 0.4s ease;
-        height: 100%;
         display: flex;
         flex-direction: column;
         cursor: pointer;
@@ -857,8 +862,6 @@
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
     }
-    
-    /* ... дальше идут остальные твои стили без изменений ... */
     
     .wg-testimonial-card .line-vertical { position: absolute; width: 1px; top: -1px; bottom: -1px; background: transparent; transition: 0.4s; z-index: 5; }
     .wg-testimonial-card .line-vertical.left { left: -1px; }
@@ -1110,7 +1113,11 @@
                             <!-- Новая интерактивная карточка Ashley -->
                             <div class="mil-team-card mil-up">
                                 <img src="assets/images/Profile_photo.webp" alt="Oleksandr Kukharyk">
-                                <div class="mil-description">
+                                
+                                <!-- ВОТ ОН: Плавный фейд в черное (z-index: 1 - строго под текстом и под выезжающей линией) -->
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 35%; background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0) 100%); pointer-events: none; z-index: 1;"></div>
+
+                                <div class="mil-description" style="z-index: 2;">
                                     <div class="mil-secrc-text">
                                         <h4 class="text-white mb-2 fw-semibold">Oleksandr Kukharyk</h4>
                                         <p class="text-white-64 mb-4 text-uppercase fw-medium" style="letter-spacing: 2px; font-size: 12px;">Motion Designer & Founder</p>
