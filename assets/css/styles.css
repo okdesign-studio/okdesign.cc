@@ -7474,9 +7474,11 @@ body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
     font-family: "Outfit", sans-serif !important;
 }
 
-/* ИСКЛЮЧЕНИЕ: Сохраняем шрифт Druk ТОЛЬКО для надписей OK DESIGN */
+//* ИСКЛЮЧЕНИЕ: Сохраняем шрифт Druk ТОЛЬКО для надписей OK DESIGN */
 .logo-site, .site-name span, .ok-gradient-text {
-    font-family: inherit !important; /* Или укажи здесь твой font-family для Druk, например: 'Druk', sans-serif !important; */
+    /* Если в твоей системе Druk называется чуть иначе (например, 'Druk Wide'), 
+       замени 'Druk' на правильное название в кавычках */
+    font-family: 'Druk', Arial, sans-serif !important; 
 }
 
 /* 2. Адаптация анимации курсора (.mil-ball) под темный сайт */
