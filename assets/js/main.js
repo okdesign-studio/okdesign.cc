@@ -82,6 +82,7 @@
     -------------------------------------------------------------------------*/
     var cursorTrail = () => {
         const canvas = document.getElementById("trail");
+        if (!canvas) return; // canvas #trail больше не используется (курсор заменён на .mil-ball из Ashley)
         const ctx = canvas.getContext("2d");
         let w = window.innerWidth,
             h = window.innerHeight;
