@@ -7462,3 +7462,103 @@ button.animate-btn::after,
         margin-bottom: 1.5rem !important;
     }
 }
+/* ==========================================
+   ИНТЕГРАЦИЯ ШАБЛОНА ASHLEY (Шрифты, Курсор, Анимации)
+========================================== */
+
+/* 1. Подключение шрифта Outfit как в Ashley */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/* Применяем Outfit ко всему сайту */
+body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
+    font-family: "Outfit", sans-serif !important;
+}
+
+/* ИСКЛЮЧЕНИЕ: Сохраняем шрифт Druk ТОЛЬКО для надписей OK DESIGN */
+.logo-site, .site-name span, .ok-gradient-text {
+    font-family: inherit !important; /* Или укажи здесь твой font-family для Druk, например: 'Druk', sans-serif !important; */
+}
+
+/* 2. Адаптация анимации курсора (.mil-ball) под темный сайт */
+.mil-ball {
+    width: 20px;
+    height: 20px;
+    position: fixed;
+    z-index: 99999;
+    background-color: #ffffff; /* Сделали белым для темного фона */
+    border-radius: 50%;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.15;
+}
+.mil-ball .mil-icon-1 {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    transform: scale(0);
+}
+.mil-ball .mil-icon-1 svg {
+    fill: #000000; /* Иконка внутри лупы будет черной на белом кружке */
+}
+.mil-ball .mil-more-text, .mil-ball .mil-choose-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    display: block;
+    color: #000000;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transform: scale(0);
+}
+.mil-ball.mil-accent {
+    background-color: #00aeff !important; /* Твой фирменный синий акцент */
+}
+@media screen and (max-width: 1200px) {
+    .mil-ball { display: none; } /* Отключаем на мобилках и планшетах */
+}
+
+/* 3. Анимация появления при скролле (.mil-up) */
+.mil-up {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+}
+
+/* 4. Анимация ховера для картинок в слайдерах (из Ashley) */
+.mil-image-frame {
+    position: relative;
+    overflow: hidden;
+}
+.mil-image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s cubic-bezier(0, 0, 0.3642, 1);
+}
+.mil-image-frame:hover img {
+    transform: scale(1.05); /* Плавный кинематографический зум */
+}
+.mil-zoom-btn {
+    opacity: 0;
+    transform: translateY(15px);
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: all 0.4s cubic-bezier(0, 0, 0.3642, 1);
+    z-index: 2;
+}
+.mil-image-frame:hover .mil-zoom-btn {
+    opacity: 1;
+    transform: translateY(0);
+}

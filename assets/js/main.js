@@ -238,3 +238,57 @@
         clickActive();
     });
 })(jQuery);
+/* ==========================================
+   GSAP ЛОГИКА ИЗ ASHLEY (Курсор и Скролл-анимации)
+========================================== */
+$(document).ready(function() {
+    // Проверяем наличие GSAP
+    if (typeof gsap !== 'undefined') {
+        if (typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+        }
+
+        // --- 1. ЛОГИКА КУРСОРА ---
+        const cursor = document.querySelector('.mil-ball');
+        if (cursor) {
+            gsap.set(cursor, { xPercent: -50, yPercent: -50 });
+
+            document.addEventListener('pointermove', function(e) {
+                gsap.to(cursor, { duration: 0.6, ease: 'sine', x: e.clientX, y: e.clientY });
+            });
+
+            // Эффект увеличения при наведении на слайды и ссылки
+            $('.mil-drag, .mil-more, .mil-choose').mouseover(function () {
+                gsap.to($(cursor), 0.2, { width: 90, height: 90, opacity: 0.9, ease: 'sine' });
+            });
+            $('.mil-drag, .mil-more, .mil-choose').mouseleave(function () {
+                gsap.to($(cursor), 0.2, { width: 20, height: 20, opacity: 0.15, ease: 'sine' });
+            });
+
+            $('.mil-drag').mouseover(function () { gsap.to($('.mil-ball .mil-icon-1'), 0.2, { scale: 1, ease: 'sine' }); });
+            $('.mil-drag').mouseleave(function () { gsap.to($('.mil-ball .mil-icon-1'), 0.2, { scale: 0, ease: 'sine' }); });
+
+            $('a, button, input, textarea').not('.mil-choose, .mil-more, .mil-drag').mouseover(function () {
+                gsap.to($(cursor), 0.2, { scale: 0, ease: 'sine' });
+            });
+            $('a, button, input, textarea').not('.mil-choose, .mil-more, .mil-drag').mouseleave(function () {
+                gsap.to($(cursor), 0.2, { scale: 1, ease: 'sine' });
+            });
+        }
+
+        // --- 2. АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ (.mil-up) ---
+        const appearance = document.querySelectorAll(".mil-up");
+        appearance.forEach((section) => {
+            gsap.fromTo(section, 
+                { opacity: 0, y: 40, scale: 0.98, ease: 'sine' }, 
+                {
+                    y: 0, opacity: 1, scale: 1, duration: 0.6,
+                    scrollTrigger: {
+                        trigger: section,
+                        toggleActions: 'play none none reverse',
+                    }
+                }
+            );
+        });
+    }
+});
