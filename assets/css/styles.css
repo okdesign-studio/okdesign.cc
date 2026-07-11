@@ -7665,3 +7665,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
     background-color: #00aeff; /* Синий ховер на иконках */
     transform: translateY(-3px);
 }
+/* Фикс для кнопки "Наверх" — чтобы всегда была поверх контента */
+#goTop {
+    z-index: 9999 !important;
+}
