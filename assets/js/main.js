@@ -291,23 +291,4 @@ $(document).ready(function() {
             );
         });
     }
-// --- 3. ЖЕЛЕЗОБЕТОННЫЙ ФИКС КНОПКИ НАВЕРХ ---
-        const goTopBtn = document.getElementById('goTop');
-        if (goTopBtn) {
-            // Слушаем скролл и показываем кнопку, если проскроллили больше 300px
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 300) {
-                    goTopBtn.classList.add('force-show');
-                } else {
-                    goTopBtn.classList.remove('force-show');
-                }
-            });
-            
-            // Плавный скролл наверх при клике (перебивает старые события)
-            goTopBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-    });
+});
