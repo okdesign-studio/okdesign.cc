@@ -7665,7 +7665,20 @@ body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
     background-color: #00aeff; /* Синий ховер на иконках */
     transform: translateY(-3px);
 }
-/* Фикс для кнопки "Наверх" — чтобы всегда была поверх контента */
+/* ПРИНУДИТЕЛЬНЫЕ СТИЛИ ДЛЯ КНОПКИ НАВЕРХ (Байпас родных скриптов) */
 #goTop {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none;
     z-index: 9999 !important;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease !important;
+    transform: translateY(20px); /* Слегка опущена вниз по умолчанию */
+}
+
+/* Этот класс мы будем навешивать своим скриптом */
+#goTop.force-show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: all;
+    transform: translateY(0); /* Поднимается на свое место */
 }
