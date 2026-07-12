@@ -61,12 +61,14 @@
         </header>
 
         <!-- Заголовок кейса -->
-        <div class="section-page-title" style="padding-top: 140px; padding-bottom: 30px;">
+        <!-- padding-bottom: 70px задает большой воздушный отступ между кнопкой и плейсхолдером -->
+        <div class="section-page-title" style="padding-top: 140px; padding-bottom: 70px;">
             <div class="container text-center mil-up">
-                <h1 class="page-title fw-semibold text-white mb-4">Air Pro <span class="fw-light">by Molekule</span></h1>
+                <h1 class="page-title fw-semibold text-white mb-0">Air Pro <span class="fw-light">by Molekule</span></h1>
                 
-                <!-- Кнопка скролла "EXPLORE FULL CASE" (теперь сразу под заголовком) -->
-                <a href="#project-content" class="link text-white d-inline-flex align-items-center gap-3 text-uppercase fw-medium mt-2 mb-2" style="letter-spacing: 2px; font-size: 12px; transition: 0.3s;">
+                <!-- Кнопка скролла "EXPLORE FULL CASE" -->
+                <!-- margin-top: 42px задает четкий отступ вниз от заголовка -->
+                <a href="#project-content" class="link text-white d-inline-flex align-items-center gap-3 text-uppercase fw-medium" style="margin-top: 42px; letter-spacing: 2px; font-size: 12px; transition: 0.3s;">
                     EXPLORE FULL CASE
                     <span class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1);">
                         <i class="icon icon-arrow-long-right" style="transform: rotate(90deg);"></i>
@@ -78,15 +80,17 @@
         <!-- Одноколоночная верстка кейса -->
         <section class="flat-spacing" style="padding-top: 0; padding-bottom: 120px;">
             
-            <!-- Главный баннер / Видео (Плейсхолдер строго 16:9 на всю ширину экрана) -->
-            <div class="mil-image-frame mil-fw mil-up mb-4" style="width: 100%;">
-                <img src="assets/images/section/work-1.jpg" alt="Project Cover" style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover;">
+            <!-- Главный баннер / Видео (Вернули высоту 65vh) -->
+            <!-- margin-bottom: 50px отодвигает картинку от строки с клиентом -->
+            <div class="mil-image-frame mil-fw mil-up" style="width: 100%; margin-bottom: 50px;">
+                <img src="assets/images/section/work-1.jpg" alt="Project Cover" style="width: 100%; height: 65vh; object-fit: cover;">
             </div>
 
             <!-- Якорь для скролла -->
             <div class="container" id="project-content">
-                <!-- Мета-информация (Клиент и Год теперь под обложкой) -->
-                <div class="text-center mil-up mb-5 pb-4" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <!-- Мета-информация (Клиент и Год) -->
+                <!-- margin-top: 20px добавляет еще немного пространства от нижнего края картинки -->
+                <div class="text-center mil-up mb-5 pb-4" style="margin-top: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
                     <div class="d-flex justify-content-center gap-5 text-white-64 fw-medium text-uppercase mb-2" style="font-size: 12px; letter-spacing: 2px;">
                         <div>Client: <span class="text-white">Envato Market</span></div>
                         <div>Year: <span class="text-white">2026</span></div>
