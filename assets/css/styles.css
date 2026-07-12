@@ -7665,3 +7665,65 @@ body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
     background-color: var(--primary); /* Синий ховер на иконках */
     transform: translateY(-3px);
 }
+/* ==========================================================================
+   КАСТОМНЫЕ БЛОКИ ДЛЯ КЕЙСА GOODGAME (STYLEGUIDE & IG GRID)
+   ========================================================================== */
+
+/* Чистые цветовые плашки стайлграда */
+.styleguide-swatch {
+    margin-bottom: 24px;
+}
+.styleguide-swatch .swatch-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+}
+.styleguide-swatch .swatch-box {
+    height: 48px;
+    width: 100%;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+.styleguide-swatch:hover .swatch-box {
+    transform: scaleX(1.01);
+}
+
+/* Сетка Инстаграма (строго 3 в ряд на всех экранах) */
+.ig-grid-post {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.ig-grid-post img, .ig-grid-post video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.ig-grid-post:hover img, .ig-grid-post:hover video {
+    transform: scale(1.05);
+}
+/* Иконка видео-лупа в правом верхнем углу (как в реальном IG) */
+.ig-grid-post .motion-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 24px;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
