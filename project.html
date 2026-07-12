@@ -61,39 +61,37 @@
         </header>
 
         <!-- Заголовок кейса -->
-        <div class="section-page-title" style="padding-top: 140px; padding-bottom: 40px;">
+        <div class="section-page-title" style="padding-top: 140px; padding-bottom: 30px;">
             <div class="container text-center mil-up">
                 <h1 class="page-title fw-semibold text-white mb-4">Air Pro <span class="fw-light">by Molekule</span></h1>
                 
-                <!-- Мета-информация (Сразу под заголовком, без Role) -->
-                <div class="d-flex justify-content-center gap-5 text-white-64 fw-medium text-uppercase mt-4" style="font-size: 12px; letter-spacing: 2px;">
-                    <div>Client: <span class="text-white">Envato Market</span></div>
-                    <div>Date: <span class="text-white">April 2026</span></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Одноколоночная верстка кейса -->
-        <section class="flat-spacing" style="padding-top: 0; padding-bottom: 120px;">
-            
-            <!-- Главный баннер / Видео (Плейсхолдер на всю ширину) -->
-            <!-- Высота 65vh позволяет кнопке гарантированно влезть в первый экран ноутбука -->
-            <div class="mil-image-frame mil-fw mil-up mb-4" style="width: 100%;">
-                <img src="assets/images/section/work-1.jpg" alt="Project Cover" style="width: 100%; height: 65vh; object-fit: cover;">
-            </div>
-
-            <!-- Кнопка скролла под главным медиа -->
-            <div class="container text-center mil-up mb-5 pb-4" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                <a href="#project-content" class="link text-white d-inline-flex align-items-center gap-3 text-uppercase fw-medium mb-4" style="letter-spacing: 2px; font-size: 12px; transition: 0.3s;">
+                <!-- Кнопка скролла "EXPLORE FULL CASE" (теперь сразу под заголовком) -->
+                <a href="#project-content" class="link text-white d-inline-flex align-items-center gap-3 text-uppercase fw-medium mt-2 mb-2" style="letter-spacing: 2px; font-size: 12px; transition: 0.3s;">
                     EXPLORE FULL CASE
                     <span class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1);">
                         <i class="icon icon-arrow-long-right" style="transform: rotate(90deg);"></i>
                     </span>
                 </a>
             </div>
+        </div>
 
-            <!-- Якорь для скролла и контент кейса -->
+        <!-- Одноколоночная верстка кейса -->
+        <section class="flat-spacing" style="padding-top: 0; padding-bottom: 120px;">
+            
+            <!-- Главный баннер / Видео (Плейсхолдер строго 16:9 на всю ширину экрана) -->
+            <div class="mil-image-frame mil-fw mil-up mb-4" style="width: 100%;">
+                <img src="assets/images/section/work-1.jpg" alt="Project Cover" style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover;">
+            </div>
+
+            <!-- Якорь для скролла -->
             <div class="container" id="project-content">
+                <!-- Мета-информация (Клиент и Год теперь под обложкой) -->
+                <div class="text-center mil-up mb-5 pb-4" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <div class="d-flex justify-content-center gap-5 text-white-64 fw-medium text-uppercase mb-2" style="font-size: 12px; letter-spacing: 2px;">
+                        <div>Client: <span class="text-white">Envato Market</span></div>
+                        <div>Year: <span class="text-white">2026</span></div>
+                    </div>
+                </div>
 
                 <!-- Слайдер картинок с механикой tf-swiper (свайп мышью + кнопки PREV/NEXT) -->
                 <div class="position-relative mil-up mb-5 pb-4">
