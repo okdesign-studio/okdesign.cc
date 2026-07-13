@@ -105,9 +105,15 @@
                         </div>
                         <!-- Правая часть -->
                         <div class="col-6 col-md-4 d-flex justify-content-end align-items-center">
-                            <!-- Почта (скрыта на мобильных, видна на ПК) -->
+                            <!-- Почта с векторной иконкой (видна на ПК) -->
                             <div class="header-contact d-none d-md-block">
-                                <a href="mailto:hello@okdesign.cc" class="link text-body-3 text-uppercase">HELLO@OKDESIGN.CC</a>
+                                <a href="mailto:hello@okdesign.cc" class="link text-body-3 text-uppercase d-flex align-items-center gap-2" style="text-decoration: none;">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 2px;">
+                                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                                    </svg>
+                                    <span>HELLO@OKDESIGN.CC</span>
+                                </a>
                             </div>
                             <!-- Кнопка Бургера (видна только на мобильных) -->
                             <button type="button" class="btn-mobile-menu open-mb-menu text-body-3 text-white link d-md-none">
@@ -952,9 +958,25 @@
         <!-- /ABOUT -->
         <!-- FEEDBACK -->
 <style>
+    /* 1. УБИВАЕМ РОДНОЙ БЛЮР ШАБЛОНА НА НЕАКТИВНЫХ СЛАЙДАХ */
+    .swiper-testimonial .swiper-slide::before {
+        display: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    /* 2. ДЕЛАЕМ КУРСОР КАРУСЕЛИ (КРУГ СО СТРЕЛКАМИ) ПОЛУПРОЗРАЧНЫМ */
+    .mil-ball {
+        background-color: rgba(255, 255, 255, 0.15) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    }
+    .mil-ball .mil-icon-1 svg path {
+        fill: #ffffff !important; /* Белые стрелочки внутри прозрачного круга */
+    }
+
     /* ФИКС СХЛОПЫВАНИЯ КАРТОЧЕК В КАРУСЕЛИ */
     .swiper-testimonial .swiper-wrapper {
-        align-items: stretch; /* Растягиваем все слайды на одинаковую высоту */
+        align-items: stretch;
     }
     .swiper-testimonial .swiper-slide {
         height: auto !important; 
@@ -962,9 +984,9 @@
         flex-direction: column;
     }
 
-    /* Кастомные стили для гибридной карточки отзывов (Basic -> Pro) */
+    /* Кастомные стили для карточки отзывов */
     .wg-testimonial-card {
-        flex: 1; /* Заставляем ссылку-карточку заполнять всю высоту и ширину слайда */
+        flex: 1; 
         width: 100%; 
         border: 1px solid rgba(255, 255, 255, 0.05);
         border-radius: 0px; 
@@ -974,10 +996,9 @@
         display: flex;
         flex-direction: column;
         cursor: pointer;
-        /* Легкий блюр для неактивных карточек */
         background: rgba(255, 255, 255, 0.02);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        /* Никакого блюра текста! Только приглушаем яркость неактивных карточек: */
+        opacity: 0.55; 
     }
     
     .wg-testimonial-card .line-vertical { position: absolute; width: 1px; top: -1px; bottom: -1px; background: transparent; transition: 0.4s; z-index: 5; }
@@ -995,16 +1016,14 @@
     .wg-testimonial-card .card-content { position: relative; z-index: 2; display: flex; flex-direction: column; flex-grow: 1; }
     .wg-testimonial-card .br-line { background-color: var(--white-16); height: 2px; transition: background-color 0.4s ease; }
 
-    /* ==== ЛОГИКА ПОДСВЕТКИ И БЛЮРА ==== */
+    /* ==== ЛОГИКА ПОДСВЕТКИ (БЕЗ РАЗМЫТИЯ) ==== */
     
-    /* 1. Центральный слайд (active) четкий, подсвечен + сильный блюр 
-          Это правило работает ВСЕГДА (и на ПК, и на мобилках при свайпе) */
+    /* 1. Центральный слайд (active) четкий, яркий и подсвеченный */
     .swiper-testimonial .swiper-slide-active .wg-testimonial-card {
         transform: scale(1.05);
         border-color: transparent;
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(24px); /* Тот самый блюр */
-        -webkit-backdrop-filter: blur(24px);
+        background: rgba(255, 255, 255, 0.06);
+        opacity: 1; /* 100% яркости */
         z-index: 10;
         box-shadow: 0px 20px 40px rgba(0,0,0,0.4);
     }
@@ -1020,8 +1039,7 @@
             transform: scale(1);
             border-color: rgba(255,255,255,0.05);
             background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            opacity: 0.55; /* Приглушаем при наведении на другой слайд */
             box-shadow: none;
             z-index: 1;
         }
@@ -1030,13 +1048,12 @@
         .swiper-testimonial:hover .swiper-slide-active .wg-testimonial-card .bg-img { opacity: 0; }
         .swiper-testimonial:hover .swiper-slide-active .wg-testimonial-card .br-line { background-color: var(--white-16); }
 
-        /* 3. Делаем подсвеченной именно ту карточку, на которую навели мышь */
+        /* 3. Делаем яркой и подсвеченной именно ту карточку, на которую навели мышь */
         .swiper-testimonial .swiper-slide:hover .wg-testimonial-card {
             transform: scale(1.05) !important;
             border-color: transparent !important;
-            background: rgba(255, 255, 255, 0.05) !important;
-            backdrop-filter: blur(24px) !important;
-            -webkit-backdrop-filter: blur(24px) !important;
+            background: rgba(255, 255, 255, 0.06) !important;
+            opacity: 1 !important; /* 100% яркости */
             z-index: 10 !important;
             box-shadow: 0px 20px 40px rgba(0,0,0,0.4) !important;
         }
@@ -1505,13 +1522,15 @@
             </div>
             <div class="footer-inner">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p class="title text-has-dot text-caption fw-medium mb-md-0">
-                                <span class="br-dot"></span>
-                                DESIGNING FOR CLIENTS WORLDWIDE
+                    <div class="row align-items-center">
+                        <!-- Копирайт в 2 строки с точкой -->
+                        <div class="col-md-4 mb-4 mb-md-0">
+                            <p class="title text-has-dot text-caption fw-medium mb-0" style="line-height: 1.6; display: flex; align-items: flex-start; gap: 8px;">
+                                <span class="br-dot" style="margin-top: 5px; flex-shrink: 0;"></span>
+                                <span>© 2026 OK DESIGN.<br>ALL RIGHTS RESERVED.</span>
                             </p>
                         </div>
+                        <!-- Навигация -->
                         <div class="col-6 col-sm-2 col-md-1">
                             <p class="footer-heading text-caption fw-medium text-white-64">
                                 SITEMAP
@@ -1525,6 +1544,7 @@
                                 <li><a href="#contactScroll" class="link letter-space--2 h5">Contact</a></li>
                             </ul>
                         </div>
+                        <!-- Соцсети -->
                         <div class="col-6 col-sm-2 col-md-1">
                             <p class="footer-heading text-caption fw-medium text-white-64">
                                 SOCIALS
@@ -1537,22 +1557,6 @@
                                 <li><a href="https://wa.me/okdesign.cc" target="_blank" class="link letter-space--2 h5">WhatsApp</a></li>
                             </ul>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="container">
-                    <div class="img-agency">
-                        <img class="effectFade fadeZoom" loading="lazy" width="1293" height="269" src="assets/images/logo/agency.svg" alt="Image">
-                    </div>
-                    <div class="bottom">
-                        <p class="text-nocopy text-caption fw-medium letter-space--1">
-                            © 2026 OK DESIGN. ALL RIGHTS RESERVED.
-                        </p>
-                        <a href="#" class="action-go-top tf-link-icon link text-caption fw-medium letter-space--1">
-                            BACK TO TOP
-                            <i class="icon icon-arrow-long-right"></i>
-                        </a>
                     </div>
                 </div>
             </div>
