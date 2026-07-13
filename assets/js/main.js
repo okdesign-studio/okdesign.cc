@@ -18,7 +18,6 @@
     var goTop = function () {
         var $goTop = $("#goTop");
         var $borderProgress = $(".border-progress");
-        var $footer = $(".tf-footer");
 
         $(window).on("scroll", function () {
             var scrollTop = $(window).scrollTop();
@@ -28,11 +27,8 @@
 
             $borderProgress.css("--progress-angle", progressAngle + "deg");
 
-            var windowBottom = scrollTop + $(window).height();
-            var hasFooter = $footer.length > 0;
-            var footerOffset = hasFooter ? $footer.offset().top : Infinity;
-
-            if (scrollTop > 100 && windowBottom < footerOffset) {
+            // Идеально чистое условие: показываем кнопку всегда, если проскроллили больше 100px
+            if (scrollTop > 100) {
                 $goTop.addClass("show");
             } else {
                 $goTop.removeClass("show");
