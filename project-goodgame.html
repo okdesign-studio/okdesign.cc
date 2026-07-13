@@ -58,8 +58,15 @@
                             </div>
                         </div>
                         <div class="col-6 col-md-4 d-flex justify-content-end align-items-center">
+                            <!-- Почта с векторной иконкой (видна на ПК) -->
                             <div class="header-contact d-none d-md-block">
-                                <a href="mailto:hello@okdesign.cc" class="link text-body-3 text-uppercase">HELLO@OKDESIGN.CC</a>
+                                <a href="mailto:hello@okdesign.cc" class="link text-body-3 text-uppercase d-flex align-items-center gap-2" style="text-decoration: none;">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 2px;">
+                                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                                    </svg>
+                                    <span>HELLO@OKDESIGN.CC</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -72,29 +79,44 @@
             <div class="container text-center mil-up">
                 <h1 class="page-title fw-semibold text-white mb-0">GoodGame <span class="fw-light">Cyberlounge</span></h1>
                 
-                <!-- Кнопка скролла "EXPLORE FULL CASE" -->
-                <a href="#project-content" class="link text-white d-inline-flex align-items-center gap-3 text-uppercase fw-medium" style="margin-top: 42px; letter-spacing: 2px; font-size: 12px; transition: 0.3s;">
-                    EXPLORE FULL CASE
-                    <span class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1);">
-                        <i class="icon icon-arrow-long-right" style="transform: rotate(90deg);"></i>
-                    </span>
-                </a>
+                <!-- Client & Year сместили наверх -->
+                <div class="d-flex justify-content-center gap-5 text-white-64 fw-medium text-uppercase mt-4" style="font-size: 12px; letter-spacing: 2px;">
+                    <div>Client: <span class="text-white">GoodGame</span></div>
+                    <div>Year: <span class="text-white">2021</span></div>
+                </div>
             </div>
         </div>
 
         <!-- Одноколоночная верстка кейса -->
         <section class="flat-spacing" style="padding-top: 0; padding-bottom: 120px;">
             
-            <!-- ГЛАВНОЕ ВИДЕО (Vimeo Embed 16:9 на всю ширину) -->
-            <div class="mil-image-frame mil-fw mil-up" style="width: 100%; margin-bottom: 50px;">
+            <!-- ГЛАВНОЕ ВИДЕО -->
+            <div class="mil-image-frame mil-fw mil-up position-relative" style="width: 100%; margin-bottom: 50px;">
                 <div style="width: 100%; aspect-ratio: 16 / 9; background: #080808; position: relative; overflow: hidden;">
-                    <!-- Вставь свой ID вместо YOUR_VIMEO_ID (параметры убирают UI вимео и включают автоплей) -->
-                    <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID?background=1&autoplay=1&loop=1&byline=0&title=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                    <!-- ДОБАВЛЕН pointer-events: none - он лечит зависание курсора -->
+                    <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID?background=1&autoplay=1&loop=1&byline=0&title=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; pointer-events: none;" allow="autoplay; fullscreen" allowfullscreen></iframe>
                 </div>
+                
+                <!-- Фейд в черный (15% высоты) -->
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 15%; background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0) 100%); pointer-events: none; z-index: 1;"></div>
             </div>
 
             <!-- Якорь для скролла -->
             <div class="container" id="project-content">
+                
+                <!-- Кнопка EXPLORE FULL CASE (Сместили вниз) -->
+                <div class="text-center mil-up mb-5 pb-4" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <!-- Якорь ведет на первый текстовый блок -->
+                    <a href="#challenge" class="link text-white d-inline-flex align-items-center gap-3 text-uppercase fw-medium" style="letter-spacing: 2px; font-size: 12px; transition: 0.3s;">
+                        EXPLORE FULL CASE
+                        <span class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1);">
+                            <i class="icon icon-arrow-long-right" style="transform: rotate(90deg);"></i>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Тут начинается блок THE CHALLENGE (Добавлен id="challenge") -->
+                <div id="challenge" class="row justify-content-between mil-up mb-5 pb-4">
                 
                 <!-- Мета-информация -->
                 <div class="text-center mil-up mb-5 pb-4" style="margin-top: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
@@ -112,41 +134,127 @@
                         <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">01 / The Challenge</span>
                         <h3 class="text-white mb-4">Translating a neon-drenched cyber space into a structured digital identity.</h3>
                     </div>
+                    <!-- Правая колонка: Интерактивные цветовые плашки и Типографика -->
                     <div class="col-lg-6">
-                        <p class="text-white-64 mb-4" style="line-height: 1.7; font-size: 18px;">
-                            GoodGame is a premium esports ecosystem and cyberlounge built for ultimate gaming immersion. Operating in collaboration with Black SMM, the primary objective was to architect a high-impact social media presence that reflected the physical space's futuristic, high-energy atmosphere.
-                        </p>
-                        <p class="text-white-64" style="line-height: 1.7; font-size: 18px;">
-                            The core challenge lay in developing a cohesive visual language across Instagram feeds and Stories — strictly adhering to established brand guidelines while pushing the boundaries of digital aesthetics through motion and typography.
-                        </p>
+                        
+                        <!-- Блок с цветами (светлая подложка) -->
+                        <div class="mb-4" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 32px; border-radius: 8px;">
+                            
+                            <div class="styleguide-swatch">
+                                <div class="swatch-meta">
+                                    <span>BLACKOUT</span>
+                                    <span>#000000 &nbsp;|&nbsp; PANTONE BLACK C &nbsp;|&nbsp; K:100</span>
+                                </div>
+                                <div class="swatch-box" style="background: #000000; border: 1px solid rgba(255,255,255,0.1);"></div>
+                            </div>
+
+                            <div class="styleguide-swatch">
+                                <div class="swatch-meta">
+                                    <span>WHITE NOISE</span>
+                                    <span>#FFFFFF &nbsp;|&nbsp; RGB: 255, 255, 255</span>
+                                </div>
+                                <div class="swatch-box" style="background: #FFFFFF;"></div>
+                            </div>
+
+                            <div class="styleguide-swatch">
+                                <div class="swatch-meta">
+                                    <span>ACID YELLOW</span>
+                                    <span>#CEFF00 &nbsp;|&nbsp; PANTONE 809 C &nbsp;|&nbsp; CMYK: 24, 0, 100, 0</span>
+                                </div>
+                                <div class="swatch-box" style="background: #CEFF00; box-shadow: 0 0 20px rgba(206,255,0,0.15);"></div>
+                            </div>
+
+                            <div class="styleguide-swatch">
+                                <div class="swatch-meta">
+                                    <span>ULTRAVIOLET</span>
+                                    <span>#A100FF &nbsp;|&nbsp; PANTONE 266 C &nbsp;|&nbsp; CMYK: 60, 80, 0, 0</span>
+                                </div>
+                                <div class="swatch-box" style="background: #A100FF; box-shadow: 0 0 20px rgba(161,0,255,0.2);"></div>
+                            </div>
+
+                            <div class="styleguide-swatch">
+                                <div class="swatch-meta">
+                                    <span>MOONDUST</span>
+                                    <span>#7C7C7C &nbsp;|&nbsp; PANTONE COOL GREY 5</span>
+                                </div>
+                                <div class="swatch-box" style="background: #7C7C7C;"></div>
+                            </div>
+
+                            <div class="styleguide-swatch mb-0">
+                                <div class="swatch-meta">
+                                    <span>VIRTUAL REALITY (GRADIENT)</span>
+                                    <span>ULTRAVIOLET &nbsp;&rarr;&nbsp; ACID YELLOW</span>
+                                </div>
+                                <div class="swatch-box" style="background: linear-gradient(90deg, #A100FF 0%, #CEFF00 100%);"></div>
+                            </div>
+
+                        </div>
+
+                        <!-- Блок ТИПОГРАФИКИ -->
+                        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 40px 32px; border-radius: 8px; overflow: hidden; position: relative;">
+                            
+                            <!-- Фоновая огромная буква для стиля -->
+                            <div style="font-family: 'Druk Wide Cyr', sans-serif; font-size: 260px; line-height: 1; color: rgba(255,255,255,0.03); position: absolute; right: -20px; bottom: -50px; pointer-events: none;">Aa</div>
+                            
+                            <h4 style="font-family: 'Druk Wide Cyr', sans-serif; color: #fff; margin-bottom: 12px; font-size: clamp(24px, 4vw, 32px);">DRUK WIDE CYR</h4>
+                            <p class="text-white-64 mb-4 pb-2" style="font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.1);">Primary Display Font</p>
+                            
+                            <div class="text-white" style="font-family: 'Druk Wide Cyr', sans-serif; font-size: 16px; line-height: 1.8; word-break: break-all; position: relative; z-index: 2;">
+                                A B C D E F G H I J K L M N O P Q R S T U V W X Y Z<br>
+                                0 1 2 3 4 5 6 7 8 9 & @ # % ! ?
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+                </div>
 
-                <!-- Слайдер фотографий пространства (8 фото одинаковой высоты) -->
+                <!-- Слайдер фотографий пространства (Авто-ширина) -->
                 <div class="position-relative mil-up mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    <div dir="ltr" class="swiper tf-swiper" data-preview="2" data-tablet="2" data-mobile-sm="1" data-mobile="1" data-space-lg="30" data-space-md="20" data-space="15">
+                    <!-- Важно: data-preview="auto" -->
+                    <div dir="ltr" class="swiper tf-swiper" data-preview="auto" data-space="15">
                         <div class="swiper-wrapper">
-                            <!-- Слайды (продублируй до 8 шт с разными фотками киберпространства) -->
-                            <div class="swiper-slide">
-                                <div class="mil-image-frame mil-vertical mil-drag" style="height: 480px;">
-                                    <img src="assets/images/section/work-2.jpg" alt="GoodGame Space" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                                </div>
+                            
+                            <!-- Слайд 1 (Широкий) -->
+                            <div class="swiper-slide" style="width: auto;">
+                                <img src="assets/images/projects/goodgame/gg-space-01-wide.webp" alt="GoodGame Space" class="mil-drag" style="height: 480px; width: auto; border-radius: 4px; object-fit: contain;">
                             </div>
-                            <div class="swiper-slide">
-                                <div class="mil-image-frame mil-vertical mil-drag" style="height: 480px;">
-                                    <img src="assets/images/section/work-3.jpg" alt="GoodGame Space" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                                </div>
+                            
+                            <!-- Слайд 2 (Узкий) -->
+                            <div class="swiper-slide" style="width: auto;">
+                                <img src="assets/images/projects/goodgame/gg-space-02-narrow.webp" alt="GoodGame Space" class="mil-drag" style="height: 480px; width: auto; border-radius: 4px; object-fit: contain;">
                             </div>
-                            <div class="swiper-slide">
-                                <div class="mil-image-frame mil-vertical mil-drag" style="height: 480px;">
-                                    <img src="assets/images/section/feature-1.jpg" alt="GoodGame Space" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                                </div>
+
+                            <!-- Слайд 3 (Средний) -->
+                            <div class="swiper-slide" style="width: auto;">
+                                <img src="assets/images/projects/goodgame/gg-space-03-mid.webp" alt="GoodGame Space" class="mil-drag" style="height: 480px; width: auto; border-radius: 4px; object-fit: contain;">
                             </div>
-                            <div class="swiper-slide">
-                                <div class="mil-image-frame mil-vertical mil-drag" style="height: 480px;">
-                                    <img src="assets/images/section/feature-2.jpg" alt="GoodGame Space" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
-                                </div>
+
+                            <!-- Слайд 4 (Узкий) -->
+                            <div class="swiper-slide" style="width: auto;">
+                                <img src="assets/images/projects/goodgame/gg-space-04-narrow.webp" alt="GoodGame Space" class="mil-drag" style="height: 480px; width: auto; border-radius: 4px; object-fit: contain;">
                             </div>
+
+                            <!-- Слайд 5 (Средний) -->
+                            <div class="swiper-slide" style="width: auto;">
+                                <img src="assets/images/projects/goodgame/gg-space-05-mid.webp" alt="GoodGame Space" class="mil-drag" style="height: 480px; width: auto; border-radius: 4px; object-fit: contain;">
+                            </div>
+
+                            <!-- Слайд 6 (Узкий) -->
+                            <div class="swiper-slide" style="width: auto;">
+                                <img src="assets/images/projects/goodgame/gg-space-06-narrow.webp" alt="GoodGame Space" class="mil-drag" style="height: 480px; width: auto; border-radius: 4px; object-fit: contain;">
+                            </div>
+
+                            <!-- Слайд 7 (Средний) -->
+                            <div class="swiper-slide" style="width: auto;">
+                                <img src="assets/images/projects/goodgame/gg-space-07-mid.webp" alt="GoodGame Space" class="mil-drag" style="height: 480px; width: auto; border-radius: 4px; object-fit: contain;">
+                            </div>
+
+                            <!-- Слайд 8 (Широкий) -->
+                            <div class="swiper-slide" style="width: auto;">
+                                <img src="assets/images/projects/goodgame/gg-space-08-wide.webp" alt="GoodGame Space" class="mil-drag" style="height: 480px; width: auto; border-radius: 4px; object-fit: contain;">
+                            </div>
+
                         </div>
                         
                         <!-- Кнопки PREV / NEXT -->
@@ -364,16 +472,27 @@
             </div>
         </section>
         <!-- / CALL TO ACTION -->
-        <!-- Твой Footer -->
+        <!-- Footer -->
         <footer class="tf-footer">
-            <div class="container"><div class="br-line"></div></div>
+            <div class="container">
+                <div class="br-line"></div>
+            </div>
             <div class="footer-inner">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p class="title text-has-dot text-caption fw-medium mb-md-0"><span class="br-dot"></span> DESIGNING FOR CLIENTS WORLDWIDE</p>
+                    <div class="row align-items-start">
+                        <!-- Копирайт (в 1 строку на мобильном с отступом mb-5) -->
+                        <div class="col-md-4 mb-5 mb-md-0">
+                            <p class="title text-has-dot text-caption fw-medium mb-0" style="line-height: 1.6; display: flex; align-items: flex-start; gap: 8px;">
+                                <span class="br-dot" style="margin-top: 5px; flex-shrink: 0;"></span>
+                                <span>© 2026 OK DESIGN.<span class="d-none d-md-inline"><br></span><span class="d-md-none"> </span>ALL RIGHTS RESERVED.</span>
+                            </p>
                         </div>
-                        <div class="col-6 col-sm-2 col-md-1"><p class="footer-heading text-caption fw-medium text-white-64">SITEMAP</p></div>
+                        <!-- Навигация -->
+                        <div class="col-6 col-sm-2 col-md-1">
+                            <p class="footer-heading text-caption fw-medium text-white-64 mb-3">
+                                SITEMAP
+                            </p>
+                        </div>
                         <div class="col-6 col-sm-4 col-md-3">
                             <ul class="footer-menu-list mb-sm-0">
                                 <li><a href="index.html#serviceScroll" class="link letter-space--2 h5">Services</a></li>
@@ -382,7 +501,12 @@
                                 <li><a href="index.html#contactScroll" class="link letter-space--2 h5">Contact</a></li>
                             </ul>
                         </div>
-                        <div class="col-6 col-sm-2 col-md-1"><p class="footer-heading text-caption fw-medium text-white-64">SOCIALS</p></div>
+                        <!-- Соцсети -->
+                        <div class="col-6 col-sm-2 col-md-1">
+                            <p class="footer-heading text-caption fw-medium text-white-64 mb-3">
+                                SOCIALS
+                            </p>
+                        </div>
                         <div class="col-6 col-sm-4 col-md-3">
                             <ul class="footer-menu-list mb-0">
                                 <li><a href="https://www.linkedin.com/company/okdesign-studio" target="_blank" class="link letter-space--2 h5">LinkedIn</a></li>
@@ -393,16 +517,8 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <div class="container">
-                    <div class="img-agency"><img class="effectFade fadeZoom" loading="lazy" width="1293" height="269" src="assets/images/logo/agency.svg" alt="Image"></div>
-                    <div class="bottom">
-                        <p class="text-nocopy text-caption fw-medium letter-space--1">© 2026 OK DESIGN. ALL RIGHTS RESERVED.</p>
-                        <a href="#" class="action-go-top tf-link-icon link text-caption fw-medium letter-space--1">BACK TO TOP <i class="icon icon-arrow-long-right"></i></a>
-                    </div>
-                </div>
-            </div>
         </footer>
+        <!-- /Footer -->
     </main>
 
     <!-- Твои скрипты -->
