@@ -7727,3 +7727,71 @@ body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
     justify-content: center;
     z-index: 2;
 }
+/* ==========================================================================
+   ОБНОВЛЕНИЕ ПЕРВОГО ЭКРАНА И КНОПКА СКРОЛЛА (OK DESIGN)
+   ========================================================================== */
+
+/* 1. Жестко фиксируем видео на первом экране на 100% высоты без текста */
+.section-hero-v1.hero-fullscreen {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    padding: 0 !important;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 2. Новый блок для текста и кнопки сразу под видео */
+.section-hero-content {
+    background-color: #000000;
+    padding: 80px 0 60px;
+    position: relative;
+    z-index: 5;
+}
+
+/* 3. Круглая кнопка скролла вниз в стиле сайта */
+#goDownBtn {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    z-index: 20;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    text-decoration: none;
+    animation: bounceDown 2.5s infinite;
+}
+
+#goDownBtn:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+    transform: translateX(-50%) scale(1.08);
+}
+
+/* Класс для плавного исчезновения при скролле */
+#goDownBtn.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(15px);
+}
+
+@keyframes bounceDown {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-6px); }
+    60% { transform: translateX(-50%) translateY(-3px); }
+}

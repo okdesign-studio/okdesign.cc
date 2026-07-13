@@ -21,8 +21,9 @@
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: $el,
-                        start: "top 70%",
-                        end: "bottom 20%",
+                        // ЗАМЕНИЛИ КООРДИНАТЫ НА ИДЕАЛЬНЫЕ:
+                        start: "top 90%",  // Начинаем красить, как только блок показался снизу
+                        end: "center 55%", // Заканчиваем точно чуть ниже центра экрана
                         scrub: true,
                         toggleActions: "play none none reverse",
                     },
