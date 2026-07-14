@@ -75,31 +75,31 @@
         </header>
 
 <!-- Заголовок кейса -->
-        <div class="section-page-title" style="padding-top: 140px; padding-bottom: 70px;">
-            <div class="container text-center mil-up">
-                <h1 class="page-title fw-semibold text-white mb-0">GoodGame <span class="fw-light">Cyberlounge</span></h1>
-                
-                <!-- Client & Year сместили наверх -->
-                <div class="d-flex justify-content-center gap-5 text-white-64 fw-medium text-uppercase mt-4" style="font-size: 12px; letter-spacing: 2px;">
-                    <div>Client: <span class="text-white">GoodGame</span></div>
-                    <div>Year: <span class="text-white">2021</span></div>
-                </div>
-            </div>
-        </div>
+<div class="section-page-title" style="padding-top: 140px; padding-bottom: 70px;">
+    <div class="container text-center mil-up">
+        <h1 class="page-title fw-semibold text-white mb-0">GoodGame <span class="fw-light">Cyberlounge</span></h1>
+    </div>
+</div>
 
-        <!-- Одноколоночная верстка кейса -->
-        <section class="flat-spacing" style="padding-top: 0; padding-bottom: 120px;">
-            
-            <!-- ГЛАВНОЕ ВИДЕО -->
-            <div class="mil-image-frame mil-fw mil-up position-relative" style="width: 100%; margin-bottom: 50px;">
-                <div style="width: 100%; aspect-ratio: 16 / 9; background: #080808; position: relative; overflow: hidden;">
-                    <!-- ДОБАВЛЕН pointer-events: none - он лечит зависание курсора -->
-                    <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID?background=1&autoplay=1&loop=1&byline=0&title=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; pointer-events: none;" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                </div>
-                
-                <!-- Фейд в черный (15% высоты) -->
-                <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 15%; background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0) 100%); pointer-events: none; z-index: 1;"></div>
-            </div>
+<!-- ГЛАВНОЕ ВИДЕО -->
+<div class="mil-image-frame mil-fw mil-up position-relative" style="width: 100%; height: 80vh; margin-bottom: 50px;">
+    <div style="width: 100%; height: 100%; background: #080808; position: relative; overflow: hidden;">
+        <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID?background=1&autoplay=1&loop=1&byline=0&title=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; pointer-events: none;" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+    
+    <!-- Фейд в черный -->
+    <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 20%; background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0) 100%); pointer-events: none; z-index: 1;"></div>
+
+    <!-- Кнопка EXPLORE (прилипла вниз, 2 строки) -->
+    <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 2;">
+        <a href="#challenge" class="link text-white d-flex flex-column align-items-center gap-3 text-uppercase fw-medium" style="letter-spacing: 2px; font-size: 11px; transition: 0.3s;">
+            <span>EXPLORE FULL CASE</span>
+            <span class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1);">
+                <i class="icon icon-arrow-long-right" style="transform: rotate(90deg);"></i>
+            </span>
+        </a>
+    </div>
+</div>
 
             <!-- Якорь для скролла -->
             <div class="container" id="project-content">
@@ -117,97 +117,6 @@
 
                 <!-- Тут начинается блок THE CHALLENGE (Добавлен id="challenge") -->
                 <div id="challenge" class="row justify-content-between mil-up mb-5 pb-4">
-                
-                <!-- Мета-информация -->
-                <div class="text-center mil-up mb-5 pb-4" style="margin-top: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    <div class="d-flex justify-content-center gap-5 text-white-64 fw-medium text-uppercase mb-2" style="font-size: 12px; letter-spacing: 2px;">
-                        <div>Client: <span class="text-white">GoodGame</span></div>
-                        <div>Year: <span class="text-white">2021</span></div>
-                    </div>
-                </div>
-
-                <!-- ================================================================= -->
-                <!-- БЛОК 1: ЗАДАЧА И О БРЕНДЕ (THE CHALLENGE & BRAND VISION) -->
-                <!-- ================================================================= -->
-                <div class="row justify-content-between mil-up mb-5 pb-4">
-                    <div class="col-lg-5">
-                        <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">01 / The Challenge</span>
-                        <h3 class="text-white mb-4">Translating a neon-drenched cyber space into a structured digital identity.</h3>
-                    </div>
-                    <!-- Правая колонка: Интерактивные цветовые плашки и Типографика -->
-                    <div class="col-lg-6">
-                        
-                        <!-- Блок с цветами (светлая подложка) -->
-                        <div class="mb-4" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 32px; border-radius: 8px;">
-                            
-                            <div class="styleguide-swatch">
-                                <div class="swatch-meta">
-                                    <span>BLACKOUT</span>
-                                    <span>#000000 &nbsp;|&nbsp; PANTONE BLACK C &nbsp;|&nbsp; K:100</span>
-                                </div>
-                                <div class="swatch-box" style="background: #000000; border: 1px solid rgba(255,255,255,0.1);"></div>
-                            </div>
-
-                            <div class="styleguide-swatch">
-                                <div class="swatch-meta">
-                                    <span>WHITE NOISE</span>
-                                    <span>#FFFFFF &nbsp;|&nbsp; RGB: 255, 255, 255</span>
-                                </div>
-                                <div class="swatch-box" style="background: #FFFFFF;"></div>
-                            </div>
-
-                            <div class="styleguide-swatch">
-                                <div class="swatch-meta">
-                                    <span>ACID YELLOW</span>
-                                    <span>#CEFF00 &nbsp;|&nbsp; PANTONE 809 C &nbsp;|&nbsp; CMYK: 24, 0, 100, 0</span>
-                                </div>
-                                <div class="swatch-box" style="background: #CEFF00; box-shadow: 0 0 20px rgba(206,255,0,0.15);"></div>
-                            </div>
-
-                            <div class="styleguide-swatch">
-                                <div class="swatch-meta">
-                                    <span>ULTRAVIOLET</span>
-                                    <span>#A100FF &nbsp;|&nbsp; PANTONE 266 C &nbsp;|&nbsp; CMYK: 60, 80, 0, 0</span>
-                                </div>
-                                <div class="swatch-box" style="background: #A100FF; box-shadow: 0 0 20px rgba(161,0,255,0.2);"></div>
-                            </div>
-
-                            <div class="styleguide-swatch">
-                                <div class="swatch-meta">
-                                    <span>MOONDUST</span>
-                                    <span>#7C7C7C &nbsp;|&nbsp; PANTONE COOL GREY 5</span>
-                                </div>
-                                <div class="swatch-box" style="background: #7C7C7C;"></div>
-                            </div>
-
-                            <div class="styleguide-swatch mb-0">
-                                <div class="swatch-meta">
-                                    <span>VIRTUAL REALITY (GRADIENT)</span>
-                                    <span>ULTRAVIOLET &nbsp;&rarr;&nbsp; ACID YELLOW</span>
-                                </div>
-                                <div class="swatch-box" style="background: linear-gradient(90deg, #A100FF 0%, #CEFF00 100%);"></div>
-                            </div>
-
-                        </div>
-
-                        <!-- Блок ТИПОГРАФИКИ -->
-                        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 40px 32px; border-radius: 8px; overflow: hidden; position: relative;">
-                            
-                            <!-- Фоновая огромная буква для стиля -->
-                            <div style="font-family: 'Druk Wide Cyr', sans-serif; font-size: 260px; line-height: 1; color: rgba(255,255,255,0.03); position: absolute; right: -20px; bottom: -50px; pointer-events: none;">Aa</div>
-                            
-                            <h4 style="font-family: 'Druk Wide Cyr', sans-serif; color: #fff; margin-bottom: 12px; font-size: clamp(24px, 4vw, 32px);">DRUK WIDE CYR</h4>
-                            <p class="text-white-64 mb-4 pb-2" style="font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.1);">Primary Display Font</p>
-                            
-                            <div class="text-white" style="font-family: 'Druk Wide Cyr', sans-serif; font-size: 16px; line-height: 1.8; word-break: break-all; position: relative; z-index: 2;">
-                                A B C D E F G H I J K L M N O P Q R S T U V W X Y Z<br>
-                                0 1 2 3 4 5 6 7 8 9 & @ # % ! ?
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                </div>
 
                 <!-- Слайдер фотографий пространства (Авто-ширина) -->
                 <div class="position-relative mil-up mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
@@ -288,23 +197,18 @@
                 </div>
 
                 <!-- ================================================================= -->
-                <!-- БЛОК 3: ЧИСТЫЙ КОД СТАЙЛГРАДА (PURE HTML/CSS STYLEGUIDE) -->
+                <!-- БЛОК 1: СТАЙЛГАЙД -->
                 <!-- ================================================================= -->
-                <div class="row justify-content-between mil-up mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    <div class="col-lg-5 mb-4">
-                        <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">03 / Visual System</span>
-                        <h3 class="text-white mb-4">High-contrast chromatic architecture.</h3>
-                        <p class="text-white-64 mb-4" style="line-height: 1.7; font-size: 16px;">
-                            The GoodGame palette is driven by the extreme contrast between Acid Yellow and Ultraviolet against deep Blackout backgrounds. White is strictly reserved for typography and noise accents, avoiding neutral greys to maintain an aggressive, futuristic tone.
-                        </p>
-                        <p class="text-white-64" style="line-height: 1.7; font-size: 16px;">
-                            While digital assets operate at maximum RGB saturation, physical signage and print materials rely on offset printing, silkscreen, and specialized UV-reactive neon vinyls to recreate the digital glow in the real world.
-                        </p>
+                <div class="row justify-content-between mil-up mb-5 pb-4">
+                    <div class="col-lg-5">
+                        <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">01 / The Challenge</span>
+                        <h3 class="text-white mb-4">Translating a neon-drenched cyber space into a structured digital identity.</h3>
                     </div>
-                    
-                    <!-- Правая колонка: Интерактивные цветовые плашки кодом -->
+                    <!-- Правая колонка: Интерактивные цветовые плашки и Типографика -->
                     <div class="col-lg-6">
-                        <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 32px; border-radius: 8px;">
+                        
+                        <!-- Блок с цветами (светлая подложка) -->
+                        <div class="mb-4" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 32px; border-radius: 8px;">
                             
                             <div class="styleguide-swatch">
                                 <div class="swatch-meta">
@@ -355,7 +259,24 @@
                             </div>
 
                         </div>
+
+                        <!-- Блок ТИПОГРАФИКИ -->
+                        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 40px 32px; border-radius: 8px; overflow: hidden; position: relative;">
+                            
+                            <!-- Фоновая огромная буква для стиля -->
+                            <div style="font-family: 'Druk Wide Cyr', sans-serif; font-size: 260px; line-height: 1; color: rgba(255,255,255,0.03); position: absolute; right: -20px; bottom: -50px; pointer-events: none;">Aa</div>
+                            
+                            <h4 style="font-family: 'Druk Wide Cyr', sans-serif; color: #fff; margin-bottom: 12px; font-size: clamp(24px, 4vw, 32px);">DRUK WIDE CYR</h4>
+                            <p class="text-white-64 mb-4 pb-2" style="font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.1);">Primary Display Font</p>
+                            
+                            <div class="text-white" style="font-family: 'Druk Wide Cyr', sans-serif; font-size: 16px; line-height: 1.8; word-break: break-all; position: relative; z-index: 2;">
+                                A B C D E F G H I J K L M N O P Q R S T U V W X Y Z<br>
+                                0 1 2 3 4 5 6 7 8 9 & @ # % ! ?
+                            </div>
+                        </div>
+
                     </div>
+                </div>
                 </div>
 
                 <!-- ================================================================= -->
