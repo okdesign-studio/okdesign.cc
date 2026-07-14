@@ -1780,6 +1780,23 @@ $(document).ready(function() {
     });
 });
 </script>
+<script>
+        $(document).ready(function() {
+            // Инициализация кастомного слайдера с авто-шириной
+            if ($('.gg-swiper').length > 0) {
+                new Swiper('.gg-swiper', {
+                    slidesPerView: 'auto',
+                    spaceBetween: 15, // Расстояние между слайдами
+                    freeMode: true,   // Плавный свободный скролл (как на iPhone)
+                    grabCursor: true, // Курсор в виде "руки" для удобства
+                    navigation: {
+                        nextEl: '.gg-next',
+                        prevEl: '.gg-prev',
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
