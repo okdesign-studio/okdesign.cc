@@ -7831,3 +7831,14 @@ body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
         gap: 24px !important;
     }
 }
+.gg-slide-img {
+    height: 480px;
+    width: auto;
+    border-radius: 4px;
+    display: block;
+}
+@media (max-width: 767px) {
+    .gg-slide-img {
+        height: 320px;
+    }
+}
