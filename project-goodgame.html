@@ -75,9 +75,15 @@
         </header>
 
 <!-- Заголовок кейса -->
-<div class="section-page-title" style="padding-top: 140px; padding-bottom: 70px;">
+<div class="section-page-title" style="padding-top: 140px; padding-bottom: 40px;">
     <div class="container text-center mil-up">
         <h1 class="page-title fw-semibold text-white mb-0">GoodGame <span class="fw-light">Cyberlounge</span></h1>
+        
+        <!-- Вот она, наша потерянная строка! -->
+        <div class="d-flex justify-content-center gap-5 text-white-64 fw-medium text-uppercase mt-4" style="font-size: 12px; letter-spacing: 2px;">
+            <div>Client: <span class="text-white">GoodGame</span></div>
+            <div>Year: <span class="text-white">2021</span></div>
+        </div>
     </div>
 </div>
 
@@ -88,11 +94,11 @@
     </div>
     
     <!-- Фейд в черный -->
-    <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 20%; background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0) 100%); pointer-events: none; z-index: 1;"></div>
+    <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 25%; background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0) 100%); pointer-events: none; z-index: 1;"></div>
 
-    <!-- Кнопка EXPLORE (прилипла вниз, 2 строки) -->
+    <!-- Кнопка EXPLORE (прилипла вниз, 2 строки, без линий) -->
     <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 2;">
-        <a href="#challenge" class="link text-white d-flex flex-column align-items-center gap-3 text-uppercase fw-medium" style="letter-spacing: 2px; font-size: 11px; transition: 0.3s;">
+        <a href="#challenge" class="link text-white d-flex flex-column align-items-center gap-3 text-uppercase fw-medium" style="letter-spacing: 2px; font-size: 11px; transition: 0.3s; text-decoration: none;">
             <span>EXPLORE FULL CASE</span>
             <span class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1);">
                 <i class="icon icon-arrow-long-right" style="transform: rotate(90deg);"></i>
@@ -103,17 +109,6 @@
 
             <!-- Якорь для скролла -->
             <div class="container" id="project-content">
-                
-                <!-- Кнопка EXPLORE FULL CASE (Сместили вниз) -->
-                <div class="text-center mil-up mb-5 pb-4" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    <!-- Якорь ведет на первый текстовый блок -->
-                    <a href="#challenge" class="link text-white d-inline-flex align-items-center gap-3 text-uppercase fw-medium" style="letter-spacing: 2px; font-size: 12px; transition: 0.3s;">
-                        EXPLORE FULL CASE
-                        <span class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1);">
-                            <i class="icon icon-arrow-long-right" style="transform: rotate(90deg);"></i>
-                        </span>
-                    </a>
-                </div>
 
                 <!-- Тут начинается блок THE CHALLENGE (Добавлен id="challenge") -->
                 <div id="challenge" class="row justify-content-between mil-up mb-5 pb-4">
@@ -197,17 +192,28 @@
                 </div>
 
                 <!-- ================================================================= -->
-                <!-- БЛОК 1: СТАЙЛГАЙД -->
+                <!-- БЛОК 3: ФИРМЕННЫЕ ЦВЕТА (VISUAL SYSTEM & COLORS) -->
                 <!-- ================================================================= -->
-                <div class="row justify-content-between mil-up mb-5 pb-4">
-                    <div class="col-lg-5">
-                        <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">01 / The Challenge</span>
-                        <h3 class="text-white mb-4">Translating a neon-drenched cyber space into a structured digital identity.</h3>
+                <div class="row justify-content-between mil-up mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <div class="col-lg-5 mb-4">
+                        <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">03 / Visual System</span>
+                        <h3 class="text-white mb-4">High-contrast chromatic architecture.</h3>
+                        <p class="text-white-64 mb-4" style="line-height: 1.7; font-size: 16px;">
+                            The core brand palette relies on a high-contrast collision of Acid Yellow and Ultraviolet, anchored by solid black and crisp white. When establishing visual hierarchy for backgrounds, black is always the preferred default. A neutral grey tone rounds out the spectrum, providing a stabilizing element to an otherwise aggressive palette.
+                        </p>
+                        <p class="text-white-64 mb-4" style="line-height: 1.7; font-size: 16px;">
+                            Because standard laser printing cannot accurately reproduce the vibrant intensity of Acid Yellow and Ultraviolet, black-and-white graphics are recommended for conventional office use. To realize the brand colors in their true glory, physical production requires offset or silkscreen printing utilizing specific PANTONE inks, or premium materials like neon-yellow Oracal film and tinted paper stocks.
+                        </p>
+                        <p class="text-white-64 mb-4" style="line-height: 1.7; font-size: 16px;">
+                            In physical environments, this aesthetic is brought to life using projectors, bespoke neon signage, and UV lighting.
+                        </p>
+                        <p class="text-white" style="line-height: 1.7; font-size: 16px; font-weight: 500;">
+                            All colors are strictly specified across PANTONE, CMYK, and RGB profiles.
+                        </p>
                     </div>
-                    <!-- Правая колонка: Интерактивные цветовые плашки и Типографика -->
+                    
+                    <!-- Правая колонка: Цветовые плашки -->
                     <div class="col-lg-6">
-                        
-                        <!-- Блок с цветами (светлая подложка) -->
                         <div class="mb-4" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 32px; border-radius: 8px;">
                             
                             <div class="styleguide-swatch">
@@ -259,24 +265,34 @@
                             </div>
 
                         </div>
-
-                        <!-- Блок ТИПОГРАФИКИ -->
-                        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 40px 32px; border-radius: 8px; overflow: hidden; position: relative;">
-                            
-                            <!-- Фоновая огромная буква для стиля -->
-                            <div style="font-family: 'Druk Wide Cyr', sans-serif; font-size: 260px; line-height: 1; color: rgba(255,255,255,0.03); position: absolute; right: -20px; bottom: -50px; pointer-events: none;">Aa</div>
-                            
-                            <h4 style="font-family: 'Druk Wide Cyr', sans-serif; color: #fff; margin-bottom: 12px; font-size: clamp(24px, 4vw, 32px);">DRUK WIDE CYR</h4>
-                            <p class="text-white-64 mb-4 pb-2" style="font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.1);">Primary Display Font</p>
-                            
-                            <div class="text-white" style="font-family: 'Druk Wide Cyr', sans-serif; font-size: 16px; line-height: 1.8; word-break: break-all; position: relative; z-index: 2;">
-                                A B C D E F G H I J K L M N O P Q R S T U V W X Y Z<br>
-                                0 1 2 3 4 5 6 7 8 9 & @ # % ! ?
-                            </div>
-                        </div>
-
                     </div>
                 </div>
+
+                <!-- ================================================================= -->
+                <!-- БЛОК 4: ТИПОГРАФИКА (TYPOGRAPHY) -->
+                <!-- ================================================================= -->
+                <div class="row justify-content-between mil-up mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <div class="col-lg-5 mb-4">
+                        <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">04 / Typography</span>
+                        <h3 class="text-white mb-4">The Druk Superfamily.</h3>
+                        <p class="text-white-64 mb-4" style="line-height: 1.7; font-size: 16px;">
+                            The centerpiece of the GOOD GAME typography palette is the Druk superfamily. It combines typefaces of wildly different proportions — from ultra-wide to extremely condensed.
+                        </p>
+                        <p class="text-white-64 mb-4" style="line-height: 1.7; font-size: 16px;">
+                            The most striking visual impact is achieved by pairing them—setting one line in an ultra-wide weight and the subsequent line in a condensed one. Druk is designed exclusively for large, bold headlines.
+                        </p>
+                        <p class="text-white-64" style="line-height: 1.7; font-size: 16px;">
+                            For body copy, captions, footnotes, and structural content, the classic <span class="text-white fw-medium">Akzidenz-Grotesk</span> typeface is utilized.
+                        </p>
+                    </div>
+                    
+                    <!-- Правая колонка: Векторный демо-блок шрифтов -->
+                    <div class="col-lg-6 d-flex align-items-center">
+                        <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 40px; border-radius: 8px; width: 100%;">
+                            <!-- Подставляем выгруженный SVG -->
+                            <img src="assets/images/projects/goodgame/druk-showcase.svg" alt="Druk Typography Showcase" style="width: 100%; height: auto;">
+                        </div>
+                    </div>
                 </div>
 
                 <!-- ================================================================= -->
