@@ -22,7 +22,7 @@
     <div class="mil-ball">
         <span class="mil-icon-1">
             <svg viewBox="0 0 128 128" width="40" height="40">
-                <path d="M106.1,41.9c-1.2-1.2-3.1-1.2-4.2,0c-1.2,1.2-1.2,3.1,0,4.2L116.8,61H11.2l14.9-14.9c1.2-1.2,1.2-3.1,0-4.2 c-1.2-1.2-3.1-1.2-4.2,0l-20,20c-1.2,1.2-1.2,3.1,0,4.2l20,20c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9c1.2-1.2,1.2-3.1,0-4.2 L11.2,67h105.5l-14.9,14.9c-1.2,1.2-1.2-3.1,0,4.2c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9l20-20c1.2-1.2,1.2-3.1,0-4.2L106.1,41.9 z" fill="#000000"/>
+                <path d="M106.1,41.9c-1.2-1.2-3.1-1.2-4.2,0c-1.2,1.2-1.2,3.1,0,4.2L116.8,61H11.2l14.9-14.9c1.2-1.2,1.2-3.1,0-4.2 c-1.2-1.2-3.1-1.2-4.2,0l-20,20c-1.2,1.2-1.2,3.1,0,4.2l20,20c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9c1.2-1.2,1.2-3.1,0-4.2 L11.2,67h105.5l-14.9,14.9c-1.2,1.2-1.2,3.1,0,4.2c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9l20-20c1.2-1.2,1.2-3.1,0-4.2L106.1,41.9 z" fill="#000000"/>
             </svg>
         </span>
         <div class="mil-more-text">More</div>
@@ -112,40 +112,41 @@
             <!-- БЛОК 1: THE CHALLENGE & ABOUT THE BRAND -->
             <!-- ================================================================= -->
             <div id="challenge" class="mil-up mb-5">
-                <!-- БЕЗКРАЙНЯЯ ПОДЛОЖКА (Без border-top и border-bottom) -->
-                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 56px 0;">
+                <!-- БЕЗКРАЙНЯЯ ПОДЛОЖКА (Новая структура: номер сверху, две колонки под ним) -->
+                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
                     <div class="container">
-                        <!-- Указываем align-items-start для выравнивания по верху -->
+                        <!-- Номер строки отдельным блоком сверху -->
+                        <div class="mb-3">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">01 / OVERVIEW</span>
+                        </div>
+                        <!-- Две колонки идеально выровненные по верхнему краю -->
                         <div class="row justify-content-between align-items-start">
                             <div class="col-lg-5 mb-3 mb-lg-0">
-                                <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">01 / OVERVIEW</span>
-                            <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">THE CHALLENGE</h2>
-                        </div>
-                            <!-- Добавляем style="padding-top: 26px;" чтобы скомпенсировать высоту синей подписи -->
-                            <div class="col-lg-6" style="padding-top: 26px;">
-                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 18px;">
-                                    Develop a cohesive social media visual identity for a premium esports club...
+                                <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">THE CHALLENGE</h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 16px;">
+                                    Develop a cohesive social media visual identity for a premium esports club. The scope included designing a 12-post grid concept, defining visual templates for content pillars, creating modular block-style Stories, and producing promo banners and motion graphics—all strictly aligned with the brand's bold cyberpunk aesthetic.
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Под-блок About the Brand -->
+                <!-- Под-блок About the Brand (Размер 16px + тонкий шрифт fw-light / font-weight: 300) -->
                 <div class="row justify-content-between align-items-start my-5 pt-3">
                     <div class="col-lg-5 mb-4 mb-lg-0">
                         <h4 class="fw-normal" style="font-size: clamp(22px, 2.5vw, 28px); color: rgba(255,255,255,0.85); letter-spacing: 0.5px; margin-bottom: 28px;">About the Brand</h4>
                     </div>
                     <div class="col-lg-6">
-                        <!-- Добавлен класс fw-light и font-weight: 300; в style для тонкого начертания -->
-                        <p class="text-white-64 mb-0 fw-light" style="line-height: 1.7; font-size: 18px; font-weight: 300;">
+                        <p class="text-white-64 mb-0 fw-light" style="line-height: 1.7; font-size: 16px; font-weight: 300;">
                             GOOD GAME is a next-level esports and relaxation space featuring 42 high-end PCs across 4 gaming zones, a PS5 Luxe Room with an 86" 4K screen, and a Michelin-trained brand chef menu. Designed for ultimate ergonomics, it offers wall-mounted monitors, unique legless tables, and custom hands-free hookah holders for an uninterrupted gaming experience.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <!-- Слайдер фотографий пространства (Убрана линия border-bottom, чтобы перед следующим заголовком было чисто) -->
+            <!-- Слайдер фотографий пространства -->
             <div class="position-relative mil-up mb-5 pb-5">
                 <div class="swiper gg-swiper" style="overflow: hidden;">
                     <div class="swiper-wrapper">
@@ -174,16 +175,18 @@
             <!-- БЛОК 2: MY ROLE & WORKFLOW + VIMEO VIDEO -->
             <!-- ================================================================= -->
             <div class="mil-up mb-5 pb-5">
-                <!-- БЕЗКРАЙНЯЯ ПОДЛОЖКА -->
-                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 56px 0;">
+                <!-- БЕЗКРАЙНЯЯ ПОДЛОЖКА (Новая структура) -->
+                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
                     <div class="container">
-                        <div class="row justify-content-between align-items-center">
+                        <div class="mb-3">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">02 / WORKFLOW</span>
+                        </div>
+                        <div class="row justify-content-between align-items-start">
                             <div class="col-lg-5 mb-3 mb-lg-0">
-                                <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">02 / WORKFLOW</span>
                                 <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">MY ROLE & WORKFLOW</h2>
                             </div>
                             <div class="col-lg-6">
-                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 18px;">
+                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 16px;">
                                     As Lead Designer on this project (in collaboration with Black SMM agency), I spearheaded the visual direction from concept to delivery. I supervised on-site video/photo shoots, designed the Instagram feed and story architecture, created 2D animations and motion loops, and structured the template guidelines. The final concept was pitched as a dynamic video presentation.
                                 </p>
                             </div>
@@ -201,16 +204,18 @@
             <!-- БЛОК 3: DESIGN SYSTEM & GUIDELINES -->
             <!-- ================================================================= -->
             <div class="mil-up mb-5 pb-5">
-                <!-- БЕЗКРАЙНЯЯ ПОДЛОЖКА -->
-                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 56px 0;">
+                <!-- БЕЗКРАЙНЯЯ ПОДЛОЖКА (Новая структура) -->
+                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
                     <div class="container">
-                        <div class="row justify-content-between align-items-center">
+                        <div class="mb-3">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">03 / GUIDELINES</span>
+                        </div>
+                        <div class="row justify-content-between align-items-start">
                             <div class="col-lg-5 mb-3 mb-lg-0">
-                                <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">03 / GUIDELINES</span>
                                 <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">DESIGN SYSTEM & GUIDELINES</h2>
                             </div>
                             <div class="col-lg-6">
-                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 18px;">
+                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 16px;">
                                     To maintain strong visual consistency across all digital touchpoints, the social media system strictly adhered to the core brand guidelines—balancing high-energy cyber aesthetics with functional, structured layouts.
                                 </p>
                             </div>
@@ -218,7 +223,7 @@
                     </div>
                 </div>
 
-                <!-- ПОД-БЛОК: COLOR PALETTE -->
+                <!-- ПОД-БЛОК: COLOR PALETTE (Размер 16px) -->
                 <div class="row justify-content-between mb-5 pt-3">
                     <div class="col-lg-5 mb-4 mb-lg-0">
                         <h4 class="fw-normal" style="font-size: clamp(22px, 2.5vw, 28px); color: rgba(255,255,255,0.85); letter-spacing: 0.5px; margin-bottom: 28px;">Color Palette</h4>
@@ -283,7 +288,7 @@
                     </div>
                 </div>
 
-                <!-- ПОД-БЛОК: TYPOGRAPHY SYSTEM -->
+                <!-- ПОД-БЛОК: TYPOGRAPHY SYSTEM (Размер 16px) -->
                 <div class="row justify-content-between align-items-center pt-4">
                     <div class="col-lg-5 mb-4 mb-lg-0">
                         <h4 class="fw-normal" style="font-size: clamp(22px, 2.5vw, 28px); color: rgba(255,255,255,0.85); letter-spacing: 0.5px; margin-bottom: 28px;">Typography System</h4>
@@ -307,16 +312,18 @@
             <!-- БЛОК 4: FEED CONCEPT -->
             <!-- ================================================================= -->
             <div class="mil-up mb-5 pb-5">
-                <!-- БЕЗКРАЙНЯЯ ПОДЛОЖКА -->
-                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 56px 0;">
+                <!-- БЕЗКРАЙНЯЯ ПОДЛОЖКА (Новая структура) -->
+                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
                     <div class="container">
-                        <div class="row justify-content-between align-items-center">
+                        <div class="mb-3">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">04 / SOCIAL MEDIA</span>
+                        </div>
+                        <div class="row justify-content-between align-items-start">
                             <div class="col-lg-5 mb-3 mb-lg-0">
-                                <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">04 / SOCIAL MEDIA</span>
                                 <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">FEED CONCEPT</h2>
                             </div>
                             <div class="col-lg-6">
-                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 18px;">
+                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 16px;">
                                     Working closely with the SMM team, we established distinct visual templates for key content pillars. The 12-post grid combines graphic layouts, authentic on-site photography, and custom motion design - including animated looping graphics - to create a rhythmic, immersive feed.
                                 </p>
                             </div>
@@ -348,16 +355,18 @@
             <!-- БЛОК 5: MODULAR STORY BLOCKS -->
             <!-- ================================================================= -->
             <div class="mil-up mb-5 pb-5">
-                <!-- БЕЗКРАЙНЯЯ ПОДЛОЖКА -->
-                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 56px 0;">
+                <!-- БЕЗКРАЙНЯЯ ПОДЛОЖКА (Новая структура) -->
+                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
                     <div class="container">
-                        <div class="row justify-content-between align-items-center">
+                        <div class="mb-3">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">05 / STORIES</span>
+                        </div>
+                        <div class="row justify-content-between align-items-start">
                             <div class="col-lg-5 mb-3 mb-lg-0">
-                                <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">05 / STORIES</span>
                                 <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">MODULAR STORY BLOCKS</h2>
                             </div>
                             <div class="col-lg-6">
-                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 18px;">
+                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 16px;">
                                     Stories were designed using a structured, block-based layout. This modular system maintains instant brand recognition while allowing fast, digestible storytelling for daily updates, price lists, and tournament promos.
                                 </p>
                             </div>
@@ -394,16 +403,18 @@
             <!-- БЛОК 6: CAROUSELS & CROSS-FORMAT ADAPTATIONS -->
             <!-- ================================================================= -->
             <div class="mil-up mb-5 pb-5">
-                <!-- БЕЗКРАЙНЯЯ ПОДЛОЖКА -->
-                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 56px 0;">
+                <!-- БЕЗКРАЙНЯЯ ПОДЛОЖКА (Новая структура) -->
+                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
                     <div class="container">
-                        <div class="row justify-content-between align-items-center">
+                        <div class="mb-3">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">06 / ADAPTATIONS</span>
+                        </div>
+                        <div class="row justify-content-between align-items-start">
                             <div class="col-lg-5 mb-3 mb-lg-0">
-                                <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">06 / ADAPTATIONS</span>
                                 <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">CAROUSELS & CROSS-FORMAT ADAPTATIONS</h2>
                             </div>
                             <div class="col-lg-6">
-                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 18px;">
+                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 16px;">
                                     Info posts, tournament rules, and high-engagement giveaways were structured as multi-slide swipe carousels. Each visual asset was seamlessly adapted across Feed, Stories, and promo banners to maintain a unified campaign experience.
                                 </p>
                             </div>
