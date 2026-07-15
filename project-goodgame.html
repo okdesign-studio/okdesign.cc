@@ -115,27 +115,30 @@
                 <!-- БЕЗКРАЙНЯЯ ПОДЛОЖКА (Без border-top и border-bottom) -->
                 <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 56px 0;">
                     <div class="container">
-                        <div class="row justify-content-between align-items-center">
+                        <!-- Указываем align-items-start для выравнивания по верху -->
+                        <div class="row justify-content-between align-items-start">
                             <div class="col-lg-5 mb-3 mb-lg-0">
                                 <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">01 / OVERVIEW</span>
-                                <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">THE CHALLENGE</h2>
-                            </div>
-                            <div class="col-lg-6">
+                            <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">THE CHALLENGE</h2>
+                        </div>
+                            <!-- Добавляем style="padding-top: 26px;" чтобы скомпенсировать высоту синей подписи -->
+                            <div class="col-lg-6" style="padding-top: 26px;">
                                 <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 18px;">
-                                    Develop a cohesive social media visual identity for a premium esports club. The scope included designing a 12-post grid concept, defining visual templates for content pillars, creating modular block-style Stories, and producing promo banners and motion graphics—all strictly aligned with the brand's bold cyberpunk aesthetic.
+                                    Develop a cohesive social media visual identity for a premium esports club...
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Под-блок About the Brand (Исправлены колонки col-lg-5 и col-lg-6 для идеального вертикального выравнивания) -->
+                <!-- Под-блок About the Brand -->
                 <div class="row justify-content-between align-items-start my-5 pt-3">
                     <div class="col-lg-5 mb-4 mb-lg-0">
                         <h4 class="fw-normal" style="font-size: clamp(22px, 2.5vw, 28px); color: rgba(255,255,255,0.85); letter-spacing: 0.5px; margin-bottom: 28px;">About the Brand</h4>
                     </div>
                     <div class="col-lg-6">
-                        <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 18px;">
+                        <!-- Добавлен класс fw-light и font-weight: 300; в style для тонкого начертания -->
+                        <p class="text-white-64 mb-0 fw-light" style="line-height: 1.7; font-size: 18px; font-weight: 300;">
                             GOOD GAME is a next-level esports and relaxation space featuring 42 high-end PCs across 4 gaming zones, a PS5 Luxe Room with an 86" 4K screen, and a Michelin-trained brand chef menu. Designed for ultimate ergonomics, it offers wall-mounted monitors, unique legless tables, and custom hands-free hookah holders for an uninterrupted gaming experience.
                         </p>
                     </div>
