@@ -5,7 +5,7 @@
     <title>Case Study — OK Design</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <!-- Твои стили и шрифты -->
+    <!-- Стили и шрифты -->
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/icon/icomoon/style.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -28,6 +28,7 @@
         <div class="mil-more-text">More</div>
         <div class="mil-choose-text">Сhoose</div>
     </div>
+    
     <!-- Scroll Top -->
     <button id="goTop">
         <span class="border-progress"></span>
@@ -36,8 +37,9 @@
         </span>
     </button>
     <!-- /Scroll Top -->
+
     <main id="wrapper">
-        <!-- Твой Header -->
+        <!-- Header -->
         <header class="tf-header">
             <div class="header-inner">
                 <div class="container">
@@ -58,7 +60,6 @@
                             </div>
                         </div>
                         <div class="col-6 col-md-4 d-flex justify-content-end align-items-center">
-                            <!-- Почта с векторной иконкой (видна на ПК) -->
                             <div class="header-contact d-none d-md-block">
                                 <a href="mailto:hello@okdesign.cc" class="link text-body-3 text-uppercase d-flex align-items-center gap-2" style="text-decoration: none;">
                                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 2px;">
@@ -74,140 +75,146 @@
             </div>
         </header>
 
-<!-- Заголовок кейса -->
-<div class="section-page-title" style="padding-top: 140px; padding-bottom: 40px;">
-    <div class="container text-center mil-up">
-        <h1 class="page-title fw-semibold text-white mb-0">GoodGame <span class="fw-light">Cyberlounge</span></h1>
-        
-        <!-- Вот она, наша потерянная строка! -->
-        <div class="d-flex justify-content-center gap-5 text-white-64 fw-medium text-uppercase mt-4" style="font-size: 12px; letter-spacing: 2px;">
-            <div>Client: <span class="text-white">GoodGame</span></div>
-            <div>Year: <span class="text-white">2021</span></div>
+        <!-- Заголовок кейса -->
+        <div class="section-page-title" style="padding-top: 140px; padding-bottom: 40px;">
+            <div class="container text-center mil-up">
+                <h1 class="page-title fw-semibold text-white mb-0">GoodGame <span class="fw-light">Cyberlounge</span></h1>
+                
+                <div class="d-flex justify-content-center gap-5 text-white-64 fw-medium text-uppercase mt-4" style="font-size: 12px; letter-spacing: 2px;">
+                    <div>Client: <span class="text-white">GoodGame</span></div>
+                    <div>Year: <span class="text-white">2021</span></div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<!-- ГЛАВНОЕ ВИДЕО -->
-<div class="mil-image-frame mil-fw mil-up position-relative" style="width: 100%; height: 80vh; margin-bottom: 50px;">
-    <div style="width: 100%; height: 100%; background: #080808; position: relative; overflow: hidden;">
-        <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID?background=1&autoplay=1&loop=1&byline=0&title=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; pointer-events: none;" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-    
-    <!-- Фейд в черный -->
-    <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 25%; background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0) 100%); pointer-events: none; z-index: 1;"></div>
+        <!-- ГЛАВНОЕ ВИДЕО (HERO) -->
+        <div class="mil-image-frame mil-fw mil-up position-relative" style="width: 100%; height: 80vh; margin-bottom: 80px;">
+            <div style="width: 100%; height: 100%; background: #080808; position: relative; overflow: hidden;">
+                <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID?background=1&autoplay=1&loop=1&byline=0&title=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; pointer-events: none;" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            </div>
+            
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 25%; background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0) 100%); pointer-events: none; z-index: 1;"></div>
 
-    <!-- Кнопка EXPLORE (прилипла вниз, 2 строки, без линий) -->
-    <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 2;">
-        <a href="#challenge" class="link text-white d-flex flex-column align-items-center gap-3 text-uppercase fw-medium" style="letter-spacing: 2px; font-size: 11px; transition: 0.3s; text-decoration: none;">
-            <span>EXPLORE FULL CASE</span>
-            <span class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1);">
-                <i class="icon icon-arrow-long-right" style="transform: rotate(90deg);"></i>
-            </span>
-        </a>
-    </div>
-</div>
+            <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 2;">
+                <a href="#challenge" class="link text-white d-flex flex-column align-items-center gap-3 text-uppercase fw-medium" style="letter-spacing: 2px; font-size: 11px; transition: 0.3s; text-decoration: none;">
+                    <span>EXPLORE FULL CASE</span>
+                    <span class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1);">
+                        <i class="icon icon-arrow-long-right" style="transform: rotate(90deg);"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
 
-            <!-- Якорь для скролла -->
-            <div class="container" id="project-content">
+        <!-- Основной контент кейса -->
+        <section class="container" id="project-content">
 
-                <!-- Тут начинается блок THE CHALLENGE (Добавлен id="challenge") -->
-                <div id="challenge" class="row justify-content-between mil-up mb-5 pb-4">
-
-                <!-- Слайдер фотографий пространства (Нативный Swiper) -->
-                <div class="position-relative mil-up mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    <div class="swiper gg-swiper" style="overflow: hidden;">
-                        <div class="swiper-wrapper">
-                            
-                            <!-- Слайд 1 -->
-                            <div class="swiper-slide" style="width: auto;">
-                                <img src="assets/images/projects/goodgame/gg-space-01.webp" alt="GoodGame Space" class="mil-drag gg-slide-img">
-                            </div>
-                            <!-- Слайд 2 -->
-                            <div class="swiper-slide" style="width: auto;">
-                                <img src="assets/images/projects/goodgame/gg-space-02.webp" alt="GoodGame Space" class="mil-drag gg-slide-img">
-                            </div>
-                            <!-- Слайд 3 -->
-                            <div class="swiper-slide" style="width: auto;">
-                                <img src="assets/images/projects/goodgame/gg-space-03.webp" alt="GoodGame Space" class="mil-drag gg-slide-img">
-                            </div>
-                            <!-- Слайд 4 -->
-                            <div class="swiper-slide" style="width: auto;">
-                                <img src="assets/images/projects/goodgame/gg-space-04.webp" alt="GoodGame Space" class="mil-drag gg-slide-img">
-                            </div>
-                            <!-- Слайд 5 -->
-                            <div class="swiper-slide" style="width: auto;">
-                                <img src="assets/images/projects/goodgame/gg-space-05.webp" alt="GoodGame Space" class="mil-drag gg-slide-img">
-                            </div>
-                            <!-- Слайд 6 -->
-                            <div class="swiper-slide" style="width: auto;">
-                                <img src="assets/images/projects/goodgame/gg-space-06.webp" alt="GoodGame Space" class="mil-drag gg-slide-img">
-                            </div>
-                            <!-- Слайд 7 -->
-                            <div class="swiper-slide" style="width: auto;">
-                                <img src="assets/images/projects/goodgame/gg-space-07.webp" alt="GoodGame Space" class="mil-drag gg-slide-img">
-                            </div>
-                            <!-- Слайд 8 -->
-                            <div class="swiper-slide" style="width: auto;">
-                                <img src="assets/images/projects/goodgame/gg-space-08.webp" alt="GoodGame Space" class="mil-drag gg-slide-img">
-                            </div>
-
-                        </div>
-                        
-                        <!-- Кнопки PREV / NEXT -->
-                        <div class="group-btn-slider mt-5 d-flex justify-content-center gap-5 position-relative" style="width: 100%;">
-                            <div class="btn-nav-swiper text-caption fw-medium link gg-prev text-white cs-pointer" style="z-index: 10;">
-                                <i class="icon icon-arrow-long-left"></i> PREV
-                            </div>
-                            <div class="btn-nav-swiper text-caption fw-medium link gg-next text-white cs-pointer" style="z-index: 10;">
-                                NEXT <i class="icon icon-arrow-long-right"></i>
-                            </div>
-                        </div>
+            <!-- ================================================================= -->
+            <!-- БЛОК 1: THE CHALLENGE & ABOUT THE BRAND -->
+            <!-- ================================================================= -->
+            <div id="challenge" class="mil-up mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <div class="row justify-content-between mb-5">
+                    <div class="col-lg-4 mb-3 mb-lg-0">
+                        <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">01 / Overview</span>
+                        <h3 class="text-white">The Challenge</h3>
                     </div>
-                </div>
-
-                <!-- ================================================================= -->
-                <!-- БЛОК 2: О ПРОЕКТЕ И ЛИДЕРСТВЕ (ART DIRECTION & LEADERSHIP) -->
-                <!-- ================================================================= -->
-                <div class="row justify-content-between mil-up mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    <div class="col-lg-5">
-                        <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">02 / The Execution</span>
-                        <h3 class="text-white mb-4">Design Team Lead & Creative Direction.</h3>
-                    </div>
-                    <div class="col-lg-6">
-                        <p class="text-white-64 mb-4" style="line-height: 1.7; font-size: 18px;">
-                            Serving as the Design Team Lead and Lead Designer within the Black SMM framework, I directed the entire visual pipeline from concept design to final publishing. My role extended beyond static UI — I supervised on-site video and photo shoots, ensuring the content captured the raw, authentic energy of the gaming arena.
-                        </p>
+                    <div class="col-lg-7">
                         <p class="text-white-64" style="line-height: 1.7; font-size: 18px;">
-                            To provide complete transparency and visual clarity to the stakeholders, all feed concepts and content rubrics were pitched as dynamic video presentations (showcased in the hero video above), merging motion graphics with live-action footage.
+                            Develop a cohesive social media visual identity for a premium esports club. The scope included designing a 12-post grid concept, defining visual templates for content pillars, creating modular block-style Stories, and producing promo banners and motion graphics—all strictly aligned with the brand's bold cyberpunk aesthetic.
                         </p>
                     </div>
                 </div>
 
-                <!-- ================================================================= -->
-                <!-- БЛОК 3: ФИРМЕННЫЕ ЦВЕТА (VISUAL SYSTEM & COLORS) -->
-                <!-- ================================================================= -->
-                <div class="row justify-content-between mil-up mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <div class="row justify-content-between">
+                    <div class="col-lg-4 mb-3 mb-lg-0">
+                        <h3 class="text-white">About the Brand</h3>
+                    </div>
+                    <div class="col-lg-7">
+                        <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 18px;">
+                            GOOD GAME is a next-level esports and relaxation space featuring 42 high-end PCs across 4 gaming zones, a PS5 Luxe Room with an 86" 4K screen, and a Michelin-trained brand chef menu. Designed for ultimate ergonomics, it offers wall-mounted monitors, unique legless tables, and custom hands-free hookah holders for an uninterrupted gaming experience.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Слайдер фотографий пространства -->
+            <div class="position-relative mil-up mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <div class="swiper gg-swiper" style="overflow: hidden;">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" style="width: auto;"><img src="assets/images/projects/goodgame/gg-space-01.webp" alt="GoodGame Space" class="mil-drag gg-slide-img"></div>
+                        <div class="swiper-slide" style="width: auto;"><img src="assets/images/projects/goodgame/gg-space-02.webp" alt="GoodGame Space" class="mil-drag gg-slide-img"></div>
+                        <div class="swiper-slide" style="width: auto;"><img src="assets/images/projects/goodgame/gg-space-03.webp" alt="GoodGame Space" class="mil-drag gg-slide-img"></div>
+                        <div class="swiper-slide" style="width: auto;"><img src="assets/images/projects/goodgame/gg-space-04.webp" alt="GoodGame Space" class="mil-drag gg-slide-img"></div>
+                        <div class="swiper-slide" style="width: auto;"><img src="assets/images/projects/goodgame/gg-space-05.webp" alt="GoodGame Space" class="mil-drag gg-slide-img"></div>
+                        <div class="swiper-slide" style="width: auto;"><img src="assets/images/projects/goodgame/gg-space-06.webp" alt="GoodGame Space" class="mil-drag gg-slide-img"></div>
+                        <div class="swiper-slide" style="width: auto;"><img src="assets/images/projects/goodgame/gg-space-07.webp" alt="GoodGame Space" class="mil-drag gg-slide-img"></div>
+                        <div class="swiper-slide" style="width: auto;"><img src="assets/images/projects/goodgame/gg-space-08.webp" alt="GoodGame Space" class="mil-drag gg-slide-img"></div>
+                    </div>
+                    
+                    <div class="group-btn-slider mt-5 d-flex justify-content-center gap-5 position-relative" style="width: 100%;">
+                        <div class="btn-nav-swiper text-caption fw-medium link gg-prev text-white cs-pointer" style="z-index: 10;">
+                            <i class="icon icon-arrow-long-left"></i> PREV
+                        </div>
+                        <div class="btn-nav-swiper text-caption fw-medium link gg-next text-white cs-pointer" style="z-index: 10;">
+                            NEXT <i class="icon icon-arrow-long-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================================================= -->
+            <!-- БЛОК 2: MY ROLE & WORKFLOW + VIMEO VIDEO -->
+            <!-- ================================================================= -->
+            <div class="mil-up mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <div class="row justify-content-between mb-5">
+                    <div class="col-lg-4 mb-3 mb-lg-0">
+                        <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">02 / Workflow</span>
+                        <h3 class="text-white">My Role & Workflow</h3>
+                    </div>
+                    <div class="col-lg-7">
+                        <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 18px;">
+                            As Lead Designer on this project (in collaboration with Black SMM agency), I spearheaded the visual direction from concept to delivery. I supervised on-site video/photo shoots, designed the Instagram feed and story architecture, created 2D animations and motion loops, and structured the template guidelines. The final concept was pitched as a dynamic video presentation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Vimeo Video Placeholder (По ширине контейнера, с интерфейсом плеера) -->
+                <div class="video-placeholder-wrap mil-up" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: #080808;">
+                    <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID?byline=0&title=0&portrait=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- ================================================================= -->
+            <!-- БЛОК 3: DESIGN SYSTEM & GUIDELINES -->
+            <!-- ================================================================= -->
+            <div class="mil-up mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <!-- Вводная часть системы дизайна -->
+                <div class="row justify-content-between mb-5 pb-4">
+                    <div class="col-lg-4 mb-3 mb-lg-0">
+                        <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">03 / Guidelines</span>
+                        <h3 class="text-white">Design System & Guidelines</h3>
+                    </div>
+                    <div class="col-lg-7">
+                        <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 18px;">
+                            To maintain strong visual consistency across all digital touchpoints, the social media system strictly adhered to the core brand guidelines—balancing high-energy cyber aesthetics with functional, structured layouts.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ПОД-БЛОК: COLOR PALETTE -->
+                <div class="row justify-content-between mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.05);">
                     <div class="col-lg-5 mb-4">
-                        <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">03 / Visual System</span>
-                        <h3 class="text-white mb-4">High-contrast chromatic architecture.</h3>
+                        <h4 class="text-white mb-4">Color Palette</h4>
                         <p class="text-white-64 mb-4" style="line-height: 1.7; font-size: 16px;">
-                            The core brand palette relies on a high-contrast collision of Acid Yellow and Ultraviolet, anchored by solid black and crisp white. When establishing visual hierarchy for backgrounds, black is always the preferred default. A neutral grey tone rounds out the spectrum, providing a stabilizing element to an otherwise aggressive palette.
+                            The signature GOOD GAME palette thrives on the high-contrast clash of Acid Yellow and Ultraviolet, grounded by deep black and pure white. When choosing a primary background, black is always preferred. A neutral grey tone complements the palette, softening its visual aggression.
                         </p>
-                        <p class="text-white-64 mb-4" style="line-height: 1.7; font-size: 16px;">
-                            Because standard laser printing cannot accurately reproduce the vibrant intensity of Acid Yellow and Ultraviolet, black-and-white graphics are recommended for conventional office use. To realize the brand colors in their true glory, physical production requires offset or silkscreen printing utilizing specific PANTONE inks, or premium materials like neon-yellow Oracal film and tinted paper stocks.
-                        </p>
-                        <p class="text-white-64 mb-4" style="line-height: 1.7; font-size: 16px;">
-                            In physical environments, this aesthetic is brought to life using projectors, bespoke neon signage, and UV lighting.
-                        </p>
-                        <p class="text-white" style="line-height: 1.7; font-size: 16px; font-weight: 500;">
-                            All colors are strictly specified across PANTONE, CMYK, and RGB profiles.
+                        <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 16px;">
+                            Print & Digital Execution: Standard laser printing cannot reproduce the vivid neon brightness of Acid Yellow and Ultraviolet; in such cases, monochrome graphics are recommended. For accurate color reproduction, offset printing, silkscreen, or PANTONE-certified inks are required. In physical spaces, the palette is brought to life through neon vinyl, UV lighting, and projectors.
                         </p>
                     </div>
                     
                     <!-- Правая колонка: Цветовые плашки -->
                     <div class="col-lg-6">
-                        <div class="mb-4" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 32px; border-radius: 8px;">
-                            
+                        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 32px; border-radius: 8px;">
                             <div class="styleguide-swatch">
                                 <div class="swatch-meta">
                                     <span>BLACKOUT</span>
@@ -255,129 +262,163 @@
                                 </div>
                                 <div class="swatch-box" style="background: linear-gradient(90deg, #A100FF 0%, #CEFF00 100%);"></div>
                             </div>
-
                         </div>
                     </div>
                 </div>
 
-                <!-- ================================================================= -->
-                <!-- БЛОК 4: ТИПОГРАФИКА (TYPOGRAPHY) -->
-                <!-- ================================================================= -->
-                <div class="row justify-content-between mil-up mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    <div class="col-lg-5 mb-4">
-                        <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">04 / Typography</span>
-                        <h3 class="text-white mb-4">The Druk Superfamily.</h3>
+                <!-- ПОД-БЛОК: TYPOGRAPHY SYSTEM -->
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-lg-5 mb-4 mb-lg-0">
+                        <h4 class="text-white mb-4">Typography System</h4>
                         <p class="text-white-64 mb-4" style="line-height: 1.7; font-size: 16px;">
-                            The centerpiece of the GOOD GAME typography palette is the Druk superfamily. It combines typefaces of wildly different proportions — from ultra-wide to extremely condensed.
+                            The centerpiece of the typographic identity is the Druk super-family, featuring a dynamic range of proportions from ultra-wide to extra-condensed. The most striking visual impact is achieved by pairing a wide font style on one line with a condensed style on the next. Druk is reserved strictly for large headlines.
                         </p>
-                        <p class="text-white-64 mb-4" style="line-height: 1.7; font-size: 16px;">
-                            The most striking visual impact is achieved by pairing them—setting one line in an ultra-wide weight and the subsequent line in a condensed one. Druk is designed exclusively for large, bold headlines.
-                        </p>
-                        <p class="text-white-64" style="line-height: 1.7; font-size: 16px;">
-                            For body copy, captions, footnotes, and structural content, the classic <span class="text-white fw-medium">Akzidenz-Grotesk</span> typeface is utilized.
+                        <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 16px;">
+                            For body text, captions, footnotes, and functional copy, the clean and highly legible Akzidenz-Grotesk typeface is used.
                         </p>
                     </div>
                     
-                    <!-- Правая колонка: Векторный демо-блок шрифтов -->
-                    <div class="col-lg-6 d-flex align-items-center">
-                        <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 40px; border-radius: 8px; width: 100%;">
-                            <!-- Подставляем выгруженный SVG -->
-                            <img src="assets/images/projects/goodgame/druk-showcase.svg" alt="Druk Typography Showcase" style="width: 100%; height: auto;">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================================================================= -->
-                <!-- БЛОК 4: КОНЦЕПТ ЛЕНТЫ И МОУШЕН (THE FEED & MOTION LOOPS) -->
-                <!-- ================================================================= -->
-                <div class="row justify-content-between mil-up mb-5">
-                    <div class="col-lg-5">
-                        <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">04 / Feed Architecture</span>
-                        <h3 class="text-white mb-4">A modular 12-post grid driven by seamless motion.</h3>
-                    </div>
+                    <!-- Правая колонка: Сверстанный SVG шрифтов в едином стиле с цветами -->
                     <div class="col-lg-6">
-                        <p class="text-white-64 mb-4" style="line-height: 1.7; font-size: 18px;">
-                            Working closely with the SMM strategy team, we established core visual rubrics to structure the brand narrative. To eliminate the monotony of standard static grids, I designed and animated seamless 2D/3D motion loops tailored specifically for Instagram.
-                        </p>
-                        <p class="text-white-64" style="line-height: 1.7; font-size: 18px;">
-                            The resulting 12-post ecosystem is a living, dynamic canvas where bold typography, on-site photography, and high-fps video loops coexist in perfect visual equilibrium.
-                        </p>
+                        <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 32px; border-radius: 8px; width: 100%; display: flex; align-items: center; justify-content: center;">
+                            <img src="assets/images/projects/goodgame/fonts.svg" alt="Druk & Akzidenz Typography Showcase" style="width: 100%; height: auto; display: block;">
+                        </div>
                     </div>
                 </div>
-
-                <!-- Сетка Инстаграма (12 постов: 3 в ряд) -->
-                <div class="mil-up mb-5 pb-5">
-                    <div class="row g-3">
-                        <!-- Пост 1 (Статика) -->
-                        <div class="col-4 col-md-4">
-                            <div class="ig-grid-post">
-                                <img src="assets/images/section/work-1.jpg" alt="Post 1">
-                            </div>
-                        </div>
-                        <!-- Пост 2 (Видео-луп с иконкой) -->
-                        <div class="col-4 col-md-4">
-                            <div class="ig-grid-post">
-                                <div class="motion-badge">
-                                    <!-- Иконка видео -->
-                                    <svg viewBox="0 0 24 24" width="12" height="12" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
-                                </div>
-                                <img src="assets/images/section/work-2.jpg" alt="Post 2 Motion">
-                            </div>
-                        </div>
-                        <!-- Пост 3 (Статика) -->
-                        <div class="col-4 col-md-4">
-                            <div class="ig-grid-post">
-                                <img src="assets/images/section/work-3.jpg" alt="Post 3">
-                            </div>
-                        </div>
-
-                        <!-- Пост 4 (Видео-луп) -->
-                        <div class="col-4 col-md-4">
-                            <div class="ig-grid-post">
-                                <div class="motion-badge">
-                                    <svg viewBox="0 0 24 24" width="12" height="12" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
-                                </div>
-                                <img src="assets/images/section/feature-1.jpg" alt="Post 4 Motion">
-                            </div>
-                        </div>
-                        <!-- Пост 5 (Статика) -->
-                        <div class="col-4 col-md-4">
-                            <div class="ig-grid-post">
-                                <img src="assets/images/section/feature-2.jpg" alt="Post 5">
-                            </div>
-                        </div>
-                        <!-- Пост 6 (Статика) -->
-                        <div class="col-4 col-md-4">
-                            <div class="ig-grid-post">
-                                <img src="assets/images/section/work-1.jpg" alt="Post 6">
-                            </div>
-                        </div>
-
-                        <!-- Пост 7-12 (Продублируй по аналогии для полной сетки из 12 штук) -->
-                        <div class="col-4 col-md-4"><div class="ig-grid-post"><img src="assets/images/section/work-2.jpg" alt="Post 7"></div></div>
-                        <div class="col-4 col-md-4"><div class="ig-grid-post"><div class="motion-badge"><svg viewBox="0 0 24 24" width="12" height="12" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div><img src="assets/images/section/work-3.jpg" alt="Post 8"></div></div>
-                        <div class="col-4 col-md-4"><div class="ig-grid-post"><img src="assets/images/section/feature-1.jpg" alt="Post 9"></div></div>
-                        <div class="col-4 col-md-4"><div class="ig-grid-post"><img src="assets/images/section/feature-2.jpg" alt="Post 10"></div></div>
-                        <div class="col-4 col-md-4"><div class="ig-grid-post"><div class="motion-badge"><svg viewBox="0 0 24 24" width="12" height="12" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div><img src="assets/images/section/work-1.jpg" alt="Post 11"></div></div>
-                        <div class="col-4 col-md-4"><div class="ig-grid-post"><img src="assets/images/section/work-2.jpg" alt="Post 12"></div></div>
-                    </div>
-                </div>
-
-                <!-- Навигация между проектами -->
-                <div class="mil-works-nav mil-up pt-5" style="border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
-                    <a href="#" class="link text-white d-flex align-items-center gap-2">
-                        <i class="icon icon-arrow-long-left"></i> PREV PROJECT
-                    </a>
-                    <a href="projects.html" class="link text-white-64">ALL PROJECTS</a>
-                    <a href="#" class="link text-white d-flex align-items-center gap-2">
-                        NEXT PROJECT <i class="icon icon-arrow-long-right"></i>
-                    </a>
-                </div>
-
             </div>
+
+            <!-- ================================================================= -->
+            <!-- БЛОК 4: FEED CONCEPT -->
+            <!-- ================================================================= -->
+            <div class="row justify-content-between mil-up mb-5">
+                <div class="col-lg-4 mb-3 mb-lg-0">
+                    <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">04 / Social Media</span>
+                    <h3 class="text-white mb-4">Feed Concept</h3>
+                </div>
+                <div class="col-lg-7">
+                    <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 18px;">
+                        Working closely with the SMM team, we established distinct visual templates for key content pillars. The 12-post grid combines graphic layouts, authentic on-site photography, and custom motion design - including animated looping graphics - to create a rhythmic, immersive feed.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Сетка Инстаграма (12 постов: 3 в ряд) -->
+            <div class="mil-up mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <div class="row g-3">
+                    <div class="col-4 col-md-4"><div class="ig-grid-post"><img src="assets/images/section/work-1.jpg" alt="Post 1"></div></div>
+                    <div class="col-4 col-md-4"><div class="ig-grid-post"><div class="motion-badge"><svg viewBox="0 0 24 24" width="12" height="12" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div><img src="assets/images/section/work-2.jpg" alt="Post 2 Motion"></div></div>
+                    <div class="col-4 col-md-4"><div class="ig-grid-post"><img src="assets/images/section/work-3.jpg" alt="Post 3"></div></div>
+
+                    <div class="col-4 col-md-4"><div class="ig-grid-post"><div class="motion-badge"><svg viewBox="0 0 24 24" width="12" height="12" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div><img src="assets/images/section/feature-1.jpg" alt="Post 4 Motion"></div></div>
+                    <div class="col-4 col-md-4"><div class="ig-grid-post"><img src="assets/images/section/feature-2.jpg" alt="Post 5"></div></div>
+                    <div class="col-4 col-md-4"><div class="ig-grid-post"><img src="assets/images/section/work-1.jpg" alt="Post 6"></div></div>
+
+                    <div class="col-4 col-md-4"><div class="ig-grid-post"><img src="assets/images/section/work-2.jpg" alt="Post 7"></div></div>
+                    <div class="col-4 col-md-4"><div class="ig-grid-post"><div class="motion-badge"><svg viewBox="0 0 24 24" width="12" height="12" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div><img src="assets/images/section/work-3.jpg" alt="Post 8"></div></div>
+                    <div class="col-4 col-md-4"><div class="ig-grid-post"><img src="assets/images/section/feature-1.jpg" alt="Post 9"></div></div>
+
+                    <div class="col-4 col-md-4"><div class="ig-grid-post"><img src="assets/images/section/feature-2.jpg" alt="Post 10"></div></div>
+                    <div class="col-4 col-md-4"><div class="ig-grid-post"><div class="motion-badge"><svg viewBox="0 0 24 24" width="12" height="12" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div><img src="assets/images/section/work-1.jpg" alt="Post 11"></div></div>
+                    <div class="col-4 col-md-4"><div class="ig-grid-post"><img src="assets/images/section/work-2.jpg" alt="Post 12"></div></div>
+                </div>
+            </div>
+
+            <!-- ================================================================= -->
+            <!-- БЛОК 5: MODULAR STORY BLOCKS (4 сторис в сетке/слайдере) -->
+            <!-- ================================================================= -->
+            <div class="mil-up mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <div class="row justify-content-between mb-5">
+                    <div class="col-lg-4 mb-3 mb-lg-0">
+                        <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">05 / Stories</span>
+                        <h3 class="text-white">Modular Story Blocks</h3>
+                    </div>
+                    <div class="col-lg-7">
+                        <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 18px;">
+                            Stories were designed using a structured, block-based layout. This modular system maintains instant brand recognition while allowing fast, digestible storytelling for daily updates, price lists, and tournament promos.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4 плейсхолдера под сторис (элегантная 4-колоночная сетка) -->
+                <div class="row g-4">
+                    <div class="col-6 col-md-3">
+                        <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #080808; aspect-ratio: 9/16;">
+                            <img src="assets/images/projects/goodgame/story-1.webp" alt="Story Block 1" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #080808; aspect-ratio: 9/16;">
+                            <img src="assets/images/projects/goodgame/story-2.webp" alt="Story Block 2" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #080808; aspect-ratio: 9/16;">
+                            <img src="assets/images/projects/goodgame/story-3.webp" alt="Story Block 3" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #080808; aspect-ratio: 9/16;">
+                            <img src="assets/images/projects/goodgame/story-4.webp" alt="Story Block 4" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================================================= -->
+            <!-- БЛОК 6: CAROUSELS & CROSS-FORMAT ADAPTATIONS -->
+            <!-- ================================================================= -->
+            <div class="mil-up mb-5 pb-5" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                <div class="row justify-content-between mb-5">
+                    <div class="col-lg-4 mb-3 mb-lg-0">
+                        <span class="text-uppercase text-primary text-caption fw-medium mb-2 d-block" style="letter-spacing: 2px;">06 / Adaptations</span>
+                        <h3 class="text-white">Carousels & Cross-Format Adaptations</h3>
+                    </div>
+                    <div class="col-lg-7">
+                        <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 18px;">
+                            Info posts, tournament rules, and high-engagement giveaways were structured as multi-slide swipe carousels. Each visual asset was seamlessly adapted across Feed, Stories, and promo banners to maintain a unified campaign experience.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2 плейсхолдера под креативы и адаптивы в 2 колонки -->
+                <div class="row g-4">
+                    <div class="col-12 col-lg-6">
+                        <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #080808;">
+                            <img src="assets/images/projects/goodgame/carousel-adapt-1.webp" alt="Cross-Format Adaptation 1" style="width: 100%; height: auto; display: block;">
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #080808;">
+                            <img src="assets/images/projects/goodgame/carousel-adapt-2.webp" alt="Cross-Format Adaptation 2" style="width: 100%; height: auto; display: block;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================================================= -->
+            <!-- БЛОК 7: ФИНАЛЬНАЯ СТАТИЧНАЯ КАРТИНКА (СТИКЕРПАК / АРТ) -->
+            <!-- ================================================================= -->
+            <div class="mil-up mb-5 pb-5">
+                <div style="border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: #080808; width: 100%;">
+                    <img src="assets/images/projects/goodgame/gg-stickers.webp" alt="GoodGame Sticker Pack Showcase" style="width: 100%; height: auto; display: block;">
+                </div>
+            </div>
+
+            <!-- Навигация между проектами -->
+            <div class="mil-works-nav mil-up pt-5" style="border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
+                <a href="#" class="link text-white d-flex align-items-center gap-2">
+                    <i class="icon icon-arrow-long-left"></i> PREV PROJECT
+                </a>
+                <a href="projects.html" class="link text-white-64">ALL PROJECTS</a>
+                <a href="#" class="link text-white d-flex align-items-center gap-2">
+                    NEXT PROJECT <i class="icon icon-arrow-long-right"></i>
+                </a>
+            </div>
+
         </section>
+
         <!-- CALL TO ACTION -->
-        <section class="flat-spacing" style="border-top: 1px solid rgba(255,255,255,0.05); padding-bottom: 120px;">
+        <section class="flat-spacing" style="border-top: 1px solid rgba(255,255,255,0.05); padding-bottom: 120px; margin-top: 80px;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10">
@@ -392,7 +433,6 @@
                         Let's make it a reality <span class="fw-light text-white-64">together</span>
                     </h2>
                     <div class="mil-up" style="margin-top: 50px;">
-                        <!-- Кнопка ведет на твою главную страницу к форме контактов -->
                         <a href="https://okdesign-studio.github.io/okdesign.cc/index.html#contactScroll" class="tf-btn">
                             CONTACT US
                         </a>
@@ -401,6 +441,7 @@
             </div>
         </section>
         <!-- / CALL TO ACTION -->
+
         <!-- Footer -->
         <footer class="tf-footer">
             <div class="container">
@@ -409,14 +450,12 @@
             <div class="footer-inner">
                 <div class="container">
                     <div class="row align-items-start">
-                        <!-- Копирайт (в 1 строку на мобильном с отступом mb-5) -->
                         <div class="col-md-4 mb-5 mb-md-0">
                             <p class="title text-has-dot text-caption fw-medium mb-0" style="line-height: 1.6; display: flex; align-items: flex-start; gap: 8px;">
                                 <span class="br-dot" style="margin-top: 5px; flex-shrink: 0;"></span>
                                 <span>© 2026 OK DESIGN.<span class="d-none d-md-inline"><br></span><span class="d-md-none"> </span>ALL RIGHTS RESERVED.</span>
                             </p>
                         </div>
-                        <!-- Навигация -->
                         <div class="col-6 col-sm-2 col-md-1">
                             <p class="footer-heading text-caption fw-medium text-white-64 mb-3">
                                 SITEMAP
@@ -430,7 +469,6 @@
                                 <li><a href="index.html#contactScroll" class="link letter-space--2 h5">Contact</a></li>
                             </ul>
                         </div>
-                        <!-- Соцсети -->
                         <div class="col-6 col-sm-2 col-md-1">
                             <p class="footer-heading text-caption fw-medium text-white-64 mb-3">
                                 SOCIALS
@@ -450,7 +488,7 @@
         <!-- /Footer -->
     </main>
 
-    <!-- Твои скрипты -->
+    <!-- Скрипты -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/swiper-bundle.min.js"></script>
@@ -459,13 +497,12 @@
     <script src="assets/js/main.js"></script>
     <script>
         $(document).ready(function() {
-            // Инициализация кастомного слайдера с авто-шириной
             if ($('.gg-swiper').length > 0) {
                 new Swiper('.gg-swiper', {
                     slidesPerView: 'auto',
-                    spaceBetween: 15, // Расстояние между слайдами
-                    freeMode: true,   // Плавный свободный скролл (как на iPhone)
-                    grabCursor: true, // Курсор в виде "руки" для удобства
+                    spaceBetween: 15,
+                    freeMode: true,
+                    grabCursor: true,
                     navigation: {
                         nextEl: '.gg-next',
                         prevEl: '.gg-prev',
