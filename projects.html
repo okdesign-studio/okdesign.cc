@@ -24,6 +24,33 @@
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="assets/images/logo/favicon.svg">
     <link rel="apple-touch-icon-precomposed" href="assets/images/logo/favicon.svg">
+
+    <style>
+        /* ==========================================================================
+           Анимация ховера обложек кейсов (в стиле референса Stocked / projects-ref.html)
+           ========================================================================== */
+        .project-card-hover {
+            display: block;
+            overflow: hidden; /* Запрещаем картинке выходить за пределы карточки при зуме/повороте */
+            position: relative;
+            border-radius: 4px; /* Мягкие скругления, можно убрать (0px), если требуется острый угол */
+        }
+        
+        .project-card-hover img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transform: scale(1) rotate(0deg);
+            /* Очень плавный и премиальный переход на 0.7с */
+            transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+            will-change: transform;
+        }
+
+        /* При наведении — увеличение с небольшим поворотом */
+        .project-card-hover:hover img {
+            transform: scale(1.05) rotate(2deg);
+        }
+    </style>
 </head>
 
 <body class="counter-scroll" style="background-color: #000; color: #fff; overflow-x: hidden;">
@@ -124,115 +151,110 @@
         </div>
         <!-- /Page Title Section -->
 
-        <!-- Projects Grid -->
+        <!-- Projects Grid (Оригинальная вёрстка в 3 колонки: col-4 col-md-4) -->
         <section class="section-blog flat-spacing pt-0">
             <div class="container">
-                <div class="tf-grid-layout sm-col-2 lg-col-3 gap-4">
+                <div class="row g-4">
                     
                     <!-- Item 1: GoodGame -->
-                    <div class="wg-feature-v01 mil-up">
-                        <a href="project.html" class="feature-image img-style mil-image-frame mil-drag" style="display: block;">
-                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-1.jpg" alt="GoodGame Cyberlounge">
-                            <span class="mil-zoom-btn">
-                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                            </span>
-                        </a>
-                        <div class="feature-content mt-3">
-                            <div class="info">
-                                <p class="tag text-white-64 letter-space--1 mb-1">Visual Identity / Motion</p>
-                                <h5 class="name letter-space--2 mb-0">
-                                    <a href="project.html" class="link text-white">GoodGame Cyberlounge</a>
-                                </h5>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="wg-feature-v01 mil-up">
+                            <!-- Убрали mil-drag, добавили project-card-hover -->
+                            <a href="project.html" class="project-card-hover">
+                                <img loading="lazy" width="628" height="471" src="assets/images/section/work-1.jpg" alt="GoodGame Cyberlounge">
+                            </a>
+                            <div class="feature-content mt-3">
+                                <div class="info">
+                                    <p class="tag text-white-64 letter-space--1 mb-1">Visual Identity / Motion</p>
+                                    <h5 class="name letter-space--2 mb-0">
+                                        <a href="project.html" class="link text-white">GoodGame Cyberlounge</a>
+                                    </h5>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Item 2: NexoPay -->
-                    <div class="wg-feature-v01 mil-up">
-                        <a href="project.html" class="feature-image img-style mil-image-frame mil-drag" style="display: block;">
-                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-2.jpg" alt="NexoPay">
-                            <span class="mil-zoom-btn">
-                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                            </span>
-                        </a>
-                        <div class="feature-content mt-3">
-                            <div class="info">
-                                <p class="tag text-white-64 letter-space--1 mb-1">Branding / UI/UX</p>
-                                <h5 class="name letter-space--2 mb-0">
-                                    <a href="project.html" class="link text-white">NexoPay Ecosystem</a>
-                                </h5>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="wg-feature-v01 mil-up">
+                            <a href="project.html" class="project-card-hover">
+                                <img loading="lazy" width="628" height="471" src="assets/images/section/work-2.jpg" alt="NexoPay">
+                            </a>
+                            <div class="feature-content mt-3">
+                                <div class="info">
+                                    <p class="tag text-white-64 letter-space--1 mb-1">Branding / UI/UX</p>
+                                    <h5 class="name letter-space--2 mb-0">
+                                        <a href="project.html" class="link text-white">NexoPay Ecosystem</a>
+                                    </h5>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Item 3: Seeson -->
-                    <div class="wg-feature-v01 mil-up">
-                        <a href="project.html" class="feature-image img-style mil-image-frame mil-drag" style="display: block;">
-                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-3.jpg" alt="Seeson">
-                            <span class="mil-zoom-btn">
-                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                            </span>
-                        </a>
-                        <div class="feature-content mt-3">
-                            <div class="info">
-                                <p class="tag text-white-64 letter-space--1 mb-1">Digital Advertising</p>
-                                <h5 class="name letter-space--2 mb-0">
-                                    <a href="project.html" class="link text-white">Seeson App Launch</a>
-                                </h5>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="wg-feature-v01 mil-up">
+                            <a href="project.html" class="project-card-hover">
+                                <img loading="lazy" width="628" height="471" src="assets/images/section/work-3.jpg" alt="Seeson">
+                            </a>
+                            <div class="feature-content mt-3">
+                                <div class="info">
+                                    <p class="tag text-white-64 letter-space--1 mb-1">Digital Advertising</p>
+                                    <h5 class="name letter-space--2 mb-0">
+                                        <a href="project.html" class="link text-white">Seeson App Launch</a>
+                                    </h5>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Item 4: Future -->
-                    <div class="wg-feature-v01 mil-up">
-                        <a href="project.html" class="feature-image img-style mil-image-frame mil-drag" style="display: block;">
-                            <img loading="lazy" width="628" height="471" src="assets/images/section/feature-1.jpg" alt="Future">
-                            <span class="mil-zoom-btn">
-                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                            </span>
-                        </a>
-                        <div class="feature-content mt-3">
-                            <div class="info">
-                                <p class="tag text-white-64 letter-space--1 mb-1">Motion Graphics / 3D</p>
-                                <h5 class="name letter-space--2 mb-0">
-                                    <a href="project.html" class="link text-white">Future Vision Promo</a>
-                                </h5>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="wg-feature-v01 mil-up">
+                            <a href="project.html" class="project-card-hover">
+                                <img loading="lazy" width="628" height="471" src="assets/images/section/feature-1.jpg" alt="Future">
+                            </a>
+                            <div class="feature-content mt-3">
+                                <div class="info">
+                                    <p class="tag text-white-64 letter-space--1 mb-1">Motion Graphics / 3D</p>
+                                    <h5 class="name letter-space--2 mb-0">
+                                        <a href="project.html" class="link text-white">Future Vision Promo</a>
+                                    </h5>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Item 5: Portz -->
-                    <div class="wg-feature-v01 mil-up">
-                        <a href="project.html" class="feature-image img-style mil-image-frame mil-drag" style="display: block;">
-                            <img loading="lazy" width="628" height="471" src="assets/images/section/feature-2.jpg" alt="Portz">
-                            <span class="mil-zoom-btn">
-                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                            </span>
-                        </a>
-                        <div class="feature-content mt-3">
-                            <div class="info">
-                                <p class="tag text-white-64 letter-space--1 mb-1">Web Design / Development</p>
-                                <h5 class="name letter-space--2 mb-0">
-                                    <a href="project.html" class="link text-white">Portz Portfolio System</a>
-                                </h5>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="wg-feature-v01 mil-up">
+                            <a href="project.html" class="project-card-hover">
+                                <img loading="lazy" width="628" height="471" src="assets/images/section/feature-2.jpg" alt="Portz">
+                            </a>
+                            <div class="feature-content mt-3">
+                                <div class="info">
+                                    <p class="tag text-white-64 letter-space--1 mb-1">Web Design / Development</p>
+                                    <h5 class="name letter-space--2 mb-0">
+                                        <a href="project.html" class="link text-white">Portz Portfolio System</a>
+                                    </h5>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Item 6: Agenz -->
-                    <div class="wg-feature-v01 mil-up">
-                        <a href="project.html" class="feature-image img-style mil-image-frame mil-drag" style="display: block;">
-                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-1.jpg" alt="Agenz">
-                            <span class="mil-zoom-btn">
-                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                            </span>
-                        </a>
-                        <div class="feature-content mt-3">
-                            <div class="info">
-                                <p class="tag text-white-64 letter-space--1 mb-1">Print / Brand Guidelines</p>
-                                <h5 class="name letter-space--2 mb-0">
-                                    <a href="project.html" class="link text-white">Agenz Corporate Identity</a>
-                                </h5>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="wg-feature-v01 mil-up">
+                            <a href="project.html" class="project-card-hover">
+                                <img loading="lazy" width="628" height="471" src="assets/images/section/work-1.jpg" alt="Agenz">
+                            </a>
+                            <div class="feature-content mt-3">
+                                <div class="info">
+                                    <p class="tag text-white-64 letter-space--1 mb-1">Print / Brand Guidelines</p>
+                                    <h5 class="name letter-space--2 mb-0">
+                                        <a href="project.html" class="link text-white">Agenz Corporate Identity</a>
+                                    </h5>
+                                </div>
                             </div>
                         </div>
                     </div>
