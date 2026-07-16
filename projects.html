@@ -27,27 +27,27 @@
 
     <style>
         /* ==========================================================================
-           Анимация ховера обложек кейсов (в стиле референса Stocked / projects-ref.html)
+           Плавная анимация ховера обложек кейсов (в стиле референса projects-ref.html)
            ========================================================================== */
-        .project-card-hover {
+        .article-blog .blog-image {
             display: block;
-            overflow: hidden; /* Запрещаем картинке выходить за пределы карточки при зуме/повороте */
+            overflow: hidden; /* Обрезка изображения при увеличении и повороте */
             position: relative;
-            border-radius: 4px; /* Мягкие скругления, можно убрать (0px), если требуется острый угол */
+            border-radius: 4px;
         }
         
-        .project-card-hover img {
+        .article-blog .blog-image img {
             width: 100%;
             height: auto;
             display: block;
             transform: scale(1) rotate(0deg);
-            /* Очень плавный и премиальный переход на 0.7с */
+            /* Премиальный и очень мягкий переход на 0.7 сек */
             transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
             will-change: transform;
         }
 
-        /* При наведении — увеличение с небольшим поворотом */
-        .project-card-hover:hover img {
+        /* При наведении на карточку — увеличение с небольшим поворотом */
+        .article-blog:hover .blog-image img {
             transform: scale(1.05) rotate(2deg);
         }
     </style>
@@ -58,7 +58,7 @@
     <div class="mil-ball">
         <span class="mil-icon-1">
             <svg viewBox="0 0 128 128" width="40" height="40">
-                <path d="M106.1,41.9c-1.2-1.2-3.1-1.2-4.2,0c-1.2,1.2-1.2,3.1,0,4.2L116.8,61H11.2l14.9-14.9c1.2-1.2,1.2-3.1,0-4.2 c-1.2-1.2-3.1-1.2-4.2,0l-20,20c-1.2,1.2-1.2,3.1,0-4.2l20,20c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9c1.2-1.2,1.2-3.1,0-4.2 L11.2,67h105.5l-14.9,14.9c-1.2,1.2-1.2,3.1,0,4.2c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9l20-20c1.2-1.2,1.2-3.1,0-4.2L106.1,41.9 z" fill="#000000"/>
+                <path d="M106.1,41.9c-1.2-1.2-3.1-1.2-4.2,0c-1.2,1.2-1.2,3.1,0,4.2L116.8,61H11.2l14.9-14.9c1.2-1.2,1.2-3.1,0-4.2 c-1.2-1.2-3.1-1.2-4.2,0l-20,20c-1.2,1.2-1.2,3.1,0-4.2l20,20c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9c1.2-1.2,1.2-3.1,0-4.2 L11.2,67h105.5l-14.9,14.9c-1.2,1.2-1.2-3.1,0-4.2c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9l20-20c1.2-1.2,1.2-3.1,0-4.2L106.1,41.9 z" fill="#000000"/>
             </svg>
         </span>
         <div class="mil-more-text">More</div>
@@ -151,111 +151,140 @@
         </div>
         <!-- /Page Title Section -->
 
-        <!-- Projects Grid (Оригинальная вёрстка в 3 колонки: col-4 col-md-4) -->
+        <!-- Projects Grid (Оригинальная вёрстка tf-grid-layout sm-col-2) -->
         <section class="section-blog flat-spacing pt-0">
             <div class="container">
-                <div class="row g-4">
+                <div class="tf-grid-layout sm-col-2">
                     
                     <!-- Item 1: GoodGame -->
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <div class="wg-feature-v01 mil-up">
-                            <!-- Убрали mil-drag, добавили project-card-hover -->
-                            <a href="project.html" class="project-card-hover">
-                                <img loading="lazy" width="628" height="471" src="assets/images/section/work-1.jpg" alt="GoodGame Cyberlounge">
-                            </a>
-                            <div class="feature-content mt-3">
-                                <div class="info">
-                                    <p class="tag text-white-64 letter-space--1 mb-1">Visual Identity / Motion</p>
-                                    <h5 class="name letter-space--2 mb-0">
-                                        <a href="project.html" class="link text-white">GoodGame Cyberlounge</a>
-                                    </h5>
-                                </div>
+                    <div class="article-blog effectFade fadeUp no-div">
+                        <a href="project.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-1.jpg" alt="GoodGame Cyberlounge">
+                        </a>
+                        <div class="blog-content">
+                            <div class="infor">
+                                <p class="infor_sub text-white-64">
+                                    Visual Identity / Motion
+                                </p>
+                                <h6>
+                                    <a href="project.html" class="link infor_name">
+                                        GoodGame Cyberlounge
+                                    </a>
+                                </h6>
                             </div>
+                            <a href="project.html" class="btn-action">
+                                <i class="icon icon-arrow-top-right"></i>
+                            </a>
                         </div>
                     </div>
 
                     <!-- Item 2: NexoPay -->
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <div class="wg-feature-v01 mil-up">
-                            <a href="project.html" class="project-card-hover">
-                                <img loading="lazy" width="628" height="471" src="assets/images/section/work-2.jpg" alt="NexoPay">
-                            </a>
-                            <div class="feature-content mt-3">
-                                <div class="info">
-                                    <p class="tag text-white-64 letter-space--1 mb-1">Branding / UI/UX</p>
-                                    <h5 class="name letter-space--2 mb-0">
-                                        <a href="project.html" class="link text-white">NexoPay Ecosystem</a>
-                                    </h5>
-                                </div>
+                    <div class="article-blog effectFade fadeUp no-div">
+                        <a href="project.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-2.jpg" alt="NexoPay Ecosystem">
+                        </a>
+                        <div class="blog-content">
+                            <div class="infor">
+                                <p class="infor_sub text-white-64">
+                                    Branding / UI/UX
+                                </p>
+                                <h6>
+                                    <a href="project.html" class="link infor_name">
+                                        NexoPay Ecosystem
+                                    </a>
+                                </h6>
                             </div>
+                            <a href="project.html" class="btn-action">
+                                <i class="icon icon-arrow-top-right"></i>
+                            </a>
                         </div>
                     </div>
 
                     <!-- Item 3: Seeson -->
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <div class="wg-feature-v01 mil-up">
-                            <a href="project.html" class="project-card-hover">
-                                <img loading="lazy" width="628" height="471" src="assets/images/section/work-3.jpg" alt="Seeson">
-                            </a>
-                            <div class="feature-content mt-3">
-                                <div class="info">
-                                    <p class="tag text-white-64 letter-space--1 mb-1">Digital Advertising</p>
-                                    <h5 class="name letter-space--2 mb-0">
-                                        <a href="project.html" class="link text-white">Seeson App Launch</a>
-                                    </h5>
-                                </div>
+                    <div class="article-blog effectFade fadeUp no-div">
+                        <a href="project.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-3.jpg" alt="Seeson App Launch">
+                        </a>
+                        <div class="blog-content">
+                            <div class="infor">
+                                <p class="infor_sub text-white-64">
+                                    Digital Advertising
+                                </p>
+                                <h6>
+                                    <a href="project.html" class="link infor_name">
+                                        Seeson App Launch
+                                    </a>
+                                </h6>
                             </div>
+                            <a href="project.html" class="btn-action">
+                                <i class="icon icon-arrow-top-right"></i>
+                            </a>
                         </div>
                     </div>
 
                     <!-- Item 4: Future -->
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <div class="wg-feature-v01 mil-up">
-                            <a href="project.html" class="project-card-hover">
-                                <img loading="lazy" width="628" height="471" src="assets/images/section/feature-1.jpg" alt="Future">
-                            </a>
-                            <div class="feature-content mt-3">
-                                <div class="info">
-                                    <p class="tag text-white-64 letter-space--1 mb-1">Motion Graphics / 3D</p>
-                                    <h5 class="name letter-space--2 mb-0">
-                                        <a href="project.html" class="link text-white">Future Vision Promo</a>
-                                    </h5>
-                                </div>
+                    <div class="article-blog effectFade fadeUp no-div">
+                        <a href="project.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/feature-1.jpg" alt="Future Vision Promo">
+                        </a>
+                        <div class="blog-content">
+                            <div class="infor">
+                                <p class="infor_sub text-white-64">
+                                    Motion Graphics / 3D
+                                </p>
+                                <h6>
+                                    <a href="project.html" class="link infor_name">
+                                        Future Vision Promo
+                                    </a>
+                                </h6>
                             </div>
+                            <a href="project.html" class="btn-action">
+                                <i class="icon icon-arrow-top-right"></i>
+                            </a>
                         </div>
                     </div>
 
                     <!-- Item 5: Portz -->
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <div class="wg-feature-v01 mil-up">
-                            <a href="project.html" class="project-card-hover">
-                                <img loading="lazy" width="628" height="471" src="assets/images/section/feature-2.jpg" alt="Portz">
-                            </a>
-                            <div class="feature-content mt-3">
-                                <div class="info">
-                                    <p class="tag text-white-64 letter-space--1 mb-1">Web Design / Development</p>
-                                    <h5 class="name letter-space--2 mb-0">
-                                        <a href="project.html" class="link text-white">Portz Portfolio System</a>
-                                    </h5>
-                                </div>
+                    <div class="article-blog effectFade fadeUp no-div">
+                        <a href="project.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/feature-2.jpg" alt="Portz Portfolio System">
+                        </a>
+                        <div class="blog-content">
+                            <div class="infor">
+                                <p class="infor_sub text-white-64">
+                                    Web Design / Development
+                                </p>
+                                <h6>
+                                    <a href="project.html" class="link infor_name">
+                                        Portz Portfolio System
+                                    </a>
+                                </h6>
                             </div>
+                            <a href="project.html" class="btn-action">
+                                <i class="icon icon-arrow-top-right"></i>
+                            </a>
                         </div>
                     </div>
 
                     <!-- Item 6: Agenz -->
-                    <div class="col-12 col-sm-6 col-md-4">
-                        <div class="wg-feature-v01 mil-up">
-                            <a href="project.html" class="project-card-hover">
-                                <img loading="lazy" width="628" height="471" src="assets/images/section/work-1.jpg" alt="Agenz">
-                            </a>
-                            <div class="feature-content mt-3">
-                                <div class="info">
-                                    <p class="tag text-white-64 letter-space--1 mb-1">Print / Brand Guidelines</p>
-                                    <h5 class="name letter-space--2 mb-0">
-                                        <a href="project.html" class="link text-white">Agenz Corporate Identity</a>
-                                    </h5>
-                                </div>
+                    <div class="article-blog effectFade fadeUp no-div">
+                        <a href="project.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-1.jpg" alt="Agenz Corporate Identity">
+                        </a>
+                        <div class="blog-content">
+                            <div class="infor">
+                                <p class="infor_sub text-white-64">
+                                    Print / Brand Guidelines
+                                </p>
+                                <h6>
+                                    <a href="project.html" class="link infor_name">
+                                        Agenz Corporate Identity
+                                    </a>
+                                </h6>
                             </div>
+                            <a href="project.html" class="btn-action">
+                                <i class="icon icon-arrow-top-right"></i>
+                            </a>
                         </div>
                     </div>
 
