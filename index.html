@@ -129,17 +129,25 @@
         <!-- Hero Banner -->
         <div class="section-hero-v1" style="height: 100vh; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center;">
             <div class="overlay"></div>
-            <!-- Фон с видео на весь экран -->
+            
+            <!-- Фон с адаптивным видео на весь экран -->
             <div class="bg-video" style="background-color: #000; display: flex; justify-content: center; width: 100%; height: 100%; position: absolute; inset: 0;">
                 <video class="" muted="" autoplay="" loop="" playsinline="" style="width: 100%; height: 100%; max-width: 2000px; object-fit: cover;">
-                    <source src="assets/images/video/Clean Opener.mp4" type="video/mp4">
+                    <!-- 1. Вертикальная версия для смартфонов (ширина экрана до 767px) -->
+                    <source src="assets/images/video/hero-mobile.mp4" type="video/mp4" media="(max-width: 767px)">
+                    
+                    <!-- 2. Горизонтальная версия для ПК и планшетов (ширина от 768px и выше) -->
+                    <source src="assets/images/video/Clean Opener.mp4" type="video/mp4" media="(min-width: 768px)">
+                    
+                    <!-- Постер-заглушка на случай, если браузер вообще не поддерживает видео -->
+                    <img src="assets/images/section/bg-about.jpg" alt="OK Design Hero" style="width: 100%; height: 100%; object-fit: cover;">
                 </video>
                 <div class="video-overlay"></div>
                 <div class="video-overlay-2"></div>
                 <div class="video-overlay-2"></div>
             </div>
 
-            <!-- Круглая кнопка скролла вниз в стиле сайта -->
+            <!-- Круглая кнопка скролла вниз в стиле сайта (её точно не потерял!) -->
             <a href="#heroTextScroll" id="goDownBtn" aria-label="Scroll down">
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
