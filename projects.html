@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="assets/css/slick.css">
     <link rel="stylesheet" href="assets/css/slick.theme.css">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/projects-filter.css">
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="assets/images/logo/favicon.svg">
     <link rel="apple-touch-icon-precomposed" href="assets/images/logo/favicon.svg">
@@ -87,38 +88,68 @@
                     </p>
                 </div>
 
-                <!-- ======= ЭЛИТНАЯ ГОРИЗОНТАЛЬНАЯ ПАНЕЛЬ ФИЛЬТРОВ (ENVATO STYLE) ======= -->
-                <div class="envato-filter-toolbar">
-                    <div class="envato-group-left">
-                        <!-- Поиск по ключевым словам -->
-                        <div class="envato-search-box">
-                            <i class="icon icon-search search-icon"></i>
-                            <input type="text" id="projectSearchInput" placeholder="Search projects, clients, tags...">
-                        </div>
-
-                        <!-- 1. Сфера дизайна (7 категорий) -->
-                        <div class="dropdown">
-                            <button class="btn btn-envato-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnSphere">
-                                <span>SPHERE</span> <span class="badge-count" style="display: none;">1</span>
+                <section class="projects-discovery" aria-label="Project filters">
+                    <div class="projects-search-bar">
+                        <div class="dropdown projects-category-dropdown">
+                            <button class="projects-category-trigger dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnCategory" aria-label="Choose a design category">
+                                <span id="categoryLabel">CATEGORIES</span>
                             </button>
-                            <div class="dropdown-menu envato-dropdown-menu" data-group="sphere">
-                                <div class="dropdown-item-check selected" data-val="*"><span class="custom-check"></span> <span>All Spheres</span></div>
-                                <div class="dropdown-item-check" data-val="motion"><span class="custom-check"></span> <span>Motion</span></div>
-                                <div class="dropdown-item-check" data-val="digital"><span class="custom-check"></span> <span>Digital</span></div>
-                                <div class="dropdown-item-check" data-val="content-creation"><span class="custom-check"></span> <span>Content Creation</span></div>
-                                <div class="dropdown-item-check" data-val="ai-production"><span class="custom-check"></span> <span>AI Production</span></div>
-                                <div class="dropdown-item-check" data-val="print"><span class="custom-check"></span> <span>Print</span></div>
-                                <div class="dropdown-item-check" data-val="ui-ux"><span class="custom-check"></span> <span>UI / UX</span></div>
-                                <div class="dropdown-item-check" data-val="branding"><span class="custom-check"></span> <span>Branding & Identity</span></div>
+                            <div class="dropdown-menu envato-dropdown-menu" data-group="category" aria-labelledby="btnCategory">
+                                <button type="button" class="dropdown-item-check selected" data-val="*"><span class="custom-check"></span><span>All Categories</span></button>
+                                <button type="button" class="dropdown-item-check" data-val="motion"><span class="custom-check"></span><span>Motion</span></button>
+                                <button type="button" class="dropdown-item-check" data-val="digital"><span class="custom-check"></span><span>Digital</span></button>
+                                <button type="button" class="dropdown-item-check" data-val="content-creation"><span class="custom-check"></span><span>Content Creation</span></button>
+                                <button type="button" class="dropdown-item-check" data-val="ai-production"><span class="custom-check"></span><span>AI Production</span></button>
+                                <button type="button" class="dropdown-item-check" data-val="print"><span class="custom-check"></span><span>Print</span></button>
+                                <button type="button" class="dropdown-item-check" data-val="ui-ux"><span class="custom-check"></span><span>UI / UX</span></button>
+                                <button type="button" class="dropdown-item-check" data-val="branding"><span class="custom-check"></span><span>Branding & Identity</span></button>
                             </div>
                         </div>
+                        <span class="projects-search-divider" aria-hidden="true"></span>
+                        <label class="visually-hidden" for="projectSearchInput">Search projects</label>
+                        <input type="search" id="projectSearchInput" autocomplete="off" placeholder="Search projects, clients or services">
+                        <span class="projects-search-action" aria-hidden="true"><i class="icon icon-search"></i></span>
+                    </div>
 
-                        <!-- 2. Услуги (Все 30+ сервисов) -->
+                    <div class="envato-filter-toolbar">
+                        <div class="envato-group-left">
+                            <!-- Clients -->
+                            <div class="dropdown">
+                                <button class="btn btn-envato-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnClient">
+                                    <span class="filter-button-label" data-default-label="CLIENTS">CLIENTS</span><span class="badge-count" hidden>1</span>
+                                </button>
+                                <div class="dropdown-menu envato-dropdown-menu" data-group="client" aria-labelledby="btnClient">
+                                    <button type="button" class="dropdown-item-check selected" data-val="*"><span class="custom-check"></span><span>All Clients</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="giorgio-armani"><span class="custom-check"></span><span>Giorgio Armani</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="nestle"><span class="custom-check"></span><span>Nestle</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="mazda"><span class="custom-check"></span><span>Mazda</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="lottusse"><span class="custom-check"></span><span>Lottusse</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="toyota"><span class="custom-check"></span><span>Toyota</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="ralph-lauren"><span class="custom-check"></span><span>Ralph Lauren</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="loreal"><span class="custom-check"></span><span>L'Oréal</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="ranok"><span class="custom-check"></span><span>Ranok</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="okki"><span class="custom-check"></span><span>Okki</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="ichnya"><span class="custom-check"></span><span>Ichnya</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="goodgame"><span class="custom-check"></span><span>GoodGame</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="van-calster"><span class="custom-check"></span><span>Van Calster</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="mix-markt"><span class="custom-check"></span><span>Mix Markt</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="max-markt"><span class="custom-check"></span><span>Max Markt</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="somplo"><span class="custom-check"></span><span>Somplo</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="aiby"><span class="custom-check"></span><span>AIBY</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="ukrainian-drift-series"><span class="custom-check"></span><span>Ukrainian Drift Series</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="drift-edition"><span class="custom-check"></span><span>DriftEdition</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="tuningfest"><span class="custom-check"></span><span>Tuningfest</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="invisalign"><span class="custom-check"></span><span>Invisalign</span></button>
+                                    <button type="button" class="dropdown-item-check" data-val="omni-cpa"><span class="custom-check"></span><span>Omni CPA</span></button>
+                                </div>
+                            </div>
+
+                            <!-- Services -->
                         <div class="dropdown">
                             <button class="btn btn-envato-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnService">
-                                <span>SERVICES</span> <span class="badge-count" style="display: none;">1</span>
+                                <span class="filter-button-label" data-default-label="SERVICES">SERVICES</span><span class="badge-count" hidden>1</span>
                             </button>
-                            <div class="dropdown-menu envato-dropdown-menu" data-group="service">
+                            <div class="dropdown-menu envato-dropdown-menu" data-group="service" aria-labelledby="btnService">
                                 <div class="dropdown-item-check selected" data-val="*"><span class="custom-check"></span> <span>All Services</span></div>
                                 <div class="dropdown-item-check" data-val="promo-videos"><span class="custom-check"></span> <span>Promo Videos</span></div>
                                 <div class="dropdown-item-check" data-val="video-ads"><span class="custom-check"></span> <span>Video Ads</span></div>
@@ -161,57 +192,26 @@
                             </div>
                         </div>
 
-                        <!-- 3. Клиенты (Все 20 брендов) -->
-                        <div class="dropdown">
-                            <button class="btn btn-envato-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnClient">
-                                <span>CLIENTS</span> <span class="badge-count" style="display: none;">1</span>
-                            </button>
-                            <div class="dropdown-menu envato-dropdown-menu" data-group="client">
-                                <div class="dropdown-item-check selected" data-val="*"><span class="custom-check"></span> <span>All Clients</span></div>
-                                <div class="dropdown-item-check" data-val="giorgio-armani"><span class="custom-check"></span> <span>Giorgio Armani</span></div>
-                                <div class="dropdown-item-check" data-val="nestle"><span class="custom-check"></span> <span>Nestle</span></div>
-                                <div class="dropdown-item-check" data-val="mazda"><span class="custom-check"></span> <span>Mazda</span></div>
-                                <div class="dropdown-item-check" data-val="lottusse"><span class="custom-check"></span> <span>Lottusse</span></div>
-                                <div class="dropdown-item-check" data-val="toyota"><span class="custom-check"></span> <span>Toyota</span></div>
-                                <div class="dropdown-item-check" data-val="ralph-lauren"><span class="custom-check"></span> <span>Ralph Lauren</span></div>
-                                <div class="dropdown-item-check" data-val="loreal"><span class="custom-check"></span> <span>L'Oréal</span></div>
-                                <div class="dropdown-item-check" data-val="ranok"><span class="custom-check"></span> <span>Ranok</span></div>
-                                <div class="dropdown-item-check" data-val="okki"><span class="custom-check"></span> <span>Okki</span></div>
-                                <div class="dropdown-item-check" data-val="ichnya"><span class="custom-check"></span> <span>Ichnya</span></div>
-                                <div class="dropdown-item-check" data-val="goodgame"><span class="custom-check"></span> <span>GoodGame</span></div>
-                                <div class="dropdown-item-check" data-val="van-calster"><span class="custom-check"></span> <span>Van Calster</span></div>
-                                <div class="dropdown-item-check" data-val="mix-markt"><span class="custom-check"></span> <span>Mix Markt</span></div>
-                                <div class="dropdown-item-check" data-val="max-markt"><span class="custom-check"></span> <span>Max Markt</span></div>
-                                <div class="dropdown-item-check" data-val="somplo"><span class="custom-check"></span> <span>Somplo</span></div>
-                                <div class="dropdown-item-check" data-val="aiby"><span class="custom-check"></span> <span>AIBY</span></div>
-                                <div class="dropdown-item-check" data-val="ukrainian-drift-series"><span class="custom-check"></span> <span>Ukrainian Drift Series</span></div>
-                                <div class="dropdown-item-check" data-val="drift-edition"><span class="custom-check"></span> <span>DriftEdition</span></div>
-                                <div class="dropdown-item-check" data-val="tuningfest"><span class="custom-check"></span> <span>Tuningfest</span></div>
-                                <div class="dropdown-item-check" data-val="invisalign"><span class="custom-check"></span> <span>Invisalign</span></div>
-                                <div class="dropdown-item-check" data-val="omni-cpa"><span class="custom-check"></span> <span>Omni CPA</span></div>
-                            </div>
                         </div>
-                    </div>
 
-                    <!-- Справа: Сортировка -->
-                    <div class="envato-group-right">
-                        <div class="dropdown">
-                            <button class="btn btn-envato-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" style="border-color: rgba(255,255,255,0.15) !important;">
-                                <span>SORT BY:</span> <span id="sortLabel" style="color: #0051ff; font-weight: 700;">NEWEST</span>
+                        <div class="envato-group-right">
+                            <div class="dropdown">
+                            <button class="btn btn-envato-dropdown btn-sort dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnSort">
+                                <span>SORT:</span><span id="sortLabel">NEWEST</span>
                             </button>
-                            <div class="dropdown-menu envato-dropdown-menu" id="sortDropdownMenu" style="min-width: 210px;">
+                            <div class="dropdown-menu envato-dropdown-menu dropdown-menu-end" id="sortDropdownMenu" aria-labelledby="btnSort">
                                 <div class="dropdown-item-check selected" data-sort="newest"><span class="custom-check"></span> <span>Newest First</span></div>
                                 <div class="dropdown-item-check" data-sort="oldest"><span class="custom-check"></span> <span>Oldest First</span></div>
-                                <div class="dropdown-item-check" data-sort="title-asc"><span class="custom-check"></span> <span>Title (A → Z)</span></div>
-                                <div class="dropdown-item-check" data-sort="client-asc"><span class="custom-check"></span> <span>Client (A → Z)</span></div>
+                            </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Строка выбранных фильтров (Active Pills Bar) -->
-                <div class="envato-active-pills" id="activePillsContainer"></div>
-                <!-- /ЭЛИТНАЯ ГОРИЗОНТАЛЬНАЯ ПАНЕЛЬ ФИЛЬТРОВ -->
+                    <div class="projects-filter-meta" aria-live="polite">
+                        <span class="projects-result-count" id="projectsResultCount"></span>
+                        <div class="envato-active-pills" id="activePillsContainer"></div>
+                    </div>
+                </section>
 
             </div>
         </div>
@@ -376,6 +376,11 @@
                         </div>
                     </div>
 
+                </div>
+                <div class="projects-empty-state" id="projectsEmptyState" hidden>
+                    <p class="h5 mb-2">No matching projects</p>
+                    <p class="text-white-64 mb-4">Try another category, client, service or search term.</p>
+                    <button type="button" class="tf-btn" id="resetProjectsFilters">RESET FILTERS</button>
                 </div>
             </div>
         </section>
