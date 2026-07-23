@@ -48,22 +48,6 @@
     </button>
     <!-- /Scroll Top -->
 
-    <!-- Preload -->
-    <div class="preloader overflow-hidden">
-        <div class="site-name"><span>OK DESIGN</span></div>
-        <div class="preloader-gutters">
-            <div class="bar"><div class="inner-bar"></div></div>
-            <div class="bar"><div class="inner-bar"></div></div>
-            <div class="bar"><div class="inner-bar"></div></div>
-            <div class="bar"><div class="inner-bar"></div></div>
-            <div class="bar"><div class="inner-bar"></div></div>
-            <div class="bar"><div class="inner-bar"></div></div>
-            <div class="bar"><div class="inner-bar"></div></div>
-            <div class="bar"><div class="inner-bar"></div></div>
-        </div>
-    </div>
-    <!-- /Preload -->
-
     <main id="wrapper">
         <!-- Header -->
         <header class="tf-header">
@@ -106,7 +90,7 @@
         <!-- /Header -->
 
         <!-- Page Title Section -->
-        <div class="section-page-title" style="padding-top: 160px; padding-bottom: 40px;">
+        <div class="section-page-title" style="padding-top: 160px; padding-bottom: 30px;">
             <div class="container text-center">
                 <h1 class="page-title text-display-2 fw-semibold letter-space--3 effectFade fadeZoom text-white mb-3">Projects</h1>
                 <div class="breadcrumbs effectFade fadeUp mb-5">
@@ -115,14 +99,70 @@
                     </p>
                 </div>
 
-                <!-- КНОПКИ ФИЛЬТРАЦИИ ПО КАТЕГОРИЯМ -->
-                <ul class="project-filter-list effectFade fadeUp">
-                    <li><button class="filter-btn active" data-filter="*">ALL PROJECTS (11)</button></li>
-                    <li><button class="filter-btn" data-filter="motion">MOTION & VIDEO</button></li>
-                    <li><button class="filter-btn" data-filter="social-media">SMM & CONTENT</button></li>
-                    <li><button class="filter-btn" data-filter="digital">DIGITAL & UI/UX</button></li>
-                    <li><button class="filter-btn" data-filter="branding">BRANDING & PRINT</button></li>
-                </ul>
+                <!-- ======= ЭЛИТНАЯ ПАНЕЛЬ ФИЛЬТРАЦИИ ======= -->
+                <div class="filter-toolbar-container effectFade fadeUp">
+                    <div class="filter-toolbar">
+                        <!-- Сброс -->
+                        <button class="filter-reset-btn active" id="resetAllFilters">ALL PROJECTS (11)</button>
+
+                        <!-- 1. Сфера дизайна (Sphere) -->
+                        <div class="dropdown">
+                            <button class="btn btn-filter-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnSphere">
+                                SPHERE: <span class="label-val">ALL</span>
+                            </button>
+                            <ul class="dropdown-menu dark-dropdown-menu" data-group="sphere">
+                                <li><a class="dropdown-item active" href="#" data-val="*">All Spheres</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="motion">Motion & Video</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="digital">Digital Ads</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="content-creation">Content Creation</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="ai-production">AI Production</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="print">Print Design</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="ui-ux">UI / UX</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="branding">Branding & Identity</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- 2. Услуги (Services) -->
+                        <div class="dropdown">
+                            <button class="btn btn-filter-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnService">
+                                SERVICE: <span class="label-val">ALL</span>
+                            </button>
+                            <ul class="dropdown-menu dark-dropdown-menu" data-group="service">
+                                <li><a class="dropdown-item active" href="#" data-val="*">All Services</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="tv-ads">TV Ads</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="promo-videos">Promo Videos</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="2d-3d-animation">2D / 3D Animation</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="rich-media-ads">Rich Media Ads</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="social-media">Social Media</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="visual-identity">Visual Identity</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- 3. Клиенты (Clients) -->
+                        <div class="dropdown">
+                            <button class="btn btn-filter-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnClient">
+                                CLIENT: <span class="label-val">ALL</span>
+                            </button>
+                            <ul class="dropdown-menu dark-dropdown-menu" data-group="client">
+                                <li><a class="dropdown-item active" href="#" data-val="*">All Clients</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="van-calster">Van Calster</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="goodgame">GoodGame</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="drift-edition">Drift Edition</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="somplo">Somplo</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="ranok">Ranok Publishing</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="okki">Okki</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="omni-cpa">Omni CPA</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="ichnya">Ichnya</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="invisalign">Invisalign</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Панель активных фильтров -->
+                    <div class="active-filters-bar" id="activeFiltersBar"></div>
+                </div>
+                <!-- /ЭЛИТНАЯ ПАНЕЛЬ ФИЛЬТРАЦИИ -->
+
             </div>
         </div>
         <!-- /Page Title Section -->
