@@ -27,7 +27,7 @@
 </head>
 
 <body class="counter-scroll" style="background-color: #000; color: #fff; overflow-x: hidden;">
-    <!-- Новый курсор из шаблона Ashley -->
+    <!-- Новый курсор Ashley -->
     <div class="mil-ball">
         <span class="mil-icon-1">
             <svg viewBox="0 0 128 128" width="40" height="40">
@@ -37,16 +37,9 @@
         <div class="mil-more-text">More</div>
         <div class="mil-choose-text">Сhoose</div>
     </div>
-    <!-- /Новый курсор -->
 
     <!-- Scroll Top -->
-    <button id="goTop">
-        <span class="border-progress"></span>
-        <span class="ic-wrap">
-            <span class="icon icon-arrow-caret-right"></span>
-        </span>
-    </button>
-    <!-- /Scroll Top -->
+    <button id="goTop"><span class="border-progress"></span><span class="ic-wrap"><span class="icon icon-arrow-caret-right"></span></span></button>
 
     <!-- ПРЕЛОАДЕР ПОЛНОСТЬЮ УДАЛЕН ДЛЯ МГНОВЕННОЙ ЗАГРУЗКИ СТРАНИЦЫ -->
 
@@ -57,9 +50,7 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-6 col-md-2">
-                            <a href="index.html" class="logo-site">
-                                <img src="assets/images/logo/logo.svg" alt="OK Design" style="height: 40px; width: auto;">
-                            </a>
+                            <a href="index.html" class="logo-site"><img src="assets/images/logo/logo.svg" alt="OK Design" style="height: 40px; width: auto;"></a>
                         </div>
                         <div class="col-6 col-md-6 d-none d-md-block">
                             <div class="box-navigation">
@@ -74,16 +65,11 @@
                         <div class="col-6 col-md-4 d-flex justify-content-end align-items-center">
                             <div class="header-contact d-none d-md-block">
                                 <a href="mailto:hello@okdesign.cc" class="link text-body-3 text-uppercase d-flex align-items-center gap-2" style="text-decoration: none;">
-                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 2px;">
-                                        <rect x="2" y="4" width="20" height="16" rx="2"/>
-                                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                                    </svg>
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 2px;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                                     <span>HELLO@OKDESIGN.CC</span>
                                 </a>
                             </div>
-                            <button type="button" class="btn-mobile-menu open-mb-menu text-body-3 text-white link d-md-none">
-                                <i class="icon icon-menu"></i> MENU
-                            </button>
+                            <button type="button" class="btn-mobile-menu open-mb-menu text-body-3 text-white link d-md-none"><i class="icon icon-menu"></i> MENU</button>
                         </div>
                     </div>
                 </div>
@@ -92,136 +78,139 @@
         <!-- /Header -->
 
         <!-- Page Title Section -->
-        <div class="section-page-title" style="padding-top: 150px; padding-bottom: 20px;">
+        <div class="section-page-title" style="padding-top: 150px; padding-bottom: 10px;">
             <div class="container text-center">
                 <h1 class="page-title text-display-2 fw-semibold letter-space--3 text-white mb-3">Projects</h1>
-                <div class="breadcrumbs mb-5">
+                <div class="breadcrumbs mb-4">
                     <p class="text-white-64 text-body-1 mb-0 mx-auto" style="max-width: 640px; line-height: 1.6;">
                         A curated collection of visual identities, motion graphics, and high-impact digital experiences developed for innovative brands worldwide.
                     </p>
                 </div>
 
-                <!-- ======= ЭЛИТНАЯ ГОРИЗОНТАЛЬНАЯ ПАНЕЛЬ ФИЛЬТРОВ И СОРТИРОВКИ ======= -->
-                <div class="elite-filter-toolbar">
-                    <div class="filter-group-left">
-                        <!-- Кнопка сброса -->
-                        <button class="btn btn-elite-reset is-active" id="btnResetAll">ALL PROJECTS (11)</button>
+                <!-- ======= ЭЛИТНАЯ ГОРИЗОНТАЛЬНАЯ ПАНЕЛЬ ФИЛЬТРОВ (ENVATO STYLE) ======= -->
+                <div class="envato-filter-toolbar">
+                    <div class="envato-group-left">
+                        <!-- Поиск по ключевым словам -->
+                        <div class="envato-search-box">
+                            <i class="icon icon-search search-icon"></i>
+                            <input type="text" id="projectSearchInput" placeholder="Search projects, clients, tags...">
+                        </div>
 
                         <!-- 1. Сфера дизайна (7 категорий) -->
                         <div class="dropdown">
-                            <button class="btn btn-elite-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnSphere">
-                                <span>SPHERE</span> <span class="badge-count" id="badgeSphere" style="display: none;">1</span>
+                            <button class="btn btn-envato-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnSphere">
+                                <span>SPHERE</span> <span class="badge-count" style="display: none;">1</span>
                             </button>
-                            <ul class="dropdown-menu elite-dropdown-menu" data-group="sphere">
-                                <li><a class="dropdown-item selected" href="#" data-val="*">All Spheres</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="motion">Motion</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="digital">Digital</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="content-creation">Content Creation</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="ai-production">AI Production</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="print">Print</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="ui-ux">UI / UX</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="branding">Branding & Identity</a></li>
-                            </ul>
+                            <div class="dropdown-menu envato-dropdown-menu" data-group="sphere">
+                                <div class="dropdown-item-check selected" data-val="*"><span class="custom-check"></span> <span>All Spheres</span></div>
+                                <div class="dropdown-item-check" data-val="motion"><span class="custom-check"></span> <span>Motion</span></div>
+                                <div class="dropdown-item-check" data-val="digital"><span class="custom-check"></span> <span>Digital</span></div>
+                                <div class="dropdown-item-check" data-val="content-creation"><span class="custom-check"></span> <span>Content Creation</span></div>
+                                <div class="dropdown-item-check" data-val="ai-production"><span class="custom-check"></span> <span>AI Production</span></div>
+                                <div class="dropdown-item-check" data-val="print"><span class="custom-check"></span> <span>Print</span></div>
+                                <div class="dropdown-item-check" data-val="ui-ux"><span class="custom-check"></span> <span>UI / UX</span></div>
+                                <div class="dropdown-item-check" data-val="branding"><span class="custom-check"></span> <span>Branding & Identity</span></div>
+                            </div>
                         </div>
 
-                        <!-- 2. Услуги (Все 30+ сервисов с главной) -->
+                        <!-- 2. Услуги (Все 30+ сервисов) -->
                         <div class="dropdown">
-                            <button class="btn btn-elite-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnService">
-                                <span>SERVICE</span> <span class="badge-count" id="badgeService" style="display: none;">1</span>
+                            <button class="btn btn-envato-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnService">
+                                <span>SERVICES</span> <span class="badge-count" style="display: none;">1</span>
                             </button>
-                            <ul class="dropdown-menu elite-dropdown-menu" data-group="service">
-                                <li><a class="dropdown-item selected" href="#" data-val="*">All Services</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="promo-videos">Promo Videos</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="video-ads">Video Ads</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="tv-ads">TV Ads</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="2d-3d-animation">2D / 3D Animation</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="web-animation">Web Animation</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="rich-media-ads">Rich Media Ads</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="banners">Banners</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="campaigns">Campaigns</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="photography">Photography</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="video-shooting">Video Shooting</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="reels-stories">Reels & Stories</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="social-media">Social Media</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="feed-concept">Feed Concept</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="image-gen">Image Gen</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="video-gen">Video Gen</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="music-gen">Music Gen</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="voiceover">Voiceover</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="upscale">Upscale</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="roll-up">Roll-Up</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="posters">Posters</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="business-cards">Business Cards</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="flyers">Flyers</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="badges">Badges</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="billboards">Billboards</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="direct-mail">Direct Mail</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="folders">Folders</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="promo-items">Promo Items</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="stickers">Stickers</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="merch">Merch</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="pre-press">Pre-press</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="app-design">App Design</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="aso">ASO</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="email-design">Email Design</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="landing-pages">Landing Pages</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="websites">Websites</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="visual-identity">Visual Identity</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="logos">Logos</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="guidelines">Guidelines</a></li>
-                            </ul>
+                            <div class="dropdown-menu envato-dropdown-menu" data-group="service">
+                                <div class="dropdown-item-check selected" data-val="*"><span class="custom-check"></span> <span>All Services</span></div>
+                                <div class="dropdown-item-check" data-val="promo-videos"><span class="custom-check"></span> <span>Promo Videos</span></div>
+                                <div class="dropdown-item-check" data-val="video-ads"><span class="custom-check"></span> <span>Video Ads</span></div>
+                                <div class="dropdown-item-check" data-val="tv-ads"><span class="custom-check"></span> <span>TV Ads</span></div>
+                                <div class="dropdown-item-check" data-val="2d-3d-animation"><span class="custom-check"></span> <span>2D / 3D Animation</span></div>
+                                <div class="dropdown-item-check" data-val="web-animation"><span class="custom-check"></span> <span>Web Animation</span></div>
+                                <div class="dropdown-item-check" data-val="rich-media-ads"><span class="custom-check"></span> <span>Rich Media Ads</span></div>
+                                <div class="dropdown-item-check" data-val="banners"><span class="custom-check"></span> <span>Banners</span></div>
+                                <div class="dropdown-item-check" data-val="campaigns"><span class="custom-check"></span> <span>Campaigns</span></div>
+                                <div class="dropdown-item-check" data-val="photography"><span class="custom-check"></span> <span>Photography</span></div>
+                                <div class="dropdown-item-check" data-val="video-shooting"><span class="custom-check"></span> <span>Video Shooting</span></div>
+                                <div class="dropdown-item-check" data-val="reels-stories"><span class="custom-check"></span> <span>Reels & Stories</span></div>
+                                <div class="dropdown-item-check" data-val="social-media"><span class="custom-check"></span> <span>Social Media</span></div>
+                                <div class="dropdown-item-check" data-val="feed-concept"><span class="custom-check"></span> <span>Feed Concept</span></div>
+                                <div class="dropdown-item-check" data-val="image-gen"><span class="custom-check"></span> <span>Image Gen</span></div>
+                                <div class="dropdown-item-check" data-val="video-gen"><span class="custom-check"></span> <span>Video Gen</span></div>
+                                <div class="dropdown-item-check" data-val="music-gen"><span class="custom-check"></span> <span>Music Gen</span></div>
+                                <div class="dropdown-item-check" data-val="voiceover"><span class="custom-check"></span> <span>Voiceover</span></div>
+                                <div class="dropdown-item-check" data-val="upscale"><span class="custom-check"></span> <span>Upscale</span></div>
+                                <div class="dropdown-item-check" data-val="roll-up"><span class="custom-check"></span> <span>Roll-Up</span></div>
+                                <div class="dropdown-item-check" data-val="posters"><span class="custom-check"></span> <span>Posters</span></div>
+                                <div class="dropdown-item-check" data-val="business-cards"><span class="custom-check"></span> <span>Business Cards</span></div>
+                                <div class="dropdown-item-check" data-val="flyers"><span class="custom-check"></span> <span>Flyers</span></div>
+                                <div class="dropdown-item-check" data-val="badges"><span class="custom-check"></span> <span>Badges</span></div>
+                                <div class="dropdown-item-check" data-val="billboards"><span class="custom-check"></span> <span>Billboards</span></div>
+                                <div class="dropdown-item-check" data-val="direct-mail"><span class="custom-check"></span> <span>Direct Mail</span></div>
+                                <div class="dropdown-item-check" data-val="folders"><span class="custom-check"></span> <span>Folders</span></div>
+                                <div class="dropdown-item-check" data-val="promo-items"><span class="custom-check"></span> <span>Promo Items</span></div>
+                                <div class="dropdown-item-check" data-val="stickers"><span class="custom-check"></span> <span>Stickers</span></div>
+                                <div class="dropdown-item-check" data-val="merch"><span class="custom-check"></span> <span>Merch</span></div>
+                                <div class="dropdown-item-check" data-val="pre-press"><span class="custom-check"></span> <span>Pre-press</span></div>
+                                <div class="dropdown-item-check" data-val="app-design"><span class="custom-check"></span> <span>App Design</span></div>
+                                <div class="dropdown-item-check" data-val="aso"><span class="custom-check"></span> <span>ASO</span></div>
+                                <div class="dropdown-item-check" data-val="email-design"><span class="custom-check"></span> <span>Email Design</span></div>
+                                <div class="dropdown-item-check" data-val="landing-pages"><span class="custom-check"></span> <span>Landing Pages</span></div>
+                                <div class="dropdown-item-check" data-val="websites"><span class="custom-check"></span> <span>Websites</span></div>
+                                <div class="dropdown-item-check" data-val="visual-identity"><span class="custom-check"></span> <span>Visual Identity</span></div>
+                                <div class="dropdown-item-check" data-val="logos"><span class="custom-check"></span> <span>Logos</span></div>
+                                <div class="dropdown-item-check" data-val="guidelines"><span class="custom-check"></span> <span>Guidelines</span></div>
+                            </div>
                         </div>
 
                         <!-- 3. Клиенты (Все 20 брендов) -->
                         <div class="dropdown">
-                            <button class="btn btn-elite-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnClient">
-                                <span>CLIENT</span> <span class="badge-count" id="badgeClient" style="display: none;">1</span>
+                            <button class="btn btn-envato-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnClient">
+                                <span>CLIENTS</span> <span class="badge-count" style="display: none;">1</span>
                             </button>
-                            <ul class="dropdown-menu elite-dropdown-menu" data-group="client">
-                                <li><a class="dropdown-item selected" href="#" data-val="*">All Clients</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="giorgio-armani">Giorgio Armani</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="nestle">Nestle</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="mazda">Mazda</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="lottusse">Lottusse</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="toyota">Toyota</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="ralph-lauren">Ralph Lauren</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="loreal">L'Oréal</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="ranok">Ranok</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="okki">Okki</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="ichnya">Ichnya</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="goodgame">GoodGame</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="van-calster">Van Calster</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="mix-markt">Mix Markt</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="max-markt">Max Markt</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="somplo">Somplo</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="aiby">AIBY</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="ukrainian-drift-series">Ukrainian Drift Series</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="drift-edition">DriftEdition</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="tuningfest">Tuningfest</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="invisalign">Invisalign</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="omni-cpa">Omni CPA</a></li>
-                            </ul>
+                            <div class="dropdown-menu envato-dropdown-menu" data-group="client">
+                                <div class="dropdown-item-check selected" data-val="*"><span class="custom-check"></span> <span>All Clients</span></div>
+                                <div class="dropdown-item-check" data-val="giorgio-armani"><span class="custom-check"></span> <span>Giorgio Armani</span></div>
+                                <div class="dropdown-item-check" data-val="nestle"><span class="custom-check"></span> <span>Nestle</span></div>
+                                <div class="dropdown-item-check" data-val="mazda"><span class="custom-check"></span> <span>Mazda</span></div>
+                                <div class="dropdown-item-check" data-val="lottusse"><span class="custom-check"></span> <span>Lottusse</span></div>
+                                <div class="dropdown-item-check" data-val="toyota"><span class="custom-check"></span> <span>Toyota</span></div>
+                                <div class="dropdown-item-check" data-val="ralph-lauren"><span class="custom-check"></span> <span>Ralph Lauren</span></div>
+                                <div class="dropdown-item-check" data-val="loreal"><span class="custom-check"></span> <span>L'Oréal</span></div>
+                                <div class="dropdown-item-check" data-val="ranok"><span class="custom-check"></span> <span>Ranok</span></div>
+                                <div class="dropdown-item-check" data-val="okki"><span class="custom-check"></span> <span>Okki</span></div>
+                                <div class="dropdown-item-check" data-val="ichnya"><span class="custom-check"></span> <span>Ichnya</span></div>
+                                <div class="dropdown-item-check" data-val="goodgame"><span class="custom-check"></span> <span>GoodGame</span></div>
+                                <div class="dropdown-item-check" data-val="van-calster"><span class="custom-check"></span> <span>Van Calster</span></div>
+                                <div class="dropdown-item-check" data-val="mix-markt"><span class="custom-check"></span> <span>Mix Markt</span></div>
+                                <div class="dropdown-item-check" data-val="max-markt"><span class="custom-check"></span> <span>Max Markt</span></div>
+                                <div class="dropdown-item-check" data-val="somplo"><span class="custom-check"></span> <span>Somplo</span></div>
+                                <div class="dropdown-item-check" data-val="aiby"><span class="custom-check"></span> <span>AIBY</span></div>
+                                <div class="dropdown-item-check" data-val="ukrainian-drift-series"><span class="custom-check"></span> <span>Ukrainian Drift Series</span></div>
+                                <div class="dropdown-item-check" data-val="drift-edition"><span class="custom-check"></span> <span>DriftEdition</span></div>
+                                <div class="dropdown-item-check" data-val="tuningfest"><span class="custom-check"></span> <span>Tuningfest</span></div>
+                                <div class="dropdown-item-check" data-val="invisalign"><span class="custom-check"></span> <span>Invisalign</span></div>
+                                <div class="dropdown-item-check" data-val="omni-cpa"><span class="custom-check"></span> <span>Omni CPA</span></div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Справа: Сортировка -->
-                    <div class="filter-group-right">
+                    <div class="envato-group-right">
                         <div class="dropdown">
-                            <button class="btn btn-elite-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" style="border-color: rgba(255,255,255,0.15) !important;">
-                                <span>SORT BY:</span> <span id="sortLabel" style="color: #00aeff;">NEWEST FIRST</span>
+                            <button class="btn btn-envato-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" style="border-color: rgba(255,255,255,0.15) !important;">
+                                <span>SORT BY:</span> <span id="sortLabel" style="color: #0051ff; font-weight: 700;">NEWEST</span>
                             </button>
-                            <ul class="dropdown-menu elite-dropdown-menu" id="sortDropdownMenu">
-                                <li><a class="dropdown-item selected" href="#" data-sort="newest">Newest First (2026 → 2011)</a></li>
-                                <li><a class="dropdown-item" href="#" data-sort="oldest">Oldest First (2011 → 2026)</a></li>
-                                <li><a class="dropdown-item" href="#" data-sort="title-asc">Project Title (A → Z)</a></li>
-                                <li><a class="dropdown-item" href="#" data-sort="client-asc">Client Name (A → Z)</a></li>
-                            </ul>
+                            <div class="dropdown-menu envato-dropdown-menu" id="sortDropdownMenu" style="min-width: 210px;">
+                                <div class="dropdown-item-check selected" data-sort="newest"><span class="custom-check"></span> <span>Newest First</span></div>
+                                <div class="dropdown-item-check" data-sort="oldest"><span class="custom-check"></span> <span>Oldest First</span></div>
+                                <div class="dropdown-item-check" data-sort="title-asc"><span class="custom-check"></span> <span>Title (A → Z)</span></div>
+                                <div class="dropdown-item-check" data-sort="client-asc"><span class="custom-check"></span> <span>Client (A → Z)</span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Строка активных фильтров (Pills Bar) -->
-                <div class="elite-active-pills" id="activePillsContainer"></div>
+                <!-- Строка выбранных фильтров (Active Pills Bar) -->
+                <div class="envato-active-pills" id="activePillsContainer"></div>
                 <!-- /ЭЛИТНАЯ ГОРИЗОНТАЛЬНАЯ ПАНЕЛЬ ФИЛЬТРОВ -->
 
             </div>
@@ -262,7 +251,7 @@
                     </div>
 
                     <!-- 03: Drift Edition & TuningFest -->
-                    <div class="article-blog no-div" data-year="2015" data-title="Automotive Event Showcase" data-client="drift-edition" data-category="branding print" data-tags="visual-identity print billboards merch video-shooting">
+                    <div class="article-blog no-div" data-year="2015" data-title="Automotive Event Showcase" data-client="drift-edition tuningfest ukrainian-drift-series" data-category="branding print" data-tags="visual-identity print billboards merch video-shooting">
                         <a href="project-automotive-showcase.html" class="blog-image img-style">
                             <img loading="lazy" width="628" height="471" src="assets/images/section/work-3.jpg" alt="Automotive Event Branding">
                         </a>
@@ -394,9 +383,7 @@
 
         <!-- Footer -->
         <footer class="tf-footer">
-            <div class="container">
-                <div class="br-line"></div>
-            </div>
+            <div class="container"><div class="br-line"></div></div>
             <div class="footer-inner">
                 <div class="container">
                     <div class="row align-items-start">
@@ -406,9 +393,7 @@
                                 <span>© 2026 OK DESIGN.<span class="d-none d-md-inline"><br></span><span class="d-md-none"> </span>ALL RIGHTS RESERVED.</span>
                             </p>
                         </div>
-                        <div class="col-6 col-sm-2 col-md-1">
-                            <p class="footer-heading text-caption fw-medium text-white-64 mb-3">SITEMAP</p>
-                        </div>
+                        <div class="col-6 col-sm-2 col-md-1"><p class="footer-heading text-caption fw-medium text-white-64 mb-3">SITEMAP</p></div>
                         <div class="col-6 col-sm-4 col-md-3">
                             <ul class="footer-menu-list mb-sm-0">
                                 <li><a href="index.html#serviceScroll" class="link letter-space--2 h5">Services</a></li>
@@ -417,9 +402,7 @@
                                 <li><a href="index.html#contactScroll" class="link letter-space--2 h5">Contact</a></li>
                             </ul>
                         </div>
-                        <div class="col-6 col-sm-2 col-md-1">
-                            <p class="footer-heading text-caption fw-medium text-white-64 mb-3">SOCIALS</p>
-                        </div>
+                        <div class="col-6 col-sm-2 col-md-1"><p class="footer-heading text-caption fw-medium text-white-64 mb-3">SOCIALS</p></div>
                         <div class="col-6 col-sm-4 col-md-3">
                             <ul class="footer-menu-list mb-0">
                                 <li><a href="https://www.linkedin.com/company/okdesign-studio" target="_blank" class="link letter-space--2 h5">LinkedIn</a></li>
@@ -440,35 +423,15 @@
             <div class="container h-100">
                 <div class="offcanvas-content_wrapin">
                     <div class="canvas_head">
-                        <a href="index.html" class="logo-site">
-                            <img src="assets/images/logo/logo.svg" alt="OK Design" style="height: 40px; width: auto;">
-                        </a>
-                        <div class="btn-mobile-menu close-mb-menu text-caption link">
-                            <i class="icon icon-close"></i> CLOSE
-                        </div>
+                        <a href="index.html" class="logo-site"><img src="assets/images/logo/logo.svg" alt="OK Design" style="height: 40px; width: auto;"></a>
+                        <div class="btn-mobile-menu close-mb-menu text-caption link"><i class="icon icon-close"></i> CLOSE</div>
                     </div>
                     <div class="canvas_center">
                         <ul class="nav-ul-mb">
-                            <li>
-                                <div class="item close-mb-menu">
-                                    <a href="projects.html" class="mb-menu-link text-display-1"><span class="text">Projects</span></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item close-mb-menu">
-                                    <a href="index.html#aboutScroll" class="mb-menu-link text-display-1"><span class="text">About</span></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item close-mb-menu">
-                                    <a href="index.html#serviceScroll" class="mb-menu-link text-display-1"><span class="text">Services</span></a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item close-mb-menu">
-                                    <a href="index.html#contactScroll" class="mb-menu-link text-display-1"><span class="text">Contact</span></a>
-                                </div>
-                            </li>
+                            <li><div class="item close-mb-menu"><a href="projects.html" class="mb-menu-link text-display-1"><span class="text">Projects</span></a></div></li>
+                            <li><div class="item close-mb-menu"><a href="index.html#aboutScroll" class="mb-menu-link text-display-1"><span class="text">About</span></a></div></li>
+                            <li><div class="item close-mb-menu"><a href="index.html#serviceScroll" class="mb-menu-link text-display-1"><span class="text">Services</span></a></div></li>
+                            <li><div class="item close-mb-menu"><a href="index.html#contactScroll" class="mb-menu-link text-display-1"><span class="text">Contact</span></a></div></li>
                         </ul>
                     </div>
                     <div class="canvas_foot">
@@ -501,7 +464,7 @@
     <script src="assets/js/gsapAnimation.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <!-- Модуль фильтрации и сортировки -->
+    <!-- Модуль фильтрации, поиска и сортировки -->
     <script src="assets/js/projects-filter.js"></script>
 </body>
 </html>

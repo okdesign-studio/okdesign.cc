@@ -1,6 +1,6 @@
 /**
- * OK DESIGN — Elite Multi-Dropdown Filtering, Active Pills & Sorting Module
- * Uses GSAP for hardware-accelerated grid sorting & animations.
+ * OK DESIGN — Envato-Style Filter Bar with Live Search & Active Pills
+ * Uses GSAP for hardware-accelerated transitions.
  */
 (function ($) {
     'use strict';
@@ -8,17 +8,17 @@
     $(document).ready(function () {
         const $gridContainer = $('#projectsGridContainer');
         let $gridItems = $('.article-blog');
-        const $resetBtn = $('#btnResetAll');
         const $pillsContainer = $('#activePillsContainer');
+        const $searchInput = $('#projectSearchInput');
 
         if ($gridItems.length === 0) return;
 
-        // Текущее состояние фильтров и сортировки
         let activeFilters = {
             sphere: '*',
             service: '*',
             client: '*'
         };
+        let searchQuery = '';
         let currentSort = 'newest';
 
         const labelMap = {
@@ -27,119 +27,74 @@
             client: 'Client'
         };
 
-        /**
-         * Сортировка элементов DOM
-         */
         function sortGridItems() {
             const itemsArray = $gridItems.get();
 
             itemsArray.sort(function (a, b) {
-                const $a = $(a);
-                const $b = $(b);
-
-                if (currentSort === 'newest') {
-                    return parseInt($b.attr('data-year') || '0', 10) - parseInt($a.attr('data-year') || '0', 10);
-                } else if (currentSort === 'oldest') {
-                    return parseInt($a.attr('data-year') || '0', 10) - parseInt($b.attr('data-year') || '0', 10);
-                } else if (currentSort === 'title-asc') {
-                    return ($a.attr('data-title') || '').localeCompare($b.attr('data-title') || '');
-                } else if (currentSort === 'client-asc') {
-                    return ($a.attr('data-client') || '').localeCompare($b.attr('data-client') || '');
-                }
+                const $a = $(a), $b = $(b);
+                if (currentSort === 'newest') return parseInt($b.attr('data-year') || '0', 10) - parseInt($a.attr('data-year') || '0', 10);
+                if (currentSort === 'oldest') return parseInt($a.attr('data-year') || '0', 10) - parseInt($b.attr('data-year') || '0', 10);
+                if (currentSort === 'title-asc') return ($a.attr('data-title') || '').localeCompare($b.attr('data-title') || '');
+                if (currentSort === 'client-asc') return ($a.attr('data-client') || '').localeCompare($b.attr('data-client') || '');
                 return 0;
             });
 
-            // Перестановка в DOM
-            $.each(itemsArray, function (idx, item) {
-                $gridContainer.append(item);
-            });
-
-            // Обновление коллекции
+            $.each(itemsArray, function (idx, item) { $gridContainer.append(item); });
             $gridItems = $('.article-blog');
         }
 
-        /**
-         * Главная функция фильтрации и обновления интерфейса
-         */
-        function applyFiltersAndSort() {
-            let activeCount = 0;
-
-            // 1. Сортировка элементов перед показом
+        function applyAllFilters() {
             sortGridItems();
 
-            // 2. Обновление UI кнопок дропдаунов
+            // Обновляем счетчики на кнопках меню
             Object.keys(activeFilters).forEach(group => {
                 const val = activeFilters[group];
-                const $menu = $(`.elite-dropdown-menu[data-group="${group}"]`);
-                const $btn = $menu.prev('.btn-elite-dropdown');
+                const $menu = $(`.envato-dropdown-menu[data-group="${group}"]`);
+                const $btn = $menu.prev('.btn-envato-dropdown');
                 const $badge = $btn.find('.badge-count');
 
-                $menu.find('.dropdown-item').removeClass('selected');
-                const $selectedItem = $menu.find(`.dropdown-item[data-val="${val}"]`).addClass('selected');
+                $menu.find('.dropdown-item-check').removeClass('selected');
+                $menu.find(`.dropdown-item-check[data-val="${val}"]`).addClass('selected');
 
                 if (val !== '*') {
                     $btn.addClass('is-active');
                     $badge.text('1').show();
-                    activeCount++;
                 } else {
                     $btn.removeClass('is-active');
                     $badge.hide();
                 }
             });
 
-            // 3. Обновление кнопки "ALL PROJECTS"
-            if (activeCount > 0) {
-                $resetBtn.removeClass('is-active');
-            } else {
-                $resetBtn.addClass('is-active');
-            }
-
-            // 4. Отрисовка строки плашек (Active Pills)
             renderActivePills();
 
-            // 5. Анимация фильтрации через GSAP
+            // Фильтрация элементов в DOM
             $gridItems.each(function () {
                 const $item = $(this);
                 const itemSphere = ($item.attr('data-category') || '').toLowerCase();
                 const itemService = ($item.attr('data-tags') || '').toLowerCase();
                 const itemClient = ($item.attr('data-client') || '').toLowerCase();
+                const itemTitle = ($item.attr('data-title') || '').toLowerCase();
 
                 const matchSphere = (activeFilters.sphere === '*') || itemSphere.includes(activeFilters.sphere);
                 const matchService = (activeFilters.service === '*') || itemService.includes(activeFilters.service);
                 const matchClient = (activeFilters.client === '*') || (itemClient === activeFilters.client);
+                
+                // Проверка поискового запроса по названию, тегам и бренду
+                const matchSearch = (searchQuery === '') || 
+                                    itemTitle.includes(searchQuery) || 
+                                    itemClient.includes(searchQuery) || 
+                                    itemService.includes(searchQuery);
 
-                if (matchSphere && matchService && matchClient) {
-                    gsap.to($item, {
-                        duration: 0.4,
-                        opacity: 1,
-                        scale: 1,
-                        display: 'block',
-                        overwrite: true,
-                        ease: 'power2.out'
-                    });
+                if (matchSphere && matchService && matchClient && matchSearch) {
+                    gsap.to($item, { duration: 0.35, opacity: 1, scale: 1, display: 'block', overwrite: true, ease: 'power2.out' });
                 } else {
-                    gsap.to($item, {
-                        duration: 0.3,
-                        opacity: 0,
-                        scale: 0.95,
-                        display: 'none',
-                        overwrite: true,
-                        ease: 'power2.in'
-                    });
+                    gsap.to($item, { duration: 0.25, opacity: 0, scale: 0.95, display: 'none', overwrite: true, ease: 'power2.in' });
                 }
             });
 
-            // 6. Пересчет скролла
-            setTimeout(function () {
-                if (typeof ScrollTrigger !== 'undefined') {
-                    ScrollTrigger.refresh();
-                }
-            }, 450);
+            setTimeout(() => { if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh(); }, 400);
         }
 
-        /**
-         * Отрисовка плашек выбранных фильтров с кнопкой удаления
-         */
         function renderActivePills() {
             $pillsContainer.empty();
             let hasPills = false;
@@ -148,93 +103,110 @@
                 const val = activeFilters[group];
                 if (val !== '*') {
                     hasPills = true;
-                    const text = $(`.elite-dropdown-menu[data-group="${group}"] .dropdown-item[data-val="${val}"]`).text();
-                    
-                    const pillHtml = `
-                        <div class="pill-item" data-group="${group}">
+                    const text = $(`.envato-dropdown-menu[data-group="${group}"] .dropdown-item-check[data-val="${val}"] span:last-child`).text();
+                    $pillsContainer.append(`
+                        <div class="pill-tag" data-group="${group}">
                             <span>${labelMap[group]}: ${text}</span>
-                            <span class="btn-remove" title="Remove filter">×</span>
+                            <span class="btn-remove-tag" title="Remove">×</span>
                         </div>
-                    `;
-                    $pillsContainer.append(pillHtml);
+                    `);
                 }
             });
+
+            if (searchQuery !== '') {
+                hasPills = true;
+                $pillsContainer.append(`
+                    <div class="pill-tag" data-group="search">
+                        <span>Search: "${searchQuery}"</span>
+                        <span class="btn-remove-tag" title="Clear search">×</span>
+                    </div>
+                `);
+            }
 
             if (hasPills) {
                 $pillsContainer.append('<button class="btn-clear-all" id="btnClearPills">Clear All ×</button>');
             }
         }
 
-        // Событие: Клик по пункту фильтра
-        $('.elite-dropdown-menu[data-group] .dropdown-item').on('click', function (e) {
-            e.preventDefault();
+        // События: Выбор чекбокса в меню
+        $('.envato-dropdown-menu[data-group] .dropdown-item-check').on('click', function (e) {
+            e.stopPropagation();
             const $this = $(this);
-            const group = $this.closest('.elite-dropdown-menu').attr('data-group');
+            const group = $this.closest('.envato-dropdown-menu').attr('data-group');
             const val = $this.attr('data-val');
 
-            activeFilters[group] = val;
-            applyFiltersAndSort();
+            // Клик по уже выбранному пункту сбрасывает его в All (*)
+            if (activeFilters[group] === val && val !== '*') {
+                activeFilters[group] = '*';
+            } else {
+                activeFilters[group] = val;
+            }
+            applyAllFilters();
         });
 
-        // Событие: Клик по пункту сортировки
-        $('#sortDropdownMenu .dropdown-item').on('click', function (e) {
+        // Событие: Ввод текста в поиск
+        $searchInput.on('input', function () {
+            searchQuery = $(this).val().toLowerCase().trim();
+            applyAllFilters();
+        });
+
+        // События: Сортировка
+        $('#sortDropdownMenu .dropdown-item-check').on('click', function (e) {
             e.preventDefault();
             const $this = $(this);
             currentSort = $this.attr('data-sort');
-
-            $('#sortDropdownMenu .dropdown-item').removeClass('selected');
+            $('#sortDropdownMenu .dropdown-item-check').removeClass('selected');
             $this.addClass('selected');
-            $('#sortLabel').text($this.text().split(' (')[0].toUpperCase());
-
-            applyFiltersAndSort();
+            $('#sortLabel').text($this.find('span:last-child').text().split(' (')[0].toUpperCase());
+            applyAllFilters();
         });
 
-        // Событие: Удаление точечного фильтра через крестик ×
-        $pillsContainer.on('click', '.btn-remove', function () {
-            const group = $(this).closest('.pill-item').attr('data-group');
-            activeFilters[group] = '*';
-            applyFiltersAndSort();
+        // События: Удаление тега через ×
+        $pillsContainer.on('click', '.btn-remove-tag', function () {
+            const group = $(this).closest('.pill-tag').attr('data-group');
+            if (group === 'search') {
+                searchQuery = '';
+                $searchInput.val('');
+            } else {
+                activeFilters[group] = '*';
+            }
+            applyAllFilters();
         });
 
-        // Событие: Сброс всех фильтров
-        function resetAllFilters(e) {
-            if (e) e.preventDefault();
+        function resetAll() {
             activeFilters = { sphere: '*', service: '*', client: '*' };
-            applyFiltersAndSort();
+            searchQuery = '';
+            $searchInput.val('');
+            applyAllFilters();
         }
 
-        $resetBtn.on('click', resetAllFilters);
-        $pillsContainer.on('click', '#btnClearPills', resetAllFilters);
+        $pillsContainer.on('click', '#btnClearPills', resetAll);
 
-        // Парсинг URL (при переходе с index.html?filter=... или ?client=...)
+        // Парсинг URL при переходе с index.html
         const urlParams = new URLSearchParams(window.location.search);
         const filterParam = urlParams.get('filter');
         const clientParam = urlParams.get('client');
 
         if (filterParam) {
-            if ($(`.elite-dropdown-menu[data-group="sphere"] [data-val="${filterParam}"]`).length > 0) {
+            if ($(`.envato-dropdown-menu[data-group="sphere"] [data-val="${filterParam}"]`).length > 0) {
                 activeFilters.sphere = filterParam;
             } else {
                 activeFilters.service = filterParam;
             }
-            applyFiltersAndSort();
+            applyAllFilters();
             scrollToGrid();
         } else if (clientParam) {
             activeFilters.client = clientParam;
-            applyFiltersAndSort();
+            applyAllFilters();
             scrollToGrid();
         } else {
-            // Инициализация при обычной загрузке страницы
-            applyFiltersAndSort();
+            applyAllFilters();
         }
 
         function scrollToGrid() {
-            setTimeout(function () {
-                const $gridSection = $('#projects-grid-section');
-                if ($gridSection.length > 0) {
-                    const gridTop = $gridSection.offset().top - 140;
-                    $('html, body').animate({ scrollTop: gridTop }, 700);
-                }
+            setTimeout(() => {
+                const $grid = $('#projects-grid-section');
+                if ($grid.length > 0) $('html, body').animate({ scrollTop: $grid.offset().top - 140 }, 700);
             }, 300);
         }
     });
