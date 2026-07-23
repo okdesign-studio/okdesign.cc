@@ -48,6 +48,8 @@
     </button>
     <!-- /Scroll Top -->
 
+    <!-- ПРЕЛОАДЕР ПОЛНОСТЬЮ УДАЛЕН ДЛЯ МГНОВЕННОЙ ЗАГРУЗКИ СТРАНИЦЫ -->
+
     <main id="wrapper">
         <!-- Header -->
         <header class="tf-header">
@@ -90,78 +92,137 @@
         <!-- /Header -->
 
         <!-- Page Title Section -->
-        <div class="section-page-title" style="padding-top: 160px; padding-bottom: 30px;">
+        <div class="section-page-title" style="padding-top: 150px; padding-bottom: 20px;">
             <div class="container text-center">
-                <h1 class="page-title text-display-2 fw-semibold letter-space--3 effectFade fadeZoom text-white mb-3">Projects</h1>
-                <div class="breadcrumbs effectFade fadeUp mb-5">
+                <h1 class="page-title text-display-2 fw-semibold letter-space--3 text-white mb-3">Projects</h1>
+                <div class="breadcrumbs mb-5">
                     <p class="text-white-64 text-body-1 mb-0 mx-auto" style="max-width: 640px; line-height: 1.6;">
                         A curated collection of visual identities, motion graphics, and high-impact digital experiences developed for innovative brands worldwide.
                     </p>
                 </div>
 
-                <!-- ======= ЭЛИТНАЯ ПАНЕЛЬ ФИЛЬТРАЦИИ ======= -->
-                <div class="filter-toolbar-container effectFade fadeUp">
-                    <div class="filter-toolbar">
-                        <!-- Сброс -->
-                        <button class="filter-reset-btn active" id="resetAllFilters">ALL PROJECTS (11)</button>
+                <!-- ======= ЭЛИТНАЯ ГОРИЗОНТАЛЬНАЯ ПАНЕЛЬ ФИЛЬТРОВ И СОРТИРОВКИ ======= -->
+                <div class="elite-filter-toolbar">
+                    <div class="filter-group-left">
+                        <!-- Кнопка сброса -->
+                        <button class="btn btn-elite-reset is-active" id="btnResetAll">ALL PROJECTS (11)</button>
 
-                        <!-- 1. Сфера дизайна (Sphere) -->
+                        <!-- 1. Сфера дизайна (7 категорий) -->
                         <div class="dropdown">
-                            <button class="btn btn-filter-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnSphere">
-                                SPHERE: <span class="label-val">ALL</span>
+                            <button class="btn btn-elite-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnSphere">
+                                <span>SPHERE</span> <span class="badge-count" id="badgeSphere" style="display: none;">1</span>
                             </button>
-                            <ul class="dropdown-menu dark-dropdown-menu" data-group="sphere">
-                                <li><a class="dropdown-item active" href="#" data-val="*">All Spheres</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="motion">Motion & Video</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="digital">Digital Ads</a></li>
+                            <ul class="dropdown-menu elite-dropdown-menu" data-group="sphere">
+                                <li><a class="dropdown-item selected" href="#" data-val="*">All Spheres</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="motion">Motion</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="digital">Digital</a></li>
                                 <li><a class="dropdown-item" href="#" data-val="content-creation">Content Creation</a></li>
                                 <li><a class="dropdown-item" href="#" data-val="ai-production">AI Production</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="print">Print Design</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="print">Print</a></li>
                                 <li><a class="dropdown-item" href="#" data-val="ui-ux">UI / UX</a></li>
                                 <li><a class="dropdown-item" href="#" data-val="branding">Branding & Identity</a></li>
                             </ul>
                         </div>
 
-                        <!-- 2. Услуги (Services) -->
+                        <!-- 2. Услуги (Все 30+ сервисов с главной) -->
                         <div class="dropdown">
-                            <button class="btn btn-filter-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnService">
-                                SERVICE: <span class="label-val">ALL</span>
+                            <button class="btn btn-elite-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnService">
+                                <span>SERVICE</span> <span class="badge-count" id="badgeService" style="display: none;">1</span>
                             </button>
-                            <ul class="dropdown-menu dark-dropdown-menu" data-group="service">
-                                <li><a class="dropdown-item active" href="#" data-val="*">All Services</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="tv-ads">TV Ads</a></li>
+                            <ul class="dropdown-menu elite-dropdown-menu" data-group="service">
+                                <li><a class="dropdown-item selected" href="#" data-val="*">All Services</a></li>
                                 <li><a class="dropdown-item" href="#" data-val="promo-videos">Promo Videos</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="video-ads">Video Ads</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="tv-ads">TV Ads</a></li>
                                 <li><a class="dropdown-item" href="#" data-val="2d-3d-animation">2D / 3D Animation</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="web-animation">Web Animation</a></li>
                                 <li><a class="dropdown-item" href="#" data-val="rich-media-ads">Rich Media Ads</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="banners">Banners</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="campaigns">Campaigns</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="photography">Photography</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="video-shooting">Video Shooting</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="reels-stories">Reels & Stories</a></li>
                                 <li><a class="dropdown-item" href="#" data-val="social-media">Social Media</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="feed-concept">Feed Concept</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="image-gen">Image Gen</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="video-gen">Video Gen</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="music-gen">Music Gen</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="voiceover">Voiceover</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="upscale">Upscale</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="roll-up">Roll-Up</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="posters">Posters</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="business-cards">Business Cards</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="flyers">Flyers</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="badges">Badges</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="billboards">Billboards</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="direct-mail">Direct Mail</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="folders">Folders</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="promo-items">Promo Items</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="stickers">Stickers</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="merch">Merch</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="pre-press">Pre-press</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="app-design">App Design</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="aso">ASO</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="email-design">Email Design</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="landing-pages">Landing Pages</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="websites">Websites</a></li>
                                 <li><a class="dropdown-item" href="#" data-val="visual-identity">Visual Identity</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="logos">Logos</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="guidelines">Guidelines</a></li>
                             </ul>
                         </div>
 
-                        <!-- 3. Клиенты (Clients) -->
+                        <!-- 3. Клиенты (Все 20 брендов) -->
                         <div class="dropdown">
-                            <button class="btn btn-filter-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnClient">
-                                CLIENT: <span class="label-val">ALL</span>
+                            <button class="btn btn-elite-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" id="btnClient">
+                                <span>CLIENT</span> <span class="badge-count" id="badgeClient" style="display: none;">1</span>
                             </button>
-                            <ul class="dropdown-menu dark-dropdown-menu" data-group="client">
-                                <li><a class="dropdown-item active" href="#" data-val="*">All Clients</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="van-calster">Van Calster</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="goodgame">GoodGame</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="drift-edition">Drift Edition</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="somplo">Somplo</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="ranok">Ranok Publishing</a></li>
+                            <ul class="dropdown-menu elite-dropdown-menu" data-group="client">
+                                <li><a class="dropdown-item selected" href="#" data-val="*">All Clients</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="giorgio-armani">Giorgio Armani</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="nestle">Nestle</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="mazda">Mazda</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="lottusse">Lottusse</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="toyota">Toyota</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="ralph-lauren">Ralph Lauren</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="loreal">L'Oréal</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="ranok">Ranok</a></li>
                                 <li><a class="dropdown-item" href="#" data-val="okki">Okki</a></li>
-                                <li><a class="dropdown-item" href="#" data-val="omni-cpa">Omni CPA</a></li>
                                 <li><a class="dropdown-item" href="#" data-val="ichnya">Ichnya</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="goodgame">GoodGame</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="van-calster">Van Calster</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="mix-markt">Mix Markt</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="max-markt">Max Markt</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="somplo">Somplo</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="aiby">AIBY</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="ukrainian-drift-series">Ukrainian Drift Series</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="drift-edition">DriftEdition</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="tuningfest">Tuningfest</a></li>
                                 <li><a class="dropdown-item" href="#" data-val="invisalign">Invisalign</a></li>
+                                <li><a class="dropdown-item" href="#" data-val="omni-cpa">Omni CPA</a></li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Панель активных фильтров -->
-                    <div class="active-filters-bar" id="activeFiltersBar"></div>
+                    <!-- Справа: Сортировка -->
+                    <div class="filter-group-right">
+                        <div class="dropdown">
+                            <button class="btn btn-elite-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown" style="border-color: rgba(255,255,255,0.15) !important;">
+                                <span>SORT BY:</span> <span id="sortLabel" style="color: #00aeff;">NEWEST FIRST</span>
+                            </button>
+                            <ul class="dropdown-menu elite-dropdown-menu" id="sortDropdownMenu">
+                                <li><a class="dropdown-item selected" href="#" data-sort="newest">Newest First (2026 → 2011)</a></li>
+                                <li><a class="dropdown-item" href="#" data-sort="oldest">Oldest First (2011 → 2026)</a></li>
+                                <li><a class="dropdown-item" href="#" data-sort="title-asc">Project Title (A → Z)</a></li>
+                                <li><a class="dropdown-item" href="#" data-sort="client-asc">Client Name (A → Z)</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <!-- /ЭЛИТНАЯ ПАНЕЛЬ ФИЛЬТРАЦИИ -->
+
+                <!-- Строка активных фильтров (Pills Bar) -->
+                <div class="elite-active-pills" id="activePillsContainer"></div>
+                <!-- /ЭЛИТНАЯ ГОРИЗОНТАЛЬНАЯ ПАНЕЛЬ ФИЛЬТРОВ -->
 
             </div>
         </div>
@@ -170,16 +231,16 @@
         <!-- Projects Grid -->
         <section class="section-blog flat-spacing pt-0" id="projects-grid-section">
             <div class="container">
-                <div class="tf-grid-layout sm-col-2">
+                <div class="tf-grid-layout sm-col-2" id="projectsGridContainer">
                     
                     <!-- 01: Van Calster -->
-                    <div class="article-blog effectFade fadeUp no-div" data-category="motion" data-tags="tv-ads video-ads campaigns" data-client="van-calster">
+                    <div class="article-blog no-div" data-year="2026" data-title="Dubbel Voordeel Campaign" data-client="van-calster" data-category="motion" data-tags="tv-ads video-ads campaigns">
                         <a href="project-van-calster.html" class="blog-image img-style">
                             <img loading="lazy" width="628" height="471" src="assets/images/section/work-1.jpg" alt="Dubbel Voordeel Campaign">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">Van Calster &nbsp;|&nbsp; TV & Video Ads</p>
+                                <p class="infor_sub text-white-64">Van Calster &nbsp;|&nbsp; 2026</p>
                                 <h6><a href="project-van-calster.html" class="link infor_name">Dubbel Voordeel Campaign</a></h6>
                             </div>
                             <a href="project-van-calster.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
@@ -187,13 +248,13 @@
                     </div>
 
                     <!-- 02: GoodGame -->
-                    <div class="article-blog effectFade fadeUp no-div" data-category="branding motion" data-tags="2d-3d-animation promo-videos branding visual-identity" data-client="goodgame">
+                    <div class="article-blog no-div" data-year="2021" data-title="Cyberlounge Visual Identity" data-client="goodgame" data-category="branding motion" data-tags="2d-3d-animation promo-videos branding visual-identity">
                         <a href="project-goodgame.html" class="blog-image img-style">
                             <img loading="lazy" width="628" height="471" src="assets/images/section/work-2.jpg" alt="GoodGame Cyberlounge">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">GoodGame &nbsp;|&nbsp; Visual Identity & Motion</p>
+                                <p class="infor_sub text-white-64">GoodGame &nbsp;|&nbsp; 2021</p>
                                 <h6><a href="project-goodgame.html" class="link infor_name">Cyberlounge Visual Identity</a></h6>
                             </div>
                             <a href="project-goodgame.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
@@ -201,13 +262,13 @@
                     </div>
 
                     <!-- 03: Drift Edition & TuningFest -->
-                    <div class="article-blog effectFade fadeUp no-div" data-category="branding" data-tags="visual-identity print billboards merch video-shooting" data-client="drift-edition">
+                    <div class="article-blog no-div" data-year="2015" data-title="Automotive Event Showcase" data-client="drift-edition" data-category="branding print" data-tags="visual-identity print billboards merch video-shooting">
                         <a href="project-automotive-showcase.html" class="blog-image img-style">
                             <img loading="lazy" width="628" height="471" src="assets/images/section/work-3.jpg" alt="Automotive Event Branding">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">Drift Edition &nbsp;|&nbsp; Event Branding & Production</p>
+                                <p class="infor_sub text-white-64">Drift Edition & TuningFest &nbsp;|&nbsp; 2011–2015</p>
                                 <h6><a href="project-automotive-showcase.html" class="link infor_name">Automotive Event Showcase</a></h6>
                             </div>
                             <a href="project-automotive-showcase.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
@@ -215,13 +276,13 @@
                     </div>
 
                     <!-- 04: Somplo Rich Media Ads -->
-                    <div class="article-blog effectFade fadeUp no-div" data-category="digital" data-tags="rich-media-ads banners web-animation" data-client="somplo">
+                    <div class="article-blog no-div" data-year="2025" data-title="Rich Media Ads Suite" data-client="somplo" data-category="digital" data-tags="rich-media-ads banners web-animation">
                         <a href="project-somplo-rich-media-ads.html" class="blog-image img-style">
                             <img loading="lazy" width="628" height="471" src="assets/images/section/feature-1.jpg" alt="Rich Media Ads Suite">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">Somplo &nbsp;|&nbsp; Digital Advertising</p>
+                                <p class="infor_sub text-white-64">Somplo &nbsp;|&nbsp; 2025</p>
                                 <h6><a href="project-somplo-rich-media-ads.html" class="link infor_name">Rich Media Ads Suite</a></h6>
                             </div>
                             <a href="project-somplo-rich-media-ads.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
@@ -229,13 +290,13 @@
                     </div>
 
                     <!-- 05: Somplo Animated Icons -->
-                    <div class="article-blog effectFade fadeUp no-div" data-category="digital motion" data-tags="ui-ux app-design 2d-3d-animation web-animation" data-client="somplo">
+                    <div class="article-blog no-div" data-year="2025" data-title="Animated UI/UX Components" data-client="somplo" data-category="digital motion ui-ux" data-tags="ui-ux app-design 2d-3d-animation web-animation">
                         <a href="project-somplo-animated-icons.html" class="blog-image img-style">
                             <img loading="lazy" width="628" height="471" src="assets/images/section/feature-2.jpg" alt="Animated UI/UX Components">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">Somplo &nbsp;|&nbsp; UI/UX & Web Animation</p>
+                                <p class="infor_sub text-white-64">Somplo &nbsp;|&nbsp; 2025</p>
                                 <h6><a href="project-somplo-animated-icons.html" class="link infor_name">Animated UI/UX Components</a></h6>
                             </div>
                             <a href="project-somplo-animated-icons.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
@@ -243,13 +304,13 @@
                     </div>
 
                     <!-- 06: Mars 2050 (Ranok) -->
-                    <div class="article-blog effectFade fadeUp no-div" data-category="motion social-media" data-tags="promo-videos video-shooting voiceover social-media" data-client="ranok">
+                    <div class="article-blog no-div" data-year="2026" data-title="Mars 2050: Board Game Promo" data-client="ranok" data-category="motion content-creation" data-tags="promo-videos video-shooting voiceover social-media">
                         <a href="project-mars-2050.html" class="blog-image img-style">
                             <img loading="lazy" width="628" height="471" src="assets/images/section/work-1.jpg" alt="Mars 2050 Promo">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">Ranok Publishing &nbsp;|&nbsp; Video Production & SMM</p>
+                                <p class="infor_sub text-white-64">Ranok Publishing &nbsp;|&nbsp; 2026</p>
                                 <h6><a href="project-mars-2050.html" class="link infor_name">Mars 2050: Board Game Promo</a></h6>
                             </div>
                             <a href="project-mars-2050.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
@@ -257,13 +318,13 @@
                     </div>
 
                     <!-- 07: Gravity Falls TV Spot (Ranok / Disney) -->
-                    <div class="article-blog effectFade fadeUp no-div" data-category="motion" data-tags="tv-ads promo-videos 2d-3d-animation" data-client="ranok">
+                    <div class="article-blog no-div" data-year="2025" data-title="Gravity Falls Comics TV Spot" data-client="ranok" data-category="motion" data-tags="tv-ads promo-videos 2d-3d-animation">
                         <a href="project-gravity-falls-tv-spot.html" class="blog-image img-style">
                             <img loading="lazy" width="628" height="471" src="assets/images/section/work-2.jpg" alt="Gravity Falls TV Spot">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">Ranok / Disney &nbsp;|&nbsp; TV Spot & Animation</p>
+                                <p class="infor_sub text-white-64">Ranok / Disney &nbsp;|&nbsp; 2025</p>
                                 <h6><a href="project-gravity-falls-tv-spot.html" class="link infor_name">Gravity Falls Comics TV Spot</a></h6>
                             </div>
                             <a href="project-gravity-falls-tv-spot.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
@@ -271,13 +332,13 @@
                     </div>
 
                     <!-- 08: Okki Instagram -->
-                    <div class="article-blog effectFade fadeUp no-div" data-category="social-media" data-tags="social-media feed-concept reels-stories photography" data-client="okki">
+                    <div class="article-blog no-div" data-year="2026" data-title="Engaging Instagram Content" data-client="okki" data-category="content-creation" data-tags="social-media feed-concept reels-stories photography">
                         <a href="project-okki-instagram.html" class="blog-image img-style">
                             <img loading="lazy" width="628" height="471" src="assets/images/section/work-3.jpg" alt="Okki Engaging Instagram Content">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">Okki &nbsp;|&nbsp; SMM & Content Strategy</p>
+                                <p class="infor_sub text-white-64">Okki &nbsp;|&nbsp; 2026</p>
                                 <h6><a href="project-okki-instagram.html" class="link infor_name">Engaging Instagram Content</a></h6>
                             </div>
                             <a href="project-okki-instagram.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
@@ -285,13 +346,13 @@
                     </div>
 
                     <!-- 09: Omni CPA Promo -->
-                    <div class="article-blog effectFade fadeUp no-div" data-category="motion" data-tags="promo-videos 2d-3d-animation" data-client="omni-cpa">
+                    <div class="article-blog no-div" data-year="2025" data-title="Infographic Promo Video" data-client="omni-cpa" data-category="motion" data-tags="promo-videos 2d-3d-animation">
                         <a href="project-omni-cpa.html" class="blog-image img-style">
                             <img loading="lazy" width="628" height="471" src="assets/images/section/feature-1.jpg" alt="Omni CPA Infographic Promo">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">Omni CPA &nbsp;|&nbsp; Motion Graphics</p>
+                                <p class="infor_sub text-white-64">Omni CPA &nbsp;|&nbsp; 2025</p>
                                 <h6><a href="project-omni-cpa.html" class="link infor_name">Infographic Promo Video</a></h6>
                             </div>
                             <a href="project-omni-cpa.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
@@ -299,13 +360,13 @@
                     </div>
 
                     <!-- 10: Ichnya SMM -->
-                    <div class="article-blog effectFade fadeUp no-div" data-category="social-media" data-tags="social-media feed-concept photography video-shooting" data-client="ichnya">
+                    <div class="article-blog no-div" data-year="2026" data-title="Instagram Feed & SMM" data-client="ichnya" data-category="content-creation" data-tags="social-media feed-concept photography video-shooting">
                         <a href="project-ichnya-smm.html" class="blog-image img-style">
                             <img loading="lazy" width="628" height="471" src="assets/images/section/feature-2.jpg" alt="Ichnya Visual Strategy">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">Ichnya &nbsp;|&nbsp; Visual Strategy & Production</p>
+                                <p class="infor_sub text-white-64">Ichnya &nbsp;|&nbsp; 2026</p>
                                 <h6><a href="project-ichnya-smm.html" class="link infor_name">Instagram Feed & SMM</a></h6>
                             </div>
                             <a href="project-ichnya-smm.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
@@ -313,13 +374,13 @@
                     </div>
 
                     <!-- 11: Invisalign Ukraine -->
-                    <div class="article-blog effectFade fadeUp no-div" data-category="social-media" data-tags="social-media feed-concept reels-stories" data-client="invisalign">
+                    <div class="article-blog no-div" data-year="2026" data-title="Social Media Feed Concept" data-client="invisalign" data-category="content-creation" data-tags="social-media feed-concept reels-stories">
                         <a href="project-invisalign-smm.html" class="blog-image img-style">
                             <img loading="lazy" width="628" height="471" src="assets/images/section/work-1.jpg" alt="Invisalign Social Media Feed Concept">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">Invisalign Ukraine &nbsp;|&nbsp; SMM Concept</p>
+                                <p class="infor_sub text-white-64">Invisalign Ukraine &nbsp;|&nbsp; 2026</p>
                                 <h6><a href="project-invisalign-smm.html" class="link infor_name">Social Media Feed Concept</a></h6>
                             </div>
                             <a href="project-invisalign-smm.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
@@ -440,7 +501,7 @@
     <script src="assets/js/gsapAnimation.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <!-- Модуль фильтрации -->
+    <!-- Модуль фильтрации и сортировки -->
     <script src="assets/js/projects-filter.js"></script>
 </body>
 </html>

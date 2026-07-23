@@ -362,135 +362,184 @@ button.animate-btn::after,
     }
 }
 /* ==========================================================================
-   Elite Dropdown Filter Toolbar & Active Pills
+   Elite Horizontal Filter Bar & Sorting (High Contrast Dark UI)
    ========================================================================== */
-.filter-toolbar-container {
-    margin-bottom: 40px;
+.elite-filter-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    margin-bottom: 24px;
+    width: 100%;
 }
 
-.filter-toolbar {
+.filter-group-left {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
-/* Кнопка сброса (All Projects) */
-.filter-reset-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: rgba(255, 255, 255, 0.8);
-    padding: 10px 24px;
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-    text-transform: uppercase;
-    outline: none;
+.filter-group-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
 
-    &:hover,
-    &.active {
-        background: #0051ff;
-        border-color: #0051ff;
-        color: #ffffff;
-        box-shadow: 0 0 20px rgba(0, 81, 255, 0.4);
+    @media (max-width: 767px) {
+        margin-left: 0;
+        width: 100%;
+        justify-content: flex-start;
     }
 }
 
-/* Кнопки выпадающих списков */
-.btn-filter-dropdown {
-    background: #0d0d0d !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    color: rgba(255, 255, 255, 0.8) !important;
-    padding: 10px 22px !important;
+/* Высококонтрастные кнопки дропдаунов */
+.btn-elite-dropdown {
+    background: #121212 !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #ffffff !important;
+    padding: 10px 20px !important;
     border-radius: 100px !important;
     font-size: 13px !important;
     font-weight: 500 !important;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    display: flex;
+    letter-spacing: 0.5px;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
-    transition: all 0.3s ease !important;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    text-transform: uppercase;
+    outline: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 
     &:hover,
-    &[aria-expanded="true"],
-    &.has-active {
-        border-color: #0051ff !important;
-        color: #ffffff !important;
-        background: rgba(0, 81, 255, 0.1) !important;
+    &[aria-expanded="true"] {
+        background: #222222 !important;
+        border-color: #ffffff !important;
+        transform: translateY(-2px);
     }
 
-    &::after {
-        border-top-color: rgba(255, 255, 255, 0.6);
-        margin-left: 6px;
+    /* Активное состояние кнопок (Белый фон / Черный текст) */
+    &.is-active {
+        background: #ffffff !important;
+        border-color: #ffffff !important;
+        color: #000000 !important;
+        font-weight: 700 !important;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+
+        .badge-count {
+            background: #0051ff;
+            color: #ffffff;
+        }
+    }
+
+    .badge-count {
+        background: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        font-size: 11px;
+        padding: 2px 7px;
+        border-radius: 20px;
+        transition: all 0.25s;
     }
 }
 
-/* Темное меню Dropdown */
-.dark-dropdown-menu {
-    background: #141414 !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 12px !important;
+/* Кнопка сброса (All Projects) */
+.btn-elite-reset {
+    background: transparent !important;
+    border: 1px dashed rgba(255, 255, 255, 0.4) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    padding: 10px 20px !important;
+    border-radius: 100px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: all 0.25s;
+
+    &:hover,
+    &.is-active {
+        border-style: solid !important;
+        border-color: #0051ff !important;
+        background: #0051ff !important;
+        color: #ffffff !important;
+    }
+}
+
+/* Выпадающие списки с темным дизайном и скроллом */
+.elite-dropdown-menu {
+    background: #181818 !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 14px !important;
     padding: 8px !important;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8) !important;
-    min-width: 220px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95) !important;
+    max-height: 320px;
+    overflow-y: auto;
+    min-width: 240px;
     z-index: 1050;
 
+    /* Стилизация скроллбара */
+    &::-webkit-scrollbar { width: 6px; }
+    &::-webkit-scrollbar-track { background: #111; border-radius: 10px; }
+    &::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
+    &::-webkit-scrollbar-thumb:hover { background: #0051ff; }
+
     .dropdown-item {
-        color: rgba(255, 255, 255, 0.7) !important;
+        color: rgba(255, 255, 255, 0.8) !important;
         font-size: 13px;
-        padding: 10px 16px;
+        padding: 10px 14px;
         border-radius: 8px;
         transition: all 0.2s ease;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        &:hover,
-        &.active {
-            background: #0051ff !important;
+        &:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
             color: #ffffff !important;
         }
 
-        &.active::after {
-            content: "✓";
-            font-weight: bold;
+        &.selected {
+            background: #0051ff !important;
+            color: #ffffff !important;
+            font-weight: 600;
+
+            &::after {
+                content: "✓";
+                font-weight: bold;
+            }
         }
     }
 }
 
-/* Панель выбранных фильтров (Active Pills Bar) */
-.active-filters-bar {
-    min-height: 40px;
+/* ==========================================================================
+   Строка активных фильтров (Active Pills Bar)
+   ========================================================================== */
+.elite-active-pills {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
     gap: 8px;
-    margin-top: 20px;
+    width: 100%;
+    margin-bottom: 40px;
+    min-height: 10px;
 
-    .active-pill {
-        background: #0051ff;
-        color: #fff;
+    .pill-item {
+        background: #222222;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        color: #ffffff;
         font-size: 12px;
         font-weight: 500;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        padding: 6px 14px 6px 16px;
+        padding: 6px 14px;
         border-radius: 100px;
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        box-shadow: 0 4px 15px rgba(0, 81, 255, 0.3);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         animation: fadeInScale 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 
-        .remove-pill {
+        .btn-remove {
             cursor: pointer;
             display: inline-flex;
             align-items: center;
@@ -498,31 +547,31 @@ button.animate-btn::after,
             width: 18px;
             height: 18px;
             border-radius: 50%;
-            background: rgba(0, 0, 0, 0.2);
-            transition: background 0.2s;
+            background: rgba(255, 255, 255, 0.2);
+            font-size: 12px;
+            line-height: 1;
+            transition: all 0.2s;
 
             &:hover {
-                background: rgba(0, 0, 0, 0.5);
+                background: #ff3b30;
+                color: #fff;
+                transform: scale(1.1);
             }
         }
     }
 
-    .clear-all-pills {
+    .btn-clear-all {
         background: transparent;
-        border: 1px dashed rgba(255, 255, 255, 0.3);
+        border: none;
         color: rgba(255, 255, 255, 0.6);
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        padding: 6px 14px;
-        border-radius: 100px;
+        font-size: 12px;
+        text-decoration: underline;
         cursor: pointer;
-        transition: all 0.2s;
+        margin-left: 8px;
+        transition: color 0.2s;
 
         &:hover {
-            border-color: #ff3b30;
             color: #ff3b30;
-            background: rgba(255, 59, 48, 0.1);
         }
     }
 }
