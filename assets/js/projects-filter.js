@@ -1,25 +1,26 @@
 /**
- * OK DESIGN — Elite Multi-Dropdown Filtering & Routing Module
- * Hardware-accelerated GSAP animations + Dynamic Active Pills Bar
+ * OK DESIGN — Elite Multi-Dropdown Filtering, Active Pills & Sorting Module
+ * Uses GSAP for hardware-accelerated grid sorting & animations.
  */
 (function ($) {
     'use strict';
 
     $(document).ready(function () {
-        const $gridItems = $('.article-blog');
-        const $resetBtn = $('#resetAllFilters');
-        const $activeBar = $('#activeFiltersBar');
+        const $gridContainer = $('#projectsGridContainer');
+        let $gridItems = $('.article-blog');
+        const $resetBtn = $('#btnResetAll');
+        const $pillsContainer = $('#activePillsContainer');
 
         if ($gridItems.length === 0) return;
 
-        // Состояние фильтров по трем осям
+        // Текущее состояние фильтров и сортировки
         let activeFilters = {
             sphere: '*',
             service: '*',
             client: '*'
         };
+        let currentSort = 'newest';
 
-        // Словарь названий для плашек
         const labelMap = {
             sphere: 'Sphere',
             service: 'Service',
@@ -27,39 +28,76 @@
         };
 
         /**
+         * Сортировка элементов DOM
+         */
+        function sortGridItems() {
+            const itemsArray = $gridItems.get();
+
+            itemsArray.sort(function (a, b) {
+                const $a = $(a);
+                const $b = $(b);
+
+                if (currentSort === 'newest') {
+                    return parseInt($b.attr('data-year') || '0', 10) - parseInt($a.attr('data-year') || '0', 10);
+                } else if (currentSort === 'oldest') {
+                    return parseInt($a.attr('data-year') || '0', 10) - parseInt($b.attr('data-year') || '0', 10);
+                } else if (currentSort === 'title-asc') {
+                    return ($a.attr('data-title') || '').localeCompare($b.attr('data-title') || '');
+                } else if (currentSort === 'client-asc') {
+                    return ($a.attr('data-client') || '').localeCompare($b.attr('data-client') || '');
+                }
+                return 0;
+            });
+
+            // Перестановка в DOM
+            $.each(itemsArray, function (idx, item) {
+                $gridContainer.append(item);
+            });
+
+            // Обновление коллекции
+            $gridItems = $('.article-blog');
+        }
+
+        /**
          * Главная функция фильтрации и обновления интерфейса
          */
-        function applyFilters() {
+        function applyFiltersAndSort() {
             let activeCount = 0;
 
-            // 1. Обновляем выпадающие списки (кнопки и галочки)
+            // 1. Сортировка элементов перед показом
+            sortGridItems();
+
+            // 2. Обновление UI кнопок дропдаунов
             Object.keys(activeFilters).forEach(group => {
                 const val = activeFilters[group];
-                const $menu = $(`.dark-dropdown-menu[data-group="${group}"]`);
-                const $btn = $menu.prev('.btn-filter-dropdown');
-                
-                $menu.find('.dropdown-item').removeClass('active');
-                const $selectedItem = $menu.find(`.dropdown-item[data-val="${val}"]`).addClass('active');
-                
+                const $menu = $(`.elite-dropdown-menu[data-group="${group}"]`);
+                const $btn = $menu.prev('.btn-elite-dropdown');
+                const $badge = $btn.find('.badge-count');
+
+                $menu.find('.dropdown-item').removeClass('selected');
+                const $selectedItem = $menu.find(`.dropdown-item[data-val="${val}"]`).addClass('selected');
+
                 if (val !== '*') {
-                    $btn.addClass('has-active').find('.label-val').text($selectedItem.text());
+                    $btn.addClass('is-active');
+                    $badge.text('1').show();
                     activeCount++;
                 } else {
-                    $btn.removeClass('has-active').find('.label-val').text('ALL');
+                    $btn.removeClass('is-active');
+                    $badge.hide();
                 }
             });
 
-            // 2. Обновляем кнопку сброса
+            // 3. Обновление кнопки "ALL PROJECTS"
             if (activeCount > 0) {
-                $resetBtn.removeClass('active');
+                $resetBtn.removeClass('is-active');
             } else {
-                $resetBtn.addClass('active');
+                $resetBtn.addClass('is-active');
             }
 
-            // 3. Перестраиваем панель активных плашек (Pills)
+            // 4. Отрисовка строки плашек (Active Pills)
             renderActivePills();
 
-            // 4. Фильтруем сетку через GSAP
+            // 5. Анимация фильтрации через GSAP
             $gridItems.each(function () {
                 const $item = $(this);
                 const itemSphere = ($item.attr('data-category') || '').toLowerCase();
@@ -70,7 +108,6 @@
                 const matchService = (activeFilters.service === '*') || itemService.includes(activeFilters.service);
                 const matchClient = (activeFilters.client === '*') || (itemClient === activeFilters.client);
 
-                // Товар показывается только если совпадает по всем активным осям (AND логика)
                 if (matchSphere && matchService && matchClient) {
                     gsap.to($item, {
                         duration: 0.4,
@@ -92,7 +129,7 @@
                 }
             });
 
-            // 5. Пересчитываем ScrollTrigger
+            // 6. Пересчет скролла
             setTimeout(function () {
                 if (typeof ScrollTrigger !== 'undefined') {
                     ScrollTrigger.refresh();
@@ -101,86 +138,102 @@
         }
 
         /**
-         * Отрисовка плашек выбранных фильтров с крестиком
+         * Отрисовка плашек выбранных фильтров с кнопкой удаления
          */
         function renderActivePills() {
-            $activeBar.empty();
+            $pillsContainer.empty();
             let hasPills = false;
 
             Object.keys(activeFilters).forEach(group => {
                 const val = activeFilters[group];
                 if (val !== '*') {
                     hasPills = true;
-                    const text = $(`.dark-dropdown-menu[data-group="${group}"] .dropdown-item[data-val="${val}"]`).text();
+                    const text = $(`.elite-dropdown-menu[data-group="${group}"] .dropdown-item[data-val="${val}"]`).text();
                     
                     const pillHtml = `
-                        <div class="active-pill" data-group="${group}">
+                        <div class="pill-item" data-group="${group}">
                             <span>${labelMap[group]}: ${text}</span>
-                            <span class="remove-pill" title="Remove filter">×</span>
+                            <span class="btn-remove" title="Remove filter">×</span>
                         </div>
                     `;
-                    $activeBar.append(pillHtml);
+                    $pillsContainer.append(pillHtml);
                 }
             });
 
             if (hasPills) {
-                $activeBar.append('<button class="clear-all-pills" id="clearAllPills">Clear All ×</button>');
+                $pillsContainer.append('<button class="btn-clear-all" id="btnClearPills">Clear All ×</button>');
             }
         }
 
-        // Событие: Выбор пункта в Dropdown
-        $('.dark-dropdown-menu .dropdown-item').on('click', function (e) {
+        // Событие: Клик по пункту фильтра
+        $('.elite-dropdown-menu[data-group] .dropdown-item').on('click', function (e) {
             e.preventDefault();
             const $this = $(this);
-            const group = $this.closest('.dark-dropdown-menu').attr('data-group');
+            const group = $this.closest('.elite-dropdown-menu').attr('data-group');
             const val = $this.attr('data-val');
 
             activeFilters[group] = val;
-            applyFilters();
+            applyFiltersAndSort();
         });
 
-        // Событие: Клик по крестику на плашке (Удалить конкретный фильтр)
-        $activeBar.on('click', '.remove-pill', function () {
-            const group = $(this).closest('.active-pill').attr('data-group');
+        // Событие: Клик по пункту сортировки
+        $('#sortDropdownMenu .dropdown-item').on('click', function (e) {
+            e.preventDefault();
+            const $this = $(this);
+            currentSort = $this.attr('data-sort');
+
+            $('#sortDropdownMenu .dropdown-item').removeClass('selected');
+            $this.addClass('selected');
+            $('#sortLabel').text($this.text().split(' (')[0].toUpperCase());
+
+            applyFiltersAndSort();
+        });
+
+        // Событие: Удаление точечного фильтра через крестик ×
+        $pillsContainer.on('click', '.btn-remove', function () {
+            const group = $(this).closest('.pill-item').attr('data-group');
             activeFilters[group] = '*';
-            applyFilters();
+            applyFiltersAndSort();
         });
 
-        // Событие: Клик по "Clear All" или "All Projects (11)"
-        function resetAll() {
+        // Событие: Сброс всех фильтров
+        function resetAllFilters(e) {
+            if (e) e.preventDefault();
             activeFilters = { sphere: '*', service: '*', client: '*' };
-            applyFilters();
+            applyFiltersAndSort();
         }
 
-        $resetBtn.on('click', resetAll);
-        $activeBar.on('click', '#clearAllPills', resetAll);
+        $resetBtn.on('click', resetAllFilters);
+        $pillsContainer.on('click', '#btnClearPills', resetAllFilters);
 
-        // Парсинг параметров из адресной строки при переходе с index.html
+        // Парсинг URL (при переходе с index.html?filter=... или ?client=...)
         const urlParams = new URLSearchParams(window.location.search);
         const filterParam = urlParams.get('filter');
         const clientParam = urlParams.get('client');
 
         if (filterParam) {
-            // Ищем, к какой группе относится пришедший тег
-            if ($(`.dark-dropdown-menu[data-group="sphere"] [data-val="${filterParam}"]`).length > 0) {
+            if ($(`.elite-dropdown-menu[data-group="sphere"] [data-val="${filterParam}"]`).length > 0) {
                 activeFilters.sphere = filterParam;
             } else {
                 activeFilters.service = filterParam;
             }
-            applyFilters();
+            applyFiltersAndSort();
             scrollToGrid();
         } else if (clientParam) {
             activeFilters.client = clientParam;
-            applyFilters();
+            applyFiltersAndSort();
             scrollToGrid();
+        } else {
+            // Инициализация при обычной загрузке страницы
+            applyFiltersAndSort();
         }
 
         function scrollToGrid() {
             setTimeout(function () {
                 const $gridSection = $('#projects-grid-section');
                 if ($gridSection.length > 0) {
-                    const gridTop = $gridSection.offset().top - 120;
-                    $('html, body').animate({ scrollTop: gridTop }, 800);
+                    const gridTop = $gridSection.offset().top - 140;
+                    $('html, body').animate({ scrollTop: gridTop }, 700);
                 }
             }, 300);
         }
