@@ -5,6 +5,28 @@
     overflow: hidden;
     border: 1px solid var(--white-16);
 
+    .blog-image {
+        display: block;
+        overflow: hidden;
+        position: relative;
+        border-radius: 4px;
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transform: scale(1) rotate(0deg);
+            transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+            will-change: transform;
+        }
+    }
+
+    &:hover {
+        .blog-image img {
+            transform: scale(1.05) rotate(2deg);
+        }
+    }
+
     .blog-content {
         padding: 20px;
         display: flex;
@@ -68,6 +90,50 @@
     }
 }
 
+/* ==========================================================================
+   Кнопки фильтрации проектов (Projects Catalog)
+   ========================================================================== */
+.project-filter-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 50px;
+    list-style: none;
+    padding: 0;
+
+    li {
+        margin: 0;
+    }
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    text-transform: uppercase;
+    outline: none;
+
+    &:hover,
+    &.active {
+        background: #0051ff;
+        border-color: #0051ff;
+        color: #ffffff;
+        box-shadow: 0 0 20px rgba(0, 81, 255, 0.4);
+        transform: translateY(-2px);
+    }
+}
+
+/* ==========================================================================
+   Остальные стили блога и сайдбара
+   ========================================================================== */
 .wg-pagination {
     display: flex;
     align-items: center;
@@ -102,7 +168,6 @@
         gap: 32px;
     }
 }
-
 
 .list-relatest-post {
     .relatest-post-item:not(:last-child) {

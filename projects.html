@@ -24,33 +24,6 @@
     <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="assets/images/logo/favicon.svg">
     <link rel="apple-touch-icon-precomposed" href="assets/images/logo/favicon.svg">
-
-    <style>
-        /* ==========================================================================
-           Плавная анимация ховера обложек кейсов (в стиле референса projects-ref.html)
-           ========================================================================== */
-        .article-blog .blog-image {
-            display: block;
-            overflow: hidden; /* Обрезка изображения при увеличении и повороте */
-            position: relative;
-            border-radius: 4px;
-        }
-        
-        .article-blog .blog-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transform: scale(1) rotate(0deg);
-            /* Премиальный и очень мягкий переход на 0.7 сек */
-            transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
-            will-change: transform;
-        }
-
-        /* При наведении на карточку — увеличение с небольшим поворотом */
-        .article-blog:hover .blog-image img {
-            transform: scale(1.05) rotate(2deg);
-        }
-    </style>
 </head>
 
 <body class="counter-scroll" style="background-color: #000; color: #fff; overflow-x: hidden;">
@@ -97,13 +70,11 @@
             <div class="header-inner">
                 <div class="container">
                     <div class="row align-items-center">
-                        <!-- Логотип -->
                         <div class="col-6 col-md-2">
                             <a href="index.html" class="logo-site">
                                 <img src="assets/images/logo/logo.svg" alt="OK Design" style="height: 40px; width: auto;">
                             </a>
                         </div>
-                        <!-- Навигация (скрыта на мобильных) -->
                         <div class="col-6 col-md-6 d-none d-md-block">
                             <div class="box-navigation">
                                 <ul class="nav-menu-main">
@@ -114,9 +85,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <!-- Правая часть -->
                         <div class="col-6 col-md-4 d-flex justify-content-end align-items-center">
-                            <!-- Почта с векторной иконкой (видна на ПК) -->
                             <div class="header-contact d-none d-md-block">
                                 <a href="mailto:hello@okdesign.cc" class="link text-body-3 text-uppercase d-flex align-items-center gap-2" style="text-decoration: none;">
                                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 2px;">
@@ -126,10 +95,8 @@
                                     <span>HELLO@OKDESIGN.CC</span>
                                 </a>
                             </div>
-                            <!-- Кнопка Бургера (видна только на мобильных) -->
                             <button type="button" class="btn-mobile-menu open-mb-menu text-body-3 text-white link d-md-none">
-                                <i class="icon icon-menu"></i>
-                                MENU
+                                <i class="icon icon-menu"></i> MENU
                             </button>
                         </div>
                     </div>
@@ -139,152 +106,183 @@
         <!-- /Header -->
 
         <!-- Page Title Section -->
-        <div class="section-page-title" style="padding-top: 160px; padding-bottom: 60px;">
+        <div class="section-page-title" style="padding-top: 160px; padding-bottom: 40px;">
             <div class="container text-center">
                 <h1 class="page-title text-display-2 fw-semibold letter-space--3 effectFade fadeZoom text-white mb-3">Projects</h1>
-                <div class="breadcrumbs effectFade fadeUp">
+                <div class="breadcrumbs effectFade fadeUp mb-5">
                     <p class="text-white-64 text-body-1 mb-0 mx-auto" style="max-width: 640px; line-height: 1.6;">
                         A curated collection of visual identities, motion graphics, and high-impact digital experiences developed for innovative brands worldwide.
                     </p>
                 </div>
+
+                <!-- КНОПКИ ФИЛЬТРАЦИИ ПО КАТЕГОРИЯМ -->
+                <ul class="project-filter-list effectFade fadeUp">
+                    <li><button class="filter-btn active" data-filter="*">ALL PROJECTS (11)</button></li>
+                    <li><button class="filter-btn" data-filter="motion">MOTION & VIDEO</button></li>
+                    <li><button class="filter-btn" data-filter="social-media">SMM & CONTENT</button></li>
+                    <li><button class="filter-btn" data-filter="digital">DIGITAL & UI/UX</button></li>
+                    <li><button class="filter-btn" data-filter="branding">BRANDING & PRINT</button></li>
+                </ul>
             </div>
         </div>
         <!-- /Page Title Section -->
 
-        <!-- Projects Grid (Оригинальная вёрстка tf-grid-layout sm-col-2) -->
-        <section class="section-blog flat-spacing pt-0">
+        <!-- Projects Grid -->
+        <section class="section-blog flat-spacing pt-0" id="projects-grid-section">
             <div class="container">
                 <div class="tf-grid-layout sm-col-2">
                     
-                    <!-- Item 1: GoodGame -->
-                    <div class="article-blog effectFade fadeUp no-div">
-                        <a href="project.html" class="blog-image img-style">
-                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-1.jpg" alt="GoodGame Cyberlounge">
+                    <!-- 01: Van Calster -->
+                    <div class="article-blog effectFade fadeUp no-div" data-category="motion" data-tags="tv-ads video-ads campaigns" data-client="van-calster">
+                        <a href="project-van-calster.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-1.jpg" alt="Dubbel Voordeel Campaign">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">
-                                    Visual Identity / Motion
-                                </p>
-                                <h6>
-                                    <a href="project.html" class="link infor_name">
-                                        GoodGame Cyberlounge
-                                    </a>
-                                </h6>
+                                <p class="infor_sub text-white-64">Van Calster &nbsp;|&nbsp; TV & Video Ads</p>
+                                <h6><a href="project-van-calster.html" class="link infor_name">Dubbel Voordeel Campaign</a></h6>
                             </div>
-                            <a href="project.html" class="btn-action">
-                                <i class="icon icon-arrow-top-right"></i>
-                            </a>
+                            <a href="project-van-calster.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
                         </div>
                     </div>
 
-                    <!-- Item 2: NexoPay -->
-                    <div class="article-blog effectFade fadeUp no-div">
-                        <a href="project.html" class="blog-image img-style">
-                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-2.jpg" alt="NexoPay Ecosystem">
+                    <!-- 02: GoodGame -->
+                    <div class="article-blog effectFade fadeUp no-div" data-category="branding motion" data-tags="2d-3d-animation promo-videos branding visual-identity" data-client="goodgame">
+                        <a href="project-goodgame.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-2.jpg" alt="GoodGame Cyberlounge">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">
-                                    Branding / UI/UX
-                                </p>
-                                <h6>
-                                    <a href="project.html" class="link infor_name">
-                                        NexoPay Ecosystem
-                                    </a>
-                                </h6>
+                                <p class="infor_sub text-white-64">GoodGame &nbsp;|&nbsp; Visual Identity & Motion</p>
+                                <h6><a href="project-goodgame.html" class="link infor_name">Cyberlounge Visual Identity</a></h6>
                             </div>
-                            <a href="project.html" class="btn-action">
-                                <i class="icon icon-arrow-top-right"></i>
-                            </a>
+                            <a href="project-goodgame.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
                         </div>
                     </div>
 
-                    <!-- Item 3: Seeson -->
-                    <div class="article-blog effectFade fadeUp no-div">
-                        <a href="project.html" class="blog-image img-style">
-                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-3.jpg" alt="Seeson App Launch">
+                    <!-- 03: Drift Edition & TuningFest -->
+                    <div class="article-blog effectFade fadeUp no-div" data-category="branding" data-tags="visual-identity print billboards merch video-shooting" data-client="drift-edition">
+                        <a href="project-automotive-showcase.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-3.jpg" alt="Automotive Event Branding">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">
-                                    Digital Advertising
-                                </p>
-                                <h6>
-                                    <a href="project.html" class="link infor_name">
-                                        Seeson App Launch
-                                    </a>
-                                </h6>
+                                <p class="infor_sub text-white-64">Drift Edition &nbsp;|&nbsp; Event Branding & Production</p>
+                                <h6><a href="project-automotive-showcase.html" class="link infor_name">Automotive Event Showcase</a></h6>
                             </div>
-                            <a href="project.html" class="btn-action">
-                                <i class="icon icon-arrow-top-right"></i>
-                            </a>
+                            <a href="project-automotive-showcase.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
                         </div>
                     </div>
 
-                    <!-- Item 4: Future -->
-                    <div class="article-blog effectFade fadeUp no-div">
-                        <a href="project.html" class="blog-image img-style">
-                            <img loading="lazy" width="628" height="471" src="assets/images/section/feature-1.jpg" alt="Future Vision Promo">
+                    <!-- 04: Somplo Rich Media Ads -->
+                    <div class="article-blog effectFade fadeUp no-div" data-category="digital" data-tags="rich-media-ads banners web-animation" data-client="somplo">
+                        <a href="project-somplo-rich-media-ads.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/feature-1.jpg" alt="Rich Media Ads Suite">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">
-                                    Motion Graphics / 3D
-                                </p>
-                                <h6>
-                                    <a href="project.html" class="link infor_name">
-                                        Future Vision Promo
-                                    </a>
-                                </h6>
+                                <p class="infor_sub text-white-64">Somplo &nbsp;|&nbsp; Digital Advertising</p>
+                                <h6><a href="project-somplo-rich-media-ads.html" class="link infor_name">Rich Media Ads Suite</a></h6>
                             </div>
-                            <a href="project.html" class="btn-action">
-                                <i class="icon icon-arrow-top-right"></i>
-                            </a>
+                            <a href="project-somplo-rich-media-ads.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
                         </div>
                     </div>
 
-                    <!-- Item 5: Portz -->
-                    <div class="article-blog effectFade fadeUp no-div">
-                        <a href="project.html" class="blog-image img-style">
-                            <img loading="lazy" width="628" height="471" src="assets/images/section/feature-2.jpg" alt="Portz Portfolio System">
+                    <!-- 05: Somplo Animated Icons -->
+                    <div class="article-blog effectFade fadeUp no-div" data-category="digital motion" data-tags="ui-ux app-design 2d-3d-animation web-animation" data-client="somplo">
+                        <a href="project-somplo-animated-icons.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/feature-2.jpg" alt="Animated UI/UX Components">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">
-                                    Web Design / Development
-                                </p>
-                                <h6>
-                                    <a href="project.html" class="link infor_name">
-                                        Portz Portfolio System
-                                    </a>
-                                </h6>
+                                <p class="infor_sub text-white-64">Somplo &nbsp;|&nbsp; UI/UX & Web Animation</p>
+                                <h6><a href="project-somplo-animated-icons.html" class="link infor_name">Animated UI/UX Components</a></h6>
                             </div>
-                            <a href="project.html" class="btn-action">
-                                <i class="icon icon-arrow-top-right"></i>
-                            </a>
+                            <a href="project-somplo-animated-icons.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
                         </div>
                     </div>
 
-                    <!-- Item 6: Agenz -->
-                    <div class="article-blog effectFade fadeUp no-div">
-                        <a href="project.html" class="blog-image img-style">
-                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-1.jpg" alt="Agenz Corporate Identity">
+                    <!-- 06: Mars 2050 (Ranok) -->
+                    <div class="article-blog effectFade fadeUp no-div" data-category="motion social-media" data-tags="promo-videos video-shooting voiceover social-media" data-client="ranok">
+                        <a href="project-mars-2050.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-1.jpg" alt="Mars 2050 Promo">
                         </a>
                         <div class="blog-content">
                             <div class="infor">
-                                <p class="infor_sub text-white-64">
-                                    Print / Brand Guidelines
-                                </p>
-                                <h6>
-                                    <a href="project.html" class="link infor_name">
-                                        Agenz Corporate Identity
-                                    </a>
-                                </h6>
+                                <p class="infor_sub text-white-64">Ranok Publishing &nbsp;|&nbsp; Video Production & SMM</p>
+                                <h6><a href="project-mars-2050.html" class="link infor_name">Mars 2050: Board Game Promo</a></h6>
                             </div>
-                            <a href="project.html" class="btn-action">
-                                <i class="icon icon-arrow-top-right"></i>
-                            </a>
+                            <a href="project-mars-2050.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 07: Gravity Falls TV Spot (Ranok / Disney) -->
+                    <div class="article-blog effectFade fadeUp no-div" data-category="motion" data-tags="tv-ads promo-videos 2d-3d-animation" data-client="ranok">
+                        <a href="project-gravity-falls-tv-spot.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-2.jpg" alt="Gravity Falls TV Spot">
+                        </a>
+                        <div class="blog-content">
+                            <div class="infor">
+                                <p class="infor_sub text-white-64">Ranok / Disney &nbsp;|&nbsp; TV Spot & Animation</p>
+                                <h6><a href="project-gravity-falls-tv-spot.html" class="link infor_name">Gravity Falls Comics TV Spot</a></h6>
+                            </div>
+                            <a href="project-gravity-falls-tv-spot.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 08: Okki Instagram -->
+                    <div class="article-blog effectFade fadeUp no-div" data-category="social-media" data-tags="social-media feed-concept reels-stories photography" data-client="okki">
+                        <a href="project-okki-instagram.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-3.jpg" alt="Okki Engaging Instagram Content">
+                        </a>
+                        <div class="blog-content">
+                            <div class="infor">
+                                <p class="infor_sub text-white-64">Okki &nbsp;|&nbsp; SMM & Content Strategy</p>
+                                <h6><a href="project-okki-instagram.html" class="link infor_name">Engaging Instagram Content</a></h6>
+                            </div>
+                            <a href="project-okki-instagram.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 09: Omni CPA Promo -->
+                    <div class="article-blog effectFade fadeUp no-div" data-category="motion" data-tags="promo-videos 2d-3d-animation" data-client="omni-cpa">
+                        <a href="project-omni-cpa.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/feature-1.jpg" alt="Omni CPA Infographic Promo">
+                        </a>
+                        <div class="blog-content">
+                            <div class="infor">
+                                <p class="infor_sub text-white-64">Omni CPA &nbsp;|&nbsp; Motion Graphics</p>
+                                <h6><a href="project-omni-cpa.html" class="link infor_name">Infographic Promo Video</a></h6>
+                            </div>
+                            <a href="project-omni-cpa.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 10: Ichnya SMM -->
+                    <div class="article-blog effectFade fadeUp no-div" data-category="social-media" data-tags="social-media feed-concept photography video-shooting" data-client="ichnya">
+                        <a href="project-ichnya-smm.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/feature-2.jpg" alt="Ichnya Visual Strategy">
+                        </a>
+                        <div class="blog-content">
+                            <div class="infor">
+                                <p class="infor_sub text-white-64">Ichnya &nbsp;|&nbsp; Visual Strategy & Production</p>
+                                <h6><a href="project-ichnya-smm.html" class="link infor_name">Instagram Feed & SMM</a></h6>
+                            </div>
+                            <a href="project-ichnya-smm.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 11: Invisalign Ukraine -->
+                    <div class="article-blog effectFade fadeUp no-div" data-category="social-media" data-tags="social-media feed-concept reels-stories" data-client="invisalign">
+                        <a href="project-invisalign-smm.html" class="blog-image img-style">
+                            <img loading="lazy" width="628" height="471" src="assets/images/section/work-1.jpg" alt="Invisalign Social Media Feed Concept">
+                        </a>
+                        <div class="blog-content">
+                            <div class="infor">
+                                <p class="infor_sub text-white-64">Invisalign Ukraine &nbsp;|&nbsp; SMM Concept</p>
+                                <h6><a href="project-invisalign-smm.html" class="link infor_name">Social Media Feed Concept</a></h6>
+                            </div>
+                            <a href="project-invisalign-smm.html" class="btn-action"><i class="icon icon-arrow-top-right"></i></a>
                         </div>
                     </div>
 
@@ -301,18 +299,14 @@
             <div class="footer-inner">
                 <div class="container">
                     <div class="row align-items-start">
-                        <!-- Копирайт -->
                         <div class="col-md-4 mb-5 mb-md-0">
                             <p class="title text-has-dot text-caption fw-medium mb-0" style="line-height: 1.6; display: flex; align-items: flex-start; gap: 8px;">
                                 <span class="br-dot" style="margin-top: 5px; flex-shrink: 0;"></span>
                                 <span>© 2026 OK DESIGN.<span class="d-none d-md-inline"><br></span><span class="d-md-none"> </span>ALL RIGHTS RESERVED.</span>
                             </p>
                         </div>
-                        <!-- Навигация -->
                         <div class="col-6 col-sm-2 col-md-1">
-                            <p class="footer-heading text-caption fw-medium text-white-64 mb-3">
-                                SITEMAP
-                            </p>
+                            <p class="footer-heading text-caption fw-medium text-white-64 mb-3">SITEMAP</p>
                         </div>
                         <div class="col-6 col-sm-4 col-md-3">
                             <ul class="footer-menu-list mb-sm-0">
@@ -322,11 +316,8 @@
                                 <li><a href="index.html#contactScroll" class="link letter-space--2 h5">Contact</a></li>
                             </ul>
                         </div>
-                        <!-- Соцсети -->
                         <div class="col-6 col-sm-2 col-md-1">
-                            <p class="footer-heading text-caption fw-medium text-white-64 mb-3">
-                                SOCIALS
-                            </p>
+                            <p class="footer-heading text-caption fw-medium text-white-64 mb-3">SOCIALS</p>
                         </div>
                         <div class="col-6 col-sm-4 col-md-3">
                             <ul class="footer-menu-list mb-0">
@@ -352,84 +343,38 @@
                             <img src="assets/images/logo/logo.svg" alt="OK Design" style="height: 40px; width: auto;">
                         </a>
                         <div class="btn-mobile-menu close-mb-menu text-caption link">
-                            <i class="icon icon-close"></i>
-                            CLOSE
+                            <i class="icon icon-close"></i> CLOSE
                         </div>
                     </div>
                     <div class="canvas_center">
                         <ul class="nav-ul-mb">
                             <li>
                                 <div class="item close-mb-menu">
-                                    <a href="projects.html" class="mb-menu-link text-display-1">
-                                        <span class="text">Projects</span>
-                                        <div class="infiniteSlide_text_main">
-                                            <div class="infiniteSlide infiniteSlide_text" data-clone="5">
-                                                <p class="text-body-2 letter-space--1"><span class="text-primary">//</span> View Projects</p>
-                                                <p class="text-body-2 letter-space--1"><span class="text-primary">//</span> View Projects</p>
-                                                <p class="text-body-2 letter-space--1"><span class="text-primary">//</span> View Projects</p>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    <a href="projects.html" class="mb-menu-link text-display-1"><span class="text">Projects</span></a>
                                 </div>
                             </li>
                             <li>
                                 <div class="item close-mb-menu">
-                                    <a href="index.html#aboutScroll" class="mb-menu-link text-display-1">
-                                        <span class="text">About</span>
-                                        <div class="infiniteSlide_text_main">
-                                            <div class="infiniteSlide infiniteSlide_text" data-clone="5">
-                                                <p class="text-body-2 letter-space--1"><span class="text-primary">//</span> View About</p>
-                                                <p class="text-body-2 letter-space--1"><span class="text-primary">//</span> View About</p>
-                                                <p class="text-body-2 letter-space--1"><span class="text-primary">//</span> View About</p>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    <a href="index.html#aboutScroll" class="mb-menu-link text-display-1"><span class="text">About</span></a>
                                 </div>
                             </li>
                             <li>
                                 <div class="item close-mb-menu">
-                                    <a href="index.html#serviceScroll" class="mb-menu-link text-display-1">
-                                        <span class="text">Services</span>
-                                        <div class="infiniteSlide_text_main">
-                                            <div class="infiniteSlide infiniteSlide_text" data-clone="5">
-                                                <p class="text-body-2 letter-space--1"><span class="text-primary">//</span> View Services</p>
-                                                <p class="text-body-2 letter-space--1"><span class="text-primary">//</span> View Services</p>
-                                                <p class="text-body-2 letter-space--1"><span class="text-primary">//</span> View Services</p>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    <a href="index.html#serviceScroll" class="mb-menu-link text-display-1"><span class="text">Services</span></a>
                                 </div>
                             </li>
                             <li>
                                 <div class="item close-mb-menu">
-                                    <a href="index.html#contactScroll" class="mb-menu-link text-display-1">
-                                        <span class="text">Contact</span>
-                                        <div class="infiniteSlide_text_main">
-                                            <div class="infiniteSlide infiniteSlide_text" data-clone="5">
-                                                <p class="text-body-2 letter-space--1"><span class="text-primary">//</span> View Contact</p>
-                                                <p class="text-body-2 letter-space--1"><span class="text-primary">//</span> View Contact</p>
-                                                <p class="text-body-2 letter-space--1"><span class="text-primary">//</span> View Contact</p>
-                                            </div>
-                                        </div>
-                                    </a>
+                                    <a href="index.html#contactScroll" class="mb-menu-link text-display-1"><span class="text">Contact</span></a>
                                 </div>
                             </li>
                         </ul>
                     </div>
                     <div class="canvas_foot">
-                        <div class="left">
-                            <a href="mailto:hello@okdesign.cc" class="link text-caption">HELLO@OKDESIGN.CC</a>
-                        </div>
+                        <div class="left"><a href="mailto:hello@okdesign.cc" class="link text-caption">HELLO@OKDESIGN.CC</a></div>
                         <div class="right">
-                            <a href="https://www.linkedin.com/company/okdesign-studio" target="_blank" class="tf-link-icon text-caption link">
-                                <i class="icon icon-arrow-top-right"></i> LINKEDIN
-                            </a>
-                            <a href="https://www.behance.net/okdesign-studio" target="_blank" class="tf-link-icon text-caption link">
-                                <i class="icon icon-arrow-top-right"></i> BEHANCE
-                            </a>
-                            <a href="https://wa.me/okdesign.cc" target="_blank" class="tf-link-icon text-caption link">
-                                <i class="icon icon-arrow-top-right"></i> WHATSAPP
-                            </a>
+                            <a href="https://www.linkedin.com/company/okdesign-studio" target="_blank" class="tf-link-icon text-caption link"><i class="icon icon-arrow-top-right"></i> LINKEDIN</a>
+                            <a href="https://www.behance.net/okdesign-studio" target="_blank" class="tf-link-icon text-caption link"><i class="icon icon-arrow-top-right"></i> BEHANCE</a>
                         </div>
                     </div>
                 </div>
@@ -454,6 +399,8 @@
     <script src="assets/js/ScrollToPlugin.min.js"></script>
     <script src="assets/js/gsapAnimation.js"></script>
     <script src="assets/js/main.js"></script>
-</body>
 
+    <!-- Модуль фильтрации -->
+    <script src="assets/js/projects-filter.js"></script>
+</body>
 </html>
