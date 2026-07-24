@@ -1,95 +1,144 @@
 <!DOCTYPE html>
-
-<!--[if IE 8]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
-<!--<![endif]-->
-
 <head>
     <meta charset="utf-8">
-    <title>Somplo Rich Media Ads - OK Design</title>
-    <meta name="author" content="themesflat.com">
+    <title>Rich Media Ads Suite — OK Design</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description"
-        content="Davies - Personal Portfolio is a sleek and modern HTML template designed for developers, designers, freelancers, and professionals who want to showcase their work online.">
+    <meta name="description" content="A curated selection of premium interactive Rich Media display ads designed and developed by OK Design for Somplo's global client roster — including Armani, Mazda, L'Oréal, and more.">
 
-    <!-- font -->
+    <!-- Стили и шрифты -->
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/icon/icomoon/style.css">
-    <!-- css -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
     <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/odometer.min.css">
+    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="assets/css/slick.theme.css">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
-
-    <!-- Favicon and Touch Icons  -->
     <link rel="shortcut icon" href="assets/images/logo/favicon.svg">
-    <link rel="apple-touch-icon-precomposed" href="assets/images/logo/favicon.svg">
 
     <!-- СТИЛИ ДЛЯ ГАЛЕРЕИ И МОДАЛКИ SOMPLO -->
     <style>
-        .portfolio-text-content { margin-bottom: 40px; }
-        .portfolio-text-content h4 { margin-top: 30px; margin-bottom: 15px; font-weight: 600; color: #fff; }
-        
-        .brand-group { margin-bottom: 50px; }
-        .brand-title { margin-bottom: 20px; font-size: 24px; font-weight: 600; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
-        
+        .brand-group { margin-bottom: 60px; }
+        .brand-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
         .somplo-video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 16px;
         }
 
         .demo-card {
-            position: relative; border-radius: 12px; overflow: hidden;
-            cursor: pointer; aspect-ratio: 9 / 16; background: #111;
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 9 / 16;
+            background: #0e0e0e;
+            border: 1px solid rgba(255,255,255,0.08);
             transform: translateZ(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.55);
         }
 
         .demo-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
         .hover-overlay {
-            position: absolute; inset: 0; background: rgba(0, 174, 255, 0.9);
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; transition: opacity 0.3s ease;
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .demo-card:hover .hover-overlay { opacity: 1; }
 
         .hover-text {
-            color: #ffffff; font-size: 14px; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 1px; text-align: center; padding: 0 15px;
-            transform: translateY(15px); transition: transform 0.3s ease;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-align: center;
+            padding: 0 16px;
+            transform: translateY(10px);
+            transition: transform 0.3s ease;
         }
 
         .demo-card:hover .hover-text { transform: translateY(0); }
 
         /* Модальное окно */
         .custom-modal {
-            display: none; position: fixed; z-index: 99999; top: 0; left: 0;
-            width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.95);
-            align-items: center; justify-content: center; backdrop-filter: blur(8px);
+            display: none;
+            position: fixed;
+            z-index: 99999;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(12px);
         }
         .custom-modal.active { display: flex; animation: fadeIn 0.3s ease forwards; }
         .modal-content-somplo {
-            width: 90%; max-width: 400px; height: 85vh; max-height: 850px;
-            background: #000; border-radius: 20px; overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,174,255,0.15); border: 1px solid rgba(255,255,255,0.1);
+            width: 90%;
+            max-width: 400px;
+            height: 85vh;
+            max-height: 850px;
+            background: #000;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+            border: 1px solid rgba(255,255,255,0.1);
             position: relative;
         }
         .modal-content-somplo iframe { width: 100%; height: 100%; border: none; }
         .close-modal {
-            position: absolute; top: 20px; right: 30px; background: none; border: none;
-            color: #fff; font-size: 32px; cursor: pointer; z-index: 2; transition: transform 0.2s;
+            position: absolute;
+            top: 20px;
+            right: 28px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 2;
+            transition: transform 0.2s, color 0.2s;
+            opacity: 0.7;
         }
-        .close-modal:hover { transform: scale(1.1) rotate(90deg); color: #00aeff; }
+        .close-modal:hover { transform: scale(1.15) rotate(90deg); opacity: 1; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 
-<body class="counter-scroll">
-    <canvas class="cursor-trail d-none d-xl-block" id="trail"></canvas>
+<body class="counter-scroll" style="background-color: #000; color: #fff; overflow-x: hidden;">
+    <!-- Курсор -->
+    <div class="mil-ball">
+        <span class="mil-icon-1">
+            <svg viewBox="0 0 128 128" width="40" height="40">
+                <path d="M106.1,41.9c-1.2-1.2-3.1-1.2-4.2,0c-1.2,1.2-1.2,3.1,0,4.2L116.8,61H11.2l14.9-14.9c1.2-1.2,1.2-3.1,0-4.2 c-1.2-1.2-3.1-1.2-4.2,0l-20,20c-1.2,1.2-1.2,3.1,0,4.2l20,20c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9c1.2-1.2,1.2-3.1,0-4.2 L11.2,67h105.5l-14.9,14.9c-1.2,1.2-1.2,3.1,0,4.2c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9l20-20c1.2-1.2,1.2-3.1,0-4.2L106.1,41.9 z" fill="#000000"/>
+            </svg>
+        </span>
+        <div class="mil-more-text">More</div>
+        <div class="mil-choose-text">Сhoose</div>
+    </div>
 
     <!-- Scroll Top -->
     <button id="goTop">
@@ -98,440 +147,407 @@
             <span class="icon icon-arrow-caret-right"></span>
         </span>
     </button>
-    <!-- /Scroll Top -->
 
     <main id="wrapper">
         <!-- Header -->
-        <header class="tf-header m-0">
+        <header class="tf-header">
             <div class="header-inner">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-6 col-md-1">
+                    <div class="row align-items-center">
+                        <div class="col-6 col-md-2">
                             <a href="index.html" class="logo-site">
-                                <i class="icon icon-davies-logo"></i>
+                                <img src="assets/images/logo/logo.svg" alt="OK Design" style="height: 40px; width: auto;">
                             </a>
                         </div>
-                        <div class="col-7 d-none d-md-block">
+                        <div class="col-6 col-md-6 d-none d-md-block">
                             <div class="box-navigation">
                                 <ul class="nav-menu-main">
-                                    <li class="menu-item"><a href="index.html" class="item-link link text-caption"><span>01 /</span>HOME</a></li>
-                                    <li class="menu-item has-child">
-                                        <a href="#" class="item-link link text-caption"><span>02 /</span>BLOG</a>
-                                        <ul class="sub-menu">
-                                            <li class="sub-menu-item"><a href="blog-standard.html" class="item-link link text-caption">BLOG
-                                                    STANDARD</a></li>
-                                            <li class="sub-menu-item"><a href="blog-two-columns.html" class="item-link link text-caption">BLOG GRID
-                                                    2</a></li>
-                                            <li class="sub-menu-item"><a href="blog-three-columns.html" class="item-link link text-caption">BLOG GRID
-                                                    3</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item"><a href="index.html" class="item-link link text-caption"><span>03
-                                                /</span>ABOUT</a></li>
-                                    <li class="menu-item"><a href="index.html" class="item-link link text-caption"><span>04
-                                                /</span>CONTACT</a></li>
+                                    <li class="menu-item"><a href="index.html#serviceScroll" class="item-link link text-body-3"><span>01 /</span>SERVICES</a></li>
+                                    <li class="menu-item"><a href="projects.html" class="item-link link text-body-3"><span>02 /</span>PROJECTS</a></li>
+                                    <li class="menu-item"><a href="index.html#aboutScroll" class="item-link link text-body-3"><span>03 /</span>ABOUT</a></li>
+                                    <li class="menu-item"><a href="index.html#contactScroll" class="item-link link text-body-3"><span>04 /</span>CONTACT</a></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-3 col-md-2 d-none d-sm-block">
-                            <div class="header-contact">
-                                <a href="mailto:davies@gmail.com" class="link text-caption">DAVIES@GMAIL.COM</a>
-                                <p class="text-caption">
-                                    CUP <span class="clock"></span>
-                                </p>
+                        <div class="col-6 col-md-4 d-flex justify-content-end align-items-center">
+                            <div class="header-contact d-none d-md-block">
+                                <a href="mailto:hello@okdesign.cc" class="link text-body-3 text-uppercase d-flex align-items-center gap-2" style="text-decoration: none;">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 2px;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                    <span>HELLO@OKDESIGN.CC</span>
+                                </a>
                             </div>
-                        </div>
-                        <div class="col-6 col-sm-3 col-md-2 d-flex justify-content-end align-items-start">
-                            <a href="#mobileMenu" data-bs-toggle="offcanvas" class="btn-mobile-menu text-caption link d-md-none">
-                                <i class="icon icon-menu"></i>
-                                MENU
-                            </a>
-                            <a href="index.html" class="tf-btn d-none d-md-flex">
-                                <span class="text-caption">
-                                    CONTACT
-                                </span>
-                            </a>
+                            <button type="button" class="btn-mobile-menu open-mb-menu text-body-3 text-white link d-md-none"><i class="icon icon-menu"></i> MENU</button>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
-        <!-- /Header -->
-        <div class="section-page-title">
-            <div class="container text-center">
-                <h1 class="page-title fw-semibold effectFade fadeZoom">Somplo Rich Media Ads</h1>
-                <div class="breadcrumbs effectFade fadeUp">
-                    <a href="index.html" class="link">Home</a>
-                    <div>/</div>
-                    <div>Projects</div>
+
+        <!-- Заголовок кейса -->
+        <div class="section-page-title" style="padding-top: 140px; padding-bottom: 40px;">
+            <div class="container text-center mil-up">
+                <h1 class="page-title fw-semibold text-white mb-0">Somplo <span class="fw-light">Rich Media Ads</span></h1>
+
+                <div class="d-flex justify-content-center gap-5 text-white-64 fw-medium text-uppercase mt-4" style="font-size: 12px; letter-spacing: 2px;">
+                    <div>Client: <span class="text-white">Somplo</span></div>
+                    <div>Year: <span class="text-white">2025</span></div>
+                    <div>Creative Execution: <span class="text-white">Oleksandr Kukharyk</span></div>
                 </div>
             </div>
         </div>
-        <!-- Blog With Sidebar -->
-        <section class="section-blog flat-spacing">
-            <div class="container">
-                <div class="row justify-content-between">
-                    <div class="col-lg-7">
-                        <div class="blog-single-wrap">
-                            <div class="image effectFade fadeZoom">
-                                <img loading="lazy" width="777" height="548" src="assets/images/blog/blog-4.jpg" alt="Image">
-                            </div>
-                            <div class="meta-list">
-                                <div class="meta-item">
-                                    <i class="icon icon-user"></i>
-                                    <a href="#" class="link text-body-3 text-white-64">Oleksandr Kukharyk</a>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="icon icon-clock"></i>
-                                    <a href="#" class="link text-body-3 text-white-64">July 2026</a>
-                                </div>
-                                <div class="meta-item">
-                                    <i class="icon icon-dou-comments"></i>
-                                    <span class="text-body-3 text-white-64">0 Comments</span>
-                                </div>
-                            </div>
-                            
-                            <!-- НАШ НОВЫЙ КОНТЕНТ SOMPLO -->
-                            <div class="portfolio-text-content">
-                                <h4>Project Overview</h4>
-                                <p class="text-body-2">My collaboration with Somplo extended beyond crafting UI/UX animations and promotional content for their core platform. I also designed and developed interactive Rich Media display ads for their global roster of clients.</p>
-                                
-                                <h4>The Approach</h4>
-                                <p class="text-body-2">By merging my core design and animation skills with Somplo’s robust platform capabilities, I built premium, high-engagement ad experiences tailored to each brand's unique identity.</p>
-                                
-                                <h4>The Showcase</h4>
-                                <p class="text-body-2">Below is a curated selection of these interactive campaigns. <br><strong>(Click on any preview to experience the live interactive demo).</strong></p>
-                            </div>
 
-                            <!-- Giorgio Armani -->
-                            <div class="brand-group">
-                                <h3 class="brand-title">Giorgio Armani</h3>
-                                <div class="somplo-video-grid">
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/676517942">
-                                        <video src="assets/videos/armani-1.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">Play Interactive Demo</span></div>
-                                    </div>
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/640281579">
-                                        <video src="assets/videos/armani-2.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">Play Interactive Demo</span></div>
-                                    </div>
-                                </div>
-                            </div>
+        <!-- ГЛАВНОЕ ИЗОБРАЖЕНИЕ (HERO) -->
+        <div class="mil-image-frame mil-fw mil-up position-relative" style="width: 100%; height: 80vh; margin-bottom: 80px;">
+            <div style="width: 100%; height: 100%; background: #080808; position: relative; overflow: hidden;">
+                <img src="assets/images/section/feature-1.jpg" alt="Somplo Rich Media Ads" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.7;">
+            </div>
 
-                            <!-- Nestle -->
-                            <div class="brand-group">
-                                <h3 class="brand-title">Nestle</h3>
-                                <div class="somplo-video-grid">
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/864490176">
-                                        <video src="assets/videos/nestle-1.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">Play Interactive Demo</span></div>
-                                    </div>
-                                </div>
-                            </div>
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 35%; background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0) 100%); pointer-events: none; z-index: 1;"></div>
 
-                            <!-- Mazda -->
-                            <div class="brand-group">
-                                <h3 class="brand-title">Mazda</h3>
-                                <div class="somplo-video-grid">
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/605048049">
-                                        <video src="assets/videos/mazda-1.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">RichBox Double Cube</span></div>
-                                    </div>
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/431615699">
-                                        <video src="assets/videos/mazda-2.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">VideoBox 360 Product</span></div>
-                                    </div>
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/619818018">
-                                        <video src="assets/videos/mazda-3.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">RichBox 5050</span></div>
-                                    </div>
-                                </div>
-                            </div>
+            <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 2;">
+                <a href="#overview" class="link text-white d-flex flex-column align-items-center gap-3 text-uppercase fw-medium" style="letter-spacing: 2px; font-size: 11px; transition: 0.3s; text-decoration: none;">
+                    <span>EXPLORE FULL CASE</span>
+                    <span class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1);">
+                        <i class="icon icon-arrow-long-right" style="transform: rotate(90deg);"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
 
-                            <!-- Lottusse -->
-                            <div class="brand-group">
-                                <h3 class="brand-title">Lottusse</h3>
-                                <div class="somplo-video-grid">
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/660652421">
-                                        <video src="assets/videos/lottusse-1.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">Motion Transitions</span></div>
-                                    </div>
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/988475337">
-                                        <video src="assets/videos/lottusse-2.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">RichBox Double Cube</span></div>
-                                    </div>
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/718666854">
-                                        <video src="assets/videos/lottusse-3.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">VideoBox Carousel</span></div>
-                                    </div>
-                                </div>
-                            </div>
+        <!-- Основной контент кейса -->
+        <section class="container" id="project-content">
 
-                            <!-- Toyota -->
-                            <div class="brand-group">
-                                <h3 class="brand-title">Toyota</h3>
-                                <div class="somplo-video-grid">
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/886992250">
-                                        <video src="assets/videos/toyota-1.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">RichBox Cube Parallax</span></div>
-                                    </div>
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/636769703">
-                                        <video src="assets/videos/toyota-2.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">RichBox Flip Parallax</span></div>
-                                    </div>
-                                </div>
+            <!-- ================================================================= -->
+            <!-- БЛОК 1: THE CHALLENGE & PROJECT OVERVIEW -->
+            <!-- ================================================================= -->
+            <div id="overview" class="mil-up mb-5">
+                <!-- БЕЗКРАЙНЯЯ ПОДЛОЖКА -->
+                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255,255,255,0.03); padding: 48px 0;">
+                    <div class="container">
+                        <div class="mb-3">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">01 / OVERVIEW</span>
+                        </div>
+                        <div class="row justify-content-between align-items-start">
+                            <div class="col-lg-5 mb-3 mb-lg-0">
+                                <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">THE CHALLENGE</h2>
                             </div>
-
-                            <!-- Ralph Lauren -->
-                            <div class="brand-group">
-                                <h3 class="brand-title">Ralph Lauren</h3>
-                                <div class="somplo-video-grid">
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/704150469">
-                                        <video src="assets/videos/ralph-1.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">Multisize Double Cube</span></div>
-                                    </div>
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/949034728">
-                                        <video src="assets/videos/ralph-2.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">Multisize Cube Flow</span></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- L'Oréal -->
-                            <div class="brand-group">
-                                <h3 class="brand-title">L'Oréal</h3>
-                                <div class="somplo-video-grid">
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/779331275">
-                                        <video src="assets/videos/loreal-1.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">Elseve Scratch Overlay</span></div>
-                                    </div>
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/180994816">
-                                        <video src="assets/videos/loreal-2.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">Garnier Carousel Set</span></div>
-                                    </div>
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/955271171">
-                                        <video src="assets/videos/loreal-3.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">Garnier Scratch</span></div>
-                                    </div>
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/970292938">
-                                        <video src="assets/videos/loreal-4.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">Elseve Flip Parallax</span></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Maybelline & Others -->
-                            <div class="brand-group">
-                                <h3 class="brand-title">Maybelline & Others</h3>
-                                <div class="somplo-video-grid">
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/764278779">
-                                        <video src="assets/videos/maybelline-1.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">VideoBox Depth Card</span></div>
-                                    </div>
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/269352865">
-                                        <video src="assets/videos/maybelline-2.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">VideoBox Pages</span></div>
-                                    </div>
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/184907748">
-                                        <video src="assets/videos/other-1.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">Play Interactive Demo</span></div>
-                                    </div>
-                                    <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/926137894">
-                                        <video src="assets/videos/other-2.mp4" autoplay loop muted playsinline></video>
-                                        <div class="hover-overlay"><span class="hover-text">Play Interactive Demo</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- КОНЕЦ НОВОГО КОНТЕНТА -->
-
-                            <div class="entry-footer">
-                                <div class="tags-links">
-                                    <h6 class="text-body-1">Tags:</h6>
-                                    <ul class="list-tags flex-wrap">
-                                        <li><a class="text-body-3" href="#">Rich Media</a></li>
-                                        <li><a class="text-body-3" href="#">Motion Design</a></li>
-                                        <li><a class="text-body-3" href="#">Interactive Ads</a></li>
-                                    </ul>
-                                </div>
-                                <ul class="social-links justify-content-center">
-                                    <li>
-                                        <a href="#"><i class="icon icon-twitter"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="icon icon-dribbble"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="icon icon-instagram"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="icon icon-facebook"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="comment-wrap">
-                                <h4 class="heading">Comments</h4>
-                                <div class="author">
-                                    <div class="image">
-                                        <img loading="lazy" width="48" height="48" src="assets/images/section/tes-1.jpg" alt="Image">
-                                    </div>
-                                    <div class="content">
-                                        <div class="info">
-                                            <h6 class="name text-body-1">
-                                                <a class="link" href="#">Davies</a>
-                                            </h6>
-                                            <p class="time text-body-3 text-white-64">July 8, 2025 at 7:35 am</p>
-                                        </div>
-                                        <a href="#post-comment" class="reply link">Reply<i class="icon icon-arrow-top-right"></i></a>
-                                        <p class="desc">“ Sed vitae velit erat. Pellentesque lobortis felis vel mi congue, in
-                                            sollicitudin orci tincidunt. Praesent turpis justo, posuere eget justo sit
-                                            amet, efficitur suscipit elit. “</p>
-                                    </div>
-                                </div>
-                                <div class="author type-reply">
-                                    <div class="image">
-                                        <img loading="lazy" width="48" height="48" src="assets/images/section/tes-2.jpg" alt="Image">
-                                    </div>
-                                    <div class="content">
-                                        <div class="info">
-                                            <h6 class="name text-body-1">
-                                                <a class="link" href="#">Shin</a>
-                                            </h6>
-                                            <p class="time text-body-3 text-white-64">July 8, 2025 at 7:35 am</p>
-                                        </div>
-                                        <a href="#post-comment" class="reply link">Reply<i class="icon icon-arrow-top-right"></i></a>
-                                        <p class="desc">"Thank you"</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="post-comment" id="post-comment">
-                                <h4 class="heading">Post a Comments</h4>
-                                <p class="text text-body-1">Your email address will not be published. Required fields are marked *</p>
-                                <form class="form-cta style-2">
-                                    <div class="form-content">
-                                        <fieldset class="tf-field">
-                                            <input class="tf-input" type="text" placeholder="" required="">
-                                            <label class="tf-lable">Your name <span class="text-primary">*</span></label>
-                                        </fieldset>
-                                        <fieldset class="tf-field">
-                                            <input class="tf-input" type="email" placeholder="" required="">
-                                            <label class="tf-lable">Your Email <span class="text-primary">*</span></label>
-                                        </fieldset>
-                                        <fieldset class="tf-field">
-                                            <textarea class="tf-input rounded-0" placeholder="" required=""></textarea>
-                                            <label class="tf-lable">Messenger</label>
-                                        </fieldset>
-                                    </div>
-                                    <div class="form-action">
-                                        <button type="submit" class="tf-btn">
-                                            <span class="text-caption">SUBMIT MESSAGE</span>
-                                        </button>
-                                        <p class="text-body-1">
-                                            say hello — <a href="mailto:oleksandr.kukharyk@icloud.com" class="text-primary">oleksandr.kukharyk@icloud.com</a>
-                                        </p>
-                                    </div>
-                                </form>
+                            <div class="col-lg-6">
+                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 20px;">
+                                    Design and develop a suite of premium interactive Rich Media display ads for Somplo's global roster of clients — merging high-end visual identity with real-time interactive mechanics that push standard banners into engagement-driven digital experiences.
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="blog-sidebar m-lg-0">
-                            <div class="sidebar-item effectFade fadeUp no-div">
-                                <h5 class="sidebar-title">
-                                    Search
-                                </h5>
-                                <form class="form-search">
-                                    <fieldset class="text">
-                                        <input type="text" placeholder="Search" class="" name="search" tabindex="0" value="" aria-required="true"
-                                            required="">
-                                    </fieldset>
-                                    <button type="submit" class="link text-white">
-                                        <i class="icon icon-search"></i>
-                                    </button>
-                                </form>
+                </div>
+
+                <!-- Под-блок About the Project -->
+                <div class="row my-5 pt-3">
+                    <div class="col-12 col-lg-9">
+                        <h4 class="fw-normal" style="font-size: clamp(22px, 2.5vw, 28px); color: rgba(255,255,255,0.85); letter-spacing: 0.5px; margin-bottom: 20px;">About the Project</h4>
+                        <p class="text-white-64 mb-4 fw-light" style="line-height: 1.7; font-size: 16px; font-weight: 200;">
+                            My collaboration with Somplo extended beyond crafting UI/UX animations and promotional content for their core platform. I also designed and developed interactive Rich Media display ads for their global roster of clients, including Giorgio Armani, Nestle, Mazda, Lottusse, Toyota, Ralph Lauren, and L'Oréal.
+                        </p>
+                        <p class="text-white-64 mb-0 fw-light" style="line-height: 1.7; font-size: 16px; font-weight: 200;">
+                            Each ad was precision-crafted to mirror the client's brand identity and leverage Somplo's proprietary interactive formats — from 3D cube rotations and parallax effects to scratch overlays and multi-product carousels.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================================================= -->
+            <!-- БЛОК 2: MY ROLE & WORKFLOW -->
+            <!-- ================================================================= -->
+            <div class="mil-up mb-5 pb-5">
+                <!-- БЕЗКРАЙНЯЯ ПОДЛОЖКА -->
+                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255,255,255,0.03); padding: 48px 0;">
+                    <div class="container">
+                        <div class="mb-3">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">02 / WORKFLOW</span>
+                        </div>
+                        <div class="row justify-content-between align-items-start">
+                            <div class="col-lg-5 mb-3 mb-lg-0">
+                                <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">MY ROLE & APPROACH</h2>
                             </div>
-                            <div class="sidebar-item effectFade fadeUp no-div">
-                                <h5 class="sidebar-title">
-                                    Recent posts
-                                </h5>
-                                <div class="list-relatest-post">
-                                    <div class="relatest-post-item">
-                                        <div class="image">
-                                            <img loading="lazy" width="80" height="80" src="assets/images/blog/blog-1.jpg" alt="Recenter">
-                                        </div>
-                                        <div class="content">
-                                            <h6 class="title text-body-1">
-                                                <a href="blog-single.html" class="link">
-                                                    Helve Tica Website Redesign
-                                                </a>
-                                            </h6>
-                                            <p class="time text-body-3 text-white-64">August 23, 2024</p>
-                                        </div>
-                                    </div>
-                                    <div class="relatest-post-item">
-                                        <div class="image">
-                                            <img loading="lazy" width="80" height="80" src="assets/images/blog/blog-2.jpg" alt="Recenter">
-                                        </div>
-                                        <div class="content">
-                                            <h6 class="title text-body-1">
-                                                <a href="blog-single.html" class="link">
-                                                    X-direct Mobile App
-                                                </a>
-                                            </h6>
-                                            <p class="time text-body-3 text-white-64">August 23, 2024</p>
-                                        </div>
-                                    </div>
-                                    <div class="relatest-post-item">
-                                        <div class="image">
-                                            <img loading="lazy" width="80" height="80" src="assets/images/blog/blog-3.jpg" alt="Recenter">
-                                        </div>
-                                        <div class="content">
-                                            <h6 class="title text-body-1">
-                                                <a href="blog-single.html" class="link">
-                                                    UIXOR Agency Website
-                                                </a>
-                                            </h6>
-                                            <p class="time text-body-3 text-white-64">August 23, 2024</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="sidebar-item effectFade fadeUp no-div">
-                                <h5 class="sidebar-title">
-                                    Category
-                                </h5>
-                                <div class="sidebar-categories">
-                                    <div class="item">
-                                        <a href="#" class="text-body-1 link">Developer</a>
-                                        <span class="text-body-3 text-white-64">(4)</span>
-                                    </div>
-                                    <div class="item">
-                                        <a href="#" class="text-body-1 link">Programmer</a>
-                                        <span class="text-body-3 text-white-64">(2)</span>
-                                    </div>
-                                    <div class="item">
-                                        <a href="#" class="text-body-1 link">Web Design</a>
-                                        <span class="text-body-3 text-white-64">(1)</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="sidebar-item effectFade fadeUp no-div">
-                                <h5 class="sidebar-title">
-                                    Popular tag
-                                </h5>
-                                <ul class="list-tags">
-                                    <li><a class="text-body-2" href="#">Branding</a></li>
-                                    <li><a class="text-body-2" href="#">Art Direction</a></li>
-                                    <li><a class="text-body-2" href="#">UI Design</a></li>
-                                    <li><a class="text-body-2" href="#">Webflow Development</a></li>
-                                </ul>
+                            <div class="col-lg-6">
+                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 20px;">
+                                    By merging my core design and animation skills with Somplo's robust platform capabilities, I built premium, high-engagement ad experiences tailored to each brand's unique identity — from creative concept and motion design to final interactive build and QA.
+                                </p>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Три колонки роли -->
+                <div class="row g-4 mt-4">
+                    <div class="col-12 col-md-4">
+                        <div style="padding: 32px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; height: 100%;">
+                            <p class="text-uppercase fw-medium mb-3" style="font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.4);">Design</p>
+                            <p class="text-white-64 mb-0" style="font-size: 15px; line-height: 1.65; font-weight: 200;">Visual concept, brand adaptation, composition, colour grading, and motion storyboards for each format.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div style="padding: 32px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; height: 100%;">
+                            <p class="text-uppercase fw-medium mb-3" style="font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.4);">Animation</p>
+                            <p class="text-white-64 mb-0" style="font-size: 15px; line-height: 1.65; font-weight: 200;">Frame-by-frame motion assets, CSS & JS animations, timeline coordination across multiple banner sizes.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div style="padding: 32px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; height: 100%;">
+                            <p class="text-uppercase fw-medium mb-3" style="font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.4);">Interactive Build</p>
+                            <p class="text-white-64 mb-0" style="font-size: 15px; line-height: 1.65; font-weight: 200;">Rich Media ad production within the Somplo platform — RichBox, VideoBox, Multisize, and cross-format delivery.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================================================= -->
+            <!-- БЛОК 3: THE SHOWCASE -->
+            <!-- ================================================================= -->
+            <div class="mil-up mb-5 pb-5">
+                <!-- БЕЗКРАЙНЯЯ ПОДЛОЖКА -->
+                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255,255,255,0.03); padding: 48px 0;">
+                    <div class="container">
+                        <div class="mb-3">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">03 / SHOWCASE</span>
+                        </div>
+                        <div class="row justify-content-between align-items-start">
+                            <div class="col-lg-5 mb-3 mb-lg-0">
+                                <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">INTERACTIVE AD DEMOS</h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 20px;">
+                                    A curated selection of interactive campaigns — each preview is a live, clickable demo of the final Rich Media ad as it ran in the wild.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giorgio Armani -->
+                <div class="brand-group mt-5">
+                    <h3 class="brand-title">Giorgio Armani</h3>
+                    <div class="somplo-video-grid">
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/676517942">
+                            <video src="assets/videos/armani-1.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">Play Interactive Demo</span></div>
+                        </div>
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/640281579">
+                            <video src="assets/videos/armani-2.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">Play Interactive Demo</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nestle -->
+                <div class="brand-group">
+                    <h3 class="brand-title">Nestle</h3>
+                    <div class="somplo-video-grid">
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/864490176">
+                            <video src="assets/videos/nestle-1.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">Play Interactive Demo</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mazda -->
+                <div class="brand-group">
+                    <h3 class="brand-title">Mazda</h3>
+                    <div class="somplo-video-grid">
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/605048049">
+                            <video src="assets/videos/mazda-1.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">RichBox Double Cube</span></div>
+                        </div>
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/431615699">
+                            <video src="assets/videos/mazda-2.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">VideoBox 360 Product</span></div>
+                        </div>
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/619818018">
+                            <video src="assets/videos/mazda-3.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">RichBox 5050</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lottusse -->
+                <div class="brand-group">
+                    <h3 class="brand-title">Lottusse</h3>
+                    <div class="somplo-video-grid">
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/660652421">
+                            <video src="assets/videos/lottusse-1.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">Motion Transitions</span></div>
+                        </div>
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/988475337">
+                            <video src="assets/videos/lottusse-2.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">RichBox Double Cube</span></div>
+                        </div>
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/718666854">
+                            <video src="assets/videos/lottusse-3.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">VideoBox Carousel</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toyota -->
+                <div class="brand-group">
+                    <h3 class="brand-title">Toyota</h3>
+                    <div class="somplo-video-grid">
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/886992250">
+                            <video src="assets/videos/toyota-1.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">RichBox Cube Parallax</span></div>
+                        </div>
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/636769703">
+                            <video src="assets/videos/toyota-2.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">RichBox Flip Parallax</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ralph Lauren -->
+                <div class="brand-group">
+                    <h3 class="brand-title">Ralph Lauren</h3>
+                    <div class="somplo-video-grid">
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/704150469">
+                            <video src="assets/videos/ralph-1.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">Multisize Double Cube</span></div>
+                        </div>
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/949034728">
+                            <video src="assets/videos/ralph-2.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">Multisize Cube Flow</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- L'Oréal -->
+                <div class="brand-group">
+                    <h3 class="brand-title">L'Oréal</h3>
+                    <div class="somplo-video-grid">
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/779331275">
+                            <video src="assets/videos/loreal-1.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">Elseve Scratch Overlay</span></div>
+                        </div>
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/180994816">
+                            <video src="assets/videos/loreal-2.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">Garnier Carousel Set</span></div>
+                        </div>
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/955271171">
+                            <video src="assets/videos/loreal-3.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">Garnier Scratch</span></div>
+                        </div>
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/970292938">
+                            <video src="assets/videos/loreal-4.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">Elseve Flip Parallax</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maybelline & Others -->
+                <div class="brand-group">
+                    <h3 class="brand-title">Maybelline &amp; Others</h3>
+                    <div class="somplo-video-grid">
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/764278779">
+                            <video src="assets/videos/maybelline-1.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">VideoBox Depth Card</span></div>
+                        </div>
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/269352865">
+                            <video src="assets/videos/maybelline-2.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">VideoBox Pages</span></div>
+                        </div>
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/184907748">
+                            <video src="assets/videos/other-1.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">Play Interactive Demo</span></div>
+                        </div>
+                        <div class="demo-card" data-iframe-src="https://demo.somplo.com/demo/926137894">
+                            <video src="assets/videos/other-2.mp4" autoplay loop muted playsinline></video>
+                            <div class="hover-overlay"><span class="hover-text">Play Interactive Demo</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================================================= -->
+            <!-- БЛОК 4: АТРИБУТЫ ПРОЕКТА -->
+            <!-- ================================================================= -->
+            <div class="mil-up mb-5 pt-4">
+                <div style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255,255,255,0.03); padding: 52px 0;">
+                    <div class="container">
+
+                        <!-- Label -->
+                        <div class="mb-4">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">04 / PROJECT INFO</span>
+                        </div>
+
+                        <div class="row g-5">
+
+                            <!-- Client -->
+                            <div class="col-12 col-md-4">
+                                <p class="text-uppercase fw-medium mb-3" style="font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.4);">Client</p>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="projects.html?client=somplo" class="project-attr-tag">Somplo</a>
+                                </div>
+                            </div>
+
+                            <!-- Services -->
+                            <div class="col-12 col-md-4">
+                                <p class="text-uppercase fw-medium mb-3" style="font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.4);">Services</p>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="projects.html?service=rich-media-ads" class="project-attr-tag">Rich Media Ads</a>
+                                    <a href="projects.html?service=banners" class="project-attr-tag">Banners</a>
+                                    <a href="projects.html?service=web-animation" class="project-attr-tag">Web Animation</a>
+                                </div>
+                            </div>
+
+                            <!-- Design Categories -->
+                            <div class="col-12 col-md-4">
+                                <p class="text-uppercase fw-medium mb-3" style="font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.4);">Design Categories</p>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="projects.html?category=digital" class="project-attr-tag">Digital</a>
+                                    <a href="projects.html?category=motion" class="project-attr-tag">Motion</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Навигация между проектами -->
+            <div class="mil-works-nav mil-up pt-5" style="border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between;">
+                <a href="#" class="link text-white d-flex align-items-center gap-2">
+                    <i class="icon icon-arrow-long-left"></i> PREV PROJECT
+                </a>
+                <a href="projects.html" class="link text-white-64">ALL PROJECTS</a>
+                <a href="#" class="link text-white d-flex align-items-center gap-2">
+                    NEXT PROJECT <i class="icon icon-arrow-long-right"></i>
+                </a>
+            </div>
+
+        </section>
+
+        <!-- CALL TO ACTION -->
+        <section class="flat-spacing" style="border-top: 1px solid rgba(255,255,255,0.05); padding-bottom: 120px; margin-top: 80px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <span class="mil-suptitle mil-suptitle-right mil-up text-white-64" style="font-size: 16px; line-height: 1.6;">
+                            Looking to make your mark? Turn your next project into an exceptional digital success story.
+                        </span>
+                    </div>
+                </div>
+                <div class="text-center" style="margin-top: 80px;">
+                    <h2 class="mil-up text-white mb-5" style="font-size: clamp(36px, 5vw, 68px); line-height: 1.2;">
+                        Got a project <span class="fw-light text-white-64">in mind?</span> <br>
+                        Let's make it a reality <span class="fw-light text-white-64">together</span>
+                    </h2>
+                    <div class="mil-up" style="margin-top: 50px;">
+                        <a href="https://okdesign-studio.github.io/okdesign.cc/index.html#contactScroll" class="tf-btn">
+                            CONTACT US
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- /Blog With Sidebar -->
+        <!-- / CALL TO ACTION -->
+
         <!-- Footer -->
         <footer class="tf-footer">
             <div class="container">
@@ -539,189 +555,63 @@
             </div>
             <div class="footer-inner">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <p class="title text-has-dot text-caption fw-medium mb-md-0">
-                                <span class="br-dot"></span>
-                                DESIGNING FOR CLIENTS WORLDWIDE
+                    <div class="row align-items-start">
+                        <div class="col-md-4 mb-5 mb-md-0">
+                            <p class="title text-has-dot text-caption fw-medium mb-0" style="line-height: 1.6; display: flex; align-items: flex-start; gap: 8px;">
+                                <span class="br-dot" style="margin-top: 5px; flex-shrink: 0;"></span>
+                                <span>© 2026 OK DESIGN.<span class="d-none d-md-inline"><br></span><span class="d-md-none"> </span>ALL RIGHTS RESERVED.</span>
                             </p>
                         </div>
                         <div class="col-6 col-sm-2 col-md-1">
-                            <p class="footer-heading text-caption fw-medium text-white-64">
-                                SITEMAP
-                            </p>
+                            <p class="footer-heading text-caption fw-medium text-white-64 mb-3">SITEMAP</p>
                         </div>
                         <div class="col-6 col-sm-4 col-md-3">
                             <ul class="footer-menu-list mb-sm-0">
-                                <li><a href="index.html" class="link letter-space--2 h5">About</a></li>
-                                <li><a href="index.html" class="link letter-space--2 h5">Contact</a></li>
-                                <li><a href="index.html" class="link letter-space--2 h5">Service</a></li>
-                                <li><a href="blog-standard.html" class="link letter-space--2 h5">Blog</a></li>
+                                <li><a href="index.html#serviceScroll" class="link letter-space--2 h5">Services</a></li>
+                                <li><a href="projects.html" class="link letter-space--2 h5">Projects</a></li>
+                                <li><a href="index.html#aboutScroll" class="link letter-space--2 h5">About</a></li>
+                                <li><a href="index.html#contactScroll" class="link letter-space--2 h5">Contact</a></li>
                             </ul>
                         </div>
                         <div class="col-6 col-sm-2 col-md-1">
-                            <p class="footer-heading text-caption fw-medium text-white-64">
-                                SOCIALS
-                            </p>
+                            <p class="footer-heading text-caption fw-medium text-white-64 mb-3">SOCIALS</p>
                         </div>
                         <div class="col-6 col-sm-4 col-md-3">
                             <ul class="footer-menu-list mb-0">
-                                <li><a href="#" class="link letter-space--2 h5">Twitter (X)</a></li>
-                                <li><a href="#" class="link letter-space--2 h5">Dribbble</a></li>
-                                <li><a href="#" class="link letter-space--2 h5">LinkedIn</a></li>
+                                <li><a href="https://www.linkedin.com/company/okdesign-studio" target="_blank" class="link letter-space--2 h5">LinkedIn</a></li>
+                                <li><a href="https://www.behance.net/okdesign-studio" target="_blank" class="link letter-space--2 h5">Behance</a></li>
+                                <li><a href="https://wa.me/okdesign.cc" target="_blank" class="link letter-space--2 h5">WhatsApp</a></li>
                             </ul>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="container">
-                    <div class="img-agency">
-                        <img class="effectFade fadeZoom" loading="lazy" width="1293" height="269" src="assets/images/logo/agency.png" alt="Image">
-                    </div>
-                    <div class="bottom">
-                        <p class="text-nocopy text-caption fw-medium letter-space--1">
-                            © 2026 OK DESIGN. ALL RIGHTS RESERVED.
-                        </p>
-
-                        <a href="#" class="action-go-top tf-link-icon link text-caption fw-medium letter-space--1">
-                            BACK TO TOP
-                            <i class="icon icon-arrow-long-right"></i>
-                        </a>
                     </div>
                 </div>
             </div>
         </footer>
         <!-- /Footer -->
     </main>
+
     <!-- Mobile Menu -->
-    <div class="offcanvas offcanvas-bottom offcanvas-menu" id="mobileMenu">
+    <div class="offcanvas-menu">
         <div class="offcanvas-content">
             <div class="container h-100">
                 <div class="offcanvas-content_wrapin">
                     <div class="canvas_head">
-                        <a href="index.html" class="logo-site">
-                            <i class="icon icon-davies-logo"></i>
-                        </a>
-                        <a href="#" data-bs-dismiss="offcanvas" class="btn-mobile-menu text-caption link">
-                            <i class="icon icon-close"></i>
-                            CLOSE
-                        </a>
+                        <a href="index.html" class="logo-site"><img src="assets/images/logo/logo.svg" alt="OK Design" style="height: 40px; width: auto;"></a>
+                        <div class="btn-mobile-menu close-mb-menu text-caption link"><i class="icon icon-close"></i> CLOSE</div>
                     </div>
                     <div class="canvas_center">
                         <ul class="nav-ul-mb">
-                            <li>
-                                <div class="item">
-                                    <a href="index.html" class="mb-menu-link text-display-1">
-                                        <span class="text">Home</span>
-                                        <div class="infiniteSlide_text_main">
-                                            <div class="infiniteSlide infiniteSlide_text" data-clone="5">
-                                                <p class="text-body-2 letter-space--1">
-                                                    <span class="text-primary">//</span> View Home
-                                                </p>
-                                                <p class="text-body-2 letter-space--1">
-                                                    <span class="text-primary">//</span> View Home
-                                                </p>
-                                                <p class="text-body-2 letter-space--1">
-                                                    <span class="text-primary">//</span> View Home
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item">
-                                    <div class="has-sub-menu">
-                                        <a href="#dropdown-menu-1" class="mb-menu-link text-display-1 collapsed" data-bs-toggle="collapse"
-                                            aria-expanded="false" aria-controls="dropdown-menu-1">
-                                            <span class="text">Blog</span>
-                                            <div class="infiniteSlide_text_main">
-                                                <div class="infiniteSlide infiniteSlide_text" data-clone="5">
-                                                    <p class="text-body-2 letter-space--1">
-                                                        <span class="text-primary">//</span> View Blog
-                                                    </p>
-                                                    <p class="text-body-2 letter-space--1">
-                                                        <span class="text-primary">//</span> View Blog
-                                                    </p>
-                                                    <p class="text-body-2 letter-space--1">
-                                                        <span class="text-primary">//</span> View Blog
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                        <div id="dropdown-menu-1" class="collapse">
-                                            <ul class="sub-nav-menu">
-                                                <li><a href="blog-standard.html" class="sub-nav-link">Blog Standard</a></li>
-                                                <li><a href="blog-two-columns.html" class="sub-nav-link">Blog Grid 2</a></li>
-                                                <li><a href="blog-three-columns.html" class="sub-nav-link">Blog Grid 3</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item">
-                                    <a href="index.html" class="mb-menu-link text-display-1">
-                                        <span class="text">About</span>
-                                        <div class="infiniteSlide_text_main">
-                                            <div class="infiniteSlide infiniteSlide_text" data-clone="5">
-                                                <p class="text-body-2 letter-space--1">
-                                                    <span class="text-primary">//</span> View About
-                                                </p>
-                                                <p class="text-body-2 letter-space--1">
-                                                    <span class="text-primary">//</span> View About
-                                                </p>
-                                                <p class="text-body-2 letter-space--1">
-                                                    <span class="text-primary">//</span> View About
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item">
-                                    <a href="index.html" class="mb-menu-link text-display-1">
-                                        <span class="text">Contact</span>
-                                        <div class="infiniteSlide_text_main">
-                                            <div class="infiniteSlide infiniteSlide_text" data-clone="5">
-                                                <p class="text-body-2 letter-space--1">
-                                                    <span class="text-primary">//</span> View Contact
-                                                </p>
-                                                <p class="text-body-2 letter-space--1">
-                                                    <span class="text-primary">//</span> View Contact
-                                                </p>
-                                                <p class="text-body-2 letter-space--1">
-                                                    <span class="text-primary">//</span> View Contact
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
+                            <li><div class="item close-mb-menu"><a href="projects.html" class="mb-menu-link text-display-1"><span class="text">Projects</span></a></div></li>
+                            <li><div class="item close-mb-menu"><a href="index.html#aboutScroll" class="mb-menu-link text-display-1"><span class="text">About</span></a></div></li>
+                            <li><div class="item close-mb-menu"><a href="index.html#serviceScroll" class="mb-menu-link text-display-1"><span class="text">Services</span></a></div></li>
+                            <li><div class="item close-mb-menu"><a href="index.html#contactScroll" class="mb-menu-link text-display-1"><span class="text">Contact</span></a></div></li>
                         </ul>
                     </div>
                     <div class="canvas_foot">
-                        <div class="left">
-                            <a href="mailto:davies@gmail.com" class="link text-caption">DAVIES@GMAIL.COM</a>
-                            <p class="text-caption">
-                                CUP <span class="clock"></span>
-                            </p>
-                        </div>
+                        <div class="left"><a href="mailto:hello@okdesign.cc" class="link text-caption">HELLO@OKDESIGN.CC</a></div>
                         <div class="right">
-                            <a href="#" class="tf-link-icon text-caption link">
-                                <i class="icon icon-arrow-top-right"></i>
-                                TWITTER (X)
-                            </a>
-                            <a href="#" class="tf-link-icon text-caption link">
-                                <i class="icon icon-arrow-top-right"></i>
-                                DRIBBBLE
-                            </a>
-                            <a href="#" class="tf-link-icon text-caption link">
-                                <i class="icon icon-arrow-top-right"></i>
-                                LINKEDIN
-                            </a>
+                            <a href="https://www.linkedin.com/company/okdesign-studio" target="_blank" class="tf-link-icon text-caption link"><i class="icon icon-arrow-top-right"></i> LINKEDIN</a>
+                            <a href="https://www.behance.net/okdesign-studio" target="_blank" class="tf-link-icon text-caption link"><i class="icon icon-arrow-top-right"></i> BEHANCE</a>
                         </div>
                     </div>
                 </div>
@@ -730,66 +620,51 @@
     </div>
     <!-- /Mobile Menu -->
 
-    <!-- Модальное окно Somplo (Вне основного контента, чтобы z-index работал корректно) -->
-    <div id="somplo-modal" class="custom-modal">
-        <button class="close-modal"><i class="icon icon-close"></i></button>
-        <div class="modal-content-somplo" id="iframe-container">
-            <!-- Сюда вставляется iframe -->
+    <!-- Скрипты -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- Модальное окно для интерактивных демо -->
+    <div class="custom-modal" id="somplo-modal">
+        <div class="modal-content-somplo">
+            <button class="close-modal" id="close-modal-btn" aria-label="Close">&times;</button>
+            <iframe id="somplo-iframe" src="" allowfullscreen allow="autoplay"></iframe>
         </div>
     </div>
 
-    <!-- Javascript -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/swiper-bundle.min.js"></script>
-    <script src="assets/js/carousel.js"></script>
-
-    <script src="assets/js/infinityslide.js"></script>
-    <script src="assets/js/ScrollSmooth.js"></script>
-    <script src="assets/js/gsap.min.js"></script>
-    <script src="assets/js/gsapAnimation.js"></script>
-    <script src="assets/js/SplitText.min.js"></script>
-    <script src="assets/js/ScrollTrigger.min.js"></script>
-    <script src="assets/js/odometer.min.js"></script>
-    <script src="assets/js/jquery.nice-select.min.js"></script>
-    <script src="assets/js/main.js"></script>
-
-    <!-- Скрипт модалки Somplo -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.demo-card');
-            const modal = document.getElementById('somplo-modal');
-            const iframeContainer = document.getElementById('iframe-container');
-            const closeBtn = document.querySelector('.close-modal');
+        $(document).ready(function () {
+            const $modal = $('#somplo-modal');
+            const $iframe = $('#somplo-iframe');
 
-            // Открытие
-            cards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const iframeSrc = card.getAttribute('data-iframe-src');
-                    iframeContainer.innerHTML = `<iframe src="${iframeSrc}" allow="autoplay; fullscreen"></iframe>`;
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden'; 
-                });
+            $('.demo-card').on('click', function () {
+                const src = $(this).data('iframe-src');
+                if (src) {
+                    $iframe.attr('src', src);
+                    $modal.addClass('active');
+                    $('body').css('overflow', 'hidden');
+                }
             });
 
-            // Закрытие
-            const closeModal = () => {
-                modal.classList.remove('active');
-                iframeContainer.innerHTML = ''; 
-                document.body.style.overflow = ''; 
-            };
-
-            if (closeBtn) closeBtn.addEventListener('click', closeModal);
-            
-            if (modal) {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        closeModal();
-                    }
-                });
+            function closeModal() {
+                $modal.removeClass('active');
+                $iframe.attr('src', '');
+                $('body').css('overflow', '');
             }
+
+            $('#close-modal-btn').on('click', closeModal);
+
+            $modal.on('click', function (e) {
+                if ($(e.target).is($modal)) closeModal();
+            });
+
+            $(document).on('keydown', function (e) {
+                if (e.key === 'Escape') closeModal();
+            });
         });
     </script>
 </body>
-
 </html>
