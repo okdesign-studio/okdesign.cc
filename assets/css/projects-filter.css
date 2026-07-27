@@ -472,3 +472,65 @@
         justify-content: flex-end;
     }
 }
+
+/* ============================================================
+   PROJECT CARD HOVER ANIMATIONS
+   ============================================================ */
+
+/* Картинка — overflow hidden для clip при scale */
+#projectsGridContainer .article-blog .blog-image.img-style {
+    overflow: hidden;
+    display: block;
+}
+
+/* Плавный zoom картинки — тот же easing что на index.html */
+#projectsGridContainer .article-blog .blog-image.img-style > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 1.5s cubic-bezier(0, 0, 0.44, 1.18),
+                opacity 0.5s ease;
+}
+
+#projectsGridContainer .article-blog:hover .blog-image.img-style > img {
+    transform: scale(1.07);
+}
+
+/* Рамка карточки при ховере — едва заметная белая подсветка */
+#projectsGridContainer .article-blog {
+    transition: border-color 0.35s ease;
+}
+
+#projectsGridContainer .article-blog:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+/* Подпись (клиент / год) — чуть ярче */
+#projectsGridContainer .article-blog .infor_sub {
+    transition: color 0.3s ease;
+}
+
+#projectsGridContainer .article-blog:hover .infor_sub {
+    color: rgba(255, 255, 255, 0.82) !important;
+}
+
+/* Заголовок проекта — полная яркость */
+#projectsGridContainer .article-blog .infor_name {
+    transition: color 0.3s ease;
+}
+
+#projectsGridContainer .article-blog:hover .infor_name {
+    color: #ffffff;
+}
+
+/* Кнопка-стрелка → подсветка рамки и иконки в primary */
+#projectsGridContainer .article-blog .btn-action {
+    transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease, transform 0.35s ease;
+}
+
+#projectsGridContainer .article-blog:hover .btn-action {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: rotate(0deg) scale(1.08);
+}
