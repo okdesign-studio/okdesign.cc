@@ -285,7 +285,7 @@
                 <!-- Blurred Background Fill -->
                 <iframe
                     src="https://player.vimeo.com/video/1046279403?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
-                    style="position: absolute; top: 50%; left: 50%; width: max(100vw, 142.22vh); height: max(56.25vw, 80vh); transform: translate(-50%, -50%) scale(1.15); border: none; pointer-events: none; filter: blur(45px) opacity(0.5); z-index: 0;"
+                    style="position: absolute; top: 50%; left: 50%; width: max(100vw, 142.22vh); height: max(56.25vw, 80vh); transform: translate(-50%, -50%) scale(1.15); border: none; pointer-events: none; filter: blur(45px) opacity(0.75); z-index: 0;"
                     allow="autoplay; fullscreen"
                     allowfullscreen>
                 </iframe>
@@ -579,7 +579,7 @@
                         </div>
                         <div class="row justify-content-between align-items-start">
                             <div class="col-lg-5 mb-3 mb-lg-0">
-                                <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">ICONS IN CONTEXT</h2>
+                                <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">PLATFORM INTEGRATION</h2>
                             </div>
                             <div class="col-lg-6">
                                 <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 20px;">
@@ -645,7 +645,7 @@
                             <div class="col-6">
                                 <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 20px 16px; text-align: center;">
                                     <div style="font-size: 13px; font-weight: 600; color: #00AEEF; letter-spacing: 0.1em; margin-bottom: 8px;">SVG</div>
-                                    <div style="font-size: 13px; color: rgba(255,255,255,0.5);">Static UI, fully scalable, CSS-styleable</div>
+                                    <div style="font-size: 13px; color: rgba(255,255,255,0.5);">Fully scalable, CSS-styleable</div>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -665,6 +665,33 @@
                 </div>
             </div>
 
+            </div>
+
+            <!-- ================================================================= -->
+            <!-- BLOCK 05: IMPACT -->
+            <!-- ================================================================= -->
+            <div class="mil-up mb-5 pb-5">
+                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
+                    <div class="container">
+                        <div class="mb-3">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">05 / IMPACT</span>
+                        </div>
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-lg-5 mb-4 mb-lg-0">
+                                <div class="d-flex align-items-baseline gap-2">
+                                    <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(60px, 8vw, 120px); font-weight: 700; line-height: 1; letter-spacing: -2px;">
+                                        <span class="impact-counter">0</span><span style="color: #00AEEF;">%</span>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 20px;">
+                                    By clearly and intuitively representing the functionality of each interactive component, the animated icons enhanced the overall UX and helped <span class="text-white fw-medium">reduce ad creation time on the CMP platform by 40%</span>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- ================================================================= -->
@@ -892,6 +919,20 @@
                 colorImg.src = originalSrc + '?t=' + new Date().getTime();
             });
         });
+        // --- Impact Counter Animation ---
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.to(".impact-counter", {
+                scrollTrigger: {
+                    trigger: ".impact-counter",
+                    start: "top 85%",
+                },
+                innerHTML: 40,
+                duration: 2.5,
+                snap: { innerHTML: 1 },
+                ease: "power3.out"
+            });
+        }
+
     })();
     </script>
 
