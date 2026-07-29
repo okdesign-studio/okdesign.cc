@@ -47,46 +47,47 @@
             justify-content: center;
             padding: 20px 12px 14px;
             cursor: pointer;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
             position: relative;
             overflow: hidden;
             min-height: 140px;
+            user-select: none;
         }
         .somplo-icon-card:hover {
             border-color: #00AEEF;
-            box-shadow: 0 4px 24px rgba(0, 174, 239, 0.12);
+            box-shadow: 0 4px 28px rgba(0, 174, 239, 0.14);
         }
 
-        /* Lottie wrapper — grayscale by default, color on hover */
-        .somplo-icon-lottie-wrap {
-            width: 80px;
-            height: 80px;
+        /* ── icon wrapper: always grayscale, transitions to color on hover ── */
+        .somplo-icon-media {
+            width: 90px;
+            height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            filter: grayscale(1) brightness(0.7);
-            transition: filter 0.3s ease;
+            /* default: gray + frozen (lottie-player handles pause) */
+            filter: grayscale(1) brightness(0.72);
+            transition: filter 0.4s ease;
+            position: relative;
         }
-        .somplo-icon-card:hover .somplo-icon-lottie-wrap {
+        .somplo-icon-card:hover .somplo-icon-media {
             filter: grayscale(0) brightness(1);
         }
 
-        /* SVG-icon fallback — same grayscale logic */
-        .somplo-icon-svg-wrap {
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+        /* lottie-player sizing */
+        .somplo-icon-media lottie-player {
+            width: 90px;
+            height: 90px;
+            display: block;
         }
-        .somplo-icon-svg-wrap svg {
-            transition: color 0.3s ease, stroke 0.3s ease;
-            color: #b0b0b0;
-        }
-        .somplo-icon-card:hover .somplo-icon-svg-wrap svg {
-            color: #00AEEF;
+
+        /* animated SVG as img */
+        .somplo-icon-media img.somplo-svg-anim {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            display: block;
         }
 
         .somplo-icon-label {
@@ -97,21 +98,14 @@
             margin-top: 10px;
             line-height: 1.3;
             letter-spacing: 0.02em;
-            transition: color 0.3s ease;
+            transition: color 0.4s ease;
+            font-family: inherit;
         }
         .somplo-icon-card:hover .somplo-icon-label {
             color: #00AEEF;
         }
 
-        /* Lottie player sizing */
-        .somplo-icon-lottie-wrap lottie-player {
-            width: 80px;
-            height: 80px;
-        }
-
-        /* ========================================================
-           ICON GRID SECTION — dark container on white
-           ======================================================== */
+        /* ── Icon grid section — light container ── */
         .icon-grid-section {
             background: #f5f6f7;
             border-radius: 16px;
@@ -122,14 +116,7 @@
             .icon-grid-section { padding: 24px 16px; }
         }
 
-        /* ========================================================
-           SOMPLO BRAND COLOR
-           ======================================================== */
-        .somplo-blue { color: #00AEEF; }
-
-        /* ========================================================
-           VIMEO PROMO VIDEO
-           ======================================================== */
+        /* ── Vimeo promo video ── */
         .promo-video-wrap {
             position: relative;
             padding-bottom: 56.25%;
@@ -146,9 +133,7 @@
             border: 0;
         }
 
-        /* ========================================================
-           KEY CONTRIBUTIONS LIST
-           ======================================================== */
+        /* ── Key Contributions list ── */
         .contrib-list {
             list-style: none;
             padding: 0;
@@ -175,9 +160,7 @@
             margin-top: 8px;
         }
 
-        /* ========================================================
-           ACHIEVEMENTS GRID
-           ======================================================== */
+        /* ── Achievement cards ── */
         .achievement-card {
             background: rgba(0, 174, 239, 0.06);
             border: 1px solid rgba(0, 174, 239, 0.2);
@@ -281,7 +264,7 @@
         </div>
 
         <!-- ============================================================ -->
-        <!-- HERO VIDEO — autoplay, loop, no UI (background=1 removes controls) -->
+        <!-- HERO VIDEO — autoplay, loop, no UI -->
         <!-- ============================================================ -->
         <div class="mil-image-frame mil-fw mil-up position-relative" style="width: 100%; height: 80vh; margin-bottom: 80px;">
             <div style="width: 100%; height: 100%; background: #080808; position: relative; overflow: hidden;">
@@ -309,7 +292,7 @@
         <section class="container" id="project-content">
 
             <!-- ================================================================= -->
-            <!-- BLOCK 01: THE CHALLENGE & ABOUT THE PROJECT -->
+            <!-- BLOCK 01: THE CHALLENGE -->
             <!-- ================================================================= -->
             <div id="challenge" class="mil-up mb-5">
                 <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
@@ -330,7 +313,7 @@
                     </div>
                 </div>
 
-                <!-- About the brand -->
+                <!-- About Somplo -->
                 <div class="row my-5 pt-3">
                     <div class="col-12 col-lg-9">
                         <h4 class="fw-normal" style="font-size: clamp(22px, 2.5vw, 28px); color: rgba(255,255,255,0.85); letter-spacing: 0.5px; margin-bottom: 20px;">About Somplo</h4>
@@ -342,7 +325,7 @@
             </div>
 
             <!-- ================================================================= -->
-            <!-- BLOCK 02: ANIMATED ICON GRID -->
+            <!-- BLOCK 02: ANIMATED ICON GRID — 5 × 4 -->
             <!-- ================================================================= -->
             <div class="mil-up mb-5 pb-5">
                 <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
@@ -356,235 +339,286 @@
                             </div>
                             <div class="col-lg-6">
                                 <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 20px;">
-                                    A full set of animated icons covering every interactive component on the Somplo platform. Each icon is a looping micro-animation that demonstrates the component's behavior — hover over any card to see it in full color.
+                                    A complete set of 20 animated icons covering every interactive component on the Somplo platform. Each icon is a looping micro-animation that demonstrates the component's behavior — hover over any card to see it in action.
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Icon Grid on light background -->
+                <!-- ─── ICON GRID on light background ─── -->
                 <div class="icon-grid-section">
                     <div class="somplo-icon-grid" id="somplo-icon-grid">
 
-                        <!-- LOTTIE ICONS (hosted on lottie.host) -->
-                        <!-- Card 1: 50:50 / Image Swipe -->
-                        <div class="somplo-icon-card" data-lottie="https://lottie.host/3fd4bd0a-b6f3-48cb-9191-492eff3b831c/mrl8qLE5uU.lottie">
-                            <div class="somplo-icon-lottie-wrap">
+                        <!--
+                        =====================================================
+                        ROW 1
+                        =====================================================
+                        -->
+
+                        <!-- 01 Shape Component (.lottie) -->
+                        <div class="somplo-icon-card" data-type="lottie">
+                            <div class="somplo-icon-media">
                                 <lottie-player
-                                    src="https://lottie.host/3fd4bd0a-b6f3-48cb-9191-492eff3b831c/mrl8qLE5uU.lottie"
+                                    src="https://lottie.host/32d851d8-c6d3-4250-85b3-3ae4ef60401d/47XVTYWqxc.lottie"
                                     background="transparent"
                                     speed="1"
-                                    loop
-                                    autoplay>
+                                    loop>
                                 </lottie-player>
                             </div>
-                            <div class="somplo-icon-label">50:50 Video</div>
+                            <div class="somplo-icon-label">Shape</div>
                         </div>
 
-                        <!-- Card 2: Zoom -->
-                        <div class="somplo-icon-card" data-lottie="https://lottie.host/04502b8d-c472-4d1c-90bd-6f2dad1e483e/W1K7zqfJul.lottie">
-                            <div class="somplo-icon-lottie-wrap">
+                        <!-- 02 HTML Component (.lottie) -->
+                        <div class="somplo-icon-card" data-type="lottie">
+                            <div class="somplo-icon-media">
                                 <lottie-player
-                                    src="https://lottie.host/04502b8d-c472-4d1c-90bd-6f2dad1e483e/W1K7zqfJul.lottie"
+                                    src="https://lottie.host/eda5bf03-c6bd-4174-88ad-34e7a893e549/c0abQZkUSY.lottie"
                                     background="transparent"
                                     speed="1"
-                                    loop
-                                    autoplay>
+                                    loop>
                                 </lottie-player>
                             </div>
-                            <div class="somplo-icon-label">Zoom</div>
+                            <div class="somplo-icon-label">HTML</div>
                         </div>
 
-                        <!-- Card 3: Depth Card -->
-                        <div class="somplo-icon-card" data-lottie="https://lottie.host/f465c291-16c0-4d67-9df0-209c67ea7ce5/vfw2JKBfX5.lottie">
-                            <div class="somplo-icon-lottie-wrap">
+                        <!-- 03 Scratch Component (.lottie) -->
+                        <div class="somplo-icon-card" data-type="lottie">
+                            <div class="somplo-icon-media">
                                 <lottie-player
-                                    src="https://lottie.host/f465c291-16c0-4d67-9df0-209c67ea7ce5/vfw2JKBfX5.lottie"
+                                    src="https://lottie.host/787a7569-3fc4-4b1d-bb13-e72b4b5c099f/zUH19EWFFW.lottie"
                                     background="transparent"
                                     speed="1"
-                                    loop
-                                    autoplay>
+                                    loop>
                                 </lottie-player>
-                            </div>
-                            <div class="somplo-icon-label">Depth Card</div>
-                        </div>
-
-                        <!-- Card 4: 3D Rotate -->
-                        <div class="somplo-icon-card" data-lottie="https://lottie.host/2d5ef538-b4d5-4186-b81a-8e8b909e14d3/MbaQdsWlWB.lottie">
-                            <div class="somplo-icon-lottie-wrap">
-                                <lottie-player
-                                    src="https://lottie.host/2d5ef538-b4d5-4186-b81a-8e8b909e14d3/MbaQdsWlWB.lottie"
-                                    background="transparent"
-                                    speed="1"
-                                    loop
-                                    autoplay>
-                                </lottie-player>
-                            </div>
-                            <div class="somplo-icon-label">3D Rotate</div>
-                        </div>
-
-                        <!-- SVG FALLBACK ICONS — for components not yet uploaded to lottie.host -->
-                        <!-- Card 5: Text New -->
-                        <div class="somplo-icon-card">
-                            <div class="somplo-icon-svg-wrap">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="8" y="8" width="48" height="48" rx="4" stroke-dasharray="4 3"/>
-                                    <text x="14" y="40" font-size="18" font-weight="600" fill="currentColor" stroke="none" font-family="sans-serif">Hi|</text>
-                                </svg>
-                            </div>
-                            <div class="somplo-icon-label">Text New</div>
-                        </div>
-
-                        <!-- Card 6: Flip Parallax -->
-                        <div class="somplo-icon-card">
-                            <div class="somplo-icon-svg-wrap">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="8" y="12" width="20" height="40" rx="3"/>
-                                    <rect x="36" y="12" width="20" height="40" rx="3" stroke-dasharray="3 2"/>
-                                    <line x1="28" y1="22" x2="36" y2="32"/>
-                                    <line x1="36" y1="32" x2="28" y2="42"/>
-                                </svg>
-                            </div>
-                            <div class="somplo-icon-label">Flip Parallax</div>
-                        </div>
-
-                        <!-- Card 7: Clock -->
-                        <div class="somplo-icon-card">
-                            <div class="somplo-icon-svg-wrap">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="10" y="14" width="44" height="36" rx="4"/>
-                                    <text x="14" y="37" font-size="12" font-weight="600" fill="currentColor" stroke="none" font-family="monospace" letter-spacing="1">08:39</text>
-                                </svg>
-                            </div>
-                            <div class="somplo-icon-label">Clock</div>
-                        </div>
-
-                        <!-- Card 8: Counter -->
-                        <div class="somplo-icon-card">
-                            <div class="somplo-icon-svg-wrap">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="8" y="14" width="14" height="36" rx="3"/>
-                                    <rect x="25" y="14" width="14" height="36" rx="3"/>
-                                    <rect x="42" y="14" width="14" height="36" rx="3"/>
-                                    <text x="11" y="38" font-size="14" font-weight="700" fill="currentColor" stroke="none" font-family="monospace">0</text>
-                                    <text x="28" y="38" font-size="14" font-weight="700" fill="currentColor" stroke="none" font-family="monospace">3</text>
-                                    <text x="45" y="38" font-size="14" font-weight="700" fill="currentColor" stroke="none" font-family="monospace">8</text>
-                                </svg>
-                            </div>
-                            <div class="somplo-icon-label">Counter</div>
-                        </div>
-
-                        <!-- Card 9: Memory Game -->
-                        <div class="somplo-icon-card">
-                            <div class="somplo-icon-svg-wrap">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="8" y="8" width="20" height="20" rx="3"/>
-                                    <rect x="36" y="8" width="20" height="20" rx="3"/>
-                                    <rect x="8" y="36" width="20" height="20" rx="3"/>
-                                    <rect x="36" y="36" width="20" height="20" rx="3"/>
-                                    <circle cx="18" cy="18" r="4" fill="currentColor" stroke="none" opacity="0.4"/>
-                                    <circle cx="46" cy="18" r="4" fill="currentColor" stroke="none" opacity="0.4"/>
-                                </svg>
-                            </div>
-                            <div class="somplo-icon-label">Memory Game</div>
-                        </div>
-
-                        <!-- Card 10: Image Hover -->
-                        <div class="somplo-icon-card">
-                            <div class="somplo-icon-svg-wrap">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="8" y="12" width="48" height="36" rx="4"/>
-                                    <path d="M8 36l12-10 10 8 8-6 14 10"/>
-                                    <circle cx="52" cy="22" r="4"/>
-                                    <path d="M34 28 C36 24 40 24 42 28" stroke-width="1.5"/>
-                                </svg>
-                            </div>
-                            <div class="somplo-icon-label">Image Hover</div>
-                        </div>
-
-                        <!-- Card 11: Catch Objects -->
-                        <div class="somplo-icon-card">
-                            <div class="somplo-icon-svg-wrap">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 52 C24 44 40 44 44 52"/>
-                                    <circle cx="32" cy="30" r="6"/>
-                                    <path d="M18 20 l4 4 M46 20 l-4 4"/>
-                                    <path d="M26 12 l2 5 M38 12 l-2 5"/>
-                                    <circle cx="28" cy="18" r="2" fill="currentColor" stroke="none" opacity="0.5"/>
-                                    <circle cx="40" cy="16" r="2" fill="currentColor" stroke="none" opacity="0.5"/>
-                                </svg>
-                            </div>
-                            <div class="somplo-icon-label">Catch Objects</div>
-                        </div>
-
-                        <!-- Card 12: Scratch -->
-                        <div class="somplo-icon-card">
-                            <div class="somplo-icon-svg-wrap">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="8" y="12" width="48" height="40" rx="4"/>
-                                    <path d="M20 32 Q28 22 38 32 Q46 40 52 28" stroke-dasharray="3 3"/>
-                                    <circle cx="44" cy="42" r="8"/>
-                                    <path d="M40 42 l3 3 5-6" stroke-width="2"/>
-                                </svg>
                             </div>
                             <div class="somplo-icon-label">Scratch</div>
                         </div>
 
-                        <!-- Card 13: Parallax -->
-                        <div class="somplo-icon-card">
-                            <div class="somplo-icon-svg-wrap">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="10" y="14" width="44" height="36" rx="4"/>
-                                    <rect x="18" y="20" width="28" height="20" rx="2" stroke-dasharray="3 2"/>
-                                    <path d="M32 40 l0 8 M28 44 l4 4 4-4" stroke-width="1.5"/>
-                                </svg>
+                        <!-- 04 Video Component (.lottie) -->
+                        <div class="somplo-icon-card" data-type="lottie">
+                            <div class="somplo-icon-media">
+                                <lottie-player
+                                    src="https://lottie.host/2d5ef538-b4d5-4186-b81a-8e8b909e14d3/MbaQdsWlWB.lottie"
+                                    background="transparent"
+                                    speed="1"
+                                    loop>
+                                </lottie-player>
                             </div>
-                            <div class="somplo-icon-label">Parallax</div>
+                            <div class="somplo-icon-label">Video</div>
                         </div>
 
-                        <!-- Card 14: Spin the Wheel -->
-                        <div class="somplo-icon-card">
-                            <div class="somplo-icon-svg-wrap">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="32" cy="32" r="22"/>
-                                    <circle cx="32" cy="32" r="4" fill="currentColor" stroke="none" opacity="0.5"/>
-                                    <line x1="32" y1="10" x2="32" y2="28"/>
-                                    <line x1="32" y1="36" x2="32" y2="54"/>
-                                    <line x1="10" y1="32" x2="28" y2="32"/>
-                                    <line x1="36" y1="32" x2="54" y2="32"/>
-                                    <line x1="16" y1="16" x2="28" y2="28"/>
-                                    <line x1="36" y1="36" x2="48" y2="48"/>
-                                </svg>
+                        <!-- 05 Card Swipe Component (.lottie) -->
+                        <div class="somplo-icon-card" data-type="lottie">
+                            <div class="somplo-icon-media">
+                                <lottie-player
+                                    src="https://lottie.host/f465c291-16c0-4d67-9df0-209c67ea7ce5/vfw2JKBfX5.lottie"
+                                    background="transparent"
+                                    speed="1"
+                                    loop>
+                                </lottie-player>
                             </div>
-                            <div class="somplo-icon-label">Spin the Wheel</div>
+                            <div class="somplo-icon-label">Card Swipe</div>
                         </div>
 
-                        <!-- Card 15: Video Banner -->
-                        <div class="somplo-icon-card">
-                            <div class="somplo-icon-svg-wrap">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="8" y="14" width="40" height="28" rx="4"/>
-                                    <polygon points="28,22 28,36 40,29" fill="currentColor" stroke="none" opacity="0.4"/>
-                                    <path d="M48 22 l8-4 0 20 -8-4"/>
-                                    <rect x="8" y="46" width="40" height="6" rx="2"/>
-                                    <rect x="8" y="46" width="22" height="6" rx="2" fill="currentColor" stroke="none" opacity="0.3"/>
-                                </svg>
+                        <!--
+                        =====================================================
+                        ROW 2
+                        =====================================================
+                        -->
+
+                        <!-- 06 50/50 Component (.lottie) -->
+                        <div class="somplo-icon-card" data-type="lottie">
+                            <div class="somplo-icon-media">
+                                <lottie-player
+                                    src="https://lottie.host/04502b8d-c472-4d1c-90bd-6f2dad1e483e/W1K7zqfJul.lottie"
+                                    background="transparent"
+                                    speed="1"
+                                    loop>
+                                </lottie-player>
                             </div>
-                            <div class="somplo-icon-label">Video Banner</div>
+                            <div class="somplo-icon-label">50/50</div>
                         </div>
 
-                    </div><!-- / somplo-icon-grid -->
+                        <!-- 07 3D Object Component (.lottie) -->
+                        <div class="somplo-icon-card" data-type="lottie">
+                            <div class="somplo-icon-media">
+                                <lottie-player
+                                    src="https://lottie.host/3fd4bd0a-b6f3-48cb-9191-492eff3b831c/mrl8qLE5uU.lottie"
+                                    background="transparent"
+                                    speed="1"
+                                    loop>
+                                </lottie-player>
+                            </div>
+                            <div class="somplo-icon-label">3D Object</div>
+                        </div>
+
+                        <!-- 08 Glitch Component (.svg animated) -->
+                        <div class="somplo-icon-card" data-type="svg">
+                            <div class="somplo-icon-media">
+                                <img class="somplo-svg-anim"
+                                    src="https://lottie.host/0cfac887-565d-478a-b062-f472857c3fce/y7KbfxfySp.svg"
+                                    alt="Glitch Component"
+                                    draggable="false">
+                            </div>
+                            <div class="somplo-icon-label">Glitch</div>
+                        </div>
+
+                        <!-- 09 Catch Falling Objects Component (.svg animated) -->
+                        <div class="somplo-icon-card" data-type="svg">
+                            <div class="somplo-icon-media">
+                                <img class="somplo-svg-anim"
+                                    src="https://lottie.host/ceab593e-c8ca-424a-acb4-6dbcd01027d7/eUXJzysiEn.svg"
+                                    alt="Catch Falling Objects Component"
+                                    draggable="false">
+                            </div>
+                            <div class="somplo-icon-label">Catch Objects</div>
+                        </div>
+
+                        <!-- 10 Gesture Component (.svg animated) -->
+                        <div class="somplo-icon-card" data-type="svg">
+                            <div class="somplo-icon-media">
+                                <img class="somplo-svg-anim"
+                                    src="https://lottie.host/02aa3858-c7fd-4c7d-821e-25d6d4d9c183/Qk1T1fnwSb.svg"
+                                    alt="Gesture Component"
+                                    draggable="false">
+                            </div>
+                            <div class="somplo-icon-label">Gesture</div>
+                        </div>
+
+                        <!--
+                        =====================================================
+                        ROW 3
+                        =====================================================
+                        -->
+
+                        <!-- 11 Counter Component (.svg animated) -->
+                        <div class="somplo-icon-card" data-type="svg">
+                            <div class="somplo-icon-media">
+                                <img class="somplo-svg-anim"
+                                    src="https://lottie.host/1402ee7b-6fd9-4a7b-b1ba-e557a93e7ef8/aCWe8L8FuU.svg"
+                                    alt="Counter Component"
+                                    draggable="false">
+                            </div>
+                            <div class="somplo-icon-label">Counter</div>
+                        </div>
+
+                        <!-- 12 Text New Component (.svg animated) -->
+                        <div class="somplo-icon-card" data-type="svg">
+                            <div class="somplo-icon-media">
+                                <img class="somplo-svg-anim"
+                                    src="https://lottie.host/97977f25-a6d0-415c-9ca1-ddb5c66e3c18/Z2dOmBeWvF.svg"
+                                    alt="Text New Component"
+                                    draggable="false">
+                            </div>
+                            <div class="somplo-icon-label">Text New</div>
+                        </div>
+
+                        <!-- 13 Clock Component (.svg animated) -->
+                        <div class="somplo-icon-card" data-type="svg">
+                            <div class="somplo-icon-media">
+                                <img class="somplo-svg-anim"
+                                    src="https://lottie.host/59ca362b-1100-4252-ab90-ff5381eafa15/dPtQSwztic.svg"
+                                    alt="Clock Component"
+                                    draggable="false">
+                            </div>
+                            <div class="somplo-icon-label">Clock</div>
+                        </div>
+
+                        <!-- 14 Carousel Component (.svg animated) -->
+                        <div class="somplo-icon-card" data-type="svg">
+                            <div class="somplo-icon-media">
+                                <img class="somplo-svg-anim"
+                                    src="https://lottie.host/97fd44bb-8c35-4222-959a-a7e6cc23e247/saTZ3P44rh.svg"
+                                    alt="Carousel Component"
+                                    draggable="false">
+                            </div>
+                            <div class="somplo-icon-label">Carousel</div>
+                        </div>
+
+                        <!-- 15 Image Component (.svg animated) -->
+                        <div class="somplo-icon-card" data-type="svg">
+                            <div class="somplo-icon-media">
+                                <img class="somplo-svg-anim"
+                                    src="https://lottie.host/d03ca54f-8f61-4b7c-992d-43903b1fe307/5gdP3uKnKb.svg"
+                                    alt="Image Component"
+                                    draggable="false">
+                            </div>
+                            <div class="somplo-icon-label">Image</div>
+                        </div>
+
+                        <!--
+                        =====================================================
+                        ROW 4
+                        =====================================================
+                        -->
+
+                        <!-- 16 Image Hover Component (.svg animated) -->
+                        <div class="somplo-icon-card" data-type="svg">
+                            <div class="somplo-icon-media">
+                                <img class="somplo-svg-anim"
+                                    src="https://lottie.host/eebf64f1-7383-4fd0-9b4b-57b59e44f922/FGGQuzcn6K.svg"
+                                    alt="Image Hover Component"
+                                    draggable="false">
+                            </div>
+                            <div class="somplo-icon-label">Image Hover</div>
+                        </div>
+
+                        <!-- 17 Button Component (.svg animated) -->
+                        <div class="somplo-icon-card" data-type="svg">
+                            <div class="somplo-icon-media">
+                                <img class="somplo-svg-anim"
+                                    src="https://lottie.host/d9f05568-15dd-46e1-86e9-71a05f9f1ec8/SzeiNJ6azq.svg"
+                                    alt="Button Component"
+                                    draggable="false">
+                            </div>
+                            <div class="somplo-icon-label">Button</div>
+                        </div>
+
+                        <!-- 18 Overlay Component (.svg animated) -->
+                        <div class="somplo-icon-card" data-type="svg">
+                            <div class="somplo-icon-media">
+                                <img class="somplo-svg-anim"
+                                    src="https://lottie.host/57c78a35-5d64-4598-8163-f19aa672017d/t9iNcPrSvS.svg"
+                                    alt="Overlay Component"
+                                    draggable="false">
+                            </div>
+                            <div class="somplo-icon-label">Overlay</div>
+                        </div>
+
+                        <!-- 19 5050 Video Component (.svg animated) -->
+                        <div class="somplo-icon-card" data-type="svg">
+                            <div class="somplo-icon-media">
+                                <img class="somplo-svg-anim"
+                                    src="https://lottie.host/9095538f-1f70-4e6d-b34b-4d4f5a7b5d06/IOdrHilF1v.svg"
+                                    alt="5050 Video Component"
+                                    draggable="false">
+                            </div>
+                            <div class="somplo-icon-label">50:50 Video</div>
+                        </div>
+
+                        <!-- 20 Mosaic Component (.svg animated) -->
+                        <div class="somplo-icon-card" data-type="svg">
+                            <div class="somplo-icon-media">
+                                <img class="somplo-svg-anim"
+                                    src="https://lottie.host/bab1267e-6b92-4c95-ab0b-6a5a97a5da19/e5VE8Ci4oj.svg"
+                                    alt="Mosaic Component"
+                                    draggable="false">
+                            </div>
+                            <div class="somplo-icon-label">Mosaic</div>
+                        </div>
+
+                    </div><!-- /somplo-icon-grid -->
 
                     <!-- Hover hint -->
                     <p class="text-center mt-4 mb-0" style="font-size: 12px; color: #aaa; letter-spacing: 0.05em;">
-                        Hover over any icon to see it in platform colors
+                        Hover over any icon card to see the component animation
                     </p>
-                </div><!-- / icon-grid-section -->
+                </div><!-- /icon-grid-section -->
             </div>
 
             <!-- ================================================================= -->
-            <!-- BLOCK 03: PROMO VIDEO — How it works -->
+            <!-- BLOCK 03: PROMO VIDEO — Icons in context -->
             <!-- ================================================================= -->
             <div class="mil-up mb-5 pb-5">
                 <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
@@ -605,7 +639,6 @@
                     </div>
                 </div>
 
-                <!-- Promo Video -->
                 <div class="promo-video-wrap mt-2">
                     <iframe
                         src="https://player.vimeo.com/video/1051968173?byline=0&title=0&portrait=0"
@@ -616,7 +649,7 @@
             </div>
 
             <!-- ================================================================= -->
-            <!-- BLOCK 04: WORKFLOW & APPROACH -->
+            <!-- BLOCK 04: DESIGN APPROACH -->
             <!-- ================================================================= -->
             <div class="mil-up mb-5 pb-5">
                 <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
@@ -630,7 +663,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 20px;">
-                                    The icons were crafted as a unified system — consistent line weight, grid proportions, and animation timing across all components. Delivered as Lottie JSON for web playback and SVG for static use cases.
+                                    The icons were crafted as a unified system — consistent line weight, grid proportions, and animation timing across all components. Delivered in multiple formats for maximum platform compatibility.
                                 </p>
                             </div>
                         </div>
@@ -638,18 +671,16 @@
                 </div>
 
                 <div class="row my-5 pt-3 g-5">
-                    <!-- Design System principles -->
                     <div class="col-12 col-lg-6">
                         <h4 class="fw-normal mb-4" style="font-size: clamp(20px, 2vw, 26px); color: rgba(255,255,255,0.85);">Design Principles</h4>
                         <ul class="contrib-list">
-                            <li>Unified 1.8px stroke weight and 4px border-radius grid across all icons</li>
+                            <li>Unified 1.8px stroke weight and 4px border-radius grid across all 20 icons</li>
                             <li>Each animation loop tells a complete micro-story: action → feedback → reset</li>
                             <li>Grayscale default state, signature Somplo blue (#00AEEF) on hover / active</li>
                             <li>Animations timed at 60fps with ease-in-out easing for natural feel</li>
-                            <li>Delivered in Lottie JSON, SVG, and GIF for maximum platform compatibility</li>
+                            <li>Delivered in Lottie JSON, dotLottie, SVG, and GIF for maximum compatibility</li>
                         </ul>
                     </div>
-                    <!-- Formats -->
                     <div class="col-12 col-lg-6">
                         <h4 class="fw-normal mb-4" style="font-size: clamp(20px, 2vw, 26px); color: rgba(255,255,255,0.85);">Deliverable Formats</h4>
                         <div class="row g-3">
@@ -697,7 +728,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 20px;">
-                                    This project was part of a broader creative role at Somplo — contributing to the platform's visual identity, marketing materials, and ultimately the company's growth milestones.
+                                    This project was part of a broader creative role at Somplo — contributing to the platform's visual identity, marketing materials, and the company's overall growth milestones.
                                 </p>
                             </div>
                         </div>
@@ -705,7 +736,6 @@
                 </div>
 
                 <div class="row pt-3 g-5">
-                    <!-- Key Contributions -->
                     <div class="col-12 col-lg-6">
                         <h4 class="fw-normal mb-4" style="font-size: clamp(20px, 2vw, 26px); color: rgba(255,255,255,0.85);">Key Contributions at Somplo</h4>
                         <ul class="contrib-list">
@@ -716,8 +746,6 @@
                             <li>Contributed to the company's efforts toward achieving Google Partner status</li>
                         </ul>
                     </div>
-
-                    <!-- Achievements -->
                     <div class="col-12 col-lg-6">
                         <h4 class="fw-normal mb-4" style="font-size: clamp(20px, 2vw, 26px); color: rgba(255,255,255,0.85);">Achievements</h4>
                         <div class="row g-3">
@@ -897,20 +925,65 @@
     <script src="assets/js/main.js"></script>
 
     <script>
-        // Lottie hover interaction:
-        // On mouse-enter → play from start; on mouse-leave → pause / reset
-        document.querySelectorAll('.somplo-icon-card').forEach(function(card) {
+    /* ================================================================
+       SOMPLO ICON GRID — Hover interaction
+       ================================================================
+
+       Timing strategy:
+         - CSS transition on .somplo-icon-media: filter 0.4s ease
+           (grayscale → color begins immediately on mouseenter)
+         - Lottie animation starts after 220ms delay
+           (so the icon is already ~55% into its color reveal when motion begins)
+         - On mouseleave: color reverts immediately, lottie stops after 420ms
+           (animation finishes its last visual impression before going dark)
+
+       SVG animated icons (loaded as <img>):
+         - Animation runs continuously underneath the grayscale filter
+         - CSS transition reveals / hides the color — no JS needed for SVG type
+    ================================================================ */
+
+    (function () {
+        var COLOR_FADE_MS    = 400;  // must match CSS transition duration
+        var ANIM_START_DELAY = 220;  // delay before play() — lets color appear first
+        var ANIM_STOP_DELAY  = 420;  // delay before stop() — lets color fade first
+
+        document.querySelectorAll('.somplo-icon-card[data-type="lottie"]').forEach(function (card) {
             var player = card.querySelector('lottie-player');
             if (!player) return;
 
-            card.addEventListener('mouseenter', function() {
-                player.play();
+            var playTimer = null;
+            var stopTimer = null;
+
+            card.addEventListener('mouseenter', function () {
+                // Cancel any pending stop from a previous fast leave
+                if (stopTimer) { clearTimeout(stopTimer); stopTimer = null; }
+
+                // Color fade starts immediately via CSS transition
+                // Start animation after short delay so color appears first
+                playTimer = setTimeout(function () {
+                    try { player.play(); } catch (e) {}
+                    playTimer = null;
+                }, ANIM_START_DELAY);
             });
-            card.addEventListener('mouseleave', function() {
-                // keep autoplay running (icons already loop), just ensure it's playing
-                // The grayscale CSS handles the visual color change
+
+            card.addEventListener('mouseleave', function () {
+                // Cancel a pending play if user left before it fired
+                if (playTimer) { clearTimeout(playTimer); playTimer = null; }
+
+                // Color fade-out starts immediately via CSS
+                // Stop animation after color has mostly faded
+                stopTimer = setTimeout(function () {
+                    try {
+                        player.stop(); // returns to frame 0 = frozen
+                    } catch (e) {}
+                    stopTimer = null;
+                }, ANIM_STOP_DELAY);
             });
         });
+
+        // SVG icons: animation runs continuously, CSS grayscale controls visual.
+        // No JS interaction needed for data-type="svg" cards.
+    })();
     </script>
 
 </body>
