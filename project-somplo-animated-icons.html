@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
     <meta charset="utf-8">
-    <title>Animated UI/UX Components — OK Design</title>
+    <title>Creative Components — Animated Icons for Somplo CMP — OK Design</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="Case study: Animated UI/UX Components for Somplo by OK Design.">
+    <meta name="description" content="Case study: A full set of animated UI/UX icons created for the Somplo CMP platform — designed to improve UX and visually demonstrate interactive component behavior.">
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/icon/icomoon/style.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -14,57 +14,904 @@
     <link rel="stylesheet" href="assets/css/slick.theme.css">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <link rel="shortcut icon" href="assets/images/logo/favicon.svg">
+
+    <!-- Lottie Web Component -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@2/dist/lottie-player.js"></script>
+
     <style>
-        #wip-overlay{position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,0.92);backdrop-filter:blur(24px) saturate(0.3);display:flex;align-items:center;justify-content:center;padding:24px;}
-        .wip-inner{max-width:520px;width:100%;text-align:center;}
-        .wip-pulse{width:8px;height:8px;border-radius:50%;background:#2563eb;margin:0 auto 32px;animation:wip-pulse 2s ease infinite;}
-        @keyframes wip-pulse{0%{box-shadow:0 0 0 0 rgba(37,99,235,0.5)}70%{box-shadow:0 0 0 18px rgba(37,99,235,0)}100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}}
-        .wip-label{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#2563eb;margin-bottom:20px;}
-        .wip-title{font-size:clamp(30px,5vw,52px);font-weight:600;color:#fff;line-height:1.1;margin-bottom:16px;}
-        .wip-title span{font-weight:300;color:rgba(255,255,255,0.45);}
-        .wip-desc{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.7;margin-bottom:40px;font-weight:300;}
-        .wip-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 30px;border:1px solid rgba(255,255,255,0.18);border-radius:999px;color:#fff;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background .25s,border-color .25s;}
-        .wip-btn:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.38);color:#fff;text-decoration:none;}
-        .wip-divider{width:40px;height:1px;background:rgba(255,255,255,0.12);margin:32px auto;}
+        /* ========================================================
+           ICON GRID — Somplo style
+           ======================================================== */
+        .somplo-icon-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+        @media (max-width: 991px) {
+            .somplo-icon-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        @media (max-width: 767px) {
+            .somplo-icon-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 479px) {
+            .somplo-icon-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .somplo-icon-card {
+            background: #fff;
+            border: 1.5px solid #e8e8e8;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 12px 14px;
+            cursor: pointer;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 140px;
+        }
+        .somplo-icon-card:hover {
+            border-color: #00AEEF;
+            box-shadow: 0 4px 24px rgba(0, 174, 239, 0.12);
+        }
+
+        /* Lottie wrapper — grayscale by default, color on hover */
+        .somplo-icon-lottie-wrap {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            filter: grayscale(1) brightness(0.7);
+            transition: filter 0.3s ease;
+        }
+        .somplo-icon-card:hover .somplo-icon-lottie-wrap {
+            filter: grayscale(0) brightness(1);
+        }
+
+        /* SVG-icon fallback — same grayscale logic */
+        .somplo-icon-svg-wrap {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .somplo-icon-svg-wrap svg {
+            transition: color 0.3s ease, stroke 0.3s ease;
+            color: #b0b0b0;
+        }
+        .somplo-icon-card:hover .somplo-icon-svg-wrap svg {
+            color: #00AEEF;
+        }
+
+        .somplo-icon-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: #999;
+            text-align: center;
+            margin-top: 10px;
+            line-height: 1.3;
+            letter-spacing: 0.02em;
+            transition: color 0.3s ease;
+        }
+        .somplo-icon-card:hover .somplo-icon-label {
+            color: #00AEEF;
+        }
+
+        /* Lottie player sizing */
+        .somplo-icon-lottie-wrap lottie-player {
+            width: 80px;
+            height: 80px;
+        }
+
+        /* ========================================================
+           ICON GRID SECTION — dark container on white
+           ======================================================== */
+        .icon-grid-section {
+            background: #f5f6f7;
+            border-radius: 16px;
+            padding: 40px;
+            margin-top: 32px;
+        }
+        @media (max-width: 767px) {
+            .icon-grid-section { padding: 24px 16px; }
+        }
+
+        /* ========================================================
+           SOMPLO BRAND COLOR
+           ======================================================== */
+        .somplo-blue { color: #00AEEF; }
+
+        /* ========================================================
+           VIMEO PROMO VIDEO
+           ======================================================== */
+        .promo-video-wrap {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: #080808;
+        }
+        .promo-video-wrap iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+        }
+
+        /* ========================================================
+           KEY CONTRIBUTIONS LIST
+           ======================================================== */
+        .contrib-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .contrib-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: 15px;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.6;
+        }
+        .contrib-list li:last-child { border-bottom: none; }
+        .contrib-list li::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #00AEEF;
+            flex-shrink: 0;
+            margin-top: 8px;
+        }
+
+        /* ========================================================
+           ACHIEVEMENTS GRID
+           ======================================================== */
+        .achievement-card {
+            background: rgba(0, 174, 239, 0.06);
+            border: 1px solid rgba(0, 174, 239, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            height: 100%;
+        }
+        .achievement-card .ac-num {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: #00AEEF;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .achievement-card p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.65;
+            margin: 0;
+        }
     </style>
 </head>
-<body class="counter-scroll" style="background-color:#000;color:#fff;overflow-x:hidden;">
-    <div id="wip-overlay"><div class="wip-inner"><div class="wip-pulse"></div><div class="wip-label">Case Study in Progress</div><h2 class="wip-title">This case<br><span>is being crafted</span></h2><div class="wip-divider"></div><p class="wip-desc">We're working on the full case study for this project.<br>Come back soon for the complete story.</p><a href="projects.html" class="wip-btn">← All Projects</a></div></div>
-    <script>document.body.style.overflow='hidden';</script>
-    <div class="mil-ball"><span class="mil-icon-1"><svg viewBox="0 0 128 128" width="40" height="40"><path d="M106.1,41.9c-1.2-1.2-3.1-1.2-4.2,0c-1.2,1.2-1.2,3.1,0,4.2L116.8,61H11.2l14.9-14.9c1.2-1.2,1.2-3.1,0-4.2 c-1.2-1.2-3.1-1.2-4.2,0l-20,20c-1.2,1.2-1.2,3.1,0,4.2l20,20c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9c1.2-1.2,1.2-3.1,0-4.2 L11.2,67h105.5l-14.9,14.9c-1.2,1.2-1.2,3.1,0,4.2c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9l20-20c1.2-1.2,1.2-3.1,0-4.2L106.1,41.9z" fill="#000000"/></svg></span><div class="mil-more-text">More</div><div class="mil-choose-text">Сhoose</div></div>
-    <button id="goTop"><span class="border-progress"></span><span class="ic-wrap"><span class="icon icon-arrow-caret-right"></span></span></button>
+
+<body class="counter-scroll" style="background-color: #000; color: #fff; overflow-x: hidden;">
+
+    <!-- Custom cursor -->
+    <div class="mil-ball">
+        <span class="mil-icon-1">
+            <svg viewBox="0 0 128 128" width="40" height="40">
+                <path d="M106.1,41.9c-1.2-1.2-3.1-1.2-4.2,0c-1.2,1.2-1.2,3.1,0,4.2L116.8,61H11.2l14.9-14.9c1.2-1.2,1.2-3.1,0-4.2 c-1.2-1.2-3.1-1.2-4.2,0l-20,20c-1.2,1.2-1.2,3.1,0,4.2l20,20c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9c1.2-1.2,1.2-3.1,0-4.2 L11.2,67h105.5l-14.9,14.9c-1.2,1.2-1.2,3.1,0,4.2c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9l20-20c1.2-1.2,1.2-3.1,0-4.2L106.1,41.9z" fill="#000000"/>
+            </svg>
+        </span>
+        <div class="mil-more-text">More</div>
+        <div class="mil-choose-text">Сhoose</div>
+    </div>
+
+    <!-- Scroll Top -->
+    <button id="goTop">
+        <span class="border-progress"></span>
+        <span class="ic-wrap">
+            <span class="icon icon-arrow-caret-right"></span>
+        </span>
+    </button>
+
     <main id="wrapper">
-        <header class="tf-header"><div class="header-inner"><div class="container"><div class="row align-items-center">
-            <div class="col-6 col-md-2"><a href="index.html" class="logo-site"><img src="assets/images/logo/logo.svg" alt="OK Design" style="height:40px;width:auto;"></a></div>
-            <div class="col-6 col-md-6 d-none d-md-block"><div class="box-navigation"><ul class="nav-menu-main"><li class="menu-item"><a href="index.html#serviceScroll" class="item-link link text-body-3"><span>01 /</span>SERVICES</a></li><li class="menu-item"><a href="projects.html" class="item-link link text-body-3"><span>02 /</span>PROJECTS</a></li><li class="menu-item"><a href="index.html#aboutScroll" class="item-link link text-body-3"><span>03 /</span>ABOUT</a></li><li class="menu-item"><a href="index.html#contactScroll" class="item-link link text-body-3"><span>04 /</span>CONTACT</a></li></ul></div></div>
-            <div class="col-6 col-md-4 d-flex justify-content-end align-items-center"><div class="header-contact d-none d-md-block"><a href="mailto:hello@okdesign.cc" class="link text-body-3 text-uppercase d-flex align-items-center gap-2" style="text-decoration:none;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:2px;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>HELLO@OKDESIGN.CC</span></a></div><button type="button" class="btn-mobile-menu open-mb-menu text-body-3 text-white link d-md-none"><i class="icon icon-menu"></i> MENU</button></div>
-        </div></div></div></header>
 
-        <div class="section-page-title" style="padding-top:140px;padding-bottom:40px;"><div class="container text-center mil-up">
-            <h1 class="page-title fw-semibold text-white mb-0">Somplo <span class="fw-light">Animated Icons</span></h1>
-            <div class="d-flex justify-content-center gap-5 text-white-64 fw-medium text-uppercase mt-4" style="font-size:12px;letter-spacing:2px;"><div>Client: <span class="text-white">Somplo</span></div><div>Year: <span class="text-white">2025</span></div><div>Creative Execution: <span class="text-white">Oleksandr Kukharyk</span></div></div>
-        </div></div>
-
-        <div class="mil-image-frame mil-fw mil-up position-relative" style="width:100%;height:80vh;margin-bottom:80px;"><div style="width:100%;height:100%;background:#080808;position:relative;overflow:hidden;"><img src="assets/images/projects/somplo-animated-icons/cover.webp" alt="Animated UI/UX Components" style="width:100%;height:100%;object-fit:cover;opacity:0.8;"></div><div style="position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,#000 0%,rgba(0,0,0,0) 100%);pointer-events:none;z-index:1;"></div></div>
-
-        <section class="container" id="project-content">
-            <div id="overview" class="mil-up mb-5"><div class="mb-5" style="width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:rgba(255,255,255,0.03);padding:48px 0;"><div class="container"><div class="mb-3"><span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing:2px;">01 / OVERVIEW</span></div><div class="row justify-content-between align-items-start"><div class="col-lg-5 mb-3 mb-lg-0"><h2 class="text-white text-uppercase mb-0" style="font-size:clamp(32px,3.5vw,44px);font-weight:600;line-height:1.1;">THE CHALLENGE</h2></div><div class="col-lg-6"><p class="text-white-64 mb-0" style="line-height:1.7;font-size:20px;">Full case study coming soon. This project is currently being documented and will be published shortly.</p></div></div></div></div></div>
-            <div class="mil-up mb-0 pt-4"><div style="width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:rgba(255,255,255,0.03);padding:52px 0 0;"><div class="container">
-                <div class="mb-4"><span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing:2px;">02 / PROJECT INFO</span></div>
-                <div class="row g-5">
-                    <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.4);">Client</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?client=somplo" class="project-attr-tag">Somplo</a></div></div>
-                    <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.4);">Services</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?service=ui-ux" class="project-attr-tag">UI / UX</a><a href="projects.html?service=app-design" class="project-attr-tag">App Design</a><a href="projects.html?service=2d-3d-animation" class="project-attr-tag">2D / 3D Animation</a><a href="projects.html?service=web-animation" class="project-attr-tag">Web Animation</a></div></div>
-                    <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.4);">Design Categories</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?category=digital" class="project-attr-tag">Digital</a><a href="projects.html?category=motion" class="project-attr-tag">Motion</a><a href="projects.html?category=ui-ux" class="project-attr-tag">UI / UX</a></div></div>
+        <!-- ============================================================ -->
+        <!-- HEADER -->
+        <!-- ============================================================ -->
+        <header class="tf-header">
+            <div class="header-inner">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-6 col-md-2">
+                            <a href="index.html" class="logo-site">
+                                <img src="assets/images/logo/logo.svg" alt="OK Design" style="height: 40px; width: auto;">
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-6 d-none d-md-block">
+                            <div class="box-navigation">
+                                <ul class="nav-menu-main">
+                                    <li class="menu-item"><a href="index.html#serviceScroll" class="item-link link text-body-3"><span>01 /</span>SERVICES</a></li>
+                                    <li class="menu-item"><a href="projects.html" class="item-link link text-body-3"><span>02 /</span>PROJECTS</a></li>
+                                    <li class="menu-item"><a href="index.html#aboutScroll" class="item-link link text-body-3"><span>03 /</span>ABOUT</a></li>
+                                    <li class="menu-item"><a href="index.html#contactScroll" class="item-link link text-body-3"><span>04 /</span>CONTACT</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 d-flex justify-content-end align-items-center">
+                            <div class="header-contact d-none d-md-block">
+                                <a href="mailto:hello@okdesign.cc" class="link text-body-3 text-uppercase d-flex align-items-center gap-2" style="text-decoration: none;">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 2px;">
+                                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                                    </svg>
+                                    <span>HELLO@OKDESIGN.CC</span>
+                                </a>
+                            </div>
+                            <button type="button" class="btn-mobile-menu open-mb-menu text-body-3 text-white link d-md-none">
+                                <i class="icon icon-menu"></i> MENU
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div></div></div>
-            <div class="mil-works-nav mil-up pt-5" style="display:flex;justify-content:space-between;"><a href="#" class="link text-white d-flex align-items-center gap-2"><i class="icon icon-arrow-long-left"></i> PREV PROJECT</a><a href="projects.html" class="link text-white-64">ALL PROJECTS</a><a href="#" class="link text-white d-flex align-items-center gap-2">NEXT PROJECT <i class="icon icon-arrow-long-right"></i></a></div>
+            </div>
+        </header>
+
+        <!-- ============================================================ -->
+        <!-- CASE TITLE -->
+        <!-- ============================================================ -->
+        <div class="section-page-title" style="padding-top: 140px; padding-bottom: 40px;">
+            <div class="container text-center mil-up">
+                <h1 class="page-title fw-semibold text-white mb-0">Creative Components <span class="fw-light">— Animated Icons</span></h1>
+                <div class="d-flex justify-content-center gap-5 text-white-64 fw-medium text-uppercase mt-4" style="font-size: 12px; letter-spacing: 2px;">
+                    <div>Client: <span class="text-white">Somplo</span></div>
+                    <div>Year: <span class="text-white">2024–2025</span></div>
+                    <div>Creative Execution: <span class="text-white">Oleksandr Kukharyk</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- HERO VIDEO — autoplay, loop, no UI (background=1 removes controls) -->
+        <!-- ============================================================ -->
+        <div class="mil-image-frame mil-fw mil-up position-relative" style="width: 100%; height: 80vh; margin-bottom: 80px;">
+            <div style="width: 100%; height: 100%; background: #080808; position: relative; overflow: hidden;">
+                <iframe
+                    src="https://player.vimeo.com/video/1046279403?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
+                    style="position: absolute; top: 50%; left: 50%; width: 177.78vh; height: 100%; min-width: 100%; transform: translate(-50%, -50%); border: none; pointer-events: none;"
+                    allow="autoplay; fullscreen"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 35%; background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0) 100%); pointer-events: none; z-index: 1;"></div>
+            <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 2;">
+                <a href="#challenge" class="link text-white d-flex flex-column align-items-center gap-3 text-uppercase fw-medium" style="letter-spacing: 2px; font-size: 11px; transition: 0.3s; text-decoration: none;">
+                    <span>EXPLORE FULL CASE</span>
+                    <span class="d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1);">
+                        <i class="icon icon-arrow-long-right" style="transform: rotate(90deg);"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- MAIN CONTENT -->
+        <!-- ============================================================ -->
+        <section class="container" id="project-content">
+
+            <!-- ================================================================= -->
+            <!-- BLOCK 01: THE CHALLENGE & ABOUT THE PROJECT -->
+            <!-- ================================================================= -->
+            <div id="challenge" class="mil-up mb-5">
+                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
+                    <div class="container">
+                        <div class="mb-3">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">01 / OVERVIEW</span>
+                        </div>
+                        <div class="row justify-content-between align-items-start">
+                            <div class="col-lg-5 mb-3 mb-lg-0">
+                                <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">THE CHALLENGE</h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 20px;">
+                                    Design and animate a complete icon set for every interactive component on the Somplo CMP platform — making complex ad formats immediately understandable through motion. Each icon needed to visually communicate what happens when a user interacts with its corresponding component, serving both as a UX guide and a visual identity element across the platform.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About the brand -->
+                <div class="row my-5 pt-3">
+                    <div class="col-12 col-lg-9">
+                        <h4 class="fw-normal" style="font-size: clamp(22px, 2.5vw, 28px); color: rgba(255,255,255,0.85); letter-spacing: 0.5px; margin-bottom: 20px;">About Somplo</h4>
+                        <p class="text-white-64 mb-0 fw-light" style="line-height: 1.7; font-size: 16px; font-weight: 200;">
+                            Somplo is a creative management platform (CMP) that enables brands and agencies to build, launch, and measure high-impact interactive display advertising — from rich media and HTML5 banners to advanced formats like parallax, video, and gamified units. The platform hosts a library of reusable creative components, each representing a unique interactive ad mechanic. To help users quickly identify and select the right component, each one needed a clear, expressive animated icon — a miniature visual demo that tells you exactly what the component does at a glance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================================================= -->
+            <!-- BLOCK 02: ANIMATED ICON GRID -->
+            <!-- ================================================================= -->
+            <div class="mil-up mb-5 pb-5">
+                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
+                    <div class="container">
+                        <div class="mb-3">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">02 / ICON SET</span>
+                        </div>
+                        <div class="row justify-content-between align-items-start">
+                            <div class="col-lg-5 mb-3 mb-lg-0">
+                                <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">ANIMATED COMPONENT ICONS</h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 20px;">
+                                    A full set of animated icons covering every interactive component on the Somplo platform. Each icon is a looping micro-animation that demonstrates the component's behavior — hover over any card to see it in full color.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Icon Grid on light background -->
+                <div class="icon-grid-section">
+                    <div class="somplo-icon-grid" id="somplo-icon-grid">
+
+                        <!-- LOTTIE ICONS (hosted on lottie.host) -->
+                        <!-- Card 1: 50:50 / Image Swipe -->
+                        <div class="somplo-icon-card" data-lottie="https://lottie.host/3fd4bd0a-b6f3-48cb-9191-492eff3b831c/mrl8qLE5uU.lottie">
+                            <div class="somplo-icon-lottie-wrap">
+                                <lottie-player
+                                    src="https://lottie.host/3fd4bd0a-b6f3-48cb-9191-492eff3b831c/mrl8qLE5uU.lottie"
+                                    background="transparent"
+                                    speed="1"
+                                    loop
+                                    autoplay>
+                                </lottie-player>
+                            </div>
+                            <div class="somplo-icon-label">50:50 Video</div>
+                        </div>
+
+                        <!-- Card 2: Zoom -->
+                        <div class="somplo-icon-card" data-lottie="https://lottie.host/04502b8d-c472-4d1c-90bd-6f2dad1e483e/W1K7zqfJul.lottie">
+                            <div class="somplo-icon-lottie-wrap">
+                                <lottie-player
+                                    src="https://lottie.host/04502b8d-c472-4d1c-90bd-6f2dad1e483e/W1K7zqfJul.lottie"
+                                    background="transparent"
+                                    speed="1"
+                                    loop
+                                    autoplay>
+                                </lottie-player>
+                            </div>
+                            <div class="somplo-icon-label">Zoom</div>
+                        </div>
+
+                        <!-- Card 3: Depth Card -->
+                        <div class="somplo-icon-card" data-lottie="https://lottie.host/f465c291-16c0-4d67-9df0-209c67ea7ce5/vfw2JKBfX5.lottie">
+                            <div class="somplo-icon-lottie-wrap">
+                                <lottie-player
+                                    src="https://lottie.host/f465c291-16c0-4d67-9df0-209c67ea7ce5/vfw2JKBfX5.lottie"
+                                    background="transparent"
+                                    speed="1"
+                                    loop
+                                    autoplay>
+                                </lottie-player>
+                            </div>
+                            <div class="somplo-icon-label">Depth Card</div>
+                        </div>
+
+                        <!-- Card 4: 3D Rotate -->
+                        <div class="somplo-icon-card" data-lottie="https://lottie.host/2d5ef538-b4d5-4186-b81a-8e8b909e14d3/MbaQdsWlWB.lottie">
+                            <div class="somplo-icon-lottie-wrap">
+                                <lottie-player
+                                    src="https://lottie.host/2d5ef538-b4d5-4186-b81a-8e8b909e14d3/MbaQdsWlWB.lottie"
+                                    background="transparent"
+                                    speed="1"
+                                    loop
+                                    autoplay>
+                                </lottie-player>
+                            </div>
+                            <div class="somplo-icon-label">3D Rotate</div>
+                        </div>
+
+                        <!-- SVG FALLBACK ICONS — for components not yet uploaded to lottie.host -->
+                        <!-- Card 5: Text New -->
+                        <div class="somplo-icon-card">
+                            <div class="somplo-icon-svg-wrap">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="8" y="8" width="48" height="48" rx="4" stroke-dasharray="4 3"/>
+                                    <text x="14" y="40" font-size="18" font-weight="600" fill="currentColor" stroke="none" font-family="sans-serif">Hi|</text>
+                                </svg>
+                            </div>
+                            <div class="somplo-icon-label">Text New</div>
+                        </div>
+
+                        <!-- Card 6: Flip Parallax -->
+                        <div class="somplo-icon-card">
+                            <div class="somplo-icon-svg-wrap">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="8" y="12" width="20" height="40" rx="3"/>
+                                    <rect x="36" y="12" width="20" height="40" rx="3" stroke-dasharray="3 2"/>
+                                    <line x1="28" y1="22" x2="36" y2="32"/>
+                                    <line x1="36" y1="32" x2="28" y2="42"/>
+                                </svg>
+                            </div>
+                            <div class="somplo-icon-label">Flip Parallax</div>
+                        </div>
+
+                        <!-- Card 7: Clock -->
+                        <div class="somplo-icon-card">
+                            <div class="somplo-icon-svg-wrap">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="10" y="14" width="44" height="36" rx="4"/>
+                                    <text x="14" y="37" font-size="12" font-weight="600" fill="currentColor" stroke="none" font-family="monospace" letter-spacing="1">08:39</text>
+                                </svg>
+                            </div>
+                            <div class="somplo-icon-label">Clock</div>
+                        </div>
+
+                        <!-- Card 8: Counter -->
+                        <div class="somplo-icon-card">
+                            <div class="somplo-icon-svg-wrap">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="8" y="14" width="14" height="36" rx="3"/>
+                                    <rect x="25" y="14" width="14" height="36" rx="3"/>
+                                    <rect x="42" y="14" width="14" height="36" rx="3"/>
+                                    <text x="11" y="38" font-size="14" font-weight="700" fill="currentColor" stroke="none" font-family="monospace">0</text>
+                                    <text x="28" y="38" font-size="14" font-weight="700" fill="currentColor" stroke="none" font-family="monospace">3</text>
+                                    <text x="45" y="38" font-size="14" font-weight="700" fill="currentColor" stroke="none" font-family="monospace">8</text>
+                                </svg>
+                            </div>
+                            <div class="somplo-icon-label">Counter</div>
+                        </div>
+
+                        <!-- Card 9: Memory Game -->
+                        <div class="somplo-icon-card">
+                            <div class="somplo-icon-svg-wrap">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="8" y="8" width="20" height="20" rx="3"/>
+                                    <rect x="36" y="8" width="20" height="20" rx="3"/>
+                                    <rect x="8" y="36" width="20" height="20" rx="3"/>
+                                    <rect x="36" y="36" width="20" height="20" rx="3"/>
+                                    <circle cx="18" cy="18" r="4" fill="currentColor" stroke="none" opacity="0.4"/>
+                                    <circle cx="46" cy="18" r="4" fill="currentColor" stroke="none" opacity="0.4"/>
+                                </svg>
+                            </div>
+                            <div class="somplo-icon-label">Memory Game</div>
+                        </div>
+
+                        <!-- Card 10: Image Hover -->
+                        <div class="somplo-icon-card">
+                            <div class="somplo-icon-svg-wrap">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="8" y="12" width="48" height="36" rx="4"/>
+                                    <path d="M8 36l12-10 10 8 8-6 14 10"/>
+                                    <circle cx="52" cy="22" r="4"/>
+                                    <path d="M34 28 C36 24 40 24 42 28" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                            <div class="somplo-icon-label">Image Hover</div>
+                        </div>
+
+                        <!-- Card 11: Catch Objects -->
+                        <div class="somplo-icon-card">
+                            <div class="somplo-icon-svg-wrap">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 52 C24 44 40 44 44 52"/>
+                                    <circle cx="32" cy="30" r="6"/>
+                                    <path d="M18 20 l4 4 M46 20 l-4 4"/>
+                                    <path d="M26 12 l2 5 M38 12 l-2 5"/>
+                                    <circle cx="28" cy="18" r="2" fill="currentColor" stroke="none" opacity="0.5"/>
+                                    <circle cx="40" cy="16" r="2" fill="currentColor" stroke="none" opacity="0.5"/>
+                                </svg>
+                            </div>
+                            <div class="somplo-icon-label">Catch Objects</div>
+                        </div>
+
+                        <!-- Card 12: Scratch -->
+                        <div class="somplo-icon-card">
+                            <div class="somplo-icon-svg-wrap">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="8" y="12" width="48" height="40" rx="4"/>
+                                    <path d="M20 32 Q28 22 38 32 Q46 40 52 28" stroke-dasharray="3 3"/>
+                                    <circle cx="44" cy="42" r="8"/>
+                                    <path d="M40 42 l3 3 5-6" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="somplo-icon-label">Scratch</div>
+                        </div>
+
+                        <!-- Card 13: Parallax -->
+                        <div class="somplo-icon-card">
+                            <div class="somplo-icon-svg-wrap">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="10" y="14" width="44" height="36" rx="4"/>
+                                    <rect x="18" y="20" width="28" height="20" rx="2" stroke-dasharray="3 2"/>
+                                    <path d="M32 40 l0 8 M28 44 l4 4 4-4" stroke-width="1.5"/>
+                                </svg>
+                            </div>
+                            <div class="somplo-icon-label">Parallax</div>
+                        </div>
+
+                        <!-- Card 14: Spin the Wheel -->
+                        <div class="somplo-icon-card">
+                            <div class="somplo-icon-svg-wrap">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="32" cy="32" r="22"/>
+                                    <circle cx="32" cy="32" r="4" fill="currentColor" stroke="none" opacity="0.5"/>
+                                    <line x1="32" y1="10" x2="32" y2="28"/>
+                                    <line x1="32" y1="36" x2="32" y2="54"/>
+                                    <line x1="10" y1="32" x2="28" y2="32"/>
+                                    <line x1="36" y1="32" x2="54" y2="32"/>
+                                    <line x1="16" y1="16" x2="28" y2="28"/>
+                                    <line x1="36" y1="36" x2="48" y2="48"/>
+                                </svg>
+                            </div>
+                            <div class="somplo-icon-label">Spin the Wheel</div>
+                        </div>
+
+                        <!-- Card 15: Video Banner -->
+                        <div class="somplo-icon-card">
+                            <div class="somplo-icon-svg-wrap">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="8" y="14" width="40" height="28" rx="4"/>
+                                    <polygon points="28,22 28,36 40,29" fill="currentColor" stroke="none" opacity="0.4"/>
+                                    <path d="M48 22 l8-4 0 20 -8-4"/>
+                                    <rect x="8" y="46" width="40" height="6" rx="2"/>
+                                    <rect x="8" y="46" width="22" height="6" rx="2" fill="currentColor" stroke="none" opacity="0.3"/>
+                                </svg>
+                            </div>
+                            <div class="somplo-icon-label">Video Banner</div>
+                        </div>
+
+                    </div><!-- / somplo-icon-grid -->
+
+                    <!-- Hover hint -->
+                    <p class="text-center mt-4 mb-0" style="font-size: 12px; color: #aaa; letter-spacing: 0.05em;">
+                        Hover over any icon to see it in platform colors
+                    </p>
+                </div><!-- / icon-grid-section -->
+            </div>
+
+            <!-- ================================================================= -->
+            <!-- BLOCK 03: PROMO VIDEO — How it works -->
+            <!-- ================================================================= -->
+            <div class="mil-up mb-5 pb-5">
+                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
+                    <div class="container">
+                        <div class="mb-3">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">03 / IN ACTION</span>
+                        </div>
+                        <div class="row justify-content-between align-items-start">
+                            <div class="col-lg-5 mb-3 mb-lg-0">
+                                <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">ICONS IN CONTEXT</h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 20px;">
+                                    Each animated icon visually demonstrates how its corresponding interactive component works on the platform:
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Promo Video -->
+                <div class="promo-video-wrap mt-2">
+                    <iframe
+                        src="https://player.vimeo.com/video/1051968173?byline=0&title=0&portrait=0"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- ================================================================= -->
+            <!-- BLOCK 04: WORKFLOW & APPROACH -->
+            <!-- ================================================================= -->
+            <div class="mil-up mb-5 pb-5">
+                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
+                    <div class="container">
+                        <div class="mb-3">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">04 / APPROACH</span>
+                        </div>
+                        <div class="row justify-content-between align-items-start">
+                            <div class="col-lg-5 mb-3 mb-lg-0">
+                                <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">DESIGN APPROACH</h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 20px;">
+                                    The icons were crafted as a unified system — consistent line weight, grid proportions, and animation timing across all components. Delivered as Lottie JSON for web playback and SVG for static use cases.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row my-5 pt-3 g-5">
+                    <!-- Design System principles -->
+                    <div class="col-12 col-lg-6">
+                        <h4 class="fw-normal mb-4" style="font-size: clamp(20px, 2vw, 26px); color: rgba(255,255,255,0.85);">Design Principles</h4>
+                        <ul class="contrib-list">
+                            <li>Unified 1.8px stroke weight and 4px border-radius grid across all icons</li>
+                            <li>Each animation loop tells a complete micro-story: action → feedback → reset</li>
+                            <li>Grayscale default state, signature Somplo blue (#00AEEF) on hover / active</li>
+                            <li>Animations timed at 60fps with ease-in-out easing for natural feel</li>
+                            <li>Delivered in Lottie JSON, SVG, and GIF for maximum platform compatibility</li>
+                        </ul>
+                    </div>
+                    <!-- Formats -->
+                    <div class="col-12 col-lg-6">
+                        <h4 class="fw-normal mb-4" style="font-size: clamp(20px, 2vw, 26px); color: rgba(255,255,255,0.85);">Deliverable Formats</h4>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 20px 16px; text-align: center;">
+                                    <div style="font-size: 13px; font-weight: 600; color: #00AEEF; letter-spacing: 0.1em; margin-bottom: 8px;">LOTTIE JSON</div>
+                                    <div style="font-size: 13px; color: rgba(255,255,255,0.5);">Web animation, scalable, interactive control</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 20px 16px; text-align: center;">
+                                    <div style="font-size: 13px; font-weight: 600; color: #00AEEF; letter-spacing: 0.1em; margin-bottom: 8px;">SVG</div>
+                                    <div style="font-size: 13px; color: rgba(255,255,255,0.5);">Static UI, fully scalable, CSS-styleable</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 20px 16px; text-align: center;">
+                                    <div style="font-size: 13px; font-weight: 600; color: #00AEEF; letter-spacing: 0.1em; margin-bottom: 8px;">GIF</div>
+                                    <div style="font-size: 13px; color: rgba(255,255,255,0.5);">Email, presentations, universal support</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 20px 16px; text-align: center;">
+                                    <div style="font-size: 13px; font-weight: 600; color: #00AEEF; letter-spacing: 0.1em; margin-bottom: 8px;">DOTLOTTIE</div>
+                                    <div style="font-size: 13px; color: rgba(255,255,255,0.5);">Compressed, optimised for production</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================================================= -->
+            <!-- BLOCK 05: KEY CONTRIBUTIONS & ACHIEVEMENTS -->
+            <!-- ================================================================= -->
+            <div class="mil-up mb-5 pb-5">
+                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
+                    <div class="container">
+                        <div class="mb-3">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">05 / IMPACT</span>
+                        </div>
+                        <div class="row justify-content-between align-items-start">
+                            <div class="col-lg-5 mb-3 mb-lg-0">
+                                <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">CONTRIBUTIONS & RESULTS</h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 20px;">
+                                    This project was part of a broader creative role at Somplo — contributing to the platform's visual identity, marketing materials, and ultimately the company's growth milestones.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row pt-3 g-5">
+                    <!-- Key Contributions -->
+                    <div class="col-12 col-lg-6">
+                        <h4 class="fw-normal mb-4" style="font-size: clamp(20px, 2vw, 26px); color: rgba(255,255,255,0.85);">Key Contributions at Somplo</h4>
+                        <ul class="contrib-list">
+                            <li>Developed promo videos and advertising materials for campaigns</li>
+                            <li>Created animations for the Somplo CMP platform and corporate website</li>
+                            <li>Designed content for social media, email, and sales department signatures</li>
+                            <li>Produced animated and static graphics for display ads created on the platform</li>
+                            <li>Contributed to the company's efforts toward achieving Google Partner status</li>
+                        </ul>
+                    </div>
+
+                    <!-- Achievements -->
+                    <div class="col-12 col-lg-6">
+                        <h4 class="fw-normal mb-4" style="font-size: clamp(20px, 2vw, 26px); color: rgba(255,255,255,0.85);">Achievements</h4>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="achievement-card">
+                                    <div class="ac-num">01</div>
+                                    <p>Animated platform icons improved UX by simplifying component interactions — users could immediately understand what each component does without additional explanation.</p>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="achievement-card">
+                                    <div class="ac-num">02</div>
+                                    <p>Promo videos and advertising materials attracted new clients and re-engaged existing platform users, supporting the sales and onboarding pipeline.</p>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="achievement-card">
+                                    <div class="ac-num">03</div>
+                                    <p>Social media visuals enhanced recruitment efforts and increased brand recognition, reinforcing Somplo's position as a premium ad-tech platform.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================================================= -->
+            <!-- BLOCK 06: PROJECT INFO -->
+            <!-- ================================================================= -->
+            <div class="mil-up mb-0 pt-4">
+                <div style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255,255,255,0.03); padding: 52px 0 52px;">
+                    <div class="container">
+                        <div class="mb-4">
+                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">06 / PROJECT INFO</span>
+                        </div>
+                        <div class="row g-5">
+                            <div class="col-12 col-md-4">
+                                <p class="text-uppercase fw-medium mb-3" style="font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.4);">Client</p>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="projects.html?client=somplo" class="project-attr-tag">Somplo</a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <p class="text-uppercase fw-medium mb-3" style="font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.4);">Services</p>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="projects.html?service=ui-ux" class="project-attr-tag">UI / UX</a>
+                                    <a href="projects.html?service=2d-3d-animation" class="project-attr-tag">2D / 3D Animation</a>
+                                    <a href="projects.html?service=web-animation" class="project-attr-tag">Web Animation</a>
+                                    <a href="projects.html?service=icon-design" class="project-attr-tag">Icon Design</a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <p class="text-uppercase fw-medium mb-3" style="font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.4);">Design Categories</p>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="projects.html?category=digital" class="project-attr-tag">Digital</a>
+                                    <a href="projects.html?category=motion" class="project-attr-tag">Motion</a>
+                                    <a href="projects.html?category=ui-ux" class="project-attr-tag">UI / UX</a>
+                                    <a href="projects.html?category=product-design" class="project-attr-tag">Product Design</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project navigation -->
+            <div class="mil-works-nav mil-up pt-5" style="display: flex; justify-content: space-between;">
+                <a href="project-somplo-rich-media-ads.html" class="link text-white d-flex align-items-center gap-2">
+                    <i class="icon icon-arrow-long-left"></i> PREV PROJECT
+                </a>
+                <a href="projects.html" class="link text-white-64">ALL PROJECTS</a>
+                <a href="project-goodgame.html" class="link text-white d-flex align-items-center gap-2">
+                    NEXT PROJECT <i class="icon icon-arrow-long-right"></i>
+                </a>
+            </div>
+
         </section>
 
-        <section class="flat-spacing" style="border-top:1px solid rgba(255,255,255,0.05);padding-bottom:120px;margin-top:80px;"><div class="container"><div class="text-center" style="margin-top:80px;"><h2 class="mil-up text-white mb-5" style="font-size:clamp(36px,5vw,68px);line-height:1.2;">Got a project <span class="fw-light text-white-64">in mind?</span><br>Let's make it a reality <span class="fw-light text-white-64">together</span></h2><div class="mil-up" style="margin-top:50px;"><a href="index.html#contactScroll" class="tf-btn">CONTACT US</a></div></div></div></section>
+        <!-- CALL TO ACTION -->
+        <section class="flat-spacing" style="border-top: 1px solid rgba(255,255,255,0.05); padding-bottom: 120px; margin-top: 80px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <span class="mil-suptitle mil-suptitle-right mil-up text-white-64" style="font-size: 16px; line-height: 1.6;">
+                            Looking to make your mark? Turn your next project into an exceptional digital success story.
+                        </span>
+                    </div>
+                </div>
+                <div class="text-center" style="margin-top: 80px;">
+                    <h2 class="mil-up text-white mb-5" style="font-size: clamp(36px, 5vw, 68px); line-height: 1.2;">
+                        Got a project <span class="fw-light text-white-64">in mind?</span> <br>
+                        Let's make it a reality <span class="fw-light text-white-64">together</span>
+                    </h2>
+                    <div class="mil-up" style="margin-top: 50px;">
+                        <a href="index.html#contactScroll" class="tf-btn">CONTACT US</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <footer class="tf-footer"><div class="container"><div class="br-line"></div></div><div class="footer-inner"><div class="container"><div class="row align-items-start"><div class="col-md-4 mb-5 mb-md-0"><p class="title text-has-dot text-caption fw-medium mb-0" style="line-height:1.6;display:flex;align-items:flex-start;gap:8px;"><span class="br-dot" style="margin-top:5px;flex-shrink:0;"></span><span>© 2026 OK DESIGN.<span class="d-none d-md-inline"><br></span><span class="d-md-none"> </span>ALL RIGHTS RESERVED.</span></p></div><div class="col-6 col-sm-2 col-md-1"><p class="footer-heading text-caption fw-medium text-white-64 mb-3">SITEMAP</p></div><div class="col-6 col-sm-4 col-md-3"><ul class="footer-menu-list mb-sm-0"><li><a href="index.html#serviceScroll" class="link letter-space--2 h5">Services</a></li><li><a href="projects.html" class="link letter-space--2 h5">Projects</a></li><li><a href="index.html#aboutScroll" class="link letter-space--2 h5">About</a></li><li><a href="index.html#contactScroll" class="link letter-space--2 h5">Contact</a></li></ul></div><div class="col-6 col-sm-2 col-md-1"><p class="footer-heading text-caption fw-medium text-white-64 mb-3">SOCIALS</p></div><div class="col-6 col-sm-4 col-md-3"><ul class="footer-menu-list mb-0"><li><a href="https://www.linkedin.com/company/okdesign-studio" target="_blank" class="link letter-space--2 h5">LinkedIn</a></li><li><a href="https://www.behance.net/okdesign-studio" target="_blank" class="link letter-space--2 h5">Behance</a></li><li><a href="https://wa.me/okdesign.cc" target="_blank" class="link letter-space--2 h5">WhatsApp</a></li></ul></div></div></div></div></footer>
+        <!-- FOOTER -->
+        <footer class="tf-footer">
+            <div class="container">
+                <div class="br-line"></div>
+            </div>
+            <div class="footer-inner">
+                <div class="container">
+                    <div class="row align-items-start">
+                        <div class="col-md-4 mb-5 mb-md-0">
+                            <p class="title text-has-dot text-caption fw-medium mb-0" style="line-height: 1.6; display: flex; align-items: flex-start; gap: 8px;">
+                                <span class="br-dot" style="margin-top: 5px; flex-shrink: 0;"></span>
+                                <span>© 2026 OK DESIGN.<span class="d-none d-md-inline"><br></span><span class="d-md-none"> </span>ALL RIGHTS RESERVED.</span>
+                            </p>
+                        </div>
+                        <div class="col-6 col-sm-2 col-md-1">
+                            <p class="footer-heading text-caption fw-medium text-white-64 mb-3">SITEMAP</p>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3">
+                            <ul class="footer-menu-list mb-sm-0">
+                                <li><a href="index.html#serviceScroll" class="link letter-space--2 h5">Services</a></li>
+                                <li><a href="projects.html" class="link letter-space--2 h5">Projects</a></li>
+                                <li><a href="index.html#aboutScroll" class="link letter-space--2 h5">About</a></li>
+                                <li><a href="index.html#contactScroll" class="link letter-space--2 h5">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-sm-2 col-md-1">
+                            <p class="footer-heading text-caption fw-medium text-white-64 mb-3">SOCIALS</p>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3">
+                            <ul class="footer-menu-list mb-0">
+                                <li><a href="https://www.linkedin.com/company/okdesign-studio" target="_blank" class="link letter-space--2 h5">LinkedIn</a></li>
+                                <li><a href="https://www.behance.net/okdesign-studio" target="_blank" class="link letter-space--2 h5">Behance</a></li>
+                                <li><a href="https://wa.me/okdesign.cc" target="_blank" class="link letter-space--2 h5">WhatsApp</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
     </main>
-    <div class="offcanvas-menu"><div class="offcanvas-content"><div class="container h-100"><div class="offcanvas-content_wrapin"><div class="canvas_head"><a href="index.html" class="logo-site"><img src="assets/images/logo/logo.svg" alt="OK Design" style="height:40px;width:auto;"></a><div class="btn-mobile-menu close-mb-menu text-caption link"><i class="icon icon-close"></i> CLOSE</div></div><div class="canvas_center"><ul class="nav-ul-mb"><li><div class="item close-mb-menu"><a href="projects.html" class="mb-menu-link text-display-1"><span class="text">Projects</span></a></div></li><li><div class="item close-mb-menu"><a href="index.html#aboutScroll" class="mb-menu-link text-display-1"><span class="text">About</span></a></div></li><li><div class="item close-mb-menu"><a href="index.html#serviceScroll" class="mb-menu-link text-display-1"><span class="text">Services</span></a></div></li><li><div class="item close-mb-menu"><a href="index.html#contactScroll" class="mb-menu-link text-display-1"><span class="text">Contact</span></a></div></li></ul></div><div class="canvas_foot"><div class="left"><a href="mailto:hello@okdesign.cc" class="link text-caption">HELLO@OKDESIGN.CC</a></div><div class="right"><a href="https://www.linkedin.com/company/okdesign-studio" target="_blank" class="tf-link-icon text-caption link"><i class="icon icon-arrow-top-right"></i> LINKEDIN</a><a href="https://www.behance.net/okdesign-studio" target="_blank" class="tf-link-icon text-caption link"><i class="icon icon-arrow-top-right"></i> BEHANCE</a></div></div></div></div></div></div>
-    <script src="assets/js/jquery.min.js"></script><script src="assets/js/bootstrap.min.js"></script><script src="assets/js/gsap.min.js"></script><script src="assets/js/ScrollTrigger.min.js"></script><script src="assets/js/main.js"></script>
+
+    <!-- Mobile menu -->
+    <div class="offcanvas-menu">
+        <div class="offcanvas-content">
+            <div class="container h-100">
+                <div class="offcanvas-content_wrapin">
+                    <div class="canvas_head">
+                        <a href="index.html" class="logo-site"><img src="assets/images/logo/logo.svg" alt="OK Design" style="height:40px;width:auto;"></a>
+                        <div class="btn-mobile-menu close-mb-menu text-caption link"><i class="icon icon-close"></i> CLOSE</div>
+                    </div>
+                    <div class="canvas_center">
+                        <ul class="nav-ul-mb">
+                            <li><div class="item close-mb-menu"><a href="projects.html" class="mb-menu-link text-display-1"><span class="text">Projects</span></a></div></li>
+                            <li><div class="item close-mb-menu"><a href="index.html#aboutScroll" class="mb-menu-link text-display-1"><span class="text">About</span></a></div></li>
+                            <li><div class="item close-mb-menu"><a href="index.html#serviceScroll" class="mb-menu-link text-display-1"><span class="text">Services</span></a></div></li>
+                            <li><div class="item close-mb-menu"><a href="index.html#contactScroll" class="mb-menu-link text-display-1"><span class="text">Contact</span></a></div></li>
+                        </ul>
+                    </div>
+                    <div class="canvas_foot">
+                        <div class="left"><a href="mailto:hello@okdesign.cc" class="link text-caption">HELLO@OKDESIGN.CC</a></div>
+                        <div class="right">
+                            <a href="https://www.linkedin.com/company/okdesign-studio" target="_blank" class="tf-link-icon text-caption link"><i class="icon icon-arrow-top-right"></i> LINKEDIN</a>
+                            <a href="https://www.behance.net/okdesign-studio" target="_blank" class="tf-link-icon text-caption link"><i class="icon icon-arrow-top-right"></i> BEHANCE</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        // Lottie hover interaction:
+        // On mouse-enter → play from start; on mouse-leave → pause / reset
+        document.querySelectorAll('.somplo-icon-card').forEach(function(card) {
+            var player = card.querySelector('lottie-player');
+            if (!player) return;
+
+            card.addEventListener('mouseenter', function() {
+                player.play();
+            });
+            card.addEventListener('mouseleave', function() {
+                // keep autoplay running (icons already loop), just ensure it's playing
+                // The grayscale CSS handles the visual color change
+            });
+        });
+    </script>
+
 </body>
 </html>
