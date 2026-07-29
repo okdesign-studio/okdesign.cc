@@ -331,7 +331,7 @@
                     <div class="col-12 col-lg-9">
                         <h4 class="fw-normal" style="font-size: clamp(22px, 2.5vw, 28px); color: rgba(255,255,255,0.85); letter-spacing: 0.5px; margin-bottom: 20px;">About Somplo</h4>
                         <p class="text-white-64 mb-0 fw-light" style="line-height: 1.7; font-size: 16px; font-weight: 200;">
-                            Somplo is a creative management platform (CMP) that enables brands and agencies to build, launch, and measure high-impact interactive display advertising — from rich media and HTML5 banners to advanced formats like parallax, video, and gamified units. The platform hosts a library of reusable creative components, each representing a unique interactive ad mechanic. To help users quickly identify and select the right component, each one needed a clear, expressive animated icon — a miniature visual demo that tells you exactly what the component does at a glance.
+                            Somplo is a creative management platform (CMP) that enables brands and agencies to build, launch, and measure high-impact interactive display advertising — from rich media and HTML5 banners to advanced formats like parallax, video, and gamified units. The platform hosts a library of reusable creative components, each representing a unique interactive ad mechanic. To help users quickly identify and select the right component, each one needed a clear, expressive animated icon — a miniature visual demo that tells you exactly what the component does at a glance. As part of my broader creative role at Somplo, I also developed promo videos, marketing materials, and contributed to the platform's visual identity, supporting the company's overall growth and Google Partner status.
                         </p>
                     </div>
                 </div>
@@ -651,63 +651,6 @@
                 </div>
             </div>
 
-            <!-- ================================================================= -->
-            <!-- BLOCK 05: KEY CONTRIBUTIONS & ACHIEVEMENTS -->
-            <!-- ================================================================= -->
-            <div class="mil-up mb-5 pb-5">
-                <div class="mb-5" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: rgba(255, 255, 255, 0.03); padding: 48px 0;">
-                    <div class="container">
-                        <div class="mb-3">
-                            <span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing: 2px;">05 / IMPACT</span>
-                        </div>
-                        <div class="row justify-content-between align-items-start">
-                            <div class="col-lg-5 mb-3 mb-lg-0">
-                                <h2 class="text-white text-uppercase mb-0" style="font-size: clamp(32px, 3.5vw, 44px); font-weight: 600; line-height: 1.1;">CONTRIBUTIONS & RESULTS</h2>
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="text-white-64 mb-0" style="line-height: 1.7; font-size: 20px;">
-                                    This project was part of a broader creative role at Somplo — contributing to the platform's visual identity, marketing materials, and the company's overall growth milestones.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row pt-3 g-5">
-                    <div class="col-12 col-lg-6">
-                        <h4 class="fw-normal mb-4" style="font-size: clamp(20px, 2vw, 26px); color: rgba(255,255,255,0.85);">Key Contributions at Somplo</h4>
-                        <ul class="contrib-list">
-                            <li>Developed promo videos and advertising materials for campaigns</li>
-                            <li>Created animations for the Somplo CMP platform and corporate website</li>
-                            <li>Designed content for social media, email, and sales department signatures</li>
-                            <li>Produced animated and static graphics for display ads created on the platform</li>
-                            <li>Contributed to the company's efforts toward achieving Google Partner status</li>
-                        </ul>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <h4 class="fw-normal mb-4" style="font-size: clamp(20px, 2vw, 26px); color: rgba(255,255,255,0.85);">Achievements</h4>
-                        <div class="row g-3">
-                            <div class="col-12">
-                                <div class="achievement-card">
-                                    <div class="ac-num">01</div>
-                                    <p>Animated platform icons improved UX by simplifying component interactions — users could immediately understand what each component does without additional explanation.</p>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="achievement-card">
-                                    <div class="ac-num">02</div>
-                                    <p>Promo videos and advertising materials attracted new clients and re-engaged existing platform users, supporting the sales and onboarding pipeline.</p>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="achievement-card">
-                                    <div class="ac-num">03</div>
-                                    <p>Social media visuals enhanced recruitment efforts and increased brand recognition, reinforcing Somplo's position as a premium ad-tech platform.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <!-- ================================================================= -->
@@ -885,6 +828,7 @@
         var ANIM_START_DELAY = 220;  // delay before play() — lets color appear first
         var ANIM_STOP_DELAY  = 420;  // delay before stop() — lets color fade first
 
+        // --- Lottie Icons ---
         document.querySelectorAll('.somplo-icon-card[data-type="lottie"]').forEach(function (card) {
             var player = card.querySelector('lottie-player');
             if (!player) return;
@@ -921,6 +865,19 @@
 
         // SVG icons: animation runs continuously, CSS grayscale controls visual.
         // No JS interaction needed for data-type="svg" cards.
+    
+        // --- SVG Icons ---
+        document.querySelectorAll('.somplo-icon-card[data-type="svg"]').forEach(function (card) {
+            var colorImg = card.querySelector('.icon-color');
+            if (!colorImg) return;
+            var originalSrc = colorImg.getAttribute('src').split('?')[0];
+
+            card.addEventListener('mouseenter', function () {
+                // Force restart the SVG animation by appending a cache-busting query parameter.
+                // The reload flicker is hidden by the 400ms CSS fade-in.
+                colorImg.src = originalSrc + '?t=' + new Date().getTime();
+            });
+        });
     })();
     </script>
 
