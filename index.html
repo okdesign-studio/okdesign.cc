@@ -376,7 +376,9 @@
         padding: 0 !important; 
         height: auto !important;
         background: transparent !important; 
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        /* Якорь для абсолютно-позиционированных тегов */
+        position: relative;
     }
 
     /* 2. Изолированная обертка для самой полосы - она жестко держит высоту строки */
@@ -445,17 +447,25 @@
         z-index: 1;
     }
 
-    /* 5. Контейнер тегов (строго под wg-tech-bar-wrapper) */
+    /* 5. Контейнер тегов — АБСОЛЮТНОЕ позиционирование:
+          Выводим из потока, чтобы раскрытие НЕ сдвигало соседние категории.
+          Это устраняет «съезжание» курсора при движении сверху вниз. */
     .service-tags-wrap {
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        background-color: #000; /* Заливаем черным, отсекая любой фон */
-        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.4s ease;
-        position: relative;
-        z-index: 10;
+        position: absolute;
+        top: 100%;         /* прямо под баром категории */
+        left: 0;
+        right: 0;
+        z-index: 50;
         display: flex;
         justify-content: center;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        background-color: #000;
+        border-top: 0px solid rgba(255, 255, 255, 0.05);
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity 0.3s ease,
+                    padding 0.4s ease;
     }
 
     /* 6. Полностью глушим hover/бегущую строку, если палец реально скроллит */
@@ -468,7 +478,7 @@
         max-height: 400px;
         opacity: 1;
         padding: 24px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.05); /* Линия, отделяющая теги от цветной полосы */
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     /* Стили плашек (сервисов) */
