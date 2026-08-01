@@ -1712,61 +1712,111 @@
 $(document).ready(function() {
     const $techList = $('.tech-stack-list');
     const $items = $techList.find('.wg-tech');
+    const itemsArr = $items.toArray(); // нативный массив для elementFromPoint
 
-    // 1. ЖЕСТКО ОТКЛЮЧАЕМ РОДНОЙ СКРИПТ ШАБЛОНА
-    // Убираем класс btn-active, за который цепляется main.js, чтобы он не конфликтовал с нашей логикой
+    // 1. ОТКЛЮЧАЕМ РОДНОЙ СКРИПТ ШАБЛОНА
     $items.removeClass('btn-active').off('mouseenter mouseleave');
 
     const isDesktopHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches && window.innerWidth > 991;
 
     if (isDesktopHover) {
-        let hoverTimer;
+        // ================================================================
+        // ДЕСКТОП: используем mousemove + elementFromPoint вместо
+        // mouseenter/mouseleave. Это позволяет точно определить, над каким
+        // элементом реально находится курсор ПОСЛЕ того, как DOM сдвинулся
+        // при раскрытии тегов — и одинаково работает в обе стороны.
+        // ================================================================
+        let hoverTimer = null;
+        let currentActive = null; // какой элемент сейчас «активен»
 
-        $items.on('mouseenter', function() {
-            const $this = $(this);
-            // Если блок уже открыт — ничего не делаем
-            if ($this.hasClass('active')) return;
+        $techList[0].addEventListener('mousemove', function(e) {
+            // Ищем самый верхний .wg-tech под курсором
+            const el = document.elementFromPoint(e.clientX, e.clientY);
+            if (!el) return;
+            const target = el.closest('.wg-tech');
 
+            // Если курсор всё ещё над тем же элементом — ничего не делаем
+            if (target === currentActive) return;
+
+            // Курсор над новым элементом (или ни над каким)
             clearTimeout(hoverTimer);
-            
-            // 2. HOVER INTENT: Задержка 150мс перед раскрытием.
-            // Спасает от судорожного открытия всех блоков подряд при проходе мыши сверху вниз
+
+            if (!target || !itemsArr.includes(target)) {
+                // Курсор ушёл с зоны списка — ничего не раскрываем
+                return;
+            }
+
+            // Если этот элемент уже открыт — просто фиксируем его как текущий
+            if (target.classList.contains('active')) {
+                currentActive = target;
+                return;
+            }
+
+            // Небольшая задержка-intent: защита от мгновенных проскоков
             hoverTimer = setTimeout(function() {
-                $this.addClass('active').siblings().removeClass('active');
-            }, 150);
-            
-        }).on('mouseleave', function() {
-            // Если мышь ушла с блока до того, как истекли 150мс — отменяем открытие
+                currentActive = target;
+                $(target).addClass('active').siblings().removeClass('active');
+            }, 120);
+        });
+
+        // Когда мышь полностью покидает список — сбрасываем таймер
+        $techList[0].addEventListener('mouseleave', function() {
             clearTimeout(hoverTimer);
+            currentActive = null;
         });
 
         return; // На десктопе дальше не идем
     }
 
-    // ===== МОБИЛЬНЫЕ И ПЛАНШЕТЫ (Оставляем как было, тут логика идеальна) =====
+    // ===== МОБИЛЬНЫЕ И ПЛАНШЕТЫ =====
 
-    // Раскрытие тегов строго по тапу на заголовок
-    $items.find('.wg-tech-bar-wrapper').on('click', function() {
-        const $parentLi = $(this).closest('.wg-tech');
-        if (!$parentLi.hasClass('active')) {
-            $parentLi.addClass('active').siblings().removeClass('active');
+    // Раскрытие ТОЛЬКО при коротком тапе на заголовок (не при долгом нажатии / скролле)
+    let touchStartTime = 0;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchMoved = false;
+
+    $items.find('.wg-tech-bar-wrapper').on('touchstart', function(e) {
+        const t = e.originalEvent.touches[0];
+        touchStartTime = Date.now();
+        touchStartX = t.clientX;
+        touchStartY = t.clientY;
+        touchMoved = false;
+    });
+
+    $items.find('.wg-tech-bar-wrapper').on('touchmove', function(e) {
+        const t = e.originalEvent.touches[0];
+        const dx = Math.abs(t.clientX - touchStartX);
+        const dy = Math.abs(t.clientY - touchStartY);
+        if (dx > 8 || dy > 8) touchMoved = true;
+    });
+
+    $items.find('.wg-tech-bar-wrapper').on('touchend', function(e) {
+        const duration = Date.now() - touchStartTime;
+        // Раскрываем только если: тап короткий (< 250мс) и палец не двигался
+        if (!touchMoved && duration < 250) {
+            e.preventDefault(); // предотвращаем клик-эхо
+            const $parentLi = $(this).closest('.wg-tech');
+            if (!$parentLi.hasClass('active')) {
+                $parentLi.addClass('active').siblings().removeClass('active');
+            }
         }
     });
 
-    // Блокировка hover/бегущей строки на время реального скролла пальцем
-    let startX = 0, startY = 0, isRealScroll = false, scrollEndTimer = null;
+    // Блокировка бегущей строки на время реального скролла пальцем
+    let isRealScroll = false, scrollEndTimer = null;
 
     $techList.on('touchstart', function(e) {
         const t = e.originalEvent.touches[0];
-        startX = t.clientX;
-        startY = t.clientY;
+        touchStartX = t.clientX;
+        touchStartY = t.clientY;
         isRealScroll = false;
     });
 
     $techList.on('touchmove', function(e) {
         const t = e.originalEvent.touches[0];
-        const dx = Math.abs(t.clientX - startX);
-        const dy = Math.abs(t.clientY - startY);
+        const dx = Math.abs(t.clientX - touchStartX);
+        const dy = Math.abs(t.clientY - touchStartY);
         if (!isRealScroll && (dx > 10 || dy > 10)) {
             isRealScroll = true;
             document.body.classList.add('is-touch-scrolling');
@@ -1778,6 +1828,7 @@ $(document).ready(function() {
         if (isRealScroll) {
             scrollEndTimer = setTimeout(function() {
                 document.body.classList.remove('is-touch-scrolling');
+                isRealScroll = false;
             }, 150);
         }
     });
