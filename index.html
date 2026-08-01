@@ -466,6 +466,13 @@
         transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                     opacity 0.3s ease,
                     padding 0.4s ease;
+        /* Обёртка прозрачна для мыши — курсор видит бары под тегами */
+        pointer-events: none;
+    }
+
+    /* Сами ссылки (теги) остаются кликабельными */
+    .service-tags-wrap .list-tags-custom li a {
+        pointer-events: auto;
     }
 
     /* 6. Полностью глушим hover/бегущую строку, если палец реально скроллит */
