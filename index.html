@@ -445,9 +445,17 @@
         z-index: 1;
     }
 
-    /* 5. Исходные service-tags-wrap — скрыты, используются только как источник данных */
+    /* 5. Контейнер тегов (строго под wg-tech-bar-wrapper) */
     .service-tags-wrap {
-        display: none !important;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        background-color: #000;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, padding 0.4s ease;
+        position: relative;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
     }
 
     /* 6. Полностью глушим hover/бегущую строку, если палец реально скроллит */
@@ -455,36 +463,12 @@
         pointer-events: none !important;
     }
 
-    /* ====== ОБЩАЯ ПАНЕЛЬ ТЕГОВ ПОД СПИСКОМ ====== */
-    .services-panel {
-        overflow: hidden;
-        max-height: 0;
-        opacity: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        background-color: #000;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-                    opacity 0.3s ease,
-                    padding 0.35s ease;
-        padding: 0 20px;
-    }
-
-    .services-panel.is-open {
-        max-height: 300px;
+    /* Раскрытие тегов при ховере / тапе */
+    .wg-tech.active .service-tags-wrap {
+        max-height: 400px;
         opacity: 1;
-        padding: 28px 20px;
-    }
-
-    /* Лейбл активной категории в панели */
-    .services-panel-label {
-        font-size: 11px;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.35);
-        margin: 0;
+        padding: 24px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     /* Стили плашек (сервисов) */
@@ -718,12 +702,6 @@
         </li>
 
     </ul>
-
-    <!-- ОБЩАЯ ПАНЕЛЬ ТЕГОВ: отображается под всем списком -->
-    <div class="services-panel" id="servicesPanel">
-        <p class="services-panel-label" id="servicesPanelLabel"></p>
-        <ul class="list-tags-custom" id="servicesPanelTags"></ul>
-    </div>
 
 </section>
 <!-- /SERVICES -->
@@ -1733,84 +1711,43 @@
     <script src="assets/js/main.js"></script>
 <script>
 $(document).ready(function() {
-    const $techList  = $('.tech-stack-list');
-    const $items     = $techList.find('.wg-tech');
-    const itemsArr   = $items.toArray();
-    const $panel     = $('#servicesPanel');
-    const $panelTags = $('#servicesPanelTags');
-    const $panelLbl  = $('#servicesPanelLabel');
+    const $techList = $('.tech-stack-list');
+    const $items    = $techList.find('.wg-tech');
 
     // Отключаем родной скрипт шаблона
     $items.removeClass('btn-active').off('mouseenter mouseleave');
 
-    // ── Общая функция активации ──────────────────────────────────────────
-    function activateItem(item) {
-        const $item = $(item);
-        if ($item.hasClass('active')) return; // уже активен
-
-        // Переключаем класс
-        $items.removeClass('active');
-        $item.addClass('active');
-
-        // Читаем теги из скрытого service-tags-wrap и пишем в панель
-        const label    = $item.find('.tech_text .h1').first().text().trim();
-        const tagsHtml = $item.find('.service-tags-wrap .list-tags-custom').html();
-
-        $panelLbl.text(label);
-        $panelTags.html(tagsHtml);
-
-        if (!$panel.hasClass('is-open')) {
-            $panel.addClass('is-open');
-        }
-    }
-
-    // Инициализация: показываем теги первой открытой категории
-    const $initActive = $items.filter('.active').first();
-    if ($initActive.length) {
-        const label    = $initActive.find('.tech_text .h1').first().text().trim();
-        const tagsHtml = $initActive.find('.service-tags-wrap .list-tags-custom').html();
-        $panelLbl.text(label);
-        $panelTags.html(tagsHtml);
-        $panel.addClass('is-open');
-    }
-
-    // ── ДЕСКТОП ──────────────────────────────────────────────────────────
     const isDesktopHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches && window.innerWidth > 991;
 
     if (isDesktopHover) {
-        let hoverTimer  = null;
-        let currentItem = $initActive.length ? $initActive[0] : null;
+        let hoverTimer    = null;
+        let collapseTimer = null;
 
-        $techList[0].addEventListener('mousemove', function(e) {
-            const el = document.elementFromPoint(e.clientX, e.clientY);
-            if (!el) return;
-            const target = el.closest('.wg-tech');
+        $items.on('mouseenter', function() {
+            const $this = $(this);
+            if ($this.hasClass('active')) return;
 
-            if (target === currentItem) return; // всё ещё над тем же
             clearTimeout(hoverTimer);
-
-            if (!target || !itemsArr.includes(target)) return; // вне списка
-            if (target.classList.contains('active')) {
-                currentItem = target;
-                return;
-            }
-
-            // Небольшая задержка-intent
             hoverTimer = setTimeout(function() {
-                currentItem = target;
-                activateItem(target);
-            }, 120);
-        });
+                // 1. Сначала раскрываем новый элемент — контент растёт вниз
+                $this.addClass('active');
+                // 2. Через ~70мс сворачиваем предыдущее — контент поднимается вверх
+                // курсор к этому моменту уже стабильно находится в зоне нового элемента
+                clearTimeout(collapseTimer);
+                collapseTimer = setTimeout(function() {
+                    $this.siblings().removeClass('active');
+                }, 70);
+            }, 150);
 
-        $techList[0].addEventListener('mouseleave', function() {
+        }).on('mouseleave', function() {
             clearTimeout(hoverTimer);
-            currentItem = null;
         });
 
-        return; // на десктопе мобильные обработчики не нужны
+        return;
     }
 
-    // ── МОБИЛЬНЫЕ И ПЛАНШЕТЫ ─────────────────────────────────────────────
+    // ===== МОБИЛЬНЫЕ И ПЛАНШЕТЫ =====
+
     let touchStartTime = 0, touchStartX = 0, touchStartY = 0, touchMoved = false;
 
     $items.find('.wg-tech-bar-wrapper')
@@ -1829,14 +1766,19 @@ $(document).ready(function() {
         })
         .on('touchend', function(e) {
             const duration = Date.now() - touchStartTime;
-            // Только короткий тап (< 250мс) и без сдвига
             if (!touchMoved && duration < 250) {
                 e.preventDefault();
-                activateItem($(this).closest('.wg-tech')[0]);
+                const $parentLi = $(this).closest('.wg-tech');
+                if (!$parentLi.hasClass('active')) {
+                    $parentLi.addClass('active');
+                    setTimeout(function() {
+                        $parentLi.siblings().removeClass('active');
+                    }, 70);
+                }
             }
         });
 
-    // Блокировка бегущей строки на время скролла пальцем
+    // Блокировка бегущей строки на время реального скролла пальцем
     let isRealScroll = false, scrollEndTimer = null;
 
     $techList.on('touchstart', function(e) {
