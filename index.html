@@ -377,8 +377,6 @@
         height: auto !important;
         background: transparent !important; 
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        /* Якорь для абсолютно-позиционированных тегов */
-        position: relative;
     }
 
     /* 2. Изолированная обертка для самой полосы - она жестко держит высоту строки */
@@ -447,32 +445,9 @@
         z-index: 1;
     }
 
-    /* 5. Контейнер тегов — АБСОЛЮТНОЕ позиционирование:
-          Выводим из потока, чтобы раскрытие НЕ сдвигало соседние категории.
-          Это устраняет «съезжание» курсора при движении сверху вниз. */
+    /* 5. Исходные service-tags-wrap — скрыты, используются только как источник данных */
     .service-tags-wrap {
-        position: absolute;
-        top: 100%;         /* прямо под баром категории */
-        left: 0;
-        right: 0;
-        z-index: 50;
-        display: flex;
-        justify-content: center;
-        overflow: hidden;
-        max-height: 0;
-        opacity: 0;
-        background-color: #000;
-        border-top: 0px solid rgba(255, 255, 255, 0.05);
-        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                    opacity 0.3s ease,
-                    padding 0.4s ease;
-        /* Обёртка прозрачна для мыши — курсор видит бары под тегами */
-        pointer-events: none;
-    }
-
-    /* Сами ссылки (теги) остаются кликабельными */
-    .service-tags-wrap .list-tags-custom li a {
-        pointer-events: auto;
+        display: none !important;
     }
 
     /* 6. Полностью глушим hover/бегущую строку, если палец реально скроллит */
@@ -480,12 +455,36 @@
         pointer-events: none !important;
     }
 
-    /* Раскрытие тегов при ховере / тапе */
-    .wg-tech.active .service-tags-wrap {
-        max-height: 400px;
-        opacity: 1;
-        padding: 24px 0;
+    /* ====== ОБЩАЯ ПАНЕЛЬ ТЕГОВ ПОД СПИСКОМ ====== */
+    .services-panel {
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        background-color: #000;
         border-top: 1px solid rgba(255, 255, 255, 0.05);
+        transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity 0.3s ease,
+                    padding 0.35s ease;
+        padding: 0 20px;
+    }
+
+    .services-panel.is-open {
+        max-height: 300px;
+        opacity: 1;
+        padding: 28px 20px;
+    }
+
+    /* Лейбл активной категории в панели */
+    .services-panel-label {
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.35);
+        margin: 0;
     }
 
     /* Стили плашек (сервисов) */
@@ -719,6 +718,13 @@
         </li>
 
     </ul>
+
+    <!-- ОБЩАЯ ПАНЕЛЬ ТЕГОВ: отображается под всем списком -->
+    <div class="services-panel" id="servicesPanel">
+        <p class="services-panel-label" id="servicesPanelLabel"></p>
+        <ul class="list-tags-custom" id="servicesPanelTags"></ul>
+    </div>
+
 </section>
 <!-- /SERVICES -->
 <!-- PROJECTS -->
@@ -1727,111 +1733,121 @@
     <script src="assets/js/main.js"></script>
 <script>
 $(document).ready(function() {
-    const $techList = $('.tech-stack-list');
-    const $items = $techList.find('.wg-tech');
-    const itemsArr = $items.toArray(); // нативный массив для elementFromPoint
+    const $techList  = $('.tech-stack-list');
+    const $items     = $techList.find('.wg-tech');
+    const itemsArr   = $items.toArray();
+    const $panel     = $('#servicesPanel');
+    const $panelTags = $('#servicesPanelTags');
+    const $panelLbl  = $('#servicesPanelLabel');
 
-    // 1. ОТКЛЮЧАЕМ РОДНОЙ СКРИПТ ШАБЛОНА
+    // Отключаем родной скрипт шаблона
     $items.removeClass('btn-active').off('mouseenter mouseleave');
 
+    // ── Общая функция активации ──────────────────────────────────────────
+    function activateItem(item) {
+        const $item = $(item);
+        if ($item.hasClass('active')) return; // уже активен
+
+        // Переключаем класс
+        $items.removeClass('active');
+        $item.addClass('active');
+
+        // Читаем теги из скрытого service-tags-wrap и пишем в панель
+        const label    = $item.find('.tech_text .h1').first().text().trim();
+        const tagsHtml = $item.find('.service-tags-wrap .list-tags-custom').html();
+
+        $panelLbl.text(label);
+        $panelTags.html(tagsHtml);
+
+        if (!$panel.hasClass('is-open')) {
+            $panel.addClass('is-open');
+        }
+    }
+
+    // Инициализация: показываем теги первой открытой категории
+    const $initActive = $items.filter('.active').first();
+    if ($initActive.length) {
+        const label    = $initActive.find('.tech_text .h1').first().text().trim();
+        const tagsHtml = $initActive.find('.service-tags-wrap .list-tags-custom').html();
+        $panelLbl.text(label);
+        $panelTags.html(tagsHtml);
+        $panel.addClass('is-open');
+    }
+
+    // ── ДЕСКТОП ──────────────────────────────────────────────────────────
     const isDesktopHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches && window.innerWidth > 991;
 
     if (isDesktopHover) {
-        // ================================================================
-        // ДЕСКТОП: используем mousemove + elementFromPoint вместо
-        // mouseenter/mouseleave. Это позволяет точно определить, над каким
-        // элементом реально находится курсор ПОСЛЕ того, как DOM сдвинулся
-        // при раскрытии тегов — и одинаково работает в обе стороны.
-        // ================================================================
-        let hoverTimer = null;
-        let currentActive = null; // какой элемент сейчас «активен»
+        let hoverTimer  = null;
+        let currentItem = $initActive.length ? $initActive[0] : null;
 
         $techList[0].addEventListener('mousemove', function(e) {
-            // Ищем самый верхний .wg-tech под курсором
             const el = document.elementFromPoint(e.clientX, e.clientY);
             if (!el) return;
             const target = el.closest('.wg-tech');
 
-            // Если курсор всё ещё над тем же элементом — ничего не делаем
-            if (target === currentActive) return;
-
-            // Курсор над новым элементом (или ни над каким)
+            if (target === currentItem) return; // всё ещё над тем же
             clearTimeout(hoverTimer);
 
-            if (!target || !itemsArr.includes(target)) {
-                // Курсор ушёл с зоны списка — ничего не раскрываем
-                return;
-            }
-
-            // Если этот элемент уже открыт — просто фиксируем его как текущий
+            if (!target || !itemsArr.includes(target)) return; // вне списка
             if (target.classList.contains('active')) {
-                currentActive = target;
+                currentItem = target;
                 return;
             }
 
-            // Небольшая задержка-intent: защита от мгновенных проскоков
+            // Небольшая задержка-intent
             hoverTimer = setTimeout(function() {
-                currentActive = target;
-                $(target).addClass('active').siblings().removeClass('active');
+                currentItem = target;
+                activateItem(target);
             }, 120);
         });
 
-        // Когда мышь полностью покидает список — сбрасываем таймер
         $techList[0].addEventListener('mouseleave', function() {
             clearTimeout(hoverTimer);
-            currentActive = null;
+            currentItem = null;
         });
 
-        return; // На десктопе дальше не идем
+        return; // на десктопе мобильные обработчики не нужны
     }
 
-    // ===== МОБИЛЬНЫЕ И ПЛАНШЕТЫ =====
+    // ── МОБИЛЬНЫЕ И ПЛАНШЕТЫ ─────────────────────────────────────────────
+    let touchStartTime = 0, touchStartX = 0, touchStartY = 0, touchMoved = false;
 
-    // Раскрытие ТОЛЬКО при коротком тапе на заголовок (не при долгом нажатии / скролле)
-    let touchStartTime = 0;
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let touchMoved = false;
-
-    $items.find('.wg-tech-bar-wrapper').on('touchstart', function(e) {
-        const t = e.originalEvent.touches[0];
-        touchStartTime = Date.now();
-        touchStartX = t.clientX;
-        touchStartY = t.clientY;
-        touchMoved = false;
-    });
-
-    $items.find('.wg-tech-bar-wrapper').on('touchmove', function(e) {
-        const t = e.originalEvent.touches[0];
-        const dx = Math.abs(t.clientX - touchStartX);
-        const dy = Math.abs(t.clientY - touchStartY);
-        if (dx > 8 || dy > 8) touchMoved = true;
-    });
-
-    $items.find('.wg-tech-bar-wrapper').on('touchend', function(e) {
-        const duration = Date.now() - touchStartTime;
-        // Раскрываем только если: тап короткий (< 250мс) и палец не двигался
-        if (!touchMoved && duration < 250) {
-            e.preventDefault(); // предотвращаем клик-эхо
-            const $parentLi = $(this).closest('.wg-tech');
-            if (!$parentLi.hasClass('active')) {
-                $parentLi.addClass('active').siblings().removeClass('active');
+    $items.find('.wg-tech-bar-wrapper')
+        .on('touchstart', function(e) {
+            const t = e.originalEvent.touches[0];
+            touchStartTime = Date.now();
+            touchStartX = t.clientX;
+            touchStartY = t.clientY;
+            touchMoved  = false;
+        })
+        .on('touchmove', function(e) {
+            const t  = e.originalEvent.touches[0];
+            const dx = Math.abs(t.clientX - touchStartX);
+            const dy = Math.abs(t.clientY - touchStartY);
+            if (dx > 8 || dy > 8) touchMoved = true;
+        })
+        .on('touchend', function(e) {
+            const duration = Date.now() - touchStartTime;
+            // Только короткий тап (< 250мс) и без сдвига
+            if (!touchMoved && duration < 250) {
+                e.preventDefault();
+                activateItem($(this).closest('.wg-tech')[0]);
             }
-        }
-    });
+        });
 
-    // Блокировка бегущей строки на время реального скролла пальцем
+    // Блокировка бегущей строки на время скролла пальцем
     let isRealScroll = false, scrollEndTimer = null;
 
     $techList.on('touchstart', function(e) {
         const t = e.originalEvent.touches[0];
-        touchStartX = t.clientX;
-        touchStartY = t.clientY;
+        touchStartX  = t.clientX;
+        touchStartY  = t.clientY;
         isRealScroll = false;
     });
 
     $techList.on('touchmove', function(e) {
-        const t = e.originalEvent.touches[0];
+        const t  = e.originalEvent.touches[0];
         const dx = Math.abs(t.clientX - touchStartX);
         const dy = Math.abs(t.clientY - touchStartY);
         if (!isRealScroll && (dx > 10 || dy > 10)) {
@@ -1851,6 +1867,7 @@ $(document).ready(function() {
     });
 });
 </script>
+
 </body>
 
 </html>
