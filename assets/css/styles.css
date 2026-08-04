@@ -4853,6 +4853,7 @@ button.animate-btn::after,
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
   opacity: 0.64;
+  filter: brightness(0.7);
 }
 .section-brand .img-brand img {
   -webkit-transition: all 0.3s ease;
@@ -4864,6 +4865,7 @@ button.animate-btn::after,
 }
 .section-brand .img-brand:hover {
   opacity: 1;
+  filter: brightness(1.6);
 }
 .section-brand .img-brand:hover img {
   transform: scale(1.1);
