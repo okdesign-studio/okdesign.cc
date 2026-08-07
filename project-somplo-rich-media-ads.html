@@ -291,12 +291,12 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 52px;
-            padding: 14px 24px 0;
+            height: 48px;
+            padding: 10px 22px 0;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
-            z-index: 9998;
+            z-index: 9999;
             pointer-events: none;
             border-radius: 42px 42px 0 0;
         }
@@ -307,7 +307,7 @@
             color: #fff;
             letter-spacing: -0.3px;
             line-height: 1;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 1px 6px rgba(0,0,0,0.8);
         }
         .iphone-status-bar .status-icons {
             display: flex;
@@ -316,30 +316,43 @@
         }
         .iphone-status-bar .status-icons svg {
             display: block;
-            filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 1px 4px rgba(0,0,0,0.9));
         }
 
-        /* Top fade overlay over the iframe */
+        /* Blur band — sits right behind the status bar */
+        .iphone-top-blur {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            pointer-events: none;
+            z-index: 9997;
+            border-radius: 42px 42px 0 0;
+            -webkit-backdrop-filter: blur(14px) brightness(0.55);
+            backdrop-filter: blur(14px) brightness(0.55);
+            mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+        }
+
+        /* Dark gradient fade — wider, deeper darkening below the blur */
         .iphone-top-fade {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 90px;
+            height: 130px;
             pointer-events: none;
-            z-index: 9997;
+            z-index: 9996;
             border-radius: 42px 42px 0 0;
             background: linear-gradient(
                 to bottom,
-                rgba(0,0,0,0.72) 0%,
-                rgba(0,0,0,0.45) 40%,
-                rgba(0,0,0,0.12) 75%,
+                rgba(0,0,0,0.88) 0%,
+                rgba(0,0,0,0.65) 30%,
+                rgba(0,0,0,0.28) 60%,
+                rgba(0,0,0,0.06) 85%,
                 rgba(0,0,0,0) 100%
             );
-            -webkit-backdrop-filter: blur(0px);
-            backdrop-filter: blur(0px);
-            mask-image: linear-gradient(to bottom, black 0%, black 50%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 0%, black 50%, transparent 100%);
         }
     </style>
 
@@ -1118,7 +1131,9 @@
                         </svg>
                     </div>
                 </div>
-                <!-- Top fade overlay -->
+                <!-- Blur band behind status bar -->
+                <div class="iphone-top-blur"></div>
+                <!-- Dark gradient fade below -->
                 <div class="iphone-top-fade"></div>
                 <iframe id="somplo-iframe" src="" allowfullscreen allow="autoplay"></iframe>
             </div>
