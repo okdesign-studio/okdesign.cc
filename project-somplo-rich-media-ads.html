@@ -284,6 +284,63 @@
         }
         .close-modal:hover { transform: scale(1.15) rotate(90deg); opacity: 1; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* iOS Status Bar */
+        .iphone-status-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 52px;
+            padding: 14px 24px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 9998;
+            pointer-events: none;
+            border-radius: 42px 42px 0 0;
+        }
+        .iphone-status-bar .status-time {
+            font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: -0.3px;
+            line-height: 1;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+        }
+        .iphone-status-bar .status-icons {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .iphone-status-bar .status-icons svg {
+            display: block;
+            filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
+        }
+
+        /* Top fade overlay over the iframe */
+        .iphone-top-fade {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 90px;
+            pointer-events: none;
+            z-index: 9997;
+            border-radius: 42px 42px 0 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.72) 0%,
+                rgba(0,0,0,0.45) 40%,
+                rgba(0,0,0,0.12) 75%,
+                rgba(0,0,0,0) 100%
+            );
+            -webkit-backdrop-filter: blur(0px);
+            backdrop-filter: blur(0px);
+            mask-image: linear-gradient(to bottom, black 0%, black 50%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 0%, black 50%, transparent 100%);
+        }
     </style>
 
     <!-- SEO & Open Graph Tags -->
@@ -1036,6 +1093,33 @@
             <div class="iphone-btn-right"></div>
             <button class="close-modal" id="close-modal-btn" aria-label="Close">&times;</button>
             <div class="modal-content-somplo" id="modal-content-wrapper">
+                <!-- iOS Status Bar -->
+                <div class="iphone-status-bar" id="iphone-status-bar">
+                    <span class="status-time" id="iphone-clock">9:41</span>
+                    <div class="status-icons">
+                        <!-- Signal -->
+                        <svg width="17" height="12" viewBox="0 0 17 12" fill="none">
+                            <rect x="0" y="7" width="3" height="5" rx="0.5" fill="white"/>
+                            <rect x="4.5" y="5" width="3" height="7" rx="0.5" fill="white"/>
+                            <rect x="9" y="2.5" width="3" height="9.5" rx="0.5" fill="white"/>
+                            <rect x="13.5" y="0" width="3" height="12" rx="0.5" fill="white"/>
+                        </svg>
+                        <!-- WiFi -->
+                        <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+                            <path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z" fill="white"/>
+                            <path d="M3.5 6.2C4.9 4.8 6.35 4 8 4c1.65 0 3.1.8 4.5 2.2" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                            <path d="M1 3.2C3.1 1.2 5.4 0 8 0c2.6 0 4.9 1.2 7 3.2" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+                        </svg>
+                        <!-- Battery -->
+                        <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
+                            <rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="white" stroke-opacity="0.35"/>
+                            <rect x="1.5" y="1.5" width="17" height="9" rx="2.5" fill="white"/>
+                            <path d="M23 4v4a2 2 0 0 0 0-4z" fill="white" opacity="0.4"/>
+                        </svg>
+                    </div>
+                </div>
+                <!-- Top fade overlay -->
+                <div class="iphone-top-fade"></div>
                 <iframe id="somplo-iframe" src="" allowfullscreen allow="autoplay"></iframe>
             </div>
         </div>
@@ -1083,6 +1167,16 @@
                 if (e.key === 'Escape') closeModal();
             });
         });
+
+        // iOS Clock — live update
+        function updateIphoneClock() {
+            const now = new Date();
+            const h = now.getHours();
+            const m = String(now.getMinutes()).padStart(2, '0');
+            document.getElementById('iphone-clock').textContent = h + ':' + m;
+        }
+        updateIphoneClock();
+        setInterval(updateIphoneClock, 15000);
     </script>
 </body>
 </html>
