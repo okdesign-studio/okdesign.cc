@@ -358,7 +358,7 @@
 <style>
     /* Базовый сброс иконок (переопределяется через .glass-icon-container ниже) */
     .wg-tech .app_icon img {
-        height: 64px !important;
+        height: auto !important;
         width: auto !important;
         object-fit: contain;
     }
@@ -501,42 +501,41 @@
 
 <style>
 /* ================================================================
-   SERVICES — Premium Glassmorphism Icons
-   Ключевая техника: mix-blend-mode: screen
-   Чёрные пиксели Figma-фрейма становятся прозрачными на тёмном фоне,
-   остаётся только сам иконка (белая или синяя).
+   SERVICES — Иконки: чистый показ + crossfade
    ================================================================ */
 
-/* Контейнер: позволяет наложить default поверх hover */
+/* Контейнер: просто держит две картинки стопкой */
 .glass-icon-container {
     position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 96px;
-    height: 72px;
+    display: inline-block;
+    height: 68px;
+    width: auto;
     flex-shrink: 0;
 }
 
-/* Обе иконки: абсолютные, по центру, mix-blend-mode убирает тёмный фрейм */
+/* Обе картинки: одна поверх другой */
 .glass-icon-container img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 64px !important;
+    display: block;
+    height: 68px !important;
     width: auto !important;
     object-fit: contain;
-    mix-blend-mode: screen;       /* <-- магия: чёрный фон = прозрачный */
-    border-radius: 0 !important;
-    background: none !important;
-    box-shadow: none !important;
-    transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.4s ease;
 }
 
-/* Default state: белая иконка видна, синяя скрыта */
-.glass-icon-container .icon-default { opacity: 1; }
-.glass-icon-container .icon-hover   { opacity: 0; }
+/* icon-hover поверх icon-default через абсолютное позиционирование */
+.glass-icon-container .icon-default {
+    opacity: 1;
+    position: relative;
+}
+.glass-icon-container .icon-hover {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: contain;
+}
 
 /* Hover / active: меняем местами */
 .wg-tech:hover .glass-icon-container .icon-default,
@@ -552,9 +551,7 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     border-left:  none;
     border-right: none;
-    transition:
-        border-color 0.5s ease,
-        box-shadow   0.5s ease;
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 /* Hover: синий border + underglow */
@@ -564,12 +561,11 @@
     border-bottom-color: rgba(0, 81, 255, 0.3);
     box-shadow:
         0 -1px 0 rgba(0, 81, 255, 0.15),
-         0  1px 0 rgba(0, 81, 255, 0.15),
-         0  8px 32px rgba(0, 81, 255, 0.06),
-        inset 0 0 0 1px rgba(0, 81, 255, 0.04);
+        0  1px 0 rgba(0, 81, 255, 0.15),
+        0  8px 32px rgba(0, 81, 255, 0.06);
 }
 
-/* Cursor-tracking glow: следует за мышкой */
+/* Cursor-tracking glow blob */
 .wg-tech .wg-tech-bar-wrapper::before {
     content: '';
     position: absolute;
@@ -584,11 +580,9 @@
     pointer-events: none;
     z-index: 0;
 }
-.wg-tech:hover .wg-tech-bar-wrapper::before {
-    opacity: 1;
-}
+.wg-tech:hover .wg-tech-bar-wrapper::before { opacity: 1; }
 
-/* Тонкая синяя полоска снизу — статичная, появляется при ховере */
+/* Синяя полоска снизу при ховере */
 .wg-tech .wg-tech-bar-wrapper::after {
     content: '';
     position: absolute;
@@ -598,13 +592,10 @@
     height: 1px;
     background: linear-gradient(
         to right,
-        transparent 0%,
-        rgba(0, 81, 255, 0.6) 30%,
+        transparent,
         rgba(0, 81, 255, 0.8) 50%,
-        rgba(0, 81, 255, 0.6) 70%,
-        transparent 100%
+        transparent
     );
-    filter: blur(0.5px);
     opacity: 0;
     transition: opacity 0.5s ease, left 0.5s ease, right 0.5s ease;
     pointer-events: none;
