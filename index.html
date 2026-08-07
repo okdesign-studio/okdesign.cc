@@ -356,10 +356,10 @@
         <!-- /SELECTED PROJECTS -->
         <!-- SERVICES -->
 <style>
-    /* Уменьшаем иконки, чтобы они не распирали строку на мобилках и имели "воздух" */
+    /* Базовый сброс иконок (переопределяется через .glass-icon-container ниже) */
     .wg-tech .app_icon img {
-        height: 40px !important; 
-        width: auto !important;  
+        height: 64px !important;
+        width: auto !important;
         object-fit: contain;
     }
 
@@ -500,73 +500,87 @@
 </style>
 
 <style>
-/* ========================================================
-   SERVICES — Glassmorphism + Moving Blue Glow
-   ======================================================== */
+/* ================================================================
+   SERVICES — Premium Glassmorphism Icons
+   Ключевая техника: mix-blend-mode: screen
+   Чёрные пиксели Figma-фрейма становятся прозрачными на тёмном фоне,
+   остаётся только сам иконка (белая или синяя).
+   ================================================================ */
 
-/* 1. Убираем старые полукруглые рамки шаблона */
-.wg-tech .app_icon img {
-    height: 56px !important;
-    width: auto !important;
-    object-fit: contain;
-    border-radius: 0 !important;
-    background: none !important;
-    box-shadow: none !important;
-}
-
-/* 2. Иконки в marquee — только синие, без старых белых */
+/* Контейнер: позволяет наложить default поверх hover */
 .glass-icon-container {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: auto;
-    height: 68px;
+    width: 96px;
+    height: 72px;
+    flex-shrink: 0;
 }
+
+/* Обе иконки: абсолютные, по центру, mix-blend-mode убирает тёмный фрейм */
 .glass-icon-container img {
-    height: 56px;
-    width: auto;
-    display: block;
-    position: static;
-    transform: none;
-    transition: none;
-    opacity: 1 !important; /* всегда показываем, только синие */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 64px !important;
+    width: auto !important;
+    object-fit: contain;
+    mix-blend-mode: screen;       /* <-- магия: чёрный фон = прозрачный */
+    border-radius: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+    transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 3. Убираем класс icon-default (только синие остаются) */
-.glass-icon-container .icon-default {
-    display: none !important;
-}
-.glass-icon-container .icon-hover {
-    display: block !important;
-    opacity: 1 !important;
-}
+/* Default state: белая иконка видна, синяя скрыта */
+.glass-icon-container .icon-default { opacity: 1; }
+.glass-icon-container .icon-hover   { opacity: 0; }
 
-/* 4. Wrapper — стекло */
+/* Hover / active: меняем местами */
+.wg-tech:hover .glass-icon-container .icon-default,
+.wg-tech.active .glass-icon-container .icon-default { opacity: 0; }
+.wg-tech:hover .glass-icon-container .icon-hover,
+.wg-tech.active .glass-icon-container .icon-hover   { opacity: 1; }
+
+/* Wrapper: стеклянная полоса */
 .wg-tech .wg-tech-bar-wrapper {
     position: relative;
     overflow: hidden;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    border-left: none;
+    border-top:    1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-left:  none;
     border-right: none;
-    transition: border-color 0.4s ease, background 0.4s ease;
-}
-.wg-tech:hover .wg-tech-bar-wrapper,
-.wg-tech.active .wg-tech-bar-wrapper {
-    background: rgba(0, 81, 255, 0.02);
-    border-top-color: rgba(0, 81, 255, 0.2);
-    border-bottom-color: rgba(0, 81, 255, 0.2);
+    transition:
+        border-color 0.5s ease,
+        box-shadow   0.5s ease;
 }
 
-/* 5. Mouse-tracking glow blob */
+/* Hover: синий border + underglow */
+.wg-tech:hover .wg-tech-bar-wrapper,
+.wg-tech.active .wg-tech-bar-wrapper {
+    border-top-color:    rgba(0, 81, 255, 0.3);
+    border-bottom-color: rgba(0, 81, 255, 0.3);
+    box-shadow:
+        0 -1px 0 rgba(0, 81, 255, 0.15),
+         0  1px 0 rgba(0, 81, 255, 0.15),
+         0  8px 32px rgba(0, 81, 255, 0.06),
+        inset 0 0 0 1px rgba(0, 81, 255, 0.04);
+}
+
+/* Cursor-tracking glow: следует за мышкой */
 .wg-tech .wg-tech-bar-wrapper::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 81, 255, 0.12), transparent 50%);
+    background: radial-gradient(
+        700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(0, 81, 255, 0.09) 0%,
+        transparent 65%
+    );
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.5s ease;
     pointer-events: none;
     z-index: 0;
 }
@@ -574,51 +588,33 @@
     opacity: 1;
 }
 
-/* 6. Синяя подсветка снизу каждой иконки — движется вместе с marquee */
-@keyframes icon-glow-slide {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-.wg-tech-bar-wrapper .icon-glow-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    /* Ширина: удвоена, чтобы seamless-loop работал */
-    width: 200%;
-    height: 2px;
-    background: repeating-linear-gradient(
-        to right,
-        transparent 0px,
-        transparent 80px,
-        #0051FF 80px,
-        #0051FF 140px,
-        transparent 140px,
-        transparent 220px
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    z-index: 3;
-    animation: icon-glow-slide 8s linear infinite;
-    animation-play-state: paused;
-}
-
-/* Свечение поверх линии (blur) */
-.wg-tech-bar-wrapper .icon-glow-bar::after {
+/* Тонкая синяя полоска снизу — статичная, появляется при ховере */
+.wg-tech .wg-tech-bar-wrapper::after {
     content: '';
     position: absolute;
-    inset: -3px 0;
-    background: inherit;
-    filter: blur(6px);
-    opacity: 0.7;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(0, 81, 255, 0.6) 30%,
+        rgba(0, 81, 255, 0.8) 50%,
+        rgba(0, 81, 255, 0.6) 70%,
+        transparent 100%
+    );
+    filter: blur(0.5px);
+    opacity: 0;
+    transition: opacity 0.5s ease, left 0.5s ease, right 0.5s ease;
+    pointer-events: none;
+    z-index: 2;
 }
-
-/* Показываем и запускаем только при ховере / active */
-.wg-tech:hover .wg-tech-bar-wrapper .icon-glow-bar,
-.wg-tech.active .wg-tech-bar-wrapper .icon-glow-bar {
+.wg-tech:hover .wg-tech-bar-wrapper::after,
+.wg-tech.active .wg-tech-bar-wrapper::after {
     opacity: 1;
-    animation-play-state: running;
+    left: 5%;
+    right: 5%;
 }
 </style>
 
@@ -646,7 +642,6 @@
                         <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Motion_Default.webp" alt="Motion"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Motion_Hover.webp" alt="Motion Hover"></div>
                     </div>
                 </div>
-                <div class="icon-glow-bar"></div>
             </div>
             <div class="service-tags-wrap">
                 <ul class="list-tags-custom">
@@ -753,7 +748,6 @@
                         <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Print_Default.webp" alt="Print"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Print_Hover.webp" alt="Print Hover"></div>
                     </div>
                 </div>
-                <div class="icon-glow-bar"></div>
             </div>
             <div class="service-tags-wrap">
                 <ul class="list-tags-custom">
@@ -788,7 +782,6 @@
                         <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_UiUx_Default.webp" alt="UI UX"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_UiUx_Hover.webp" alt="UI UX Hover"></div>
                     </div>
                 </div>
-                <div class="icon-glow-bar"></div>
             </div>
             <div class="service-tags-wrap">
                 <ul class="list-tags-custom">
