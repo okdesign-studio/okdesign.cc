@@ -570,6 +570,22 @@
         0  8px 32px rgba(0, 81, 255, 0.06);
 }
 
+/* SELECTED PROJECTS — скрываем лишнее, чтобы сдвинутые горы не наезжали на Services */
+.section-selected-work {
+    overflow: hidden;
+}
+
+/* Плавный уход низа обложек в фон — так при сдвиге гор не будет резкой щели-угла */
+.section-selected-work .slick-for .image {
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+}
+
+/* Опускаем слой с горами ниже, чтобы они меньше перекрывали обложки кейсов */
+.section-selected-work .bg-img img {
+    transform: translateY(15%);
+}
+
 /* Cursor-tracking glow blob */
 .wg-tech .wg-tech-bar-wrapper::before {
     content: '';
@@ -626,7 +642,6 @@
 
 /* Опускаем слой с горами ниже, чтобы они меньше перекрывали обложки кейсов */
 .section-selected-work .bg-img img {
-    transform: translateY(10%);
 }
 
 /* Логотипы клиентов на мобилках — всегда 100% яркость без hover-эффектов */
