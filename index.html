@@ -210,13 +210,13 @@
                                 <div class="position-relative effectFade fadeUp no-div">
                                     <div class="slick-nav">
                                         <!-- Clone 1 -->
-                                        <div><p class="text-slide text-display-2 fw-semibold">Dubbel Voordeel Campaign</p></div>
-                                        <div><p class="text-slide text-display-2 fw-semibold">Cyberlounge Visual Identity</p></div>
-                                        <div><p class="text-slide text-display-2 fw-semibold">Gravity Falls Comics TV Spot</p></div>
+                                        <div><p class="text-slide text-display-2 fw-semibold">Dubbel Voordeel<br>Campaign</p></div>
+                                        <div><p class="text-slide text-display-2 fw-semibold">Cyberlounge<br>Visual Identity</p></div>
+                                        <div><p class="text-slide text-display-2 fw-semibold">Gravity Falls Comics<br>TV Spot</p></div>
                                         <!-- Clone 2 -->
-                                        <div><p class="text-slide text-display-2 fw-semibold">Dubbel Voordeel Campaign</p></div>
-                                        <div><p class="text-slide text-display-2 fw-semibold">Cyberlounge Visual Identity</p></div>
-                                        <div><p class="text-slide text-display-2 fw-semibold">Gravity Falls Comics TV Spot</p></div>
+                                        <div><p class="text-slide text-display-2 fw-semibold">Dubbel Voordeel<br>Campaign</p></div>
+                                        <div><p class="text-slide text-display-2 fw-semibold">Cyberlounge<br>Visual Identity</p></div>
+                                        <div><p class="text-slide text-display-2 fw-semibold">Gravity Falls Comics<br>TV Spot</p></div>
                                     </div>
                                 </div>
                             </div>
@@ -622,6 +622,11 @@
 .slick-nav .text-slide {
     font-size: clamp(18px, 2.8vw, 36px) !important;
     line-height: 1.2 !important;
+}
+
+/* Опускаем слой с горами ниже, чтобы они меньше перекрывали обложки кейсов */
+.section-selected-work .bg-img img {
+    transform: translateY(18%);
 }
 
 /* Логотипы клиентов на мобилках — всегда 100% яркость без hover-эффектов */
