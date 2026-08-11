@@ -368,8 +368,7 @@
     }
 
     /* Размер: PNG экспортированы в 2x (retina), делим пополам */
-    .wg-tech .app_icon img,
-    .wg-tech .glass-icon-container img {
+    .wg-tech .app_icon img {
         height: 68px !important;
         width: auto !important;
         object-fit: contain;
@@ -513,50 +512,6 @@
 </style>
 
 <style>
-/* ================================================================
-   SERVICES — Иконки: чистый показ + crossfade
-   ================================================================ */
-
-/* Контейнер: просто держит две картинки стопкой */
-.glass-icon-container {
-    position: relative;
-    display: inline-block;
-    height: 68px;
-    width: auto;
-    flex-shrink: 0;
-}
-
-/* Обе картинки: одна поверх другой */
-.glass-icon-container img {
-    display: block;
-    height: 68px !important;
-    width: auto !important;
-    object-fit: contain;
-    transition: opacity 0.4s ease;
-}
-
-/* icon-hover поверх icon-default через абсолютное позиционирование */
-.glass-icon-container .icon-default {
-    opacity: 1;
-    position: relative;
-    filter: brightness(1.2) contrast(1.1) drop-shadow(0 0 2px rgba(255, 255, 255, 0.2));
-}
-.glass-icon-container .icon-hover {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100% !important;
-    width: 100% !important;
-    object-fit: contain;
-}
-
-/* Hover / active: меняем местами */
-.wg-tech:hover .glass-icon-container .icon-default,
-.wg-tech.active .glass-icon-container .icon-default { opacity: 0; }
-.wg-tech:hover .glass-icon-container .icon-hover,
-.wg-tech.active .glass-icon-container .icon-hover   { opacity: 1; }
-
 /* Wrapper: стеклянная полоса */
 .wg-tech .wg-tech-bar-wrapper {
     position: relative;
@@ -680,11 +635,11 @@
                 <div class="infiniteSlide_tech_main">
                     <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">MOTION</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Motion_Default.png" alt="Motion"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Motion_Hover.png" alt="Motion Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_Motion_Hover.webp" alt="Motion"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">MOTION</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Motion_Default.png" alt="Motion"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Motion_Hover.png" alt="Motion Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_Motion_Hover.webp" alt="Motion"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">MOTION</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Motion_Default.png" alt="Motion"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Motion_Hover.png" alt="Motion Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_Motion_Hover.webp" alt="Motion"></div>
                     </div>
                 </div>
             </div>
@@ -707,11 +662,11 @@
                 <div class="infiniteSlide_tech_main">
                     <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">DIGITAL</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Digital.png" alt="Digital"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Digital.png" alt="Digital Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_Digital.webp" alt="Digital"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">DIGITAL</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Digital.png" alt="Digital"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Digital.png" alt="Digital Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_Digital.webp" alt="Digital"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">DIGITAL</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Digital.png" alt="Digital"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Digital.png" alt="Digital Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_Digital.webp" alt="Digital"></div>
                     </div>
                 </div>
             </div>
@@ -732,11 +687,11 @@
                 <div class="infiniteSlide_tech_main">
                     <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">CONTENT CREATION</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Content_Creation.png" alt="Content Creation"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Content_Creation.png" alt="Content Creation Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_Content_Creation.webp" alt="Content Creation"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">CONTENT CREATION</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Content_Creation.png" alt="Content Creation"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Content_Creation.png" alt="Content Creation Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_Content_Creation.webp" alt="Content Creation"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">CONTENT CREATION</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Content_Creation.png" alt="Content Creation"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Content_Creation.png" alt="Content Creation Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_Content_Creation.webp" alt="Content Creation"></div>
                     </div>
                 </div>
             </div>
@@ -759,11 +714,11 @@
                 <div class="infiniteSlide_tech_main">
                     <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">AI PRODUCTION</p></div></div>
-                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_AiProd_Hover.webp" alt="AI Production"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">AI PRODUCTION</p></div></div>
-                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_AiProd_Hover.webp" alt="AI Production"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">AI PRODUCTION</p></div></div>
-                        <div class="app_icon"><img loading="lazy" width="136" height="68" src="assets/images/section/icon-ai.png" alt="Image"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_AiProd_Hover.webp" alt="AI Production"></div>
                     </div>
                 </div>
             </div>
@@ -786,11 +741,11 @@
                 <div class="infiniteSlide_tech_main">
                     <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">PRINT</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Print_Default.png" alt="Print"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Print_Hover.png" alt="Print Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_Print_Hover.webp" alt="Print"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">PRINT</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Print_Default.png" alt="Print"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Print_Hover.png" alt="Print Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_Print_Hover.webp" alt="Print"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">PRINT</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Print_Default.png" alt="Print"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Print_Hover.png" alt="Print Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_Print_Hover.webp" alt="Print"></div>
                     </div>
                 </div>
             </div>
@@ -820,11 +775,11 @@
                 <div class="infiniteSlide_tech_main">
                     <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">UI / UX</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_UiUx_Default.png" alt="UI UX"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_UiUx_Hover.png" alt="UI UX Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_UiUx_Hover.webp" alt="UI UX"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">UI / UX</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_UiUx_Default.png" alt="UI UX"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_UiUx_Hover.png" alt="UI UX Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_UiUx_Hover.webp" alt="UI UX"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">UI / UX</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_UiUx_Default.png" alt="UI UX"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_UiUx_Hover.png" alt="UI UX Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_UiUx_Hover.webp" alt="UI UX"></div>
                     </div>
                 </div>
             </div>
@@ -847,11 +802,11 @@
                 <div class="infiniteSlide_tech_main">
                     <div class="infiniteSlide infiniteSlide_tech" data-clone="5">
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">BRANDING & IDENTITY</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Branding_Identity.png" alt="Branding & Identity"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Branding_Identity.png" alt="Branding & Identity Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_Branding_Identity.webp" alt="Branding & Identity"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">BRANDING & IDENTITY</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Branding_Identity.png" alt="Branding & Identity"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Branding_Identity.png" alt="Branding & Identity Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_Branding_Identity.webp" alt="Branding & Identity"></div>
                         <div class="app_name"><div class="tech_text letter-space--2"><p class="h1 text">BRANDING & IDENTITY</p></div></div>
-                        <div class="app_icon glass-icon-container"><img loading="lazy" class="icon-default" src="assets/images/services/Icon_Branding_Identity.png" alt="Branding & Identity"><img loading="lazy" class="icon-hover" src="assets/images/services/Icon_Branding_Identity.png" alt="Branding & Identity Hover"></div>
+                        <div class="app_icon"><img loading="lazy" src="assets/images/services/Icon_Branding_Identity.webp" alt="Branding & Identity"></div>
                     </div>
                 </div>
             </div>
