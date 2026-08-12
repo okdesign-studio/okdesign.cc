@@ -7733,8 +7733,8 @@ body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
     transition: filter 0.35s ease;
 }
 .ig-grid-post:hover {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 1px var(--primary), 0 0 20px rgba(var(--primary-rgb), 0.35);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.15);
 }
 .ig-grid-post:hover img, .ig-grid-post:hover video {
     filter: brightness(1.08);
