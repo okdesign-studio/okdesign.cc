@@ -7724,15 +7724,20 @@ body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
     border-radius: 4px;
     overflow: hidden;
     cursor: pointer;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease;
 }
 .ig-grid-post img, .ig-grid-post video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: filter 0.35s ease;
+}
+.ig-grid-post:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 1px var(--primary), 0 0 20px rgba(var(--primary-rgb), 0.35);
 }
 .ig-grid-post:hover img, .ig-grid-post:hover video {
-    transform: scale(1.05);
+    filter: brightness(1.08);
 }
 /* Иконка видео-лупа в правом верхнем углу (как в реальном IG) */
 .ig-grid-post .motion-badge {
