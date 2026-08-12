@@ -6118,7 +6118,7 @@ button.animate-btn::after,
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 20px 28px 28px 28px;
+  padding: 140px 28px 28px 28px;
   display: flex;
   justify-content: space-between;
   align-items: end;
@@ -6134,9 +6134,13 @@ button.animate-btn::after,
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
-  backdrop-filter: blur(2px);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0.9) 100%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
   z-index: 0;
+  pointer-events: none;
 }
 
 .wg-process {
