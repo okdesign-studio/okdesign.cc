@@ -178,6 +178,7 @@
             background: rgba(0, 0, 0, 0.95);
             align-items: center;
             justify-content: center;
+            backdrop-filter: blur(12px);
         }
         .custom-modal.active { display: flex; animation: fadeIn 0.3s ease forwards; }
         
@@ -337,7 +338,10 @@
             pointer-events: none;
             z-index: 9997;
             border-radius: 42px 42px 0 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%);
+            -webkit-backdrop-filter: blur(8px) brightness(0.65);
+            backdrop-filter: blur(8px) brightness(0.65);
+            mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
         }
 
         /* Dark gradient fade — wider, deeper darkening below the blur */
@@ -583,7 +587,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/605048049">
                         <div class="demo-card">
-                            <video src="assets/videos/mazda-1.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/images/projects/somplo-rich-media/01.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -597,7 +601,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/431615699">
                         <div class="demo-card">
-                            <video src="assets/videos/mazda-2.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/mazda-2.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -611,7 +615,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/619818018">
                         <div class="demo-card">
-                            <video src="assets/videos/mazda-3.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/mazda-3.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -634,7 +638,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/660652421">
                         <div class="demo-card">
-                            <video src="assets/videos/lottusse-1.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/lottusse-1.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -648,7 +652,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/988475337">
                         <div class="demo-card">
-                            <video src="assets/videos/lottusse-2.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/lottusse-2.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -662,7 +666,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/718666854">
                         <div class="demo-card">
-                            <video src="assets/videos/lottusse-3.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/lottusse-3.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -684,7 +688,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/704150469" data-brand="ralph-lauren">
                         <div class="demo-card">
-                            <video src="assets/videos/ralph-1.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/ralph-1.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -698,7 +702,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/949034728" data-brand="ralph-lauren">
                         <div class="demo-card">
-                            <video src="assets/videos/ralph-2.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/ralph-2.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -721,7 +725,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/779331275">
                         <div class="demo-card">
-                            <video src="assets/videos/loreal-1.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/loreal-1.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -735,7 +739,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/970292938">
                         <div class="demo-card">
-                            <video src="assets/videos/loreal-4.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/loreal-4.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -749,7 +753,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/180994816">
                         <div class="demo-card">
-                            <video src="assets/videos/loreal-2.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/loreal-2.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -763,7 +767,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/955271171">
                         <div class="demo-card">
-                            <video src="assets/videos/loreal-3.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/loreal-3.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -777,7 +781,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/764278779">
                         <div class="demo-card">
-                            <video src="assets/videos/maybelline-1.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/maybelline-1.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -791,7 +795,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/269352865">
                         <div class="demo-card">
-                            <video src="assets/videos/maybelline-2.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/maybelline-2.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -805,7 +809,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/184907748">
                         <div class="demo-card">
-                            <video src="assets/videos/loreal-other-1.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/loreal-other-1.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -819,7 +823,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/926137894">
                         <div class="demo-card">
-                            <video src="assets/videos/loreal-other-2.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/loreal-other-2.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -842,7 +846,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/676517942">
                         <div class="demo-card">
-                            <video src="assets/videos/armani-1.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/armani-1.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -856,7 +860,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/640281579">
                         <div class="demo-card">
-                            <video src="assets/videos/armani-2.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/armani-2.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -879,7 +883,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/886992250">
                         <div class="demo-card">
-                            <video src="assets/videos/toyota-1.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/toyota-1.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -893,7 +897,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/636769703">
                         <div class="demo-card">
-                            <video src="assets/videos/toyota-2.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/toyota-2.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
@@ -916,7 +920,7 @@
 
                     <div class="gallery-item demo-card-trigger" data-iframe-src="https://demo.somplo.com/demo/864490176">
                         <div class="demo-card">
-                            <video src="assets/videos/nestle-1.webm" loop muted playsinline preload="none"></video>
+                            <video src="assets/videos/nestle-1.webm" loop muted playsinline preload="metadata"></video>
                             <div class="hover-overlay">
                                 <div class="hover-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
                                 <span class="hover-text">Click to reveal<br>interactive demo</span>
