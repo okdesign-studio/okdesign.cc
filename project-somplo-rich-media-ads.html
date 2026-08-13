@@ -1155,17 +1155,45 @@
             const $iframe = $('#somplo-iframe');
             const $wrapper = $('#modal-content-wrapper');
 
-            // Воспроизведение видео при наведении на карточку
-            $('.demo-card-trigger').hover(
-                function() {
-                    const video = $(this).find('video')[0];
-                    if (video) video.play();
-                },
-                function() {
-                    const video = $(this).find('video')[0];
-                    if (video) video.pause();
-                }
-            );
+            // Определение тач-устройств (мобилки/планшеты)
+            const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.matchMedia("(hover: none)").matches;
+
+            // На десктопе используем ховер
+            if (!isTouchDevice) {
+                $('.demo-card-trigger').hover(
+                    function() {
+                        const video = $(this).find('video')[0];
+                        if (video) video.play();
+                    },
+                    function() {
+                        const video = $(this).find('video')[0];
+                        if (video) video.pause();
+                    }
+                );
+            } else {
+                // На мобилках воспроизводим, когда карточка на экране (Intersection Observer)
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        const video = $(entry.target).find('video')[0];
+                        if (!video) return;
+                        
+                        if (entry.isIntersecting) {
+                            $(entry.target).addClass('is-visible');
+                            // Воспроизводим только если модалка закрыта
+                            if (!$modal.hasClass('active')) {
+                                video.play().catch(e => {});
+                            }
+                        } else {
+                            $(entry.target).removeClass('is-visible');
+                            video.pause();
+                        }
+                    });
+                }, { threshold: 0.5 }); // Воспроизводить, когда видно хотя бы 50% карточки
+
+                $('.demo-card-trigger').each(function() {
+                    observer.observe(this);
+                });
+            }
 
             // Обработка клика по карточке (открытие модалки)
             $(document).on('click', '.demo-card-trigger', function () {
@@ -1198,7 +1226,12 @@
                 $iframe.attr('src', '');
                 $('body').css('overflow', '');
                 
-                // Видео теперь не нужно принудительно запускать, они работают по ховеру
+                // На мобилках возобновляем видео, которые сейчас на экране
+                if (isTouchDevice) {
+                    $('.demo-card-trigger.is-visible video').each(function() {
+                        this.play().catch(e => {});
+                    });
+                }
             }
 
             $('#close-modal-btn').on('click', closeModal);
