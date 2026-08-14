@@ -112,7 +112,7 @@
         .formats-row {
             display: flex;
             gap: 20px;
-            align-items: flex-start;
+            align-items: flex-end;
         }
         .format-card {
             flex: 1;
@@ -670,71 +670,17 @@
                     <div class="col-12 col-lg-9">
                         <h4 class="fw-normal mb-4" style="font-size:clamp(22px,2.5vw,28px);color:rgba(255,255,255,0.85);letter-spacing:0.5px;">About the Project</h4>
                         <p class="fw-light mb-4" style="line-height:1.7;font-size:16px;color:rgba(255,255,255,0.55);">
-                            This wasn't the first campaign I'd done for Van Calster. But this time around, the client asked for something more — a creative with genuine emotion. Not just a promotional poster, but a concept that could stop a viewer mid-scroll (or mid-channel-surf) and make them feel something.
+                            My usual workflow is to develop a single anchor key visual — then scale it across the entire campaign: print, GDN banners, SMM, website content, interactive before/after, and animated 10-second cuts adapted for social and YouTube. The key visual becomes the source of truth for every format.
                         </p>
                         <p class="fw-light mb-4" style="line-height:1.7;font-size:16px;color:rgba(255,255,255,0.55);">
-                            My approach, as always, was to build the entire campaign around a single strong key visual — then scale it across every required format: print, GDN banners, SMM, website content, interactive before/after, and animated 10-second cuts for social and YouTube. But this time, I decided to lead with an animated spot rather than a static image — because the idea demanded motion.
+                            This wasn't the first campaign I'd done for Van Calster — so when the client asked me to come up with the concept entirely from scratch and specifically wanted something with an emotion or a touch of exaggeration, I had enough context to go somewhere unexpected. The promotion itself was straightforward: <em>Dubbel Voordeel</em> — double benefit on bathroom renovation, meaning free demolition of the old bathroom plus a 40% discount on sanitaryware.
+                        </p>
+                        <p class="fw-light mb-4" style="line-height:1.7;font-size:16px;color:rgba(255,255,255,0.55);">
+                            During the ideation process I arrived at a cinematic horror concept — and decided straight away to think in terms of animation, not a static image, since the idea was inherently about motion and atmosphere. So instead of a key visual, I developed a full advertising spot with voiceover and subtitles.
                         </p>
                         <p class="fw-light mb-0" style="line-height:1.7;font-size:16px;color:rgba(255,255,255,0.55);">
-                            The result was a cinematic horror-style commercial that aired in prime time on RTV and RTV+ across Flanders — a placement we didn't plan for at the brief stage, but earned through a concept that was simply too compelling to stay digital.
+                            After the presentation, the client was so impressed they decided to air it on RTV and RTV+ in Flanders during prime time. I received the broadcast technical specs from the TV channels and produced the final version for television.
                         </p>
-                    </div>
-                    <div class="col-12 col-lg-3 mt-5 mt-lg-0">
-                        <div class="d-flex flex-column gap-4">
-                            <div>
-                                <p class="text-uppercase fw-medium mb-2" style="font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.35);">Campaign Type</p>
-                                <div class="d-flex flex-wrap gap-2">
-                                    <span class="pill-tag accent">TV Spot</span>
-                                    <span class="pill-tag accent">Full Campaign</span>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="text-uppercase fw-medium mb-2" style="font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.35);">Broadcast</p>
-                                <div class="d-flex flex-wrap gap-2">
-                                    <span class="pill-tag">RTV Flanders</span>
-                                    <span class="pill-tag">RTV+</span>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="text-uppercase fw-medium mb-2" style="font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.35);">Deliverables</p>
-                                <div class="d-flex flex-wrap gap-2">
-                                    <span class="pill-tag">TV Spot</span>
-                                    <span class="pill-tag">GDN Banners</span>
-                                    <span class="pill-tag">SMM</span>
-                                    <span class="pill-tag">Print</span>
-                                    <span class="pill-tag">Web Content</span>
-                                    <span class="pill-tag">Before/After</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Stats -->
-                <div class="row g-4 mb-5 pt-3">
-                    <div class="col-6 col-md-3">
-                        <div class="stat-block">
-                            <div class="stat-value">30<span class="stat-unit">sec</span></div>
-                            <div class="stat-label">TV Spot Duration</div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="stat-block">
-                            <div class="stat-value">−40<span class="stat-unit">%</span></div>
-                            <div class="stat-label">Discount on Sanitaryware</div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="stat-block">
-                            <div class="stat-value">2<span class="stat-unit">ch</span></div>
-                            <div class="stat-label">Channels: RTV & RTV+</div>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="stat-block">
-                            <div class="stat-value">6<span class="stat-unit">+</span></div>
-                            <div class="stat-label">Campaign Placements</div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1121,8 +1067,14 @@
 
                     <!-- Before-after component -->
                     <div class="before-after-wrap" id="ba-container">
-                        <!-- BEFORE image (full width, base layer) -->
-                        <div class="media-placeholder" id="ba-before" style="border-radius:0;border:none;background:#0d0d0d;min-height:500px;width:100%;">
+
+                        <!-- BEFORE — base layer, sets the container height -->
+                        <div class="media-placeholder" id="ba-before" style="border-radius:0;border:none;background:#0d0d0d;min-height:500px;width:100%;position:relative;z-index:0;">
+                            <!--
+                                Replace this entire div with:
+                                <img src="assets/images/projects/van-calster/before.webp"
+                                     alt="Before renovation" style="display:block;width:100%;height:auto;">
+                            -->
                             <div class="ph-icon">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                             </div>
@@ -1130,14 +1082,22 @@
                             <span class="ph-ratio">Replace: van-calster/before.webp</span>
                         </div>
 
-                        <!-- AFTER image (clipped overlay) -->
+                        <!-- AFTER — clipped overlay; inner image is full container width
+                             so both images sit pixel-perfect on the same coordinate space -->
                         <div id="ba-overlay" class="ba-overlay" style="width:50%;">
-                            <div class="media-placeholder" style="border-radius:0;border:none;background:#0e1a12;min-height:500px;width:100%;position:absolute;top:0;left:0;right:0;bottom:0;">
-                                <div class="ph-icon">
+                            <div id="ba-after-inner" style="position:absolute;top:0;left:0;height:100%;background:#0e1a12;
+                                        display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+                                <!--
+                                    Replace this inner div with:
+                                    <img src="assets/images/projects/van-calster/after.webp"
+                                         alt="After renovation"
+                                         style="display:block;position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
+                                -->
+                                <div class="ph-icon" style="position:relative;z-index:1;">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                                 </div>
-                                <span class="ph-label">AFTER renovation</span>
-                                <span class="ph-ratio">Replace: van-calster/after.webp</span>
+                                <span class="ph-label" style="position:relative;z-index:1;font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.2);text-align:center;padding:0 16px;">AFTER renovation</span>
+                                <span style="position:relative;z-index:1;font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.1);">Replace: van-calster/after.webp</span>
                             </div>
                         </div>
 
@@ -1293,13 +1253,22 @@
        BEFORE / AFTER SLIDER
     ===================================================== */
     (function() {
-        const container = document.getElementById('ba-container');
-        const overlay   = document.getElementById('ba-overlay');
-        const divider   = document.getElementById('ba-divider');
-        const handle    = document.getElementById('ba-handle');
+        const container  = document.getElementById('ba-container');
+        const overlay    = document.getElementById('ba-overlay');
+        const afterInner = document.getElementById('ba-after-inner');
+        const divider    = document.getElementById('ba-divider');
+        const handle     = document.getElementById('ba-handle');
         if (!container) return;
 
         let isDragging = false;
+
+        /* Sync the after-image inner width to the container so both
+           images are always exactly stacked on the same pixel grid */
+        function syncAfterWidth() {
+            if (afterInner) afterInner.style.width = container.offsetWidth + 'px';
+        }
+        syncAfterWidth();
+        window.addEventListener('resize', syncAfterWidth);
 
         function setPosition(clientX) {
             const rect = container.getBoundingClientRect();
