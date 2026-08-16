@@ -7857,3 +7857,54 @@ body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
         height: 320px;
     }
 }
+
+/* ==========================================================================
+   MOBILE CASE HERO — first-screen optimization (max-width: 767px)
+   Targets .section-page-title + .mil-image-frame.mil-fw block
+   ========================================================================== */
+@media (max-width: 767px) {
+
+    /* ── Title section: compact padding ───────────────────────────────────── */
+    .section-page-title {
+        padding-top: 80px !important;   /* clears sticky header (~70px) + buffer */
+        padding-bottom: 16px !important;
+    }
+
+    /* ── H1: smaller, tighter on mobile ──────────────────────────────────── */
+    .section-page-title .page-title {
+        font-size: clamp(24px, 7.5vw, 34px) !important;
+        line-height: 1.15 !important;
+        letter-spacing: -0.02em !important;
+        margin-bottom: 12px !important;
+    }
+
+    /* ── Meta row (CLIENT / YEAR / CREATIVE EXECUTION) ───────────────────── *
+       Target: div.d-flex.gap-5.text-uppercase inside .section-page-title     */
+    .section-page-title .d-flex.gap-5 {
+        gap: 10px 16px !important;      /* tighter horizontal & vertical gap  */
+        font-size: 10px !important;     /* down from 12px                     */
+        letter-spacing: 0.05em !important; /* down from 2px (≈0.14em)         */
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        line-height: 1.45 !important;
+        margin-top: 10px !important;    /* reduce Bootstrap mt-4 (1.5rem)     */
+    }
+
+    /* ── Hero image / video frame: native 16:9, no cropping ─────────────── */
+    .mil-image-frame.mil-fw {
+        height: auto !important;        /* override inline height: 80vh       */
+        aspect-ratio: 16 / 9 !important;
+        margin-bottom: 36px !important; /* was 80px in inline style           */
+    }
+
+    /* Make sure the inner wrapper also fills height correctly */
+    .mil-image-frame.mil-fw > div:first-child {
+        height: 100% !important;
+    }
+
+    /* For pages that embed Vimeo iframes as the hero video:
+       keep the blurred background + letterbox pattern intact */
+    .mil-image-frame.mil-fw iframe {
+        pointer-events: none;
+    }
+}
