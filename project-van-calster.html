@@ -1068,14 +1068,11 @@
                     <!-- Before-after component -->
                     <div class="before-after-wrap" id="ba-container">
 
-                        <!-- BEFORE — base layer, sets the container height -->
-                        <img id="ba-before" src="assets/images/projects/van-calster/Before.webp" alt="Before renovation" style="display:block;width:100%;height:auto;position:relative;z-index:0;border-radius:0;">
+                        <!-- AFTER — base layer, establishes container height -->
+                        <img src="assets/images/projects/van-calster/After.webp" alt="After renovation" style="display:block;width:100%;height:auto;border-radius:0;">
 
-                        <!-- AFTER — clipped overlay; inner image is full container width
-                             so both images sit pixel-perfect on the same coordinate space -->
-                        <div id="ba-overlay" class="ba-overlay" style="width:50%;">
-                            <img id="ba-after-inner" src="assets/images/projects/van-calster/After.webp" alt="After renovation" style="display:block;position:absolute;top:0;left:0;height:100%;object-fit:cover;border-radius:0;">
-                        </div>
+                        <!-- BEFORE — sits on top, clipped from the right by JS (clip-path) -->
+                        <img id="ba-before-img" src="assets/images/projects/van-calster/Before.webp" alt="Before renovation" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:0;">
 
                         <!-- Divider & handle -->
                         <div class="ba-divider-line" id="ba-divider" style="left:50%;"></div>
@@ -1229,32 +1226,28 @@
        BEFORE / AFTER SLIDER
     ===================================================== */
     (function() {
-        const container  = document.getElementById('ba-container');
-        const overlay    = document.getElementById('ba-overlay');
-        const afterInner = document.getElementById('ba-after-inner');
-        const divider    = document.getElementById('ba-divider');
-        const handle     = document.getElementById('ba-handle');
-        if (!container) return;
+        const container = document.getElementById('ba-container');
+        const beforeImg = document.getElementById('ba-before-img');
+        const divider   = document.getElementById('ba-divider');
+        const handle    = document.getElementById('ba-handle');
+        if (!container || !beforeImg) return;
 
         let isDragging = false;
 
-        /* Sync the after-image inner width to the container so both
-           images are always exactly stacked on the same pixel grid */
-        function syncAfterWidth() {
-            if (afterInner) afterInner.style.width = container.offsetWidth + 'px';
-        }
-        syncAfterWidth();
-        window.addEventListener('resize', syncAfterWidth);
-
         function setPosition(clientX) {
-            const rect = container.getBoundingClientRect();
-            let pct = (clientX - rect.left) / rect.width;
+            const rect  = container.getBoundingClientRect();
+            let pct     = (clientX - rect.left) / rect.width;
             pct = Math.max(0.02, Math.min(0.98, pct));
-            const pctStr = (pct * 100).toFixed(2) + '%';
-            overlay.style.width = pctStr;
-            divider.style.left  = pctStr;
-            handle.style.left   = pctStr;
+            const pctStr   = (pct * 100).toFixed(2) + '%';
+            const rightPct = ((1 - pct) * 100).toFixed(2) + '%';
+            /* clip Before image from the right — left side shows Before, right side shows After */
+            beforeImg.style.clipPath = 'inset(0 ' + rightPct + ' 0 0)';
+            divider.style.left = pctStr;
+            handle.style.left  = pctStr;
         }
+
+        /* init at 50% */
+        setPosition(container.getBoundingClientRect().left + container.offsetWidth * 0.5);
 
         // Mouse
         container.addEventListener('mouseenter', function(e) { setPosition(e.clientX); });
