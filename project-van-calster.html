@@ -1069,36 +1069,12 @@
                     <div class="before-after-wrap" id="ba-container">
 
                         <!-- BEFORE — base layer, sets the container height -->
-                        <div class="media-placeholder" id="ba-before" style="border-radius:0;border:none;background:#0d0d0d;min-height:500px;width:100%;position:relative;z-index:0;">
-                            <!--
-                                Replace this entire div with:
-                                <img src="assets/images/projects/van-calster/before.webp"
-                                     alt="Before renovation" style="display:block;width:100%;height:auto;">
-                            -->
-                            <div class="ph-icon">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                            </div>
-                            <span class="ph-label">BEFORE renovation</span>
-                            <span class="ph-ratio">Replace: van-calster/before.webp</span>
-                        </div>
+                        <img id="ba-before" src="assets/images/projects/van-calster/Before.webp" alt="Before renovation" style="display:block;width:100%;height:auto;position:relative;z-index:0;border-radius:0;">
 
                         <!-- AFTER — clipped overlay; inner image is full container width
                              so both images sit pixel-perfect on the same coordinate space -->
                         <div id="ba-overlay" class="ba-overlay" style="width:50%;">
-                            <div id="ba-after-inner" style="position:absolute;top:0;left:0;height:100%;background:#0e1a12;
-                                        display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
-                                <!--
-                                    Replace this inner div with:
-                                    <img src="assets/images/projects/van-calster/after.webp"
-                                         alt="After renovation"
-                                         style="display:block;position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
-                                -->
-                                <div class="ph-icon" style="position:relative;z-index:1;">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                                </div>
-                                <span class="ph-label" style="position:relative;z-index:1;font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.2);text-align:center;padding:0 16px;">AFTER renovation</span>
-                                <span style="position:relative;z-index:1;font-size:9px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.1);">Replace: van-calster/after.webp</span>
-                            </div>
+                            <img id="ba-after-inner" src="assets/images/projects/van-calster/After.webp" alt="After renovation" style="display:block;position:absolute;top:0;left:0;height:100%;object-fit:cover;border-radius:0;">
                         </div>
 
                         <!-- Divider & handle -->
