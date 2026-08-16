@@ -297,6 +297,63 @@
         .close-modal:hover { transform: scale(1.15) rotate(90deg); opacity: 1; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+        /* ── Mobile: drop the iPhone frame, go full-screen ──────────────────── */
+        @media (max-width: 767px) {
+            /* Modal becomes a true full-screen overlay with no padding */
+            .custom-modal {
+                padding: 0 !important;
+                align-items: stretch !important;
+                overflow-y: hidden !important;
+            }
+
+            /* Hide everything phone-specific */
+            .iphone-mockup {
+                width: 100% !important;
+                height: 100svh !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+                background: #000 !important;
+            }
+
+            /* Hide the decorative phone chrome elements */
+            .dynamic-island,
+            .iphone-btn-right,
+            .iphone-mockup::before,
+            .iphone-mockup::after,
+            .iphone-status-bar,
+            .iphone-top-blur,
+            .iphone-top-fade {
+                display: none !important;
+            }
+
+            /* Content wrapper fills the whole mockup area */
+            .modal-content-somplo {
+                width: 100% !important;
+                height: 100% !important;
+                border-radius: 0 !important;
+            }
+
+            /* iframe also fills full height */
+            .modal-content-somplo iframe {
+                margin-top: 0 !important;
+                height: 100% !important;
+            }
+
+            /* Move close button inside, visible at top-right */
+            .close-modal {
+                position: fixed !important;
+                top: 16px !important;
+                right: 16px !important;
+                z-index: 100000 !important;
+                background: rgba(0, 0, 0, 0.6) !important;
+                border-radius: 50% !important;
+                opacity: 1 !important;
+                width: 44px !important;
+                height: 44px !important;
+            }
+        }
+
         /* iOS Status Bar */
         .iphone-status-bar {
             position: absolute;
