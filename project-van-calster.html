@@ -716,37 +716,31 @@
                     </p>
                 </div>
 
-                <div class="formats-row mb-5">
+                <div class="formats-row mb-5" id="formats-row">
                     <!-- 1:1 -->
                     <div class="format-card">
-                        <div class="media-placeholder ph-1x1" style="border-radius:12px;">
-                            <div class="ph-icon">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg>
-                            </div>
-                            <span class="ph-label">Social Square</span>
-                        </div>
+                        <video class="format-video" data-sync-video muted loop playsinline preload="auto"
+                               style="display:block;width:100%;border-radius:12px;background:#0a0a0a;">
+                            <source src="assets/images/projects/van-calster/1x1_web.webm" type="video/webm">
+                        </video>
                         <p class="format-label">1 : 1</p>
                     </div>
 
                     <!-- 9:16 -->
                     <div class="format-card">
-                        <div class="media-placeholder ph-9x16" style="border-radius:12px;">
-                            <div class="ph-icon">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg>
-                            </div>
-                            <span class="ph-label">Reels / Stories</span>
-                        </div>
+                        <video class="format-video" data-sync-video muted loop playsinline preload="auto"
+                               style="display:block;width:100%;border-radius:12px;background:#0a0a0a;">
+                            <source src="assets/images/projects/van-calster/9x16_web.webm" type="video/webm">
+                        </video>
                         <p class="format-label">9 : 16</p>
                     </div>
 
                     <!-- 16:9 -->
                     <div class="format-card">
-                        <div class="media-placeholder ph-16x9" style="border-radius:12px;">
-                            <div class="ph-icon">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg>
-                            </div>
-                            <span class="ph-label">YouTube / Pre-roll</span>
-                        </div>
+                        <video class="format-video" data-sync-video muted loop playsinline preload="auto"
+                               style="display:block;width:100%;border-radius:12px;background:#0a0a0a;">
+                            <source src="assets/images/projects/van-calster/16x9_web.webm" type="video/webm">
+                        </video>
                         <p class="format-label">16 : 9</p>
                     </div>
                 </div>
@@ -1260,6 +1254,60 @@
 
         container.addEventListener('touchstart', function(e) { setPosition(e.touches[0].clientX); }, { passive: true });
         container.addEventListener('touchmove',  function(e) { setPosition(e.touches[0].clientX); }, { passive: true });
+    })();
+
+    /* =====================================================
+       SYNCHRONIZED VIDEO PLAYBACK
+       — waits for all three to buffer, then starts together
+       — triggered once when the row enters the viewport
+    ===================================================== */
+    (function() {
+        const videos = Array.from(document.querySelectorAll('[data-sync-video]'));
+        if (!videos.length) return;
+
+        let started = false;
+
+        function startAll() {
+            if (started) return;
+            started = true;
+            Promise.all(videos.map(function(v) { return v.play(); })).catch(function() {
+                /* fallback: start individually if Promise.all fails */
+                videos.forEach(function(v) { v.play(); });
+            });
+        }
+
+        /* wait until all have enough data to play through */
+        function trySync() {
+            const allReady = videos.every(function(v) {
+                return v.readyState >= 4; /* HAVE_ENOUGH_DATA */
+            });
+            if (allReady) {
+                startAll();
+            } else {
+                let readyCount = 0;
+                videos.forEach(function(v) {
+                    if (v.readyState >= 4) { readyCount++; return; }
+                    v.addEventListener('canplaythrough', function() {
+                        readyCount++;
+                        if (readyCount === videos.length) startAll();
+                    }, { once: true });
+                });
+            }
+        }
+
+        /* trigger load + sync when row enters viewport */
+        const row = document.getElementById('formats-row');
+        if (!row) { trySync(); return; }
+
+        const observer = new IntersectionObserver(function(entries) {
+            if (entries[0].isIntersecting) {
+                observer.disconnect();
+                videos.forEach(function(v) { v.load(); });
+                trySync();
+            }
+        }, { threshold: 0.25 });
+
+        observer.observe(row);
     })();
 
     /* =====================================================
