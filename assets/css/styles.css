@@ -7866,8 +7866,12 @@ body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
 
     /* ── Title section: compact padding ───────────────────────────────────── */
     .section-page-title {
-        padding-top: 80px !important;   /* clears sticky header (~70px) + buffer */
+        padding-top: 74px !important;   /* clears sticky header (~70px) */
         padding-bottom: 16px !important;
+        min-height: calc(100svh - 56.25vw) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
     }
 
     /* ── H1: smaller, tighter on mobile ──────────────────────────────────── */
@@ -7875,7 +7879,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
         font-size: clamp(24px, 7.5vw, 34px) !important;
         line-height: 1.15 !important;
         letter-spacing: -0.02em !important;
-        margin-bottom: 12px !important;
+        margin-bottom: 0px !important; /* Managed by metadata margin-top */
     }
 
     /* ── Meta row (CLIENT / YEAR / CREATIVE EXECUTION) ───────────────────── *
@@ -7887,7 +7891,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
         flex-wrap: wrap !important;
         justify-content: center !important;
         line-height: 1.45 !important;
-        margin-top: 10px !important;    /* reduce Bootstrap mt-4 (1.5rem)     */
+        margin-top: 24px !important;    /* space below the title              */
     }
 
     /* ── Hero image / video frame: native 16:9, no cropping ─────────────── */
@@ -7906,5 +7910,10 @@ body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
        keep the blurred background + letterbox pattern intact */
     .mil-image-frame.mil-fw iframe {
         pointer-events: none;
+    }
+
+    /* Move the "Explore Full Case" button lower towards the dark gradient */
+    .mil-image-frame.mil-fw > div:last-child {
+        bottom: 12px !important;
     }
 }
