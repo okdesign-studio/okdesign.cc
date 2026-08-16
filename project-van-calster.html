@@ -127,6 +127,18 @@
             letter-spacing: 0.18em;
             text-transform: uppercase;
             color: rgba(255,255,255,0.35);
+            margin-bottom: 2px;
+        }
+        .format-sublabel {
+            text-align: center;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.18);
+        }
+        .format-video {
+            border: 1px solid rgba(255,255,255,0.1);
         }
         @media (max-width: 767px) {
             .formats-row {
@@ -412,12 +424,9 @@
            FULL-BLEED SECTION BLOCK (dark tinted bg)
         ============================================================ */
         .full-bleed-section {
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
+            /* Safe full-bleed: no 100vw, no overflow side-effects */
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
             background: rgba(255,255,255,0.03);
             padding: 52px 0;
         }
@@ -559,6 +568,8 @@
             border-top: 1px solid rgba(255,255,255,0.07);
             margin: 60px 0;
         }
+        /* prevent html-level horizontal scroll (body-only overflow-x:hidden transfers scroll to html) */
+        html { overflow-x: hidden; }
     </style>
 </head>
 
@@ -724,6 +735,7 @@
                             <source src="assets/images/projects/van-calster/1x1_web.webm" type="video/webm">
                         </video>
                         <p class="format-label">1 : 1</p>
+                        <p class="format-sublabel">Social Square</p>
                     </div>
 
                     <!-- 9:16 -->
@@ -733,6 +745,7 @@
                             <source src="assets/images/projects/van-calster/9x16_web.webm" type="video/webm">
                         </video>
                         <p class="format-label">9 : 16</p>
+                        <p class="format-sublabel">Reels / Stories</p>
                     </div>
 
                     <!-- 16:9 -->
@@ -742,6 +755,7 @@
                             <source src="assets/images/projects/van-calster/16x9_web.webm" type="video/webm">
                         </video>
                         <p class="format-label">16 : 9</p>
+                        <p class="format-sublabel">YouTube / Pre-roll</p>
                     </div>
                 </div>
             </div>
@@ -1060,7 +1074,7 @@
                     <p class="fw-light mb-4" style="font-size:15px;line-height:1.7;color:rgba(255,255,255,0.45);">Move the divider to compare the before and after renovation states. Drag or hover across the image.</p>
 
                     <!-- Before-after component -->
-                    <div class="before-after-wrap" id="ba-container">
+                    <div class="before-after-wrap" id="ba-container" style="touch-action:none;">
 
                         <!-- AFTER — base layer, establishes container height -->
                         <img src="assets/images/projects/van-calster/After.webp" alt="After renovation" style="display:block;width:100%;height:auto;border-radius:0;">
@@ -1253,7 +1267,10 @@
         document.addEventListener('mouseup',     function()  { isDragging = false; });
 
         container.addEventListener('touchstart', function(e) { setPosition(e.touches[0].clientX); }, { passive: true });
-        container.addEventListener('touchmove',  function(e) { setPosition(e.touches[0].clientX); }, { passive: true });
+        container.addEventListener('touchmove',  function(e) {
+            e.preventDefault(); /* stop page scroll while dragging divider */
+            setPosition(e.touches[0].clientX);
+        }, { passive: false });
     })();
 
     /* =====================================================
