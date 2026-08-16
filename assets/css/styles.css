@@ -7868,7 +7868,7 @@ body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
     .section-page-title {
         padding-top: 74px !important;   /* clears sticky header (~70px) */
         padding-bottom: 16px !important;
-        min-height: calc(100svh - 56.25vw) !important;
+        min-height: calc(100svh - 56.25vw - 110px) !important; /* adjusted for button height below image */
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
@@ -7894,26 +7894,40 @@ body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
         margin-top: 24px !important;    /* space below the title              */
     }
 
-    /* ── Hero image / video frame: native 16:9, no cropping ─────────────── */
+    /* ── Hero image / video frame ───────────────────────────────────────── */
     .mil-image-frame.mil-fw {
-        height: auto !important;        /* override inline height: 80vh       */
-        aspect-ratio: 16 / 9 !important;
-        margin-bottom: 36px !important; /* was 80px in inline style           */
+        height: auto !important;
+        aspect-ratio: auto !important; /* parent wraps content normally */
+        margin-bottom: 40px !important; 
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
     }
 
-    /* Make sure the inner wrapper also fills height correctly */
+    /* 1. Image wrapper: enforce 16:9 natively */
     .mil-image-frame.mil-fw > div:first-child {
-        height: 100% !important;
+        height: auto !important;
+        width: 100% !important;
+        aspect-ratio: 16 / 9 !important;
+    }
+
+    /* 2. Hide the gradient overlay (no longer needed for text readability) */
+    .mil-image-frame.mil-fw > div:nth-child(2) {
+        display: none !important;
+    }
+
+    /* 3. Move "Explore Full Case" button below the image */
+    .mil-image-frame.mil-fw > div:last-child {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin-top: 24px !important; /* Space between image and button */
     }
 
     /* For pages that embed Vimeo iframes as the hero video:
        keep the blurred background + letterbox pattern intact */
     .mil-image-frame.mil-fw iframe {
         pointer-events: none;
-    }
-
-    /* Move the "Explore Full Case" button lower towards the dark gradient */
-    .mil-image-frame.mil-fw > div:last-child {
-        bottom: 12px !important;
     }
 }
