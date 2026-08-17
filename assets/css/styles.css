@@ -2106,12 +2106,12 @@ header.header-sticky {
  ------------------------------------------------------------------------------ */
 /*--------- Abstracts variable ---------- */
 .article-blog {
+  display: block;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--white-16);
 }
 .article-blog .blog-content {
-  position: relative;
   padding: 20px;
   display: flex;
   align-items: center;
@@ -2131,7 +2131,7 @@ header.header-sticky {
 .article-blog .btn-action .icon {
   font-size: 20px;
 }
-.article-blog .btn-action:hover {
+.article-blog:hover .btn-action {
   border-color: var(--primary);
   color: var(--primary);
 }
@@ -7931,11 +7931,4 @@ body, h1, h2, h3, h4, h5, h6, p, a, span, li, input, textarea, button {
     .mil-image-frame.mil-fw iframe {
         pointer-events: none;
     }
-}
-/* Make the entire article-blog card clickable */
-.article-blog .btn-action::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 10;
 }
