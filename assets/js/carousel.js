@@ -258,9 +258,13 @@ window.onload = function () {
         });
 
         const $tags = $(".work-tag li");
+        const slideYears = ['26', '21', '22'];
+
         $for.on("beforeChange", function (event, slick, currentSlide, nextSlide) {
             $tags.removeClass("active");
             $tags.eq(nextSlide).addClass("active");
+
+            $(".selected-work-year").text(slideYears[nextSlide % slideYears.length]);
 
             const $award = $(".image-award");
             if ((nextSlide + 1) % 3 === 0) {
