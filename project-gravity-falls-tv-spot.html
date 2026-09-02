@@ -24,17 +24,301 @@
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <link rel="shortcut icon" href="assets/images/logo/favicon.svg">
     <style>
-        #wip-overlay{position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,0.92);backdrop-filter:blur(24px) saturate(0.3);display:flex;align-items:center;justify-content:center;padding:24px;}
-        .wip-inner{max-width:520px;width:100%;text-align:center;}
-        .wip-pulse{width:8px;height:8px;border-radius:50%;background:#2563eb;margin:0 auto 32px;animation:wip-pulse 2s ease infinite;}
-        @keyframes wip-pulse{0%{box-shadow:0 0 0 0 rgba(37,99,235,0.5)}70%{box-shadow:0 0 0 18px rgba(37,99,235,0)}100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}}
-        .wip-label{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#2563eb;margin-bottom:20px;}
-        .wip-title{font-size:clamp(30px,5vw,52px);font-weight:600;color:#fff;line-height:1.1;margin-bottom:16px;}
-        .wip-title span{font-weight:300;color:rgba(255,255,255,0.45);}
-        .wip-desc{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.7;margin-bottom:40px;font-weight:300;}
-        .wip-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 30px;border:1px solid rgba(255,255,255,0.18);border-radius:999px;color:#fff;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background .25s,border-color .25s;}
-        .wip-btn:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.38);color:#fff;text-decoration:none;}
-        .wip-divider{width:40px;height:1px;background:rgba(255,255,255,0.12);margin:32px auto;}
+        .gf-page {
+            --gf-surface: rgba(255, 255, 255, 0.035);
+            --gf-line: rgba(255, 255, 255, 0.1);
+            --gf-muted: rgba(255, 255, 255, 0.64);
+            --gf-soft: rgba(255, 255, 255, 0.42);
+        }
+
+        .gf-title-wrap {
+            padding-top: 140px;
+            padding-bottom: 42px;
+        }
+
+        .gf-meta {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px 40px;
+            margin-top: 24px;
+            color: var(--gf-muted);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .gf-meta span { color: #fff; }
+
+        .gf-hero {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1440 / 661;
+            overflow: hidden;
+            background: #080808;
+        }
+
+        .gf-hero video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gf-hero::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0;
+            height: 35%;
+            background: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .gf-section { padding: 112px 0; }
+        .gf-section + .gf-section { border-top: 1px solid var(--gf-line); }
+        .gf-section--surface { background: var(--gf-surface); }
+        .gf-section--compact { padding: 80px 0; }
+
+        .gf-eyebrow {
+            display: block;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .gf-heading {
+            margin: 0;
+            color: #fff;
+            font-size: clamp(34px, 4.2vw, 60px);
+            font-weight: 600;
+            line-height: 1.02;
+            letter-spacing: -0.035em;
+            text-transform: uppercase;
+        }
+
+        .gf-heading .soft { color: var(--gf-soft); font-weight: 300; }
+
+        .gf-copy {
+            margin: 0;
+            color: var(--gf-muted);
+            font-size: clamp(18px, 1.65vw, 22px);
+            font-weight: 300;
+            line-height: 1.65;
+        }
+
+        .gf-copy + .gf-copy { margin-top: 22px; }
+
+        .gf-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            margin-top: 72px;
+        }
+
+        .gf-stat { position: relative; padding: 30px 28px; text-align: center; }
+        .gf-stat + .gf-stat { padding-left: 28px; }
+        .gf-stat + .gf-stat::before {
+            content: "";
+            position: absolute;
+            top: 18%;
+            bottom: 18%;
+            left: 0;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .gf-stat strong { display: block; color: #fff; font-size: clamp(42px, 5.5vw, 78px); font-weight: 300; line-height: 1; letter-spacing: -.045em; }
+        .gf-stat-suffix { font-size: .48em; font-weight: 500; letter-spacing: -.02em; }
+        .gf-stat span { display: block; margin-top: 9px; color: var(--gf-soft); font-size: 10px; font-weight: 600; letter-spacing: 1.8px; text-transform: uppercase; }
+
+        .gf-stat strong .gf-stat-number,
+        .gf-stat strong .gf-stat-suffix { display: inline; margin: 0; color: inherit; font-size: inherit; font-weight: inherit; letter-spacing: inherit; text-transform: none; }
+
+        .gf-logo-grid {
+            display: grid;
+            grid-template-columns: repeat(9, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 52px;
+        }
+
+        .gf-channel-logo {
+            display: grid;
+            place-items: center;
+            min-width: 0;
+            height: 104px;
+            padding: 20px 12px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            background: transparent;
+            cursor: default;
+            transition: border-color .3s ease, background-color .3s ease, transform .3s ease;
+        }
+
+        .gf-channel-logo img {
+            grid-area: 1 / 1;
+            display: block;
+            width: 100%;
+            height: 58px;
+            object-fit: contain;
+            pointer-events: none;
+            transition: opacity .28s ease, transform .35s cubic-bezier(.2, .8, .2, 1);
+        }
+
+        .gf-channel-logo .logo-color { opacity: 0; transform: scale(.9); }
+
+        @media (hover: hover) and (pointer: fine) {
+            .gf-channel-logo:hover {
+                border-color: var(--gf-line);
+                background: rgba(255, 255, 255, 0.035);
+            }
+
+            .gf-channel-logo:hover .logo-white { opacity: 0; transform: scale(.92); }
+            .gf-channel-logo:hover .logo-color { opacity: 1; transform: scale(1.08); }
+        }
+
+        .gf-video {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            margin-top: 56px;
+            overflow: hidden;
+            border: 1px solid var(--gf-line);
+            border-radius: 12px;
+            background: #080808;
+        }
+
+        .gf-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+        .gf-logo-grid + .gf-video { margin-top: 96px; }
+
+        .gf-media {
+            overflow: hidden;
+            border-radius: 10px;
+            background: #0a0a0a;
+        }
+
+        .gf-media img,
+        .gf-media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+        .gf-photo-feature img,
+        .gf-photo-duo img,
+        .gf-photo-pair img {
+            transition: transform .6s cubic-bezier(0, 0, .3642, 1);
+            will-change: transform;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .gf-photo-feature:hover img,
+            .gf-photo-duo .gf-media:hover img,
+            .gf-photo-pair .gf-media:hover img { transform: scale(1.05); }
+        }
+        .gf-photo-feature { aspect-ratio: 3 / 2; margin-top: 56px; }
+
+        .gf-photo-duo {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(0, .85fr);
+            gap: 12px;
+            height: clamp(500px, 48vw, 660px);
+            margin-top: 12px;
+        }
+
+        .gf-photo-pair {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            height: clamp(560px, 57vw, 760px);
+            margin-top: 12px;
+        }
+
+        .gf-process-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 56px;
+        }
+
+        .gf-process-grid .gf-media { aspect-ratio: 16 / 9; }
+
+        .gf-results-lead {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 72px;
+            align-items: start;
+        }
+
+        .gf-results-lead .gf-heading span {
+            display: block;
+        }
+
+        .gf-approvals {
+            margin-top: 84px;
+            padding-top: 30px;
+            border-top: 1px solid var(--gf-line);
+        }
+
+        .gf-approvals-grid {
+            display: grid;
+            grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr);
+            gap: 72px;
+        }
+
+        .gf-approvals h3 { margin: 0; color: #fff; font-size: 20px; font-weight: 600; letter-spacing: -.01em; text-transform: uppercase; }
+
+        .gf-project-info { padding: 64px 0; background: var(--gf-surface); }
+
+        @media (max-width: 1199px) {
+            .gf-logo-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 991px) {
+            .gf-section { padding: 88px 0; }
+            .gf-heading { margin-bottom: 30px; }
+            .gf-photo-duo { height: clamp(440px, 62vw, 620px); }
+            .gf-photo-pair { height: clamp(500px, 72vw, 680px); }
+        }
+
+        @media (max-width: 767px) {
+            .gf-title-wrap { padding-top: 112px; padding-bottom: 32px; }
+            .gf-title-wrap .page-title { font-size: clamp(38px, 11vw, 56px); line-height: 1.02; }
+            .gf-meta { flex-direction: column; align-items: center; gap: 8px; font-size: 10px; }
+            .gf-hero { aspect-ratio: 16 / 10; }
+            .gf-section { padding: 72px 0; }
+            .gf-section--compact { padding: 60px 0; }
+            .gf-eyebrow { margin-bottom: 15px; }
+            .gf-heading { font-size: clamp(32px, 10vw, 44px); }
+            .gf-copy { font-size: 17px; line-height: 1.6; }
+            .gf-stats { grid-template-columns: 1fr; margin-top: 44px; }
+            .gf-stat { padding: 22px 0; }
+            .gf-stat + .gf-stat { padding-left: 0; }
+            .gf-stat + .gf-stat::before { display: none; }
+            .gf-logo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+            .gf-channel-logo { height: 86px; padding: 16px 9px; }
+            .gf-channel-logo img { height: 48px; }
+            .gf-video, .gf-photo-feature, .gf-process-grid { margin-top: 40px; }
+            .gf-logo-grid + .gf-video { margin-top: 64px; }
+            .gf-photo-duo { grid-template-columns: 1fr; height: auto; gap: 8px; margin-top: 8px; }
+            .gf-photo-duo .gf-media:first-child { aspect-ratio: 3 / 2; }
+            .gf-photo-duo .gf-media:last-child { aspect-ratio: 2 / 3; }
+            .gf-photo-pair { height: auto; gap: 8px; margin-top: 8px; }
+            .gf-photo-pair .gf-media { aspect-ratio: 2 / 3; }
+            .gf-process-grid { grid-template-columns: 1fr; gap: 8px; }
+            .gf-results-lead,
+            .gf-approvals-grid { grid-template-columns: 1fr; gap: 28px; }
+            .gf-approvals { margin-top: 58px; }
+            .gf-project-info { padding: 54px 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .gf-channel-logo,
+            .gf-channel-logo img,
+            .gf-photo-feature img,
+            .gf-photo-duo img,
+            .gf-photo-pair img { transition: none; }
+
+            .gf-photo-feature:hover img,
+            .gf-photo-duo .gf-media:hover img,
+            .gf-photo-pair .gf-media:hover img { transform: none; }
+        }
     </style>
 
     <!-- SEO & Open Graph Tags -->
@@ -52,9 +336,7 @@
     <link rel="canonical" href="https://okdesign.cc/project-gravity-falls-tv-spot.html">
     <!-- End SEO Tags -->
 </head>
-<body class="counter-scroll" style="background-color:#000;color:#fff;overflow-x:hidden;">
-    <div id="wip-overlay"><div class="wip-inner"><div class="wip-pulse"></div><div class="wip-label">Case Study in Progress</div><h2 class="wip-title">This case<br><span>is being crafted</span></h2><div class="wip-divider"></div><p class="wip-desc">We're working on the full case study for this project.<br>Come back soon for the complete story.</p><a href="projects.html" class="wip-btn">← All Projects</a></div></div>
-    <script>document.body.style.overflow='hidden';</script>
+<body class="counter-scroll gf-page" style="background-color:#000;color:#fff;overflow-x:hidden;">
     <div class="mil-ball"><span class="mil-icon-1"><svg viewBox="0 0 128 128" width="40" height="40"><path d="M106.1,41.9c-1.2-1.2-3.1-1.2-4.2,0c-1.2,1.2-1.2,3.1,0,4.2L116.8,61H11.2l14.9-14.9c1.2-1.2,1.2-3.1,0-4.2 c-1.2-1.2-3.1-1.2-4.2,0l-20,20c-1.2,1.2-1.2,3.1,0,4.2l20,20c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9c1.2-1.2,1.2-3.1,0-4.2 L11.2,67h105.5l-14.9,14.9c-1.2,1.2-1.2,3.1,0,4.2c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9l20-20c1.2-1.2,1.2-3.1,0-4.2L106.1,41.9z" fill="#000000"/></svg></span><div class="mil-more-text">More</div><div class="mil-choose-text">Сhoose</div></div>
     <button id="goTop"><span class="border-progress"></span><span class="ic-wrap"><span class="icon icon-arrow-caret-right"></span></span></button>
     <main id="wrapper">
@@ -64,25 +346,145 @@
             <div class="col-6 col-md-4 d-flex justify-content-end align-items-center"><div class="header-contact d-none d-md-block"><a href="mailto:hello@okdesign.cc" class="link text-body-3 text-uppercase d-flex align-items-center gap-2" style="text-decoration:none;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:2px;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>HELLO@OKDESIGN.CC</span></a></div><button type="button" class="btn-mobile-menu open-mb-menu text-body-3 text-white link d-md-none"><i class="icon icon-menu"></i> MENU</button></div>
         </div></div></div></header>
 
-        <div class="section-page-title" style="padding-top:140px;padding-bottom:40px;"><div class="container text-center mil-up">
+        <div class="section-page-title gf-title-wrap"><div class="container text-center mil-up">
             <h1 class="page-title fw-semibold text-white mb-0">Gravity Falls Comics <span class="fw-light">Promotional TV Spot</span></h1>
-            <div class="d-flex justify-content-center gap-5 text-white-64 fw-medium text-uppercase mt-4" style="font-size:12px;letter-spacing:2px;"><div>Client: <span class="text-white">Ranok</span></div><div>Year: <span class="text-white">2022</span></div><div>Creative Execution: <span class="text-white">Oleksandr Kukharyk</span></div></div>
+            <div class="gf-meta"><div>Client: <span>Ranok</span></div><div>Year: <span>2022</span></div><div>Creative Execution: <span>Oleksandr Kukharyk</span></div></div>
         </div></div>
 
-        <div class="mil-image-frame mil-fw mil-up position-relative" style="width:100%;height:80vh;margin-bottom:80px;"><div style="width:100%;height:100%;background:#080808;position:relative;overflow:hidden;"><img src="assets/images/projects/gravity-falls/cover.webp" alt="Gravity Falls Comics: Promotional TV Spot" style="width:100%;height:100%;object-fit:cover;opacity:0.8;"></div><div style="position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,#000 0%,rgba(0,0,0,0) 100%);pointer-events:none;z-index:1;"></div></div>
+        <div class="gf-hero mil-up">
+            <video autoplay muted loop playsinline preload="auto" aria-label="Animated Gravity Falls title sequence">
+                <source src="assets/images/projects/gravity-falls/04_1.webm" type="video/webm">
+            </video>
+        </div>
 
-        <section class="container" id="project-content">
-            <div id="overview" class="mil-up mb-5"><div class="mb-5" style="width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:rgba(255,255,255,0.03);padding:48px 0;"><div class="container"><div class="mb-3"><span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing:2px;">01 / OVERVIEW</span></div><div class="row justify-content-between align-items-start"><div class="col-lg-5 mb-3 mb-lg-0"><h2 class="text-white text-uppercase mb-0" style="font-size:clamp(32px,3.5vw,44px);font-weight:600;line-height:1.1;">THE CHALLENGE</h2></div><div class="col-lg-6"><p class="text-white-64 mb-0" style="line-height:1.7;font-size:20px;">Full case study coming soon. This project is currently being documented and will be published shortly.</p></div></div></div></div></div>
-            <div class="mil-up mb-0 pt-4"><div style="width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:rgba(255,255,255,0.03);padding:52px 0 0;"><div class="container">
-                <div class="mb-4"><span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing:2px;">02 / PROJECT INFO</span></div>
-                <div class="row g-5">
-                    <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.4);">Client</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?client=ranok" class="project-attr-tag">Ranok</a></div></div>
-                    <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.4);">Services</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?service=promo-videos" class="project-attr-tag">Promo Videos</a><a href="projects.html?service=video-ads" class="project-attr-tag">Video Ads</a><a href="projects.html?service=tv-ads" class="project-attr-tag">TV Ads</a><a href="projects.html?service=2d-3d-animation" class="project-attr-tag">2D / 3D Animation</a><a href="projects.html?service=photography" class="project-attr-tag">Photography</a></div></div>
-                    <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.4);">Design Categories</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?category=motion" class="project-attr-tag">Motion</a><a href="projects.html?category=digital" class="project-attr-tag">Digital</a></div></div>
+        <div id="project-content">
+            <section class="gf-section" id="overview">
+                <div class="container mil-up">
+                    <span class="gf-eyebrow">01 / Promotional TV Spot</span>
+                    <div class="row justify-content-between align-items-start">
+                        <div class="col-lg-5">
+                            <h2 class="gf-heading">Gravity Falls Comics</h2>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="gf-copy">I had the incredible opportunity to work with ‘Ranok’, the Ukrainian publisher of Disney’s Gravity Falls comics.</p>
+                            <p class="gf-copy">To promote the comics, I created a 10-second ad for broadcast on Inter Media Group channels, reaching over 30 million viewers across Ukraine:</p>
+                        </div>
+                    </div>
+                    <div class="gf-logo-grid" aria-label="Inter Media Group television channels">
+                        <div class="gf-channel-logo" aria-label="Inter"><img class="logo-white" src="assets/images/projects/gravity-falls/logo01white.svg" alt=""><img class="logo-color" src="assets/images/projects/gravity-falls/logo01.svg" alt=""></div>
+                        <div class="gf-channel-logo" aria-label="NTN"><img class="logo-white" src="assets/images/projects/gravity-falls/logo02white.svg" alt=""><img class="logo-color" src="assets/images/projects/gravity-falls/logo02.svg" alt=""></div>
+                        <div class="gf-channel-logo" aria-label="K1"><img class="logo-white" src="assets/images/projects/gravity-falls/logo03white.svg" alt=""><img class="logo-color" src="assets/images/projects/gravity-falls/logo03.svg" alt=""></div>
+                        <div class="gf-channel-logo" aria-label="K2"><img class="logo-white" src="assets/images/projects/gravity-falls/logo04white.svg" alt=""><img class="logo-color" src="assets/images/projects/gravity-falls/logo04.svg" alt=""></div>
+                        <div class="gf-channel-logo" aria-label="Mega"><img class="logo-white" src="assets/images/projects/gravity-falls/logo05white.svg" alt=""><img class="logo-color" src="assets/images/projects/gravity-falls/logo05.svg" alt=""></div>
+                        <div class="gf-channel-logo" aria-label="Pixel TV"><img class="logo-white" src="assets/images/projects/gravity-falls/logo06white.svg" alt=""><img class="logo-color" src="assets/images/projects/gravity-falls/logo06.svg" alt=""></div>
+                        <div class="gf-channel-logo" aria-label="Zoom"><img class="logo-white" src="assets/images/projects/gravity-falls/logo07white.svg" alt=""><img class="logo-color" src="assets/images/projects/gravity-falls/logo07.svg" alt=""></div>
+                        <div class="gf-channel-logo" aria-label="Enter Film"><img class="logo-white" src="assets/images/projects/gravity-falls/logo08white.svg" alt=""><img class="logo-color" src="assets/images/projects/gravity-falls/logo08.svg" alt=""></div>
+                        <div class="gf-channel-logo" aria-label="Inter Plus"><img class="logo-white" src="assets/images/projects/gravity-falls/logo09white.svg" alt=""><img class="logo-color" src="assets/images/projects/gravity-falls/logo09.svg" alt=""></div>
+                    </div>
+                    <div class="gf-video">
+                        <iframe src="https://player.vimeo.com/video/1044188634?dnt=1&amp;title=0&amp;byline=0&amp;portrait=0" title="Gravity Falls Comics: Promotional TV Spot" loading="lazy" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="gf-stats" aria-label="Project figures">
+                        <div class="gf-stat"><strong><span class="gf-stat-number" data-number="10">0</span><span class="gf-stat-suffix"> sec</span></strong><span>Broadcast format</span></div>
+                        <div class="gf-stat"><strong><span class="gf-stat-number" data-number="30">0</span><span class="gf-stat-suffix">M+</span></strong><span>Viewers across Ukraine</span></div>
+                        <div class="gf-stat"><strong><span class="gf-stat-number" data-number="9">0</span></strong><span>Broadcast channels</span></div>
+                    </div>
                 </div>
-            </div></div></div>
-            <div class="mil-works-nav mil-up pt-5" style="display:flex;justify-content:space-between;"><a href="#" class="link text-white d-flex align-items-center gap-2"><i class="icon icon-arrow-long-left"></i> PREV PROJECT</a><a href="projects.html" class="link text-white-64">ALL PROJECTS</a><a href="#" class="link text-white d-flex align-items-center gap-2">NEXT PROJECT <i class="icon icon-arrow-long-right"></i></a></div>
-        </section>
+            </section>
+
+            <section class="gf-section gf-section--surface" id="objective">
+                <div class="container mil-up">
+                    <span class="gf-eyebrow">02 / Objective</span>
+                    <div class="row justify-content-between align-items-start">
+                        <div class="col-lg-5">
+                            <h2 class="gf-heading">Ten seconds <span class="soft">to spark interest</span></h2>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="gf-copy">The primary goal was to create a bright and memorable 10-second advertisement that effectively captured attention and sparked interest in purchasing the new comics book series.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="gf-section" id="comics">
+                <div class="container mil-up">
+                    <span class="gf-eyebrow">03 / The Comics</span>
+                    <div class="row justify-content-between align-items-start">
+                        <div class="col-lg-5">
+                            <h2 class="gf-heading">The physical books became <span class="soft">the source material</span></h2>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="gf-copy">Ranok provided the complete book series for production. I photographed the editions as part of the campaign and used the real covers and proportions as references for the product animation.</p>
+                        </div>
+                    </div>
+
+                    <figure class="gf-media gf-photo-feature"><img src="assets/images/projects/gravity-falls/Frame01.webp" alt="Gravity Falls comic books opened to illustrated pages" loading="lazy"></figure>
+                    <div class="gf-photo-duo">
+                        <figure class="gf-media"><img src="assets/images/projects/gravity-falls/Frame02.webp" alt="Spines of the Gravity Falls book collection" loading="lazy"></figure>
+                        <figure class="gf-media"><img src="assets/images/projects/gravity-falls/Frame03.webp" alt="Gravity Falls Journal 3 and comic books" loading="lazy"></figure>
+                    </div>
+                    <div class="gf-photo-pair">
+                        <figure class="gf-media"><img src="assets/images/projects/gravity-falls/Frame04.webp" alt="Gravity Falls books arranged with warm string lights" loading="lazy"></figure>
+                        <figure class="gf-media"><img src="assets/images/projects/gravity-falls/Frame05.webp" alt="Close view of the Gravity Falls book collection" loading="lazy"></figure>
+                    </div>
+                </div>
+            </section>
+
+            <section class="gf-section gf-section--surface" id="production">
+                <div class="container mil-up">
+                    <span class="gf-eyebrow">04 / Production Process</span>
+                    <div class="row justify-content-between align-items-start">
+                        <div class="col-lg-5">
+                            <h2 class="gf-heading">From familiar scene <span class="soft">to a real 3D product</span></h2>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="gf-copy">I proposed a concept centered around a recognizable scene from the animated series featuring a book, which was transformed into a 3D render of the actual comics book edition published by “Ranok”. Additionally, it was essential to showcase a location instantly associated with the atmosphere of Gravity Falls.</p>
+                        </div>
+                    </div>
+                    <div class="gf-process-grid">
+                        <figure class="gf-media"><video autoplay muted loop playsinline preload="metadata" aria-label="Gravity Falls location reference animation"><source src="assets/images/projects/gravity-falls/04_1.webm" type="video/webm"></video></figure>
+                        <figure class="gf-media"><video autoplay muted loop playsinline preload="metadata" aria-label="Dipper and Mabel character sequence"><source src="assets/images/projects/gravity-falls/04_2.webm" type="video/webm"></video></figure>
+                        <figure class="gf-media"><video autoplay muted loop playsinline preload="metadata" aria-label="Three-dimensional comic book animation"><source src="assets/images/projects/gravity-falls/04_3.webm" type="video/webm"></video></figure>
+                        <figure class="gf-media"><video autoplay muted loop playsinline preload="metadata" aria-label="Final Ranok Gravity Falls comic book packshot"><source src="assets/images/projects/gravity-falls/04_4.webm" type="video/webm"></video></figure>
+                    </div>
+                </div>
+            </section>
+
+            <section class="gf-section" id="results">
+                <div class="container mil-up">
+                    <span class="gf-eyebrow">05 / Results</span>
+                    <div class="gf-results-lead">
+                        <h2 class="gf-heading"><span>Approved for broadcast,</span> <span class="soft">seen across the country</span></h2>
+                        <p class="gf-copy">The final advertisement aired successfully, reaching millions of viewers and building interest in the Gravity Falls comic book series.</p>
+                    </div>
+                    <div class="gf-approvals">
+                        <div class="gf-approvals-grid">
+                            <h3>Approvals</h3>
+                            <p class="gf-copy">The project was approved by Disney after ensuring full compliance with licensing requirements, including the display of the “© Disney” copyright notice throughout. The ad was also adapted for the new digital broadcast format in consultation with the TV channel’s engineers.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="gf-project-info">
+                <div class="container mil-up">
+                    <div class="mb-4"><span class="gf-eyebrow">06 / Project Info</span></div>
+                    <div class="row g-5">
+                        <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.4);">Client</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?client=ranok" class="project-attr-tag">Ranok</a></div></div>
+                        <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.4);">Services</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?service=promo-videos" class="project-attr-tag">Promo Videos</a><a href="projects.html?service=video-ads" class="project-attr-tag">Video Ads</a><a href="projects.html?service=tv-ads" class="project-attr-tag">TV Ads</a><a href="projects.html?service=2d-3d-animation" class="project-attr-tag">2D / 3D Animation</a><a href="projects.html?service=photography" class="project-attr-tag">Photography</a></div></div>
+                        <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.4);">Design Categories</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?category=motion" class="project-attr-tag">Motion</a><a href="projects.html?category=digital" class="project-attr-tag">Digital</a></div></div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="container">
+                <div class="mil-works-nav mil-up pt-5" style="display:flex;justify-content:space-between;">
+                    <a href="project-ichnya-smm.html" class="link text-white d-flex align-items-center gap-2"><i class="icon icon-arrow-long-left"></i> PREV PROJECT</a>
+                    <a href="projects.html" class="link text-white-64">ALL PROJECTS</a>
+                    <a href="project-mars-2050.html" class="link text-white d-flex align-items-center gap-2">NEXT PROJECT <i class="icon icon-arrow-long-right"></i></a>
+                </div>
+            </div>
+        </div>
 
         <section class="flat-spacing" style="border-top:1px solid rgba(255,255,255,0.05);padding-bottom:120px;margin-top:80px;"><div class="container"><div class="text-center" style="margin-top:80px;"><h2 class="mil-up text-white mb-5" style="font-size:clamp(36px,5vw,68px);line-height:1.2;">Got a project <span class="fw-light text-white-64">in mind?</span><br>Let's make it a reality <span class="fw-light text-white-64">together</span></h2><div class="mil-up" style="margin-top:50px;"><a href="index.html#contactScroll" class="tf-btn">CONTACT US</a></div></div></div></section>
 
@@ -104,5 +506,32 @@
                         </div>
                     </div></div></div></div></div></div>
     <script src="assets/js/jquery.min.js"></script><script src="assets/js/bootstrap.min.js"></script><script src="assets/js/gsap.min.js"></script><script src="assets/js/ScrollTrigger.min.js"></script><script src="assets/js/main.js"></script>
+    <script>
+        (function () {
+            var counters = document.querySelectorAll('.gf-stat-number');
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            counters.forEach(function (counter) {
+                var target = Number(counter.getAttribute('data-number')) || 0;
+
+                if (reduceMotion || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+                    counter.textContent = target;
+                    return;
+                }
+
+                gsap.to(counter, {
+                    scrollTrigger: {
+                        trigger: counter,
+                        start: 'top 88%',
+                        once: true
+                    },
+                    innerHTML: target,
+                    duration: 2.2,
+                    snap: { innerHTML: 1 },
+                    ease: 'power3.out'
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
