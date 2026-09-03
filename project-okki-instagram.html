@@ -24,17 +24,388 @@
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <link rel="shortcut icon" href="assets/images/logo/favicon.svg">
     <style>
-        #wip-overlay{position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,0.92);backdrop-filter:blur(24px) saturate(0.3);display:flex;align-items:center;justify-content:center;padding:24px;}
-        .wip-inner{max-width:520px;width:100%;text-align:center;}
-        .wip-pulse{width:8px;height:8px;border-radius:50%;background:#2563eb;margin:0 auto 32px;animation:wip-pulse 2s ease infinite;}
-        @keyframes wip-pulse{0%{box-shadow:0 0 0 0 rgba(37,99,235,0.5)}70%{box-shadow:0 0 0 18px rgba(37,99,235,0)}100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}}
-        .wip-label{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#2563eb;margin-bottom:20px;}
-        .wip-title{font-size:clamp(30px,5vw,52px);font-weight:600;color:#fff;line-height:1.1;margin-bottom:16px;}
-        .wip-title span{font-weight:300;color:rgba(255,255,255,0.45);}
-        .wip-desc{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.7;margin-bottom:40px;font-weight:300;}
-        .wip-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 30px;border:1px solid rgba(255,255,255,0.18);border-radius:999px;color:#fff;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background .25s,border-color .25s;}
-        .wip-btn:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.38);color:#fff;text-decoration:none;}
-        .wip-divider{width:40px;height:1px;background:rgba(255,255,255,0.12);margin:32px auto;}
+        .okki-page {
+            --okki-surface: rgba(255, 255, 255, 0.035);
+            --okki-line: rgba(255, 255, 255, 0.1);
+            --okki-muted: rgba(255, 255, 255, 0.64);
+            --okki-soft: rgba(255, 255, 255, 0.42);
+        }
+
+        .okki-title-wrap {
+            padding-top: 140px;
+            padding-bottom: 42px;
+        }
+
+        .okki-meta {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px 40px;
+            margin-top: 24px;
+            color: var(--okki-muted);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .okki-meta span { color: #fff; }
+
+        .okki-hero {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1440 / 661;
+            margin-bottom: 80px;
+            overflow: hidden;
+            background: #080808;
+        }
+
+        .okki-hero img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .okki-hero::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0;
+            z-index: 1;
+            height: 35%;
+            background: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 100%);
+            pointer-events: none;
+        }
+
+        .okki-hero-cta {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            z-index: 2;
+            transform: translateX(-50%);
+        }
+
+        .okki-section { padding-bottom: 96px; background: #000; }
+
+        .okki-section-intro {
+            margin-bottom: 48px;
+            padding: 48px 0;
+            background: var(--okki-surface);
+        }
+
+        .okki-eyebrow {
+            display: block;
+            margin-bottom: 16px;
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .okki-heading {
+            margin: 0;
+            color: #fff;
+            font-size: clamp(32px, 3.5vw, 44px);
+            font-weight: 600;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .okki-copy {
+            margin: 0;
+            color: var(--okki-muted);
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .okki-media {
+            position: relative;
+            overflow: hidden;
+            background: #080808;
+        }
+
+        .okki-media > img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .okki-objectives {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .okki-objective {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            min-height: clamp(310px, 27vw, 380px);
+            padding: clamp(28px, 3vw, 42px);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .06);
+            transition: transform .5s cubic-bezier(.2, .8, .2, 1),
+                        border-color .5s ease,
+                        box-shadow .5s ease;
+            will-change: transform;
+            isolation: isolate;
+        }
+
+        .okki-objective::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            border-radius: inherit;
+            background:
+                radial-gradient(circle at 18% 8%, rgba(63, 118, 255, .98) 0%, rgba(0, 81, 255, .84) 34%, transparent 70%),
+                linear-gradient(145deg, #0051ff 0%, #092a7a 58%, #050711 100%);
+            opacity: 0;
+            transition: opacity .55s cubic-bezier(.2, .8, .2, 1);
+        }
+
+        .okki-objective::after {
+            content: "✦";
+            position: absolute;
+            right: 24px;
+            bottom: 20px;
+            z-index: 2;
+            color: rgba(255, 255, 255, .72);
+            font-size: 22px;
+            line-height: 1;
+            transition: color .45s ease, transform .55s cubic-bezier(.2, .8, .2, 1);
+        }
+
+        .okki-objective-number {
+            position: relative;
+            z-index: 1;
+            display: block;
+            margin: 0 0 clamp(42px, 4vw, 58px);
+            color: #272727;
+            font-size: clamp(48px, 4.8vw, 70px);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -.06em;
+            user-select: none;
+            transition: color .5s ease;
+        }
+
+        .okki-objective-title {
+            position: relative;
+            z-index: 1;
+            margin: 0 0 16px;
+            color: #fff;
+            font-size: clamp(21px, 2vw, 29px);
+            font-weight: 600;
+            line-height: 1.12;
+            letter-spacing: -.035em;
+        }
+
+        .okki-objective-text {
+            position: relative;
+            z-index: 1;
+            max-width: 21em;
+            margin: 0;
+            padding-right: 18px;
+            color: rgba(255, 255, 255, .56);
+            font-size: clamp(15px, 1.3vw, 18px);
+            font-weight: 300;
+            line-height: 1.35;
+            letter-spacing: -.01em;
+            transition: color .45s ease;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .okki-objective:hover {
+                z-index: 1;
+                border-color: rgba(87, 139, 255, .48);
+                box-shadow: 0 22px 52px rgba(0, 81, 255, .18),
+                            0 0 30px rgba(0, 81, 255, .09);
+                transform: translateY(-6px) scale(1.025);
+            }
+
+            .okki-objective:hover::before { opacity: 1; }
+            .okki-objective:hover::after { color: #fff; transform: rotate(45deg) scale(1.15); }
+            .okki-objective:hover .okki-objective-text { color: rgba(255, 255, 255, .78); }
+        }
+
+        .okki-video-stack {
+            display: grid;
+            gap: 12px;
+        }
+
+        .okki-video {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #080808;
+        }
+
+        .okki-video iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .okki-results-stage { margin-top: 4px; color: #fff; }
+
+        .okki-stats {
+            position: absolute;
+            top: 9%;
+            left: 50%;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: clamp(56px, 7vw, 108px) clamp(42px, 9vw, 140px);
+            width: min(78%, 980px);
+            transform: translateX(-50%);
+        }
+
+        .okki-stat { min-width: 0; text-align: center; }
+
+        .okki-stat-label {
+            display: block;
+            margin-bottom: 12px;
+            font-size: clamp(9px, .9vw, 12px);
+            font-weight: 500;
+            line-height: 1.35;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .okki-stat-value {
+            display: block;
+            color: #fff;
+            font-size: clamp(42px, 5.4vw, 78px);
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: -.035em;
+        }
+
+        .okki-feed-lead {
+            position: absolute;
+            bottom: 5.5%;
+            left: 50%;
+            width: 82%;
+            text-align: center;
+            transform: translateX(-50%);
+        }
+
+        .okki-feed-lead h3 {
+            margin: 0 0 18px;
+            color: #fff;
+            font-size: clamp(28px, 4.2vw, 58px);
+            font-weight: 700;
+            line-height: .98;
+            letter-spacing: -.025em;
+            text-transform: uppercase;
+        }
+
+        .okki-feed-lead p {
+            margin: 0 0 18px;
+            font-size: clamp(9px, .9vw, 12px);
+            font-weight: 500;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .okki-feed-arrow {
+            display: inline-block;
+            font-size: clamp(28px, 3vw, 42px);
+            font-weight: 200;
+            line-height: 1;
+        }
+
+        .okki-feed-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        .okki-feed-grid .ig-grid-post {
+            border: 0;
+            border-radius: 0;
+        }
+
+        .okki-feed-grid .ig-grid-post--empty {
+            visibility: hidden;
+        }
+
+        .okki-project-info { padding: 64px 0; background: var(--okki-surface); }
+
+        @media (max-width: 991px) {
+            .okki-section { padding-bottom: 80px; }
+        }
+
+        @media (max-width: 767px) {
+            .okki-title-wrap { padding-top: 112px; padding-bottom: 32px; }
+            .okki-title-wrap .page-title { font-size: clamp(38px, 11vw, 56px); line-height: 1.02; }
+            .okki-meta {
+                align-items: center;
+                gap: 10px 16px;
+                font-size: 10px;
+                line-height: 1.45;
+                letter-spacing: .05em;
+            }
+            .okki-hero {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                aspect-ratio: auto;
+                margin-bottom: 40px;
+                overflow: visible;
+            }
+            .okki-hero img {
+                height: auto;
+                aspect-ratio: 16 / 9;
+            }
+            .okki-hero::after { display: none; }
+            .okki-hero-cta {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                transform: none;
+                margin-top: 24px;
+            }
+            .okki-section { padding-bottom: 64px; }
+            .okki-section-intro { margin-bottom: 32px; padding: 40px 0; }
+            .okki-copy { font-size: 17px; line-height: 1.6; }
+            .okki-objectives { grid-template-columns: 1fr; gap: 10px; }
+            .okki-objective { min-height: 260px; padding: 26px 24px; }
+            .okki-objective::after { right: 20px; bottom: 18px; }
+            .okki-objective-number { margin-bottom: 42px; font-size: 50px; }
+            .okki-objective-title { font-size: 23px; }
+            .okki-objective-text { max-width: 23em; font-size: 16px; }
+            .okki-video-stack { gap: 8px; }
+            .okki-results-stage { margin-top: 2px; }
+            .okki-stats { top: 7.5%; gap: 34px 16px; width: 90%; }
+            .okki-stat-label { margin-bottom: 8px; font-size: clamp(7px, 2vw, 9px); }
+            .okki-stat-value { font-size: clamp(26px, 9vw, 40px); }
+            .okki-feed-lead { bottom: 4.5%; width: 90%; }
+            .okki-feed-lead h3 { margin-bottom: 12px; font-size: clamp(24px, 8vw, 38px); }
+            .okki-feed-lead p { margin-bottom: 10px; font-size: clamp(7px, 2vw, 9px); }
+            .okki-feed-grid { gap: 2px; margin-top: 2px; }
+            .okki-project-info { padding: 54px 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .okki-objective,
+            .okki-objective::before,
+            .okki-objective::after,
+            .okki-objective-number,
+            .okki-objective-text,
+            .okki-feed-grid .ig-grid-post,
+            .okki-feed-grid .ig-grid-post img { transition: none; }
+
+            .okki-objective:hover { transform: none; }
+        }
     </style>
 
     <!-- SEO & Open Graph Tags -->
@@ -52,9 +423,7 @@
     <link rel="canonical" href="https://okdesign.cc/project-okki-instagram.html">
     <!-- End SEO Tags -->
 </head>
-<body class="counter-scroll" style="background-color:#000;color:#fff;overflow-x:hidden;">
-    <div id="wip-overlay"><div class="wip-inner"><div class="wip-pulse"></div><div class="wip-label">Case Study in Progress</div><h2 class="wip-title">This case<br><span>is being crafted</span></h2><div class="wip-divider"></div><p class="wip-desc">We're working on the full case study for this project.<br>Come back soon for the complete story.</p><a href="projects.html" class="wip-btn">← All Projects</a></div></div>
-    <script>document.body.style.overflow='hidden';</script>
+<body class="counter-scroll okki-page" style="background-color:#000;color:#fff;overflow-x:hidden;">
     <div class="mil-ball"><span class="mil-icon-1"><svg viewBox="0 0 128 128" width="40" height="40"><path d="M106.1,41.9c-1.2-1.2-3.1-1.2-4.2,0c-1.2,1.2-1.2,3.1,0,4.2L116.8,61H11.2l14.9-14.9c1.2-1.2,1.2-3.1,0-4.2 c-1.2-1.2-3.1-1.2-4.2,0l-20,20c-1.2,1.2-1.2,3.1,0,4.2l20,20c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9c1.2-1.2,1.2-3.1,0-4.2 L11.2,67h105.5l-14.9,14.9c-1.2,1.2-1.2,3.1,0,4.2c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9l20-20c1.2-1.2,1.2-3.1,0-4.2L106.1,41.9z" fill="#000000"/></svg></span><div class="mil-more-text">More</div><div class="mil-choose-text">Сhoose</div></div>
     <button id="goTop"><span class="border-progress"></span><span class="ic-wrap"><span class="icon icon-arrow-caret-right"></span></span></button>
     <main id="wrapper">
@@ -64,25 +433,344 @@
             <div class="col-6 col-md-4 d-flex justify-content-end align-items-center"><div class="header-contact d-none d-md-block"><a href="mailto:hello@okdesign.cc" class="link text-body-3 text-uppercase d-flex align-items-center gap-2" style="text-decoration:none;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:2px;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>HELLO@OKDESIGN.CC</span></a></div><button type="button" class="btn-mobile-menu open-mb-menu text-body-3 text-white link d-md-none"><i class="icon icon-menu"></i> MENU</button></div>
         </div></div></div></header>
 
-        <div class="section-page-title" style="padding-top:140px;padding-bottom:40px;"><div class="container text-center mil-up">
+        <div class="section-page-title okki-title-wrap"><div class="container text-center mil-up">
             <h1 class="page-title fw-semibold text-white mb-0">Okki Hihikls <span class="fw-light">Engaging Instagram Content</span></h1>
-            <div class="d-flex justify-content-center gap-5 text-white-64 fw-medium text-uppercase mt-4" style="font-size:12px;letter-spacing:2px;"><div>Client: <span class="text-white">Okki Hihikls</span></div><div>Year: <span class="text-white">2022</span></div><div>Creative Execution: <span class="text-white">Oleksandr Kukharyk</span></div></div>
+            <div class="okki-meta"><div>Client: <span>Okki Hihikls</span></div><div>Year: <span>2022</span></div><div>Creative Execution: <span>Oleksandr Kukharyk</span></div></div>
         </div></div>
 
-        <div class="mil-image-frame mil-fw mil-up position-relative" style="width:100%;height:80vh;margin-bottom:80px;"><div style="width:100%;height:100%;background:#080808;position:relative;overflow:hidden;"><img src="assets/images/projects/okki-instagram/cover.webp" alt="Engaging Instagram Content" style="width:100%;height:100%;object-fit:cover;opacity:0.8;"></div><div style="position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,#000 0%,rgba(0,0,0,0) 100%);pointer-events:none;z-index:1;"></div></div>
+        <div class="okki-hero mil-up">
+            <img src="assets/images/projects/okki-instagram/01.webp" width="1440" height="810" alt="Okki Hihikls candy arranged around the Okki logo" fetchpriority="high">
+            <div class="okki-hero-cta">
+                <a href="#overview" class="link text-white d-flex flex-column align-items-center gap-3 text-uppercase fw-medium" style="letter-spacing:2px;font-size:11px;transition:.3s;text-decoration:none;">
+                    <span>Explore Full Case</span>
+                    <span class="d-flex align-items-center justify-content-center" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);">
+                        <i class="icon icon-arrow-long-right" style="transform:rotate(90deg);"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
 
-        <section class="container" id="project-content">
-            <div id="overview" class="mil-up mb-5"><div class="mb-5" style="width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:rgba(255,255,255,0.03);padding:48px 0;"><div class="container"><div class="mb-3"><span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing:2px;">01 / OVERVIEW</span></div><div class="row justify-content-between align-items-start"><div class="col-lg-5 mb-3 mb-lg-0"><h2 class="text-white text-uppercase mb-0" style="font-size:clamp(32px,3.5vw,44px);font-weight:600;line-height:1.1;">THE CHALLENGE</h2></div><div class="col-lg-6"><p class="text-white-64 mb-0" style="line-height:1.7;font-size:20px;">Full case study coming soon. This project is currently being documented and will be published shortly.</p></div></div></div></div></div>
-            <div class="mil-up mb-0 pt-4"><div style="width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:rgba(255,255,255,0.03);padding:52px 0 0;"><div class="container">
-                <div class="mb-4"><span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing:2px;">02 / PROJECT INFO</span></div>
+        <div id="project-content">
+            <section class="okki-section" id="overview">
+                <div class="okki-section-intro mil-up">
+                    <div class="container">
+                        <span class="okki-eyebrow">01 / Overview</span>
+                        <h2 class="okki-heading">Main Objectives</h2>
+                    </div>
+                </div>
+                <div class="container mil-up">
+                    <div class="okki-objectives" aria-label="Project objectives">
+                        <article class="okki-objective">
+                            <span class="okki-objective-number" aria-hidden="true">01</span>
+                            <h3 class="okki-objective-title">Signature Content</h3>
+                            <p class="okki-objective-text">Shape a distinctive visual language that feels unmistakably Okki across every post.</p>
+                        </article>
+                        <article class="okki-objective">
+                            <span class="okki-objective-number" aria-hidden="true">02</span>
+                            <h3 class="okki-objective-title">Audience Connection</h3>
+                            <p class="okki-objective-text">Build a loyal community through playful content designed to spark interaction.</p>
+                        </article>
+                        <article class="okki-objective">
+                            <span class="okki-objective-number" aria-hidden="true">03</span>
+                            <h3 class="okki-objective-title">Product Visibility</h3>
+                            <p class="okki-objective-text">Grow brand and new-product awareness through photography, motion and video.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="okki-section" id="photography">
+                <div class="okki-section-intro mil-up">
+                    <div class="container">
+                        <span class="okki-eyebrow">02 / Content</span>
+                        <div class="row justify-content-between align-items-start">
+                            <div class="col-lg-5 mb-3 mb-lg-0">
+                                <h2 class="okki-heading">Photography</h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="okki-copy">I conducted regular photoshoots with models and the client&rsquo;s products.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container mil-up">
+                    <figure class="okki-media mb-0">
+                        <img src="assets/images/projects/okki-instagram/03.webp" width="1440" height="965" alt="Okki Hihikls candy with fruit and ice" loading="lazy">
+                    </figure>
+                </div>
+            </section>
+
+            <section class="okki-section" id="video-motion">
+                <div class="okki-section-intro mil-up">
+                    <div class="container">
+                        <span class="okki-eyebrow">03 / Content</span>
+                        <div class="row justify-content-between align-items-start">
+                            <div class="col-lg-5 mb-3 mb-lg-0">
+                                <h2 class="okki-heading">Video &amp; Motion</h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="okki-copy">Examples of engaging feed videos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container mil-up">
+                    <div class="okki-video-stack">
+                        <div class="okki-video">
+                            <iframe src="https://player.vimeo.com/video/1058970560?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" title="Okki Instagram post example 1" loading="lazy" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
+                        </div>
+                        <div class="okki-video">
+                            <iframe src="https://player.vimeo.com/video/1058970644?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" title="Okki Instagram post example 2" loading="lazy" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="okki-section" id="results">
+                <div class="okki-section-intro mil-up">
+                    <div class="container">
+                        <span class="okki-eyebrow">04 / Results</span>
+                        <h2 class="okki-heading">Results in Numbers</h2>
+                    </div>
+                </div>
+                <div class="container mil-up">
+                    <figure class="okki-media mb-0">
+                        <img src="assets/images/projects/okki-instagram/06.webp" width="1440" height="810" alt="Okki candy products and lollipops on a yellow background" loading="lazy">
+                    </figure>
+                    <figure class="okki-media okki-results-stage mb-0">
+                        <img src="assets/images/projects/okki-instagram/07.webp" width="1440" height="2325" alt="Okki candy pack balanced on a tennis ball and racket" loading="lazy">
+                        <figcaption>
+                            <div class="okki-stats" aria-label="Campaign results">
+                                <div class="okki-stat" aria-label="Engagement rate: 16.83 percent">
+                                    <span class="okki-stat-label">Engagement Rate</span>
+                                    <strong class="okki-stat-value"><span class="okki-counter-number" data-number="16.83" data-decimals="2">16.83</span><span aria-hidden="true">%</span></strong>
+                                </div>
+                                <div class="okki-stat" aria-label="Total monthly reach: more than 11,000">
+                                    <span class="okki-stat-label">Total Monthly Reach</span>
+                                    <strong class="okki-stat-value"><span class="okki-counter-number" data-number="11000" data-grouping="true">11 000</span><span aria-hidden="true">+</span></strong>
+                                </div>
+                                <div class="okki-stat" aria-label="Monthly followers growth: more than 450">
+                                    <span class="okki-stat-label">Monthly Followers Growth</span>
+                                    <strong class="okki-stat-value"><span class="okki-counter-number" data-number="450">450</span><span aria-hidden="true">+</span></strong>
+                                </div>
+                                <div class="okki-stat" aria-label="Average monthly comments: 3,000">
+                                    <span class="okki-stat-label">Average Monthly Comments</span>
+                                    <strong class="okki-stat-value"><span class="okki-counter-number" data-number="3000" data-grouping="true">3 000</span></strong>
+                                </div>
+                                <div class="okki-stat" aria-label="Cost per follower: 0.19 dollars">
+                                    <span class="okki-stat-label">Cost per Follower</span>
+                                    <strong class="okki-stat-value"><span aria-hidden="true">$</span><span class="okki-counter-number" data-number="0.19" data-decimals="2">0.19</span></strong>
+                                </div>
+                                <div class="okki-stat" aria-label="Followers gained: more than 3,800">
+                                    <span class="okki-stat-label">Followers</span>
+                                    <strong class="okki-stat-value"><span aria-hidden="true">+</span><span class="okki-counter-number" data-number="3800" data-grouping="true">3 800</span></strong>
+                                </div>
+                            </div>
+                            <div class="okki-feed-lead">
+                                <h3>Feed Design<br>Layout</h3>
+                                <p>Enjoy the impactful Instagram feed design</p>
+                                <span class="okki-feed-arrow" aria-hidden="true">&darr;</span>
+                            </div>
+                        </figcaption>
+                    </figure>
+                    <div class="okki-feed-grid" aria-label="Okki Instagram feed design">
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2022-02-06_15-03-04_UTC_12x.webp" width="954" height="954" alt="Model enjoying Okki candy" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2022-01-25_13-26-49_UTC2x.webp" width="954" height="954" alt="Okki candy with colourful stationery" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2022-02-07_06-35-52_UTC2x.webp" width="954" height="954" alt="Mint and bubble gum Okki Hihikls packs" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2022-01-19_11-00-16_UTC2x.webp" width="954" height="954" alt="Okki pack in a green surreal interior" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2022-01-18_11-30-12_UTC2x.webp" width="954" height="954" alt="Okki Hihikls graphic on a yellow background" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2022-01-21_15-45-54_UTC2x.webp" width="954" height="954" alt="Models sharing Okki candy" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2022-01-17_10-28-52_UTC2x.webp" width="954" height="954" alt="Lollipops, fruit and ice" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2022-01-15_07-39-19_UTC2x.webp" width="954" height="954" alt="Model holding a box of Okki candy" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2022-01-13_17-37-25_UTC2x.webp" width="954" height="954" alt="Okki still life in purple light" loading="lazy"></div>
+                        <!-- Screenshot 1: positions 1-42 -->
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2022-01-04_08-08-44_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2022-01-02_06-10-14_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-31_06-20-21_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-30_06-20-59_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-29_16-04-03_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-26_18-07-07_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-25_16-05-08_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-24_06-20-47_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-23_06-20-21_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-22_10-17-30_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-20_14-28-01_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-18_10-59-10_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-17_09-00-40_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-15_08-00-49_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-14_18-14-03_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-13_13-42-24_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-12_09-01-41_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-11_09-49-05_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-10_14-37-01_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-09_15-13-49_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-08_18-43-47_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-07_09-39-04_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-06_13-52-04_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-04_14-47-02_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-03_09-25-31_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-12-01_09-49-24_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-28_08-01-02_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-27_08-00-17_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-26_08-00-02_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-25_08-00-02_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-24_14-17-38_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-23_08-12-49_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-21_13-39-16_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-20_09-28-56_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-19_11-56-05_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-18_15-14-18_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-17_15-39-07_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-14_15-09-45_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-12_15-35-36_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-11_14-12-38_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-10_15-26-07_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-09_13-44-30_UTC.jpg" alt="" loading="lazy"></div>
+                        <!-- Screenshot 2: positions 43-84 -->
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-08_07-30-43_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-05_15-32-16_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-04_07-00-54_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-03_06-30-19_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-02_06-30-11_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-01_11-29-29_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-10-30_11-52-15_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-10-29_14-48-08_UTC_1.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-10-27_13-48-09_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-10-24_16-17-33_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-10-21_13-14-34_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-08-03_11-52-26_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-08-02_20-08-57_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-31_18-03-14_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-30_16-20-14_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-29_14-54-35_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-26_07-32-35_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-23_11-11-33_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-21_16-01-51_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-20_07-54-37_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-19_13-11-39_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-18_13-03-44_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-16_12-27-44_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-15_12-18-09_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-13_15-14-41_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-12_15-22-25_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-09_14-23-44_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-06_15-09-54_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-04_06-58-24_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-01_06-56-13_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post ig-grid-post--empty" aria-hidden="true"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-28_06-59-09_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-26_06-55-44_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-25_06-13-36_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-23_06-07-15_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-22_07-43-39_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-18_07-47-22_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-17_09-07-48_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-16_07-25-11_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-15_07-32-40_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-14_15-35-01_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-14_08-01-55_UTC.jpg" alt="" loading="lazy"></div>
+                        <!-- Screenshot 3: positions 85-126 -->
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-11_16-40-14_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-10_08-43-43_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-09_14-27-33_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-08_07-46-26_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-07_13-03-14_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-06_06-20-49_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-05_06-18-27_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-04_12-17-48_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-03_14-41-48_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-02_14-21-46_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-01_14-18-49_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-31_08-01-13_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-27_09-40-41_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-25_10-41-34_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-24_13-22-47_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-23_15-35-37_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-22_16-31-17_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-20_14-12-05_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-19_16-16-22_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-18_14-14-48_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-17_16-01-33_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-15_08-43-10_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-14_06-27-49_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-12_06-14-10_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-10_06-01-51_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-07_13-37-20_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-06_16-10-06_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-05_07-22-38_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-04_06-40-55_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-03_06-32-26_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-02_06-27-53_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-01_11-27-17_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-30_16-42-42_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-26_11-55-29_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-24_08-48-20_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post ig-grid-post--empty" aria-hidden="true"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-22_08-09-01_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-21_12-05-28_UTC_5.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-20_16-26-31_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-18_06-33-45_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-15_08-33-27_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-14_15-10-24_UTC.jpg" alt="" loading="lazy"></div>
+                        <!-- Screenshot 4: positions 127-168 -->
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-13_07-27-13_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post ig-grid-post--empty" aria-hidden="true"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-08_14-44-44_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-07_09-17-40_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-06_14-54-00_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post ig-grid-post--empty" aria-hidden="true"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-02_06-29-34_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-01_06-16-27_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-31_06-11-56_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-30_06-12-51_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-29_08-41-19_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-27_12-23-10_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-26_13-37-41_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-25_11-01-35_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-24_11-39-21_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-23_09-22-57_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-22_10-39-25_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-19_16-37-01_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post ig-grid-post--empty" aria-hidden="true"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-17_15-39-19_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-16_12-07-29_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-14_08-16-29_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-13_13-29-54_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-12_09-25-38_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-08_08-04-42_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-07_07-35-14_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-06_07-54-47_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-05_14-52-31_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-04_11-26-32_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-03_13-16-20_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-02_12-58-19_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-01_16-26-45_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-28_11-16-03_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-27_12-45-22_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post ig-grid-post--empty" aria-hidden="true"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-25_14-59-22_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-24_16-47-36_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-23_16-08-08_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-22_15-02-59_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-21_09-20-49_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-20_10-53-11_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-19_17-15-39_UTC.jpg" alt="" loading="lazy"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="okki-project-info">
+                <div class="container mil-up">
+                <div class="mb-4"><span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing:2px;">05 / PROJECT INFO</span></div>
                 <div class="row g-5">
                     <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.4);">Client</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?client=okki" class="project-attr-tag">Okki Hihikls</a></div></div>
                     <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.4);">Services</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?service=2d-3d-animation" class="project-attr-tag">2D / 3D Animation</a><a href="projects.html?service=web-animation" class="project-attr-tag">Web Animation</a><a href="projects.html?service=photography" class="project-attr-tag">Photography</a><a href="projects.html?service=video-shooting" class="project-attr-tag">Video Shooting</a><a href="projects.html?service=reels-stories" class="project-attr-tag">Reels &amp; Stories</a><a href="projects.html?service=social-media" class="project-attr-tag">Social Media</a><a href="projects.html?service=feed-concept" class="project-attr-tag">Feed Concept</a><a href="projects.html?service=visual-identity" class="project-attr-tag">Visual Identity</a></div></div>
                     <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.4);">Design Categories</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?category=motion" class="project-attr-tag">Motion</a><a href="projects.html?category=digital" class="project-attr-tag">Digital</a><a href="projects.html?category=content-creation" class="project-attr-tag">Content Creation</a><a href="projects.html?category=branding" class="project-attr-tag">Branding &amp; Identity</a></div></div>
                 </div>
-            </div></div></div>
-            <div class="mil-works-nav mil-up pt-5" style="display:flex;justify-content:space-between;"><a href="#" class="link text-white d-flex align-items-center gap-2"><i class="icon icon-arrow-long-left"></i> PREV PROJECT</a><a href="projects.html" class="link text-white-64">ALL PROJECTS</a><a href="#" class="link text-white d-flex align-items-center gap-2">NEXT PROJECT <i class="icon icon-arrow-long-right"></i></a></div>
-        </section>
+                </div>
+            </section>
+            <div class="container"><div class="mil-works-nav mil-up pt-5" style="display:flex;justify-content:space-between;"><a href="#" class="link text-white d-flex align-items-center gap-2"><i class="icon icon-arrow-long-left"></i> PREV PROJECT</a><a href="projects.html" class="link text-white-64">ALL PROJECTS</a><a href="#" class="link text-white d-flex align-items-center gap-2">NEXT PROJECT <i class="icon icon-arrow-long-right"></i></a></div></div>
+        </div>
 
         <section class="flat-spacing" style="border-top:1px solid rgba(255,255,255,0.05);padding-bottom:120px;margin-top:80px;"><div class="container"><div class="text-center" style="margin-top:80px;"><h2 class="mil-up text-white mb-5" style="font-size:clamp(36px,5vw,68px);line-height:1.2;">Got a project <span class="fw-light text-white-64">in mind?</span><br>Let's make it a reality <span class="fw-light text-white-64">together</span></h2><div class="mil-up" style="margin-top:50px;"><a href="index.html#contactScroll" class="tf-btn">CONTACT US</a></div></div></div></section>
 
@@ -102,7 +790,54 @@
                                 BEHANCE
                             </a>
                         </div>
-                    </div></div></div></div></div></div>
+                    </div></div></div></div></div>
     <script src="assets/js/jquery.min.js"></script><script src="assets/js/bootstrap.min.js"></script><script src="assets/js/gsap.min.js"></script><script src="assets/js/ScrollTrigger.min.js"></script><script src="assets/js/main.js"></script>
+    <script>
+        (function () {
+            var counters = document.querySelectorAll('.okki-counter-number');
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function formatValue(value, decimals, grouping) {
+                var result = Number(value).toFixed(decimals);
+                if (grouping) {
+                    var parts = result.split('.');
+                    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+                    result = parts.join('.');
+                }
+                return result;
+            }
+
+            counters.forEach(function (counter) {
+                var target = Number(counter.getAttribute('data-number')) || 0;
+                var decimals = Number(counter.getAttribute('data-decimals')) || 0;
+                var grouping = counter.getAttribute('data-grouping') === 'true';
+
+                if (reduceMotion || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+                    counter.textContent = formatValue(target, decimals, grouping);
+                    return;
+                }
+
+                var state = { value: 0 };
+                counter.textContent = formatValue(0, decimals, grouping);
+
+                gsap.to(state, {
+                    scrollTrigger: {
+                        trigger: '.okki-stats',
+                        start: 'top 88%',
+                        once: true
+                    },
+                    value: target,
+                    duration: 2.2,
+                    ease: 'power3.out',
+                    onUpdate: function () {
+                        counter.textContent = formatValue(state.value, decimals, grouping);
+                    },
+                    onComplete: function () {
+                        counter.textContent = formatValue(target, decimals, grouping);
+                    }
+                });
+            });
+        })();
+    </script>
 </body>
 </html>

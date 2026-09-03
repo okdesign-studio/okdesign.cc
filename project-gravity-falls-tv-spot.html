@@ -77,6 +77,14 @@
             z-index: 1;
         }
 
+        .gf-hero-cta {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            z-index: 2;
+            transform: translateX(-50%);
+        }
+
         .gf-section { padding: 0 0 96px; background: #000; }
         .gf-section-intro {
             margin-bottom: 48px;
@@ -290,8 +298,33 @@
         @media (max-width: 767px) {
             .gf-title-wrap { padding-top: 112px; padding-bottom: 32px; }
             .gf-title-wrap .page-title { font-size: clamp(38px, 11vw, 56px); line-height: 1.02; }
-            .gf-meta { flex-direction: column; align-items: center; gap: 8px; font-size: 10px; }
-            .gf-hero { aspect-ratio: 16 / 10; margin-bottom: 56px; }
+            .gf-meta {
+                align-items: center;
+                gap: 10px 16px;
+                font-size: 10px;
+                line-height: 1.45;
+                letter-spacing: .05em;
+            }
+            .gf-hero {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                aspect-ratio: auto;
+                margin-bottom: 40px;
+                overflow: visible;
+            }
+            .gf-hero video {
+                height: auto;
+                aspect-ratio: 16 / 9;
+            }
+            .gf-hero::after { display: none; }
+            .gf-hero-cta {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                transform: none;
+                margin-top: 24px;
+            }
             .gf-section { padding: 0 0 64px; }
             .gf-section-intro { margin-bottom: 48px; padding: 40px 0; }
             .gf-stats { grid-template-columns: 1fr; margin-top: 44px; }
@@ -360,7 +393,7 @@
             <video autoplay muted loop playsinline preload="auto" aria-label="Animated Gravity Falls title sequence">
                 <source src="assets/images/projects/gravity-falls/04_1.webm" type="video/webm">
             </video>
-            <div style="position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;">
+            <div class="gf-hero-cta">
                 <a href="#overview" class="link text-white d-flex flex-column align-items-center gap-3 text-uppercase fw-medium" style="letter-spacing:2px;font-size:11px;transition:0.3s;text-decoration:none;">
                     <span>EXPLORE FULL CASE</span>
                     <span class="d-flex align-items-center justify-content-center" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);">
