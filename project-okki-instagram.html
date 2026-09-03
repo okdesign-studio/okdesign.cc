@@ -24,6 +24,9 @@
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <link rel="shortcut icon" href="assets/images/logo/favicon.svg">
     <style>
+        /* Prevent iOS Safari from moving horizontal overflow to the root scroller. */
+        html { overflow-x: hidden; }
+
         .okki-page {
             --okki-surface: rgba(255, 255, 255, 0.035);
             --okki-line: rgba(255, 255, 255, 0.1);
@@ -334,6 +337,10 @@
             border-radius: 0;
         }
 
+        .okki-feed-grid .ig-grid-post > video {
+            display: block;
+        }
+
         .okki-feed-grid .ig-grid-post--empty {
             visibility: hidden;
         }
@@ -385,12 +392,13 @@
             .okki-objective-text { max-width: 23em; font-size: 16px; }
             .okki-video-stack { gap: 8px; }
             .okki-results-stage { margin-top: 2px; }
-            .okki-stats { top: 7.5%; gap: 34px 16px; width: 90%; }
-            .okki-stat-label { margin-bottom: 8px; font-size: clamp(7px, 2vw, 9px); }
-            .okki-stat-value { font-size: clamp(26px, 9vw, 40px); }
-            .okki-feed-lead { bottom: 4.5%; width: 90%; }
-            .okki-feed-lead h3 { margin-bottom: 12px; font-size: clamp(24px, 8vw, 38px); }
-            .okki-feed-lead p { margin-bottom: 10px; font-size: clamp(7px, 2vw, 9px); }
+            .okki-stats { top: 6%; gap: clamp(18px, 5vw, 26px) 12px; width: 92%; }
+            .okki-stat-label { margin-bottom: 5px; font-size: clamp(6px, 1.65vw, 8px); line-height: 1.2; }
+            .okki-stat-value { font-size: clamp(22px, 7.4vw, 32px); }
+            .okki-feed-lead { bottom: 2.5%; width: 84%; }
+            .okki-feed-lead h3 { margin-bottom: 8px; font-size: clamp(20px, 6.6vw, 28px); line-height: .95; }
+            .okki-feed-lead p { margin-bottom: 6px; font-size: clamp(6px, 1.65vw, 8px); line-height: 1.3; }
+            .okki-feed-arrow { font-size: clamp(22px, 6vw, 30px); }
             .okki-feed-grid { gap: 2px; margin-top: 2px; }
             .okki-project-info { padding: 54px 0; }
         }
@@ -619,7 +627,7 @@
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-21_13-39-16_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-20_09-28-56_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-19_11-56-05_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-18_15-14-18_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-11-18_15-14-18_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-17_15-39-07_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-14_15-09-45_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-12_15-35-36_UTC.jpg" alt="" loading="lazy"></div>
@@ -627,20 +635,20 @@
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-10_15-26-07_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-09_13-44-30_UTC.jpg" alt="" loading="lazy"></div>
                         <!-- Screenshot 2: positions 43-84 -->
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-08_07-30-43_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-11-08_07-30-43_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-05_15-32-16_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-04_07-00-54_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-03_06-30-19_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-02_06-30-11_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-11-01_11-29-29_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-10-30_11-52-15_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-10-29_14-48-08_UTC_1.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-10-29_14-48-08_UTC_1.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-10-27_13-48-09_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-10-24_16-17-33_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-10-21_13-14-34_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-08-03_11-52-26_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-08-02_20-08-57_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-31_18-03-14_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-07-31_18-03-14_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-30_16-20-14_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-29_14-54-35_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-26_07-32-35_UTC.jpg" alt="" loading="lazy"></div>
@@ -657,22 +665,22 @@
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-06_15-09-54_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-04_06-58-24_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-07-01_06-56-13_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post ig-grid-post--empty" aria-hidden="true"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-06-30_07-54-46_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-28_06-59-09_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-26_06-55-44_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-25_06-13-36_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-23_06-07-15_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-22_07-43-39_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-06-22_07-43-39_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-18_07-47-22_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-17_09-07-48_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-16_07-25-11_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-15_07-32-40_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-14_15-35-01_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-14_08-01-55_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-06-14_08-01-55_UTC.mp4" type="video/mp4"></video></div>
                         <!-- Screenshot 3: positions 85-126 -->
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-11_16-40-14_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-10_08-43-43_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-09_14-27-33_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-06-09_14-27-33_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-08_07-46-26_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-07_13-03-14_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-06-06_06-20-49_UTC.jpg" alt="" loading="lazy"></div>
@@ -684,20 +692,20 @@
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-31_08-01-13_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-27_09-40-41_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-25_10-41-34_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-24_13-22-47_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-05-24_13-22-47_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-23_15-35-37_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-22_16-31-17_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-20_14-12-05_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-19_16-16-22_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-18_14-14-48_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-17_16-01-33_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-15_08-43-10_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-05-15_08-43-10_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-14_06-27-49_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-12_06-14-10_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-05-12_06-14-10_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-10_06-01-51_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-07_13-37-20_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-05-07_13-37-20_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-06_16-10-06_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-05_07-22-38_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-05-05_07-22-38_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-04_06-40-55_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-03_06-32-26_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-05-02_06-27-53_UTC.jpg" alt="" loading="lazy"></div>
@@ -705,7 +713,7 @@
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-30_16-42-42_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-26_11-55-29_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-24_08-48-20_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post ig-grid-post--empty" aria-hidden="true"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-04-23_08-13-15_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-22_08-09-01_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-21_12-05-28_UTC_5.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-20_16-26-31_UTC.jpg" alt="" loading="lazy"></div>
@@ -714,47 +722,47 @@
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-14_15-10-24_UTC.jpg" alt="" loading="lazy"></div>
                         <!-- Screenshot 4: positions 127-168 -->
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-13_07-27-13_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post ig-grid-post--empty" aria-hidden="true"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-04-11_12-29-02_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-08_14-44-44_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-07_09-17-40_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-04-07_09-17-40_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-06_14-54-00_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post ig-grid-post--empty" aria-hidden="true"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-04-05_14-27-31_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-02_06-29-34_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-04-01_06-16-27_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-31_06-11-56_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-30_06-12-51_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-29_08-41-19_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-03-29_08-41-19_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-27_12-23-10_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-26_13-37-41_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-25_11-01-35_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-24_11-39-21_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-23_09-22-57_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-03-24_11-39-21_UTC.mp4" type="video/mp4"></video></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-03-23_09-22-57_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-22_10-39-25_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-19_16-37-01_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post ig-grid-post--empty" aria-hidden="true"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-17_15-39-19_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-03-17_15-39-19_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-16_12-07-29_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-14_08-16-29_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-13_13-29-54_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-03-13_13-29-54_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-12_09-25-38_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-08_08-04-42_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-07_07-35-14_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-03-07_07-35-14_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-06_07-54-47_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-05_14-52-31_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-04_11-26-32_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-03_13-16-20_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-03-03_13-16-20_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-02_12-58-19_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-01_16-26-45_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-03-01_16-26-45_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-28_11-16-03_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-27_12-45-22_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post ig-grid-post--empty" aria-hidden="true"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-02-26_10-57-10_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-25_14-59-22_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-24_16-47-36_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-02-24_16-47-36_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-23_16-08-08_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-22_15-02-59_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-21_09-20-49_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-20_10-53-11_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-02-19_17-15-39_UTC.jpg" alt="" loading="lazy"></div>
+                        <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-02-19_17-15-39_UTC.mp4" type="video/mp4"></video></div>
                     </div>
                 </div>
             </section>
