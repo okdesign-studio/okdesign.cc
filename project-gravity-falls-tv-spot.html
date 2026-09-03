@@ -55,6 +55,7 @@
             position: relative;
             width: 100%;
             aspect-ratio: 1440 / 661;
+            margin-bottom: 80px;
             overflow: hidden;
             background: #080808;
         }
@@ -76,10 +77,17 @@
             z-index: 1;
         }
 
-        .gf-section { padding: 112px 0; }
-        .gf-section + .gf-section { border-top: 1px solid var(--gf-line); }
-        .gf-section--surface { background: var(--gf-surface); }
-        .gf-section--compact { padding: 80px 0; }
+        .gf-section { padding: 0 0 112px; background: #000; }
+        .gf-section-intro {
+            margin-bottom: 80px;
+            padding: 56px 0;
+            background: var(--gf-surface);
+        }
+        .gf-section--intro-only .gf-section-intro { margin-bottom: 0; }
+        .gf-section-content > .gf-logo-grid:first-child,
+        .gf-section-content > .gf-photo-feature:first-child,
+        .gf-section-content > .gf-process-grid:first-child,
+        .gf-section-content > .gf-approvals:first-child { margin-top: 0; }
 
         .gf-eyebrow {
             display: block;
@@ -271,7 +279,8 @@
         }
 
         @media (max-width: 991px) {
-            .gf-section { padding: 88px 0; }
+            .gf-section { padding: 0 0 88px; }
+            .gf-section-intro { margin-bottom: 64px; padding: 48px 0; }
             .gf-heading { margin-bottom: 30px; }
             .gf-photo-duo { height: clamp(440px, 62vw, 620px); }
             .gf-photo-pair { height: clamp(500px, 72vw, 680px); }
@@ -281,9 +290,9 @@
             .gf-title-wrap { padding-top: 112px; padding-bottom: 32px; }
             .gf-title-wrap .page-title { font-size: clamp(38px, 11vw, 56px); line-height: 1.02; }
             .gf-meta { flex-direction: column; align-items: center; gap: 8px; font-size: 10px; }
-            .gf-hero { aspect-ratio: 16 / 10; }
-            .gf-section { padding: 72px 0; }
-            .gf-section--compact { padding: 60px 0; }
+            .gf-hero { aspect-ratio: 16 / 10; margin-bottom: 56px; }
+            .gf-section { padding: 0 0 72px; }
+            .gf-section-intro { margin-bottom: 48px; padding: 40px 0; }
             .gf-eyebrow { margin-bottom: 15px; }
             .gf-heading { font-size: clamp(32px, 10vw, 44px); }
             .gf-copy { font-size: 17px; line-height: 1.6; }
@@ -355,21 +364,33 @@
             <video autoplay muted loop playsinline preload="auto" aria-label="Animated Gravity Falls title sequence">
                 <source src="assets/images/projects/gravity-falls/04_1.webm" type="video/webm">
             </video>
+            <div style="position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:2;">
+                <a href="#overview" class="link text-white d-flex flex-column align-items-center gap-3 text-uppercase fw-medium" style="letter-spacing:2px;font-size:11px;transition:0.3s;text-decoration:none;">
+                    <span>EXPLORE FULL CASE</span>
+                    <span class="d-flex align-items-center justify-content-center" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);">
+                        <i class="icon icon-arrow-long-right" style="transform:rotate(90deg);"></i>
+                    </span>
+                </a>
+            </div>
         </div>
 
         <div id="project-content">
             <section class="gf-section" id="overview">
-                <div class="container mil-up">
-                    <span class="gf-eyebrow">01 / Promotional TV Spot</span>
-                    <div class="row justify-content-between align-items-start">
-                        <div class="col-lg-5">
-                            <h2 class="gf-heading">Gravity Falls Comics</h2>
-                        </div>
-                        <div class="col-lg-6">
-                            <p class="gf-copy">I had the incredible opportunity to work with ‘Ranok’, the Ukrainian publisher of Disney’s Gravity Falls comics.</p>
-                            <p class="gf-copy">To promote the comics, I created a 10-second ad for broadcast on Inter Media Group channels, reaching over 30 million viewers across Ukraine:</p>
+                <div class="gf-section-intro mil-up">
+                    <div class="container">
+                        <span class="gf-eyebrow">01 / Promotional TV Spot</span>
+                        <div class="row justify-content-between align-items-start">
+                            <div class="col-lg-5">
+                                <h2 class="gf-heading">Gravity Falls Comics</h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="gf-copy">I had the incredible opportunity to work with ‘Ranok’, the Ukrainian publisher of Disney’s Gravity Falls comics.</p>
+                                <p class="gf-copy">To promote the comics, I created a 10-second ad for broadcast on Inter Media Group channels, reaching over 30 million viewers across Ukraine:</p>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="container gf-section-content mil-up">
                     <div class="gf-logo-grid" aria-label="Inter Media Group television channels">
                         <div class="gf-channel-logo" aria-label="Inter"><img class="logo-white" src="assets/images/projects/gravity-falls/logo01white.svg" alt=""><img class="logo-color" src="assets/images/projects/gravity-falls/logo01.svg" alt=""></div>
                         <div class="gf-channel-logo" aria-label="NTN"><img class="logo-white" src="assets/images/projects/gravity-falls/logo02white.svg" alt=""><img class="logo-color" src="assets/images/projects/gravity-falls/logo02.svg" alt=""></div>
@@ -392,32 +413,37 @@
                 </div>
             </section>
 
-            <section class="gf-section gf-section--surface" id="objective">
-                <div class="container mil-up">
-                    <span class="gf-eyebrow">02 / Objective</span>
-                    <div class="row justify-content-between align-items-start">
-                        <div class="col-lg-5">
-                            <h2 class="gf-heading">Ten seconds <span class="soft">to spark interest</span></h2>
-                        </div>
-                        <div class="col-lg-6">
-                            <p class="gf-copy">The primary goal was to create a bright and memorable 10-second advertisement that effectively captured attention and sparked interest in purchasing the new comics book series.</p>
+            <section class="gf-section gf-section--intro-only" id="objective">
+                <div class="gf-section-intro mil-up">
+                    <div class="container">
+                        <span class="gf-eyebrow">02 / Objective</span>
+                        <div class="row justify-content-between align-items-start">
+                            <div class="col-lg-5">
+                                <h2 class="gf-heading">Ten seconds <span class="soft">to spark interest</span></h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="gf-copy">The primary goal was to create a bright and memorable 10-second advertisement that effectively captured attention and sparked interest in purchasing the new comics book series.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section class="gf-section" id="comics">
-                <div class="container mil-up">
-                    <span class="gf-eyebrow">03 / The Comics</span>
-                    <div class="row justify-content-between align-items-start">
-                        <div class="col-lg-5">
-                            <h2 class="gf-heading">The physical books became <span class="soft">the source material</span></h2>
-                        </div>
-                        <div class="col-lg-6">
-                            <p class="gf-copy">Ranok provided the complete book series for production. I photographed the editions as part of the campaign and used the real covers and proportions as references for the product animation.</p>
+                <div class="gf-section-intro mil-up">
+                    <div class="container">
+                        <span class="gf-eyebrow">03 / The Comics</span>
+                        <div class="row justify-content-between align-items-start">
+                            <div class="col-lg-5">
+                                <h2 class="gf-heading">The physical books became <span class="soft">the source material</span></h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="gf-copy">Ranok provided the complete book series for production. I photographed the editions as part of the campaign and used the real covers and proportions as references for the product animation.</p>
+                            </div>
                         </div>
                     </div>
-
+                </div>
+                <div class="container gf-section-content mil-up">
                     <figure class="gf-media gf-photo-feature"><img src="assets/images/projects/gravity-falls/Frame01.webp" alt="Gravity Falls comic books opened to illustrated pages" loading="lazy"></figure>
                     <div class="gf-photo-duo">
                         <figure class="gf-media"><img src="assets/images/projects/gravity-falls/Frame02.webp" alt="Spines of the Gravity Falls book collection" loading="lazy"></figure>
@@ -430,17 +456,21 @@
                 </div>
             </section>
 
-            <section class="gf-section gf-section--surface" id="production">
-                <div class="container mil-up">
-                    <span class="gf-eyebrow">04 / Production Process</span>
-                    <div class="row justify-content-between align-items-start">
-                        <div class="col-lg-5">
-                            <h2 class="gf-heading">From familiar scene <span class="soft">to a real 3D product</span></h2>
-                        </div>
-                        <div class="col-lg-6">
-                            <p class="gf-copy">I proposed a concept centered around a recognizable scene from the animated series featuring a book, which was transformed into a 3D render of the actual comics book edition published by “Ranok”. Additionally, it was essential to showcase a location instantly associated with the atmosphere of Gravity Falls.</p>
+            <section class="gf-section" id="production">
+                <div class="gf-section-intro mil-up">
+                    <div class="container">
+                        <span class="gf-eyebrow">04 / Production Process</span>
+                        <div class="row justify-content-between align-items-start">
+                            <div class="col-lg-5">
+                                <h2 class="gf-heading">From familiar scene <span class="soft">to a real 3D product</span></h2>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="gf-copy">I proposed a concept centered around a recognizable scene from the animated series featuring a book, which was transformed into a 3D render of the actual comics book edition published by “Ranok”. Additionally, it was essential to showcase a location instantly associated with the atmosphere of Gravity Falls.</p>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="container gf-section-content mil-up">
                     <div class="gf-process-grid">
                         <figure class="gf-media"><video autoplay muted loop playsinline preload="metadata" aria-label="Gravity Falls location reference animation"><source src="assets/images/projects/gravity-falls/04_1.webm" type="video/webm"></video></figure>
                         <figure class="gf-media"><video autoplay muted loop playsinline preload="metadata" aria-label="Dipper and Mabel character sequence"><source src="assets/images/projects/gravity-falls/04_2.webm" type="video/webm"></video></figure>
@@ -451,12 +481,16 @@
             </section>
 
             <section class="gf-section" id="results">
-                <div class="container mil-up">
-                    <span class="gf-eyebrow">05 / Results</span>
-                    <div class="gf-results-lead">
-                        <h2 class="gf-heading"><span>Approved for broadcast,</span> <span class="soft">seen across the country</span></h2>
-                        <p class="gf-copy">The final advertisement aired successfully, reaching millions of viewers and building interest in the Gravity Falls comic book series.</p>
+                <div class="gf-section-intro mil-up">
+                    <div class="container">
+                        <span class="gf-eyebrow">05 / Results</span>
+                        <div class="gf-results-lead">
+                            <h2 class="gf-heading"><span>Approved for broadcast,</span> <span class="soft">seen across the country</span></h2>
+                            <p class="gf-copy">The final advertisement aired successfully, reaching millions of viewers and building interest in the Gravity Falls comic book series.</p>
+                        </div>
                     </div>
+                </div>
+                <div class="container gf-section-content mil-up">
                     <div class="gf-approvals">
                         <div class="gf-approvals-grid">
                             <h3>Approvals</h3>
