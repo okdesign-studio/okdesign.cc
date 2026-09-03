@@ -83,11 +83,10 @@
             padding: 48px 0;
             background: var(--gf-surface);
         }
-        .gf-section--intro-only .gf-section-intro { margin-bottom: 0; }
         .gf-section-content > .gf-logo-grid:first-child,
         .gf-section-content > .gf-photo-feature:first-child,
         .gf-section-content > .gf-process-grid:first-child,
-        .gf-section-content > .gf-approvals:first-child { margin-top: 0; }
+        .gf-section-content > .gf-content-text:first-child { margin-top: 0; }
 
         .gf-eyebrow {
             display: block;
@@ -257,19 +256,23 @@
             display: block;
         }
 
-        .gf-approvals {
-            margin-top: 84px;
-            padding-top: 30px;
-            border-top: 1px solid var(--gf-line);
+        .gf-content-text { padding-top: 16px; }
+
+        .gf-content-text h3 {
+            margin: 0 0 20px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: clamp(22px, 2.5vw, 28px);
+            font-weight: 400;
+            letter-spacing: 0.5px;
         }
 
-        .gf-approvals-grid {
-            display: grid;
-            grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr);
-            gap: 72px;
+        .gf-content-text p {
+            margin: 0;
+            color: var(--gf-muted);
+            font-size: 16px;
+            font-weight: 200;
+            line-height: 1.7;
         }
-
-        .gf-approvals h3 { margin: 0; color: #fff; font-size: 20px; font-weight: 600; letter-spacing: -.01em; text-transform: uppercase; }
 
         .gf-project-info { padding: 64px 0; background: var(--gf-surface); }
 
@@ -306,9 +309,7 @@
             .gf-photo-pair { height: auto; gap: 8px; margin-top: 8px; }
             .gf-photo-pair .gf-media { aspect-ratio: 2 / 3; }
             .gf-process-grid { grid-template-columns: 1fr; gap: 8px; }
-            .gf-results-lead,
-            .gf-approvals-grid { grid-template-columns: 1fr; gap: 28px; }
-            .gf-approvals { margin-top: 58px; }
+            .gf-results-lead { grid-template-columns: 1fr; gap: 28px; }
             .gf-project-info { padding: 54px 0; }
         }
 
@@ -408,18 +409,21 @@
                 </div>
             </section>
 
-            <section class="gf-section gf-section--intro-only" id="objective">
+            <section class="gf-section" id="objective">
                 <div class="gf-section-intro mil-up">
                     <div class="container">
                         <span class="gf-eyebrow">02 / Objective</span>
-                        <div class="row justify-content-between align-items-start">
-                            <div class="col-lg-5 mb-3 mb-lg-0">
+                        <div class="row align-items-start">
+                            <div class="col-lg-5">
                                 <h2 class="gf-heading">Ten seconds <span class="soft">to spark interest</span></h2>
                             </div>
-                            <div class="col-lg-6">
-                                <p class="gf-copy">The primary goal was to create a bright and memorable 10-second advertisement that effectively captured attention and sparked interest in purchasing the new comics book series.</p>
-                            </div>
                         </div>
+                    </div>
+                </div>
+                <div class="container gf-section-content mil-up">
+                    <div class="gf-content-text">
+                        <h3>The Goal</h3>
+                        <p>The primary goal was to create a bright and memorable 10-second advertisement that effectively captured attention and sparked interest in purchasing the new comics book series.</p>
                     </div>
                 </div>
             </section>
@@ -486,11 +490,9 @@
                     </div>
                 </div>
                 <div class="container gf-section-content mil-up">
-                    <div class="gf-approvals">
-                        <div class="gf-approvals-grid">
-                            <h3>Approvals</h3>
-                            <p class="gf-copy">The project was approved by Disney after ensuring full compliance with licensing requirements, including the display of the “© Disney” copyright notice throughout. The ad was also adapted for the new digital broadcast format in consultation with the TV channel’s engineers.</p>
-                        </div>
+                    <div class="gf-content-text">
+                        <h3>Approvals</h3>
+                        <p>The project was approved by Disney after ensuring full compliance with licensing requirements, including the display of the “© Disney” copyright notice throughout. The ad was also adapted for the new digital broadcast format in consultation with the TV channel’s engineers.</p>
                     </div>
                 </div>
             </section>
