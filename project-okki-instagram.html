@@ -68,6 +68,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform .7s cubic-bezier(.2, .8, .2, 1);
+            will-change: transform;
         }
 
         .okki-hero::after {
@@ -224,6 +226,8 @@
         }
 
         @media (hover: hover) and (pointer: fine) {
+            .okki-hero:hover img { transform: scale(1.05); }
+
             .okki-objective:hover {
                 z-index: 1;
                 border-color: rgba(87, 139, 255, .48);
@@ -404,6 +408,7 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
+            .okki-hero img,
             .okki-objective,
             .okki-objective::before,
             .okki-objective::after,
@@ -412,6 +417,7 @@
             .okki-feed-grid .ig-grid-post,
             .okki-feed-grid .ig-grid-post img { transition: none; }
 
+            .okki-hero:hover img,
             .okki-objective:hover { transform: none; }
         }
     </style>
@@ -739,7 +745,7 @@
                         <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-03-23_09-22-57_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-22_10-39-25_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-19_16-37-01_UTC.jpg" alt="" loading="lazy"></div>
-                        <div class="ig-grid-post ig-grid-post--empty" aria-hidden="true"></div>
+                        <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-18_11-30-22_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><video autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="assets/images/projects/okki-instagram/feed/2021-03-17_15-39-19_UTC.mp4" type="video/mp4"></video></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-16_12-07-29_UTC.jpg" alt="" loading="lazy"></div>
                         <div class="ig-grid-post"><img src="assets/images/projects/okki-instagram/feed/2021-03-14_08-16-29_UTC.jpg" alt="" loading="lazy"></div>

@@ -7,13 +7,13 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-YNVEXC6D7K');
     </script>
     <meta charset="utf-8">
-    <title>Mars 2050: Board Game Promo &amp; SMM Identity&nbsp;— OK Design</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="Case study: Mars 2050 Board Game Promo &amp; SMM Identity for Ranok&nbsp;— promo videos, social media content, photography, and visual identity for the board game launch, 2021.">
+    <title>Mars 2050: Board Game Promo &amp; SMM Identity&nbsp;— OK Design</title>
+    <meta name="description" content="Case study: Mars 2050 Board Game Promo &amp; SMM Identity for Ranok&nbsp;— social media strategy, photography, promo video production, and a new Instagram visual concept.">
+
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/icon/icomoon/style.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -23,86 +23,821 @@
     <link rel="stylesheet" href="assets/css/slick.theme.css">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <link rel="shortcut icon" href="assets/images/logo/favicon.svg">
+
     <style>
-        #wip-overlay{position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,0.92);backdrop-filter:blur(24px) saturate(0.3);display:flex;align-items:center;justify-content:center;padding:24px;}
-        .wip-inner{max-width:520px;width:100%;text-align:center;}
-        .wip-pulse{width:8px;height:8px;border-radius:50%;background:#2563eb;margin:0 auto 32px;animation:wip-pulse 2s ease infinite;}
-        @keyframes wip-pulse{0%{box-shadow:0 0 0 0 rgba(37,99,235,0.5)}70%{box-shadow:0 0 0 18px rgba(37,99,235,0)}100%{box-shadow:0 0 0 0 rgba(37,99,235,0)}}
-        .wip-label{display:inline-block;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#2563eb;margin-bottom:20px;}
-        .wip-title{font-size:clamp(30px,5vw,52px);font-weight:600;color:#fff;line-height:1.1;margin-bottom:16px;}
-        .wip-title span{font-weight:300;color:rgba(255,255,255,0.45);}
-        .wip-desc{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.7;margin-bottom:40px;font-weight:300;}
-        .wip-btn{display:inline-flex;align-items:center;gap:10px;padding:13px 30px;border:1px solid rgba(255,255,255,0.18);border-radius:999px;color:#fff;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:background .25s,border-color .25s;}
-        .wip-btn:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.38);color:#fff;text-decoration:none;}
-        .wip-divider{width:40px;height:1px;background:rgba(255,255,255,0.12);margin:32px auto;}
+        html { overflow-x: hidden; }
+
+        .mars-page {
+            --mars-surface: rgba(255, 255, 255, 0.035);
+            --mars-line: rgba(255, 255, 255, 0.1);
+            --mars-muted: rgba(255, 255, 255, 0.64);
+            --mars-soft: rgba(255, 255, 255, 0.42);
+            --mars-orange: #f0522d;
+        }
+
+        .mars-title-wrap { padding-top: 140px; padding-bottom: 42px; }
+        .mars-title-wrap .page-title { text-wrap: balance; }
+
+        .mars-meta {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px 40px;
+            margin-top: 24px;
+            color: var(--mars-muted);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .mars-meta span { color: #fff; }
+
+        .mars-hero {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            margin-bottom: 80px;
+            overflow: hidden;
+            background: #080808;
+        }
+        .mars-hero img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .7s cubic-bezier(.2, .8, .2, 1);
+            will-change: transform;
+        }
+        .mars-hero::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0;
+            z-index: 1;
+            height: 35%;
+            background: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0) 100%);
+            pointer-events: none;
+        }
+        .mars-hero-cta {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            z-index: 2;
+            transform: translateX(-50%);
+        }
+
+        .mars-section { padding-bottom: 96px; background: #000; }
+        .mars-section-intro { margin-bottom: 48px; padding: 48px 0; background: var(--mars-surface); }
+        .mars-eyebrow {
+            display: block;
+            margin-bottom: 16px;
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .mars-heading {
+            margin: 0;
+            color: #fff;
+            font-size: clamp(32px, 3.5vw, 44px);
+            font-weight: 600;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+        .mars-copy {
+            margin: 0;
+            color: var(--mars-muted);
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+        .mars-content-title {
+            margin: 0 0 18px;
+            color: rgba(255, 255, 255, 0.88);
+            font-size: clamp(22px, 2.5vw, 28px);
+            font-weight: 400;
+            letter-spacing: .3px;
+        }
+        .mars-body-copy,
+        .mars-body-copy li {
+            color: var(--mars-muted);
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.72;
+        }
+        .mars-body-copy p { margin: 0; }
+        .mars-body-copy p + p { margin-top: 16px; }
+
+        .mars-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 64px;
+            padding-top: 8px;
+        }
+        .mars-role-list,
+        .mars-process-list,
+        .mars-strategy-list { margin: 0; padding: 0; list-style: none; }
+        .mars-role-list li,
+        .mars-strategy-list li { position: relative; padding-left: 20px; }
+        .mars-role-list li::before,
+        .mars-strategy-list li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--mars-soft);
+        }
+        .mars-objectives {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+        .mars-objective {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            min-height: clamp(310px, 27vw, 380px);
+            padding: clamp(28px, 3vw, 42px);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .06);
+            transition: transform .5s cubic-bezier(.2, .8, .2, 1),
+                        border-color .5s ease,
+                        box-shadow .5s ease;
+            will-change: transform;
+            isolation: isolate;
+        }
+        .mars-objective::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            border-radius: inherit;
+            background:
+                radial-gradient(circle at 18% 8%, rgba(63, 118, 255, .98) 0%, rgba(0, 81, 255, .84) 34%, transparent 70%),
+                linear-gradient(145deg, #0051ff 0%, #092a7a 58%, #050711 100%);
+            opacity: 0;
+            transition: opacity .55s cubic-bezier(.2, .8, .2, 1);
+        }
+        .mars-objective::after {
+            content: "✦";
+            position: absolute;
+            right: 24px;
+            bottom: 20px;
+            z-index: 2;
+            color: rgba(255, 255, 255, .72);
+            font-size: 22px;
+            line-height: 1;
+            transition: color .45s ease, transform .55s cubic-bezier(.2, .8, .2, 1);
+        }
+        .mars-objective-number {
+            position: relative;
+            z-index: 1;
+            display: block;
+            margin: 0 0 clamp(42px, 4vw, 58px);
+            color: #272727;
+            font-size: clamp(48px, 4.8vw, 70px);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -.06em;
+            user-select: none;
+            transition: color .5s ease;
+        }
+        .mars-objective h3 {
+            position: relative;
+            z-index: 1;
+            margin: 0 0 16px;
+            color: #fff;
+            font-size: clamp(21px, 2vw, 29px);
+            font-weight: 600;
+            line-height: 1.12;
+            letter-spacing: -.035em;
+        }
+        .mars-objective p {
+            position: relative;
+            z-index: 1;
+            max-width: 21em;
+            margin: 0;
+            padding-right: 18px;
+            color: rgba(255, 255, 255, .56);
+            font-size: clamp(15px, 1.3vw, 18px);
+            font-weight: 300;
+            line-height: 1.35;
+            letter-spacing: -.01em;
+            transition: color .45s ease;
+        }
+
+        .mars-strategy { max-width: 850px; padding-top: 8px; }
+        .mars-strategy-list { margin-top: 22px; }
+        .mars-strategy-list li + li { margin-top: 8px; }
+
+        .mars-photo-swiper { overflow: hidden; }
+        .mars-photo-swiper .swiper-slide { width: auto; }
+        .mars-photo {
+            display: block;
+            width: auto;
+            height: 520px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+        .mars-carousel-controls { display: flex; justify-content: center; gap: 44px; margin-top: 38px; }
+        .mars-carousel-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 2px;
+            border: 0;
+            background: transparent;
+            color: #fff;
+            font: inherit;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        .mars-carousel-button.swiper-button-disabled { opacity: .3; cursor: default; }
+
+        .mars-process-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-rows: repeat(4, minmax(116px, auto));
+            grid-auto-flow: column;
+            gap: 0 64px;
+            counter-reset: mars-process;
+        }
+        .mars-process-list li {
+            position: relative;
+            min-height: 116px;
+            padding: 22px 0 22px 48px;
+            border-top: 1px solid var(--mars-line);
+            counter-increment: mars-process;
+        }
+        .mars-process-list li::before {
+            content: counter(mars-process, decimal-leading-zero);
+            position: absolute;
+            top: 24px;
+            left: 0;
+            color: rgba(255, 255, 255, .45);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .12em;
+        }
+        .mars-video {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            margin-top: 56px;
+            overflow: hidden;
+            border: 1px solid var(--mars-line);
+            border-radius: 12px;
+            background: #080808;
+        }
+        .mars-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+        .mars-compare-wrap { padding-top: 8px; }
+        .mars-compare {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2481 / 1730;
+            overflow: hidden;
+            border: 1px solid var(--mars-line);
+            border-radius: 12px;
+            background: #050505;
+            cursor: ew-resize;
+            touch-action: pan-y;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .mars-compare:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+        .mars-compare-image,
+        .mars-compare-layer img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+        .mars-compare-layer {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            clip-path: inset(0 98% 0 0);
+        }
+        .mars-compare-divider {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 2%;
+            z-index: 3;
+            width: 2px;
+            background: var(--mars-orange);
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+        .mars-compare-handle {
+            position: absolute;
+            top: 50%;
+            left: 2%;
+            z-index: 4;
+            display: grid;
+            place-items: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 5px 24px rgba(0, 0, 0, .45);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        .mars-compare-label {
+            position: absolute;
+            left: 50%;
+            z-index: 5;
+            width: min(80%, 580px);
+            transform: translateX(-50%);
+            pointer-events: none;
+            color: #fff;
+            font-size: clamp(22px, 3vw, 38px);
+            font-weight: 600;
+            line-height: 1.1;
+            text-align: center;
+            text-shadow: 0 2px 18px rgba(0, 0, 0, .9);
+            transition: opacity .18s linear, transform .18s linear;
+        }
+        .mars-label-created { top: 4%; transform: translateX(-50%); }
+        .mars-label-initial {
+            bottom: 4%;
+            opacity: 0;
+            transform: translate(-50%, -18px);
+        }
+        .mars-compare-help {
+            margin: 16px 0 0;
+            color: var(--mars-soft);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: .14em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .mars-feed-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 48px;
+        }
+        .mars-feed-grid .ig-grid-post { border-radius: 4px; }
+        .mars-facebook-art {
+            overflow: hidden;
+            border: 1px solid var(--mars-line);
+            border-radius: 12px;
+            background: #050505;
+        }
+        .mars-facebook-art img { display: block; width: 100%; height: auto; }
+
+        .mars-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+            padding: 8px 0 64px;
+            border-bottom: 1px solid var(--mars-line);
+        }
+        .mars-stat { min-width: 0; text-align: center; }
+        .mars-stat-label {
+            display: block;
+            margin-bottom: 12px;
+            color: var(--mars-soft);
+            font-size: clamp(9px, .9vw, 12px);
+            font-weight: 500;
+            line-height: 1.35;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+        .mars-stat-value {
+            display: block;
+            color: #fff;
+            font-size: clamp(42px, 5.4vw, 78px);
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: -.035em;
+            white-space: nowrap;
+        }
+        .mars-results-copy {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px 64px;
+            max-width: 980px;
+            padding-top: 54px;
+        }
+        .mars-results-copy p {
+            margin: 0;
+            color: var(--mars-muted);
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.72;
+        }
+        .mars-project-info { padding: 64px 0; background: var(--mars-surface); }
+
+        @media (hover: hover) and (pointer: fine) {
+            .mars-hero:hover img { transform: scale(1.05); }
+            .mars-objective:hover {
+                z-index: 1;
+                border-color: rgba(87, 139, 255, .48);
+                box-shadow: 0 22px 52px rgba(0, 81, 255, .18), 0 0 30px rgba(0, 81, 255, .09);
+                transform: translateY(-6px) scale(1.025);
+            }
+            .mars-objective:hover::before { opacity: 1; }
+            .mars-objective:hover::after { color: #fff; transform: rotate(45deg) scale(1.15); }
+            .mars-objective:hover p { color: rgba(255, 255, 255, .78); }
+        }
+        @media (max-width: 991px) {
+            .mars-section { padding-bottom: 80px; }
+            .mars-detail-grid { gap: 38px; }
+            .mars-photo { height: 430px; }
+            .mars-process-list { gap: 0 36px; }
+        }
+        @media (max-width: 767px) {
+            .mars-title-wrap { padding-top: 112px; padding-bottom: 32px; }
+            .mars-title-wrap .page-title { font-size: clamp(28px, 8.2vw, 40px); line-height: 1.08; }
+            .mars-meta { align-items: center; gap: 10px 16px; font-size: 10px; line-height: 1.45; letter-spacing: .05em; }
+            .mars-hero {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                aspect-ratio: auto;
+                margin-bottom: 40px;
+                overflow: visible;
+            }
+            .mars-hero img { height: auto; aspect-ratio: 16 / 9; }
+            .mars-hero::after { display: none; }
+            .mars-hero-cta { position: relative; bottom: auto; left: auto; margin-top: 24px; transform: none; }
+            .mars-section { padding-bottom: 64px; }
+            .mars-section-intro { margin-bottom: 32px; padding: 40px 0; }
+            .mars-copy { font-size: 17px; line-height: 1.6; }
+            .mars-detail-grid,
+            .mars-objectives,
+            .mars-process-list,
+            .mars-stats,
+            .mars-results-copy { grid-template-columns: 1fr; }
+            .mars-detail-grid { gap: 34px; }
+            .mars-objectives { gap: 10px; }
+            .mars-objective { min-height: 260px; padding: 26px 24px; }
+            .mars-objective::after { right: 20px; bottom: 18px; }
+            .mars-objective-number { margin-bottom: 42px; font-size: 50px; }
+            .mars-objective h3 { font-size: 23px; }
+            .mars-objective p { max-width: 23em; font-size: 16px; }
+            .mars-photo { height: 330px; }
+            .mars-carousel-controls { gap: 32px; margin-top: 28px; }
+            .mars-process-list { grid-template-rows: none; grid-auto-flow: row; }
+            .mars-process-list li { min-height: 0; padding: 20px 0 20px 42px; }
+            .mars-process-list li::before { top: 22px; }
+            .mars-video { margin-top: 40px; border-radius: 8px; }
+            .mars-compare { border-radius: 8px; }
+            .mars-compare-handle { width: 38px; height: 38px; }
+            .mars-compare-label { font-size: clamp(17px, 5.6vw, 24px); }
+            .mars-label-created { top: 3.5%; }
+            .mars-label-initial { bottom: 3.5%; }
+            .mars-compare-help { font-size: 9px; }
+            .mars-feed-grid { gap: 3px; margin-top: 32px; }
+            .mars-feed-grid .ig-grid-post { border: 0; border-radius: 0; }
+            .mars-facebook-art { border-radius: 8px; }
+            .mars-stats { gap: 0; padding: 0 0 44px; }
+            .mars-stat { padding: 24px 0; border-bottom: 1px solid var(--mars-line); }
+            .mars-stat:last-child { border-bottom: 0; }
+            .mars-stat-value { font-size: clamp(48px, 15vw, 68px); }
+            .mars-results-copy { gap: 20px; padding-top: 38px; }
+            .mars-project-info { padding: 54px 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .mars-hero img,
+            .mars-objective,
+            .mars-objective::before,
+            .mars-objective::after,
+            .mars-objective-number,
+            .mars-objective p,
+            .mars-compare-label { transition: none; }
+            .mars-hero:hover img,
+            .mars-objective:hover { transform: none; }
+        }
     </style>
 
-    <!-- SEO & Open Graph Tags -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Mars 2050: Board Game Promo &amp; SMM Identity&nbsp;— OK Design">
     <meta property="og:url" content="https://okdesign.cc/project-mars-2050.html">
     <meta property="og:image" content="https://okdesign.cc/assets/images/projects/mars-2050/cover.webp">
-    <meta property="og:description" content="Case study: Mars 2050 Board Game Promo &amp; SMM Identity for Ranok&nbsp;— promo videos, social media content, photography, and visual identity for the board game launch, 2021.">
-    
+    <meta property="og:description" content="Case study: Mars 2050 Board Game Promo &amp; SMM Identity for Ranok&nbsp;— social media strategy, photography, promo video production, and a new Instagram visual concept.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Mars 2050: Board Game Promo &amp; SMM Identity&nbsp;— OK Design">
-    <meta name="twitter:description" content="Case study: Mars 2050 Board Game Promo &amp; SMM Identity for Ranok&nbsp;— promo videos, social media content, photography, and visual identity for the board game launch, 2021.">
+    <meta name="twitter:description" content="Case study: Mars 2050 Board Game Promo &amp; SMM Identity for Ranok&nbsp;— social media strategy, photography, promo video production, and a new Instagram visual concept.">
     <meta name="twitter:image" content="https://okdesign.cc/assets/images/projects/mars-2050/cover.webp">
-    
     <link rel="canonical" href="https://okdesign.cc/project-mars-2050.html">
-    <!-- End SEO Tags -->
 </head>
-<body class="counter-scroll" style="background-color:#000;color:#fff;overflow-x:hidden;">
-    <div id="wip-overlay"><div class="wip-inner"><div class="wip-pulse"></div><div class="wip-label">Case Study in Progress</div><h2 class="wip-title">This case<br><span>is being crafted</span></h2><div class="wip-divider"></div><p class="wip-desc">We're working on the full case study for this project.<br>Come back soon for the complete story.</p><a href="projects.html" class="wip-btn">← All Projects</a></div></div>
-    <script>document.body.style.overflow='hidden';</script>
-    <div class="mil-ball"><span class="mil-icon-1"><svg viewBox="0 0 128 128" width="40" height="40"><path d="M106.1,41.9c-1.2-1.2-3.1-1.2-4.2,0c-1.2,1.2-1.2,3.1,0,4.2L116.8,61H11.2l14.9-14.9c1.2-1.2,1.2-3.1,0-4.2 c-1.2-1.2-3.1-1.2-4.2,0l-20,20c-1.2,1.2-1.2,3.1,0,4.2l20,20c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9c1.2-1.2,1.2-3.1,0-4.2 L11.2,67h105.5l-14.9,14.9c-1.2,1.2-1.2,3.1,0,4.2c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9l20-20c1.2-1.2,1.2-3.1,0-4.2L106.1,41.9z" fill="#000000"/></svg></span><div class="mil-more-text">More</div><div class="mil-choose-text">Сhoose</div></div>
-    <button id="goTop"><span class="border-progress"></span><span class="ic-wrap"><span class="icon icon-arrow-caret-right"></span></span></button>
+
+<body class="counter-scroll mars-page" style="background-color:#000;color:#fff;overflow-x:hidden;">
+    <div class="mil-ball">
+        <span class="mil-icon-1"><svg viewBox="0 0 128 128" width="40" height="40" aria-hidden="true"><path d="M106.1,41.9c-1.2-1.2-3.1-1.2-4.2,0c-1.2,1.2-1.2,3.1,0,4.2L116.8,61H11.2l14.9-14.9c1.2-1.2,1.2-3.1,0-4.2c-1.2-1.2-3.1-1.2-4.2,0l-20,20c-1.2,1.2-1.2,3.1,0,4.2l20,20c.6.6,1.4.9,2.1.9s1.5-.3,2.1-.9c1.2-1.2,1.2-3.1,0-4.2L11.2,67h105.5l-14.9,14.9c-1.2,1.2-1.2,3.1,0,4.2c.6.6,1.4.9,2.1.9s1.5-.3,2.1-.9l20-20c1.2-1.2,1.2-3.1,0-4.2L106.1,41.9z" fill="#000"/></svg></span>
+        <div class="mil-more-text">More</div><div class="mil-choose-text">Choose</div>
+    </div>
+    <button id="goTop" aria-label="Back to top"><span class="border-progress"></span><span class="ic-wrap"><span class="icon icon-arrow-caret-right"></span></span></button>
+
     <main id="wrapper">
-        <header class="tf-header"><div class="header-inner"><div class="container"><div class="row align-items-center">
-            <div class="col-6 col-md-2"><a href="index.html" class="logo-site"><img src="assets/images/logo/logo.svg" alt="OK Design" style="height:40px;width:auto;"></a></div>
-            <div class="col-6 col-md-6 d-none d-md-block"><div class="box-navigation"><ul class="nav-menu-main"><li class="menu-item"><a href="index.html#serviceScroll" class="item-link link text-body-3"><span>01 /</span>SERVICES</a></li><li class="menu-item"><a href="projects.html" class="item-link link text-body-3"><span>02 /</span>PROJECTS</a></li><li class="menu-item"><a href="index.html#aboutScroll" class="item-link link text-body-3"><span>03 /</span>ABOUT</a></li><li class="menu-item"><a href="index.html#contactScroll" class="item-link link text-body-3"><span>04 /</span>CONTACT</a></li></ul></div></div>
-            <div class="col-6 col-md-4 d-flex justify-content-end align-items-center"><div class="header-contact d-none d-md-block"><a href="mailto:hello@okdesign.cc" class="link text-body-3 text-uppercase d-flex align-items-center gap-2" style="text-decoration:none;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:2px;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>HELLO@OKDESIGN.CC</span></a></div><button type="button" class="btn-mobile-menu open-mb-menu text-body-3 text-white link d-md-none"><i class="icon icon-menu"></i> MENU</button></div>
-        </div></div></div></header>
-
-        <div class="section-page-title" style="padding-top:140px;padding-bottom:40px;"><div class="container text-center mil-up">
-            <h1 class="page-title fw-semibold text-white mb-0">Mars 2050 <span class="fw-light">Board Game Promo &amp; SMM Identity</span></h1>
-            <div class="d-flex justify-content-center gap-5 text-white-64 fw-medium text-uppercase mt-4" style="font-size:12px;letter-spacing:2px;"><div>Client: <span class="text-white">Ranok</span></div><div>Year: <span class="text-white">2021</span></div><div>Creative Execution: <span class="text-white">Oleksandr Kukharyk</span></div></div>
-        </div></div>
-
-        <div class="mil-image-frame mil-fw mil-up position-relative" style="width:100%;height:80vh;margin-bottom:80px;"><div style="width:100%;height:100%;background:#080808;position:relative;overflow:hidden;"><img src="assets/images/projects/mars-2050/cover.webp" alt="Mars 2050 Board Game Promo" style="width:100%;height:100%;object-fit:cover;opacity:0.8;"></div><div style="position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,#000 0%,rgba(0,0,0,0) 100%);pointer-events:none;z-index:1;"></div></div>
-
-        <section class="container" id="project-content">
-            <div id="overview" class="mil-up mb-5"><div class="mb-5" style="width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:rgba(255,255,255,0.03);padding:48px 0;"><div class="container"><div class="mb-3"><span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing:2px;">01 / OVERVIEW</span></div><div class="row justify-content-between align-items-start"><div class="col-lg-5 mb-3 mb-lg-0"><h2 class="text-white text-uppercase mb-0" style="font-size:clamp(32px,3.5vw,44px);font-weight:600;line-height:1.1;">THE CHALLENGE</h2></div><div class="col-lg-6"><p class="text-white-64 mb-0" style="line-height:1.7;font-size:20px;">Full case study coming soon. This project is currently being documented and will be published shortly.</p></div></div></div></div></div>
-            <div class="mil-up mb-0 pt-4"><div style="width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;background:rgba(255,255,255,0.03);padding:52px 0 0;"><div class="container">
-                <div class="mb-4"><span class="text-uppercase text-primary text-caption fw-medium d-block" style="letter-spacing:2px;">02 / PROJECT INFO</span></div>
-                <div class="row g-5">
-                    <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.4);">Client</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?client=ranok" class="project-attr-tag">Ranok</a></div></div>
-                    <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.4);">Services</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?service=promo-videos" class="project-attr-tag">Promo Videos</a><a href="projects.html?service=2d-3d-animation" class="project-attr-tag">2D / 3D Animation</a><a href="projects.html?service=banners" class="project-attr-tag">Banners</a><a href="projects.html?service=campaigns" class="project-attr-tag">Campaigns</a><a href="projects.html?service=photography" class="project-attr-tag">Photography</a><a href="projects.html?service=reels-stories" class="project-attr-tag">Reels &amp; Stories</a><a href="projects.html?service=social-media" class="project-attr-tag">Social Media</a><a href="projects.html?service=feed-concept" class="project-attr-tag">Feed Concept</a><a href="projects.html?service=visual-identity" class="project-attr-tag">Visual Identity</a></div></div>
-                    <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.4);">Design Categories</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?category=motion" class="project-attr-tag">Motion</a><a href="projects.html?category=digital" class="project-attr-tag">Digital</a><a href="projects.html?category=content-creation" class="project-attr-tag">Content Creation</a><a href="projects.html?category=branding" class="project-attr-tag">Branding &amp; Identity</a></div></div>
+        <header class="tf-header">
+            <div class="header-inner"><div class="container"><div class="row align-items-center">
+                <div class="col-6 col-md-2"><a href="index.html" class="logo-site"><img src="assets/images/logo/logo.svg" alt="OK Design" style="height:40px;width:auto;"></a></div>
+                <div class="col-6 col-md-6 d-none d-md-block"><div class="box-navigation"><ul class="nav-menu-main">
+                    <li class="menu-item"><a href="index.html#serviceScroll" class="item-link link text-body-3"><span>01 /</span>SERVICES</a></li>
+                    <li class="menu-item"><a href="projects.html" class="item-link link text-body-3"><span>02 /</span>PROJECTS</a></li>
+                    <li class="menu-item"><a href="index.html#aboutScroll" class="item-link link text-body-3"><span>03 /</span>ABOUT</a></li>
+                    <li class="menu-item"><a href="index.html#contactScroll" class="item-link link text-body-3"><span>04 /</span>CONTACT</a></li>
+                </ul></div></div>
+                <div class="col-6 col-md-4 d-flex justify-content-end align-items-center">
+                    <div class="header-contact d-none d-md-block"><a href="mailto:hello@okdesign.cc" class="link text-body-3 text-uppercase d-flex align-items-center gap-2" style="text-decoration:none;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>HELLO@OKDESIGN.CC</span></a></div>
+                    <button type="button" class="btn-mobile-menu open-mb-menu text-body-3 text-white link d-md-none"><i class="icon icon-menu"></i> MENU</button>
                 </div>
             </div></div></div>
-            <div class="mil-works-nav mil-up pt-5" style="display:flex;justify-content:space-between;"><a href="#" class="link text-white d-flex align-items-center gap-2"><i class="icon icon-arrow-long-left"></i> PREV PROJECT</a><a href="projects.html" class="link text-white-64">ALL PROJECTS</a><a href="#" class="link text-white d-flex align-items-center gap-2">NEXT PROJECT <i class="icon icon-arrow-long-right"></i></a></div>
+        </header>
+
+        <div class="mars-title-wrap"><div class="container text-center mil-up">
+            <h1 class="page-title fw-semibold text-white mb-0">Mars 2050 <span class="fw-light">Board Game Promo &amp; SMM Identity</span></h1>
+            <div class="mars-meta"><div>Client: <span>Ranok</span></div><div>Year: <span>2021</span></div><div>Creative Execution: <span>Oleksandr Kukharyk</span></div></div>
+        </div></div>
+
+        <div class="mars-hero mil-up">
+            <img src="assets/images/projects/mars-2050/hero%20img.webp" alt="Mars 2050 board game on a Mars-inspired surface" width="2000" height="1125" fetchpriority="high">
+            <div class="mars-hero-cta"><a href="#overview" class="link text-white d-flex flex-column align-items-center gap-3 text-uppercase fw-medium" style="letter-spacing:2px;font-size:11px;text-decoration:none;"><span>Explore full case</span><span class="d-flex align-items-center justify-content-center" style="width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);"><i class="icon icon-arrow-long-right" style="transform:rotate(90deg);"></i></span></a></div>
+        </div>
+
+        <section class="mars-section" id="overview">
+            <div class="mars-section-intro mil-up"><div class="container">
+                <span class="mars-eyebrow">01 / Overview</span>
+                <div class="row justify-content-between align-items-start"><div class="col-lg-5 mb-3 mb-lg-0"><h2 class="mars-heading">The challenge</h2></div><div class="col-lg-6"><p class="mars-copy">Introduce the Mars 2050 board game in a niche yet competitive market and build a recognisable, thematic social media identity across every launch touchpoint.</p></div></div>
+            </div></div>
+            <div class="container mil-up"><div class="mars-detail-grid">
+                <div class="mars-body-copy"><h3 class="mars-content-title">About the client</h3><p>Ranok Publishing House is a leader in Ukraine’s educational, children’s, and methodological literature market. Its portfolio includes more than 800 unique titles across genres, topics, and formats.</p><p>As a full-cycle publisher with its own printing house and a chain of bookstores, Ranok reaches readers in dozens of languages worldwide.</p></div>
+                <div class="mars-body-copy"><h3 class="mars-content-title">My role in the project</h3><p style="margin-bottom:10px;color:rgba(255,255,255,.88);font-weight:500;">Team Lead Designer</p><ul class="mars-role-list"><li>Facilitated coordination between departments to ensure successful outcomes.</li><li>Defined team tasks and monitored their timely execution.</li><li>Created the key design solutions.</li><li>Acted as Creative Producer for the promo video.</li></ul></div>
+            </div></div>
         </section>
 
-        <section class="flat-spacing" style="border-top:1px solid rgba(255,255,255,0.05);padding-bottom:120px;margin-top:80px;"><div class="container"><div class="text-center" style="margin-top:80px;"><h2 class="mil-up text-white mb-5" style="font-size:clamp(36px,5vw,68px);line-height:1.2;">Got a project <span class="fw-light text-white-64">in mind?</span><br>Let's make it a reality <span class="fw-light text-white-64">together</span></h2><div class="mil-up" style="margin-top:50px;"><a href="index.html#contactScroll" class="tf-btn">CONTACT US</a></div></div></div></section>
+        <section class="mars-section" id="objectives">
+            <div class="mars-section-intro mil-up"><div class="container">
+                <span class="mars-eyebrow">02 / Objectives</span>
+                <div class="row justify-content-between align-items-start"><div class="col-lg-5 mb-3 mb-lg-0"><h2 class="mars-heading">Objectives</h2></div><div class="col-lg-6"><p class="mars-copy">Create a focused launch system that could explain the product, build recognition, and make the game feel distinctive from the first post.</p></div></div>
+            </div></div>
+            <div class="container mil-up"><div class="mars-objectives">
+                <article class="mars-objective"><span class="mars-objective-number">01</span><h3>Promotion</h3><p>Introduce the Mars 2050 board game within a niche but competitive market.</p></article>
+                <article class="mars-objective"><span class="mars-objective-number">02</span><h3>Create a recognisable visual concept</h3><p>Develop a thematic and engaging style that works consistently across all platforms.</p></article>
+            </div></div>
+        </section>
 
-        <footer class="tf-footer"><div class="container"><div class="br-line"></div></div><div class="footer-inner"><div class="container"><div class="row align-items-start"><div class="col-md-4 mb-5 mb-md-0"><p class="title text-has-dot text-caption fw-medium mb-0" style="line-height:1.6;display:flex;align-items:flex-start;gap:8px;"><span class="br-dot" style="margin-top:5px;flex-shrink:0;"></span><span>© 2026 OK DESIGN.<span class="d-none d-md-inline"><br></span><span class="d-md-none"> </span>ALL RIGHTS RESERVED.</span></p></div><div class="col-6 col-sm-2 col-md-1"><p class="footer-heading text-caption fw-medium text-white-64 mb-3">SITEMAP</p></div><div class="col-6 col-sm-4 col-md-3"><ul class="footer-menu-list mb-sm-0"><li><a href="index.html#serviceScroll" class="link letter-space--2 h5">Services</a></li><li><a href="projects.html" class="link letter-space--2 h5">Projects</a></li><li><a href="index.html#aboutScroll" class="link letter-space--2 h5">About</a></li><li><a href="index.html#contactScroll" class="link letter-space--2 h5">Contact</a></li></ul></div><div class="col-6 col-sm-2 col-md-1"><p class="footer-heading text-caption fw-medium text-white-64 mb-3">SOCIALS</p></div><div class="col-6 col-sm-4 col-md-3"><ul class="footer-menu-list mb-0"><li><a href="https://www.linkedin.com/company/okdesign-studio" target="_blank" class="link letter-space--2 h5">LinkedIn</a></li><li><a href="https://www.behance.net/okdesign-studio" target="_blank" class="link letter-space--2 h5">Behance</a></li><li><a href="https://wa.me/okdesign.cc" target="_blank" class="link letter-space--2 h5">WhatsApp</a></li></ul></div></div></div></div></footer>
+        <section class="mars-section" id="strategy">
+            <div class="mars-section-intro mil-up"><div class="container">
+                <span class="mars-eyebrow">03 / Strategy</span>
+                <div class="row justify-content-between align-items-start"><div class="col-lg-5 mb-3 mb-lg-0"><h2 class="mars-heading">Strategy &amp; implementation</h2></div><div class="col-lg-6"><p class="mars-copy">A coordinated launch approach connected audience insights, channel planning, and a single visual language.</p></div></div>
+            </div></div>
+            <div class="container mil-up"><div class="mars-strategy mars-body-copy"><h3 class="mars-content-title">Strategy development</h3><p>Collaborated with company departments to develop and implement a promotion strategy that included:</p><ul class="mars-strategy-list"><li>Segmenting the target audience.</li><li>Developing content plans for Instagram and Facebook.</li><li>Creating visual content aligned with the Tone of Voice.</li></ul></div></div>
+        </section>
+
+        <section class="mars-section" id="photoshoots">
+            <div class="mars-section-intro mil-up"><div class="container">
+                <span class="mars-eyebrow">04 / Content production</span>
+                <div class="row justify-content-between align-items-start"><div class="col-lg-5 mb-3 mb-lg-0"><h2 class="mars-heading">Photoshoots</h2></div><div class="col-lg-6"><p class="mars-copy">I helped organise two shoots: product photography focused on the game components, cards, and packaging, plus a lifestyle shoot with players in a board game café setting.</p></div></div>
+            </div></div>
+            <div class="container mil-up"><div class="swiper mars-photo-swiper" aria-label="Mars 2050 photoshoot gallery"><div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="assets/images/projects/mars-2050/p01.webp" alt="Mars 2050 box in a Mars-inspired set" class="mars-photo mil-drag" width="946" height="1418"></div>
+                <div class="swiper-slide"><img src="assets/images/projects/mars-2050/p02.webp" alt="Mars 2050 game packaging detail" class="mars-photo mil-drag" width="946" height="1418" loading="lazy"></div>
+                <div class="swiper-slide"><img src="assets/images/projects/mars-2050/p03.webp" alt="Mars 2050 game cards" class="mars-photo mil-drag" width="946" height="1418" loading="lazy"></div>
+                <div class="swiper-slide"><img src="assets/images/projects/mars-2050/p04.webp" alt="Mars 2050 game component still life" class="mars-photo mil-drag" width="946" height="1418" loading="lazy"></div>
+                <div class="swiper-slide"><img src="assets/images/projects/mars-2050/p05.webp" alt="Mars 2050 product photography" class="mars-photo mil-drag" width="946" height="1418" loading="lazy"></div>
+                <div class="swiper-slide"><img src="assets/images/projects/mars-2050/p06.webp" alt="Mars 2050 board game detail" class="mars-photo mil-drag" width="946" height="1418" loading="lazy"></div>
+                <div class="swiper-slide"><img src="assets/images/projects/mars-2050/p07.webp" alt="Mars 2050 game pieces" class="mars-photo mil-drag" width="946" height="1418" loading="lazy"></div>
+                <div class="swiper-slide"><img src="assets/images/projects/mars-2050/p08.webp" alt="Players enjoying Mars 2050 in a board game café" class="mars-photo mil-drag" width="1135" height="1418" loading="lazy"></div>
+                <div class="swiper-slide"><img src="assets/images/projects/mars-2050/p09.webp" alt="Lifestyle photoshoot for Mars 2050" class="mars-photo mil-drag" width="1135" height="1418" loading="lazy"></div>
+                <div class="swiper-slide"><img src="assets/images/projects/mars-2050/p10.webp" alt="Mars 2050 gameplay photoshoot" class="mars-photo mil-drag" width="1135" height="1418" loading="lazy"></div>
+            </div><div class="mars-carousel-controls"><button type="button" class="mars-carousel-button mars-photo-prev"><i class="icon icon-arrow-long-left"></i> Previous</button><button type="button" class="mars-carousel-button mars-photo-next">Next <i class="icon icon-arrow-long-right"></i></button></div></div></div>
+        </section>
+
+        <section class="mars-section" id="promo-video">
+            <div class="mars-section-intro mil-up"><div class="container">
+                <span class="mars-eyebrow">05 / Promo video</span>
+                <div class="row justify-content-between align-items-start"><div class="col-lg-5 mb-3 mb-lg-0"><h2 class="mars-heading">Production</h2></div><div class="col-lg-6"><p class="mars-copy">Creative production covered the full process&nbsp;— from understanding the game mechanics and building the story to filming, motion graphics, colour, and sound.</p></div></div>
+            </div></div>
+            <div class="container">
+                <ol class="mars-process-list mars-body-copy mil-up"><li>Conducted a briefing with the client.</li><li>Analysed the game mechanics to identify the key elements for the video script.</li><li>Created a storyboard and received client approval.</li><li>Prepared a brief for the copywriter to develop the voice-over script.</li><li>Held casting for a voice-over artist to match the required tone and style.</li><li>Participated in filming, including selecting references and props and shooting the board, box, and game components.</li><li>Completed post-production: editing, motion graphics, colour correction, retouching, and sound design.</li></ol>
+                <div class="mars-video mil-up"><iframe src="https://player.vimeo.com/video/1037298694?dnt=1&amp;byline=0&amp;title=0&amp;portrait=0" title="Mars 2050 board game presentation" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+            </div>
+        </section>
+
+        <section class="mars-section" id="instagram">
+            <div class="mars-section-intro mil-up"><div class="container">
+                <span class="mars-eyebrow">06 / Social media</span>
+                <div class="row justify-content-between align-items-start"><div class="col-lg-5 mb-3 mb-lg-0"><h2 class="mars-heading">Instagram</h2></div><div class="col-lg-6"><p class="mars-copy">Designed 18 posts according to the content plan and refreshed the profile visuals, including the profile image, header treatment, and Highlights covers.</p></div></div>
+            </div></div>
+            <div class="container">
+                <div class="mars-compare-wrap mil-up">
+                    <div class="mars-compare" id="mars-compare" role="slider" tabindex="0" aria-label="Compare the created Instagram visual with the initial look" aria-valuemin="0" aria-valuemax="100" aria-valuenow="2" aria-valuetext="Created visual">
+                        <img src="assets/images/projects/mars-2050/Position1.webp" alt="Created Mars 2050 Instagram visual" class="mars-compare-image" width="2481" height="1730" loading="lazy" draggable="false">
+                        <div class="mars-compare-layer" id="mars-initial-layer" aria-hidden="true"><img src="assets/images/projects/mars-2050/Position2.webp" alt="" width="2481" height="1730" loading="lazy" draggable="false"></div>
+                        <span class="mars-compare-label mars-label-created" id="mars-label-created" aria-hidden="true">Created visual</span>
+                        <span class="mars-compare-label mars-label-initial" id="mars-label-initial" aria-hidden="true">Initial look</span>
+                        <div class="mars-compare-divider" id="mars-compare-divider"></div>
+                        <div class="mars-compare-handle" id="mars-compare-handle" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round"><path d="M8 6l-4 6 4 6M16 6l4 6-4 6"/></svg></div>
+                    </div>
+                    <p class="mars-compare-help">Swipe or drag to reveal the initial look</p>
+                </div>
+                <div class="mars-feed-grid mil-up" aria-label="Mars 2050 Instagram feed">
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/01.webp" alt="Mars 2050 Instagram post 1" width="1073" height="1073" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/02.webp" alt="Mars 2050 Instagram post 2" width="1068" height="1073" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/03.webp" alt="Mars 2050 Instagram post 3" width="1073" height="1073" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/04.webp" alt="Mars 2050 Instagram post 4" width="1073" height="1068" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/05.webp" alt="Mars 2050 Instagram post 5" width="1068" height="1068" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/06.webp" alt="Mars 2050 Instagram post 6" width="1073" height="1068" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/07.webp" alt="Mars 2050 Instagram post 7" width="1073" height="1078" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/08.webp" alt="Mars 2050 Instagram post 8" width="1068" height="1078" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/09.webp" alt="Mars 2050 Instagram post 9" width="1073" height="1078" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/10.webp" alt="Mars 2050 Instagram post 10" width="1073" height="1073" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/11.webp" alt="Mars 2050 Instagram post 11" width="1068" height="1073" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/12.webp" alt="Mars 2050 Instagram post 12" width="1073" height="1073" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/13.webp" alt="Mars 2050 Instagram post 13" width="1073" height="1068" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/14.webp" alt="Mars 2050 Instagram post 14" width="1068" height="1068" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/15.webp" alt="Mars 2050 Instagram post 15" width="1073" height="1068" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/16.webp" alt="Mars 2050 Instagram post 16" width="1073" height="1073" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/17.webp" alt="Mars 2050 Instagram post 17" width="1068" height="1073" loading="lazy"></div>
+                    <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/18.webp" alt="Mars 2050 Instagram post 18" width="1073" height="1073" loading="lazy"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mars-section" id="facebook">
+            <div class="mars-section-intro mil-up"><div class="container">
+                <span class="mars-eyebrow">07 / Social media</span>
+                <div class="row justify-content-between align-items-start"><div class="col-lg-5 mb-3 mb-lg-0"><h2 class="mars-heading">Facebook</h2></div><div class="col-lg-6"><p class="mars-copy">Designed posts adapted for the Facebook audience and updated the profile visuals, including the profile image and cover.</p></div></div>
+            </div></div>
+            <div class="container mil-up"><div class="mars-facebook-art"><img src="assets/images/projects/mars-2050/fb.webp" alt="Mars 2050 Facebook profile and campaign posts" width="1920" height="937" loading="lazy"></div></div>
+        </section>
+
+        <section class="mars-section" id="results">
+            <div class="mars-section-intro mil-up"><div class="container">
+                <span class="mars-eyebrow">08 / Results</span>
+                <div class="row justify-content-between align-items-start"><div class="col-lg-5 mb-3 mb-lg-0"><h2 class="mars-heading">Results</h2></div><div class="col-lg-6"><p class="mars-copy">Developed a comprehensive strategy targeting a specific audience and delivered a turnkey campaign within tight deadlines.</p></div></div>
+            </div></div>
+            <div class="container mil-up">
+                <div class="mars-stats" aria-label="Mars 2050 campaign results">
+                    <div class="mars-stat" aria-label="More than 200,000 impressions"><span class="mars-stat-label">Impressions</span><strong class="mars-stat-value"><span class="mars-counter-number" data-number="200000" data-grouping="true">200 000</span><span aria-hidden="true">+</span></strong></div>
+                    <div class="mars-stat" aria-label="11,258 engagements"><span class="mars-stat-label">Engagements</span><strong class="mars-stat-value"><span class="mars-counter-number" data-number="11258" data-grouping="true">11 258</span></strong></div>
+                    <div class="mars-stat" aria-label="Engagement cost: 0.02 dollars"><span class="mars-stat-label">Engagement Cost</span><strong class="mars-stat-value"><span aria-hidden="true">$</span><span class="mars-counter-number" data-number="0.02" data-decimals="2">0.02</span></strong></div>
+                </div>
+                <div class="mars-results-copy">
+                    <p>The results were achieved through two targeted advertising campaigns.</p>
+                    <p>Created a thematic visual concept that strengthened brand recognition.</p>
+                    <p>Enhanced awareness of the Mars 2050 board game through active promotion on Instagram and Facebook.</p>
+                    <p>Increased client trust by delivering a complete campaign within tight deadlines.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mars-project-info mil-up"><div class="container">
+            <span class="mars-eyebrow">09 / Project info</span>
+            <div class="row g-5">
+                <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.4);">Client</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?client=ranok" class="project-attr-tag">Ranok</a></div></div>
+                <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.4);">Services</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?service=promo-videos" class="project-attr-tag">Promo Videos</a><a href="projects.html?service=2d-3d-animation" class="project-attr-tag">2D / 3D Animation</a><a href="projects.html?service=photography" class="project-attr-tag">Photography</a><a href="projects.html?service=social-media" class="project-attr-tag">Social Media</a><a href="projects.html?service=feed-concept" class="project-attr-tag">Feed Concept</a><a href="projects.html?service=visual-identity" class="project-attr-tag">Visual Identity</a></div></div>
+                <div class="col-12 col-md-4"><p class="text-uppercase fw-medium mb-3" style="font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.4);">Design Categories</p><div class="d-flex flex-wrap gap-2"><a href="projects.html?category=motion" class="project-attr-tag">Motion</a><a href="projects.html?category=digital" class="project-attr-tag">Digital</a><a href="projects.html?category=content-creation" class="project-attr-tag">Content Creation</a><a href="projects.html?category=branding" class="project-attr-tag">Branding &amp; Identity</a></div></div>
+            </div>
+        </div></section>
+
+        <div class="container"><div class="mil-works-nav mil-up pt-5" style="display:flex;justify-content:space-between;"><a href="project-gravity-falls-tv-spot.html" class="link text-white d-flex align-items-center gap-2"><i class="icon icon-arrow-long-left"></i> PREV PROJECT</a><a href="projects.html" class="link text-white-64">ALL PROJECTS</a><a href="project-okki-instagram.html" class="link text-white d-flex align-items-center gap-2">NEXT PROJECT <i class="icon icon-arrow-long-right"></i></a></div></div>
+
+        <section class="flat-spacing" style="border-top:1px solid rgba(255,255,255,.05);padding-bottom:120px;margin-top:80px;"><div class="container">
+            <div class="row"><div class="col-lg-10"><span class="mil-suptitle mil-suptitle-right mil-up text-white-64" style="font-size:16px;line-height:1.6;">Looking to make your mark? Turn your next project into an exceptional digital success story.</span></div></div>
+            <div class="text-center" style="margin-top:80px;"><h2 class="mil-up text-white mb-5" style="font-size:clamp(36px,5vw,68px);line-height:1.2;">Got a project <span class="fw-light text-white-64">in mind?</span><br>Let's make it a reality <span class="fw-light text-white-64">together</span></h2><div class="mil-up" style="margin-top:50px;"><a href="index.html#contactScroll" class="tf-btn">CONTACT US</a></div></div>
+        </div></section>
+
+        <footer class="tf-footer">
+            <div class="container"><div class="br-line"></div></div>
+            <div class="footer-inner"><div class="container"><div class="row align-items-start">
+                <div class="col-md-4 mb-5 mb-md-0"><p class="title text-has-dot text-caption fw-medium mb-0" style="line-height:1.6;display:flex;align-items:flex-start;gap:8px;"><span class="br-dot" style="margin-top:5px;flex-shrink:0;"></span><span>© 2026 OK DESIGN.<span class="d-none d-md-inline"><br></span><span class="d-md-none"> </span>ALL RIGHTS RESERVED.</span></p></div>
+                <div class="col-6 col-sm-2 col-md-1"><p class="footer-heading text-caption fw-medium text-white-64 mb-3">SITEMAP</p></div>
+                <div class="col-6 col-sm-4 col-md-3"><ul class="footer-menu-list mb-sm-0"><li><a href="index.html#serviceScroll" class="link letter-space--2 h5">Services</a></li><li><a href="projects.html" class="link letter-space--2 h5">Projects</a></li><li><a href="index.html#aboutScroll" class="link letter-space--2 h5">About</a></li><li><a href="index.html#contactScroll" class="link letter-space--2 h5">Contact</a></li></ul></div>
+                <div class="col-6 col-sm-2 col-md-1"><p class="footer-heading text-caption fw-medium text-white-64 mb-3">SOCIALS</p></div>
+                <div class="col-6 col-sm-4 col-md-3"><ul class="footer-menu-list mb-0"><li><a href="https://www.linkedin.com/company/okdesign-studio" target="_blank" class="link letter-space--2 h5">LinkedIn</a></li><li><a href="https://www.behance.net/okdesign-studio" target="_blank" class="link letter-space--2 h5">Behance</a></li><li><a href="https://wa.me/okdesign.cc" target="_blank" class="link letter-space--2 h5">WhatsApp</a></li></ul></div>
+            </div></div></div>
+        </footer>
     </main>
-    <div class="offcanvas-menu"><div class="offcanvas-content"><div class="container h-100"><div class="offcanvas-content_wrapin"><div class="canvas_head"><a href="index.html" class="logo-site"><img src="assets/images/logo/logo.svg" alt="OK Design" style="height:40px;width:auto;"></a><div class="btn-mobile-menu close-mb-menu text-caption link"><i class="icon icon-close"></i> CLOSE</div></div><div class="canvas_center"><ul class="nav-ul-mb"><li><div class="item close-mb-menu"><a href="projects.html" class="mb-menu-link text-display-1"><span class="text">Projects</span></a></div></li><li><div class="item close-mb-menu"><a href="index.html#aboutScroll" class="mb-menu-link text-display-1"><span class="text">About</span></a></div></li><li><div class="item close-mb-menu"><a href="index.html#serviceScroll" class="mb-menu-link text-display-1"><span class="text">Services</span></a></div></li><li><div class="item close-mb-menu"><a href="index.html#contactScroll" class="mb-menu-link text-display-1"><span class="text">Contact</span></a></div></li></ul></div><div class="canvas_foot">
-                        <div class="left">
-                            <a href="mailto:hello@okdesign.cc" class="link text-caption">HELLO@OKDESIGN.CC</a>
-                        </div>
-                        <div class="right">
-                            <a href="https://www.linkedin.com/company/okdesign-studio" target="_blank" class="tf-link-icon text-caption link">
-                                <i class="icon icon-arrow-top-right"></i>
-                                LINKEDIN
-                            </a>
-                            <a href="https://www.behance.net/okdesign-studio" target="_blank" class="tf-link-icon text-caption link">
-                                <i class="icon icon-arrow-top-right"></i>
-                                BEHANCE
-                            </a>
-                        </div>
-                    </div></div></div></div></div></div>
-    <script src="assets/js/jquery.min.js"></script><script src="assets/js/bootstrap.min.js"></script><script src="assets/js/gsap.min.js"></script><script src="assets/js/ScrollTrigger.min.js"></script><script src="assets/js/main.js"></script>
+
+    <div class="offcanvas-menu"><div class="offcanvas-content"><div class="container h-100"><div class="offcanvas-content_wrapin">
+        <div class="canvas_head"><a href="index.html" class="logo-site"><img src="assets/images/logo/logo.svg" alt="OK Design" style="height:40px;width:auto;"></a><div class="btn-mobile-menu close-mb-menu text-caption link"><i class="icon icon-close"></i> CLOSE</div></div>
+        <div class="canvas_center"><ul class="nav-ul-mb"><li><div class="item close-mb-menu"><a href="projects.html" class="mb-menu-link text-display-1"><span class="text">Projects</span></a></div></li><li><div class="item close-mb-menu"><a href="index.html#aboutScroll" class="mb-menu-link text-display-1"><span class="text">About</span></a></div></li><li><div class="item close-mb-menu"><a href="index.html#serviceScroll" class="mb-menu-link text-display-1"><span class="text">Services</span></a></div></li><li><div class="item close-mb-menu"><a href="index.html#contactScroll" class="mb-menu-link text-display-1"><span class="text">Contact</span></a></div></li></ul></div>
+        <div class="canvas_foot"><div class="left"><a href="mailto:hello@okdesign.cc" class="link text-caption">HELLO@OKDESIGN.CC</a></div><div class="right"><a href="https://www.linkedin.com/company/okdesign-studio" target="_blank" class="tf-link-icon text-caption link"><i class="icon icon-arrow-top-right"></i> LINKEDIN</a><a href="https://www.behance.net/okdesign-studio" target="_blank" class="tf-link-icon text-caption link"><i class="icon icon-arrow-top-right"></i> BEHANCE</a></div></div>
+    </div></div></div></div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="assets/js/gsap.min.js"></script>
+    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        (function () {
+            if (typeof Swiper !== 'undefined' && document.querySelector('.mars-photo-swiper')) {
+                new Swiper('.mars-photo-swiper', {
+                    slidesPerView: 'auto',
+                    spaceBetween: 15,
+                    freeMode: true,
+                    grabCursor: true,
+                    watchOverflow: true,
+                    keyboard: { enabled: true },
+                    navigation: { nextEl: '.mars-photo-next', prevEl: '.mars-photo-prev' }
+                });
+            }
+
+            var counters = document.querySelectorAll('.mars-counter-number');
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function formatValue(value, decimals, grouping) {
+                var result = Number(value).toFixed(decimals);
+                if (grouping) {
+                    var parts = result.split('.');
+                    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+                    result = parts.join('.');
+                }
+                return result;
+            }
+
+            counters.forEach(function (counter) {
+                var target = Number(counter.getAttribute('data-number')) || 0;
+                var decimals = Number(counter.getAttribute('data-decimals')) || 0;
+                var grouping = counter.getAttribute('data-grouping') === 'true';
+
+                if (reduceMotion || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+                    counter.textContent = formatValue(target, decimals, grouping);
+                    return;
+                }
+
+                var state = { value: 0 };
+                counter.textContent = formatValue(0, decimals, grouping);
+                gsap.to(state, {
+                    scrollTrigger: { trigger: '.mars-stats', start: 'top 88%', once: true },
+                    value: target,
+                    duration: 2.2,
+                    ease: 'power3.out',
+                    onUpdate: function () { counter.textContent = formatValue(state.value, decimals, grouping); },
+                    onComplete: function () { counter.textContent = formatValue(target, decimals, grouping); }
+                });
+            });
+
+            var compare = document.getElementById('mars-compare');
+            var initialLayer = document.getElementById('mars-initial-layer');
+            var divider = document.getElementById('mars-compare-divider');
+            var handle = document.getElementById('mars-compare-handle');
+            var createdLabel = document.getElementById('mars-label-created');
+            var initialLabel = document.getElementById('mars-label-initial');
+            if (!compare || !initialLayer || !divider || !handle) return;
+
+            var current = 2;
+            var dragging = false;
+            function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
+            function setComparison(percent) {
+                current = clamp(percent, 2, 98);
+                var right = 100 - current;
+                var labelProgress = clamp((current - 18) / 55, 0, 1);
+                initialLayer.style.clipPath = 'inset(0 ' + right.toFixed(2) + '% 0 0)';
+                divider.style.left = current.toFixed(2) + '%';
+                handle.style.left = current.toFixed(2) + '%';
+                createdLabel.style.opacity = (1 - labelProgress).toFixed(3);
+                createdLabel.style.transform = 'translate(-50%, ' + (labelProgress * 18).toFixed(1) + 'px)';
+                initialLabel.style.opacity = labelProgress.toFixed(3);
+                initialLabel.style.transform = 'translate(-50%, ' + ((1 - labelProgress) * -18).toFixed(1) + 'px)';
+                compare.setAttribute('aria-valuenow', Math.round(current));
+                compare.setAttribute('aria-valuetext', current < 50 ? 'Created visual' : 'Initial look');
+            }
+            function setFromPointer(event) {
+                var rect = compare.getBoundingClientRect();
+                if (!rect.width) return;
+                setComparison(((event.clientX - rect.left) / rect.width) * 100);
+            }
+            compare.addEventListener('pointerdown', function (event) {
+                dragging = true;
+                compare.setPointerCapture(event.pointerId);
+                setFromPointer(event);
+            });
+            compare.addEventListener('pointermove', function (event) { if (dragging) setFromPointer(event); });
+            compare.addEventListener('pointerup', function (event) {
+                dragging = false;
+                if (compare.hasPointerCapture(event.pointerId)) compare.releasePointerCapture(event.pointerId);
+            });
+            compare.addEventListener('pointercancel', function () { dragging = false; });
+            compare.addEventListener('keydown', function (event) {
+                var next = current;
+                if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') next -= 4;
+                else if (event.key === 'ArrowRight' || event.key === 'ArrowUp') next += 4;
+                else if (event.key === 'Home') next = 2;
+                else if (event.key === 'End') next = 98;
+                else return;
+                event.preventDefault();
+                setComparison(next);
+            });
+            setComparison(2);
+        })();
+    </script>
 </body>
 </html>
