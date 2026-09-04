@@ -572,7 +572,7 @@
             transition: opacity 0.45s ease;
             pointer-events: none;
         }
-        .gdn-showcase-wrap.is-ready .gdn-format img { opacity: 1; }
+        .gdn-format img.is-loaded { opacity: 1; }
 
         /* Reference layout: 56 px column gaps and 85 px between wide formats.
            Banner artwork is displayed at 150% of its labelled GDN size. */
@@ -1856,16 +1856,57 @@
             if (imagesRequested) return;
             imagesRequested = true;
 
-            Promise.all(images.map(function(img) {
-                return new Promise(function(resolve) {
-                    function done() { resolve(); }
-                    img.addEventListener('load', done, { once: true });
-                    img.addEventListener('error', done, { once: true });
-                    img.src = img.dataset.src;
-                    if (img.complete) done();
-                });
-            })).then(function() {
-                wrap.classList.add('is-ready');
+            let completed = 0;
+
+            function markComplete() {
+                completed += 1;
+                if (completed === images.length) wrap.classList.add('is-ready');
+            }
+
+            images.forEach(function(img) {
+                let attempt = 0;
+
+                function loadImage() {
+                    attempt += 1;
+                    let settled = false;
+
+                    function cleanup() {
+                        img.removeEventListener('load', handleLoad);
+                        img.removeEventListener('error', handleError);
+                    }
+
+                    function finish(success) {
+                        if (settled) return;
+                        settled = true;
+                        cleanup();
+
+                        if (success) {
+                            img.classList.add('is-loaded');
+                            markComplete();
+                        } else if (attempt < 3) {
+                            window.setTimeout(loadImage, attempt * 500);
+                        } else {
+                            markComplete();
+                        }
+                    }
+
+                    function handleLoad() { finish(true); }
+                    function handleError() { finish(false); }
+
+                    img.addEventListener('load', handleLoad);
+                    img.addEventListener('error', handleError);
+                    img.decoding = 'async';
+
+                    const source = img.dataset.src;
+                    const retrySuffix = attempt > 1
+                        ? (source.indexOf('?') === -1 ? '?' : '&') + 'retry=' + attempt
+                        : '';
+                    img.src = source + retrySuffix;
+
+                    if (img.complete) finish(img.naturalWidth > 0);
+                }
+
+                loadImage();
             });
         }
 
@@ -1987,6 +2028,16 @@
         });
 
         if ('IntersectionObserver' in window) {
+            const preloadObserver = new IntersectionObserver(function(entries) {
+                if (!entries[0].isIntersecting) return;
+                requestImages();
+                preloadObserver.disconnect();
+            }, {
+                rootMargin: mobileMotion.matches ? '1800px 0px' : '800px 0px',
+                threshold: 0
+            });
+            preloadObserver.observe(viewport);
+
             const observer = new IntersectionObserver(function(entries) {
                 inView = entries[0].isIntersecting;
                 if (inView) {
@@ -1995,8 +2046,17 @@
                 } else {
                     stopAnimation();
                 }
-            }, { rootMargin: '240px 0px', threshold: 0.01 });
+            }, { rootMargin: '160px 0px', threshold: 0.01 });
             observer.observe(viewport);
+
+            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            if (!connection || !connection.saveData) {
+                if ('requestIdleCallback' in window) {
+                    window.requestIdleCallback(requestImages, { timeout: 1800 });
+                } else {
+                    window.setTimeout(requestImages, 1200);
+                }
+            }
         } else {
             inView = true;
             requestImages();
