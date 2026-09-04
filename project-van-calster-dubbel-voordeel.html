@@ -597,6 +597,12 @@
             .gdn-board { transform: scale(0.7); }
         }
         @media (max-width: 767.98px) {
+            .gdn-showcase {
+                cursor: auto;
+                touch-action: auto;
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior-x: contain;
+            }
             .gdn-board-frame { width: 2500px; height: 512px; }
             .gdn-board { transform: scale(0.52); }
         }
@@ -1832,12 +1838,15 @@
 
         const images = Array.from(viewport.querySelectorAll('img[data-src]'));
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const mobileMotion = window.matchMedia('(max-width: 767.98px), (pointer: coarse)');
         let inView = false;
         let imagesRequested = false;
         let dragging = false;
         let dragStartX = 0;
         let dragStartScroll = 0;
+        let touchLastX = 0;
         let direction = 1;
+        let autoPosition = viewport.scrollLeft;
         let lastFrame = 0;
         let resumeAt = 0;
         let edgePauseUntil = 0;
@@ -1874,8 +1883,11 @@
             const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
             const canMove = inView && !dragging && now >= resumeAt;
 
+            if (!canMove) autoPosition = viewport.scrollLeft;
+
             if (canMove && maxScroll > 1 && now >= edgePauseUntil) {
-                let next = viewport.scrollLeft + direction * 34 * delta;
+                const speed = mobileMotion.matches ? 48 : 34;
+                let next = autoPosition + direction * speed * delta;
 
                 if (next >= maxScroll) {
                     next = maxScroll;
@@ -1887,6 +1899,7 @@
                     edgePauseUntil = now + 650;
                 }
 
+                autoPosition = next;
                 viewport.scrollLeft = next;
             }
 
@@ -1904,15 +1917,18 @@
         }
 
         viewport.addEventListener('pointerdown', function(event) {
+            if (event.pointerType === 'touch') return;
             if (event.button !== 0) return;
             dragging = true;
             dragStartX = event.clientX;
             dragStartScroll = viewport.scrollLeft;
+            edgePauseUntil = 0;
             viewport.classList.add('is-dragging');
             viewport.setPointerCapture(event.pointerId);
         });
 
         viewport.addEventListener('pointermove', function(event) {
+            if (event.pointerType === 'touch') return;
             if (!dragging) return;
             const previous = viewport.scrollLeft;
             viewport.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
@@ -1922,6 +1938,7 @@
         });
 
         function finishDrag(event) {
+            if (event.pointerType === 'touch') return;
             if (!dragging) return;
             dragging = false;
             viewport.classList.remove('is-dragging');
@@ -1931,6 +1948,31 @@
 
         viewport.addEventListener('pointerup', finishDrag);
         viewport.addEventListener('pointercancel', finishDrag);
+
+        viewport.addEventListener('touchstart', function(event) {
+            dragging = true;
+            touchLastX = event.touches[0] ? event.touches[0].clientX : 0;
+            autoPosition = viewport.scrollLeft;
+            edgePauseUntil = 0;
+        }, { passive: true });
+
+        viewport.addEventListener('touchmove', function(event) {
+            if (!dragging || !event.touches[0]) return;
+            const currentX = event.touches[0].clientX;
+            if (currentX < touchLastX) direction = 1;
+            if (currentX > touchLastX) direction = -1;
+            touchLastX = currentX;
+        }, { passive: true });
+
+        function finishTouch() {
+            if (!dragging) return;
+            dragging = false;
+            autoPosition = viewport.scrollLeft;
+            resumeAt = performance.now() + 2200;
+        }
+
+        viewport.addEventListener('touchend', finishTouch, { passive: true });
+        viewport.addEventListener('touchcancel', finishTouch, { passive: true });
 
         viewport.addEventListener('keydown', function(event) {
             if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
