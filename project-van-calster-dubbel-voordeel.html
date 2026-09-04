@@ -106,6 +106,16 @@
         .ph-3x2   { aspect-ratio: 3/2; }
         .ph-tall  { min-height: 500px; }
 
+        .tv-spot-player {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            background: #000;
+            object-fit: contain;
+        }
+
         /* ============================================================
            VIDEO FORMATS ROW&nbsp;— 1:1 / 9:16 / 4:5
         ============================================================ */
@@ -592,6 +602,307 @@
         }
 
         /* ============================================================
+           SMM CONTENT — platform-led editorial grid
+        ============================================================ */
+        .smm-platform + .smm-platform { margin-top: 64px; }
+        .smm-platform-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .smm-platform-name {
+            margin: 0;
+            color: #fff;
+            font-size: clamp(22px, 2.2vw, 30px);
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+        .smm-platform-meta {
+            color: rgba(255,255,255,0.38);
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 1.4;
+            letter-spacing: 0.14em;
+            text-align: right;
+            text-transform: uppercase;
+        }
+        .smm-instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+        .smm-facebook-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1.9fr);
+            gap: 24px;
+            align-items: start;
+        }
+        .smm-card { min-width: 0; margin: 0; }
+        .smm-card-caption {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 10px;
+            color: rgba(255,255,255,0.42);
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 1.3;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .smm-card-caption span:last-child {
+            color: rgba(255,255,255,0.24);
+            white-space: nowrap;
+        }
+        .smm-card-media {
+            position: relative;
+            overflow: hidden;
+            background: #111;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .smm-card-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .smm-slide-number {
+            position: absolute;
+            z-index: 1;
+            top: 10px;
+            right: 10px;
+            display: grid;
+            place-items: center;
+            min-width: 27px;
+            height: 27px;
+            padding: 0 6px;
+            border: 1px solid rgba(255,255,255,0.22);
+            border-radius: 999px;
+            background: rgba(16,28,43,0.5);
+            color: rgba(255,255,255,0.82);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            backdrop-filter: blur(8px);
+        }
+
+        @media (max-width: 991.98px) {
+            .smm-instagram-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .smm-facebook-grid { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr); }
+            .smm-facebook-cover { grid-column: 1 / -1; }
+        }
+        @media (max-width: 575.98px) {
+            .smm-platform + .smm-platform { margin-top: 48px; }
+            .smm-platform-head { align-items: flex-start; }
+            .smm-platform-meta { max-width: 150px; }
+            .smm-instagram-grid,
+            .smm-facebook-grid { gap: 12px; }
+            .smm-card-caption {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 2px;
+                font-size: 9px;
+            }
+            .smm-slide-number {
+                top: 7px;
+                right: 7px;
+                min-width: 24px;
+                height: 24px;
+            }
+        }
+
+        /* ============================================================
+           PRINT / POLYGRAPHY — artwork paired with its application
+        ============================================================ */
+        .print-showcase {
+            display: grid;
+            gap: 56px;
+        }
+        .print-pair {
+            display: grid;
+            gap: 14px;
+        }
+        .print-pair-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 20px;
+            padding-bottom: 13px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .print-pair-title {
+            margin: 0;
+            color: #fff;
+            font-size: clamp(20px, 2vw, 28px);
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+        .print-pair-size {
+            color: rgba(255,255,255,0.38);
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 1.3;
+            letter-spacing: 0.14em;
+            text-align: right;
+            text-transform: uppercase;
+        }
+        .print-pair-grid {
+            display: grid;
+            gap: 24px;
+            align-items: start;
+        }
+        .print-pair-grid--rollup {
+            grid-template-columns: minmax(0, 0.405fr) minmax(0, 1fr);
+        }
+        .print-pair-grid--sticker {
+            grid-template-columns: minmax(0, 1fr) minmax(0, 0.563fr);
+        }
+        .print-card {
+            min-width: 0;
+            margin: 0;
+        }
+        .print-card-caption {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 10px;
+            color: rgba(255,255,255,0.42);
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 1.3;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .print-card-caption span:last-child {
+            color: rgba(255,255,255,0.24);
+            white-space: nowrap;
+        }
+        .print-card-media {
+            overflow: hidden;
+            background: #111;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .print-card-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 767.98px) {
+            .print-showcase { gap: 44px; }
+            .print-pair-grid { gap: 12px; }
+        }
+        @media (max-width: 575.98px) {
+            .print-pair-head { align-items: flex-start; }
+            .print-pair-grid--rollup,
+            .print-pair-grid--sticker {
+                grid-template-columns: 1fr;
+            }
+            .print-card--rollup-art {
+                width: min(68%, 240px);
+                justify-self: center;
+            }
+            .print-card--sticker-mockup {
+                width: min(72%, 280px);
+                justify-self: center;
+            }
+            .print-card-caption {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 2px;
+                font-size: 9px;
+            }
+        }
+
+        /* ============================================================
+           WEBSITE CONTENT — static multi-format composition
+        ============================================================ */
+        .website-showcase {
+            display: grid;
+            grid-template-columns: minmax(0, 5fr) minmax(0, 3fr) minmax(0, 5fr);
+            column-gap: clamp(24px, 3.5vw, 48px);
+            align-items: start;
+        }
+        .website-column {
+            display: grid;
+            gap: clamp(28px, 3vw, 42px);
+            min-width: 0;
+        }
+        .website-card {
+            min-width: 0;
+            margin: 0;
+        }
+        .website-card-caption {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 10px;
+            color: rgba(255,255,255,0.42);
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 1.3;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .website-card-caption span:last-child {
+            color: rgba(255,255,255,0.24);
+            white-space: nowrap;
+        }
+        .website-card-media {
+            overflow: hidden;
+            background: #111;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .website-card-media img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 991.98px) {
+            .website-showcase {
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                row-gap: 36px;
+            }
+            .website-column--middle {
+                grid-column: 1 / -1;
+                grid-row: 2;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                align-items: start;
+            }
+            .website-column--right {
+                grid-column: 2;
+                grid-row: 1;
+            }
+        }
+        @media (max-width: 575.98px) {
+            .website-showcase {
+                grid-template-columns: 1fr;
+                row-gap: 36px;
+            }
+            .website-column--middle,
+            .website-column--right {
+                grid-column: auto;
+                grid-row: auto;
+                grid-template-columns: 1fr;
+            }
+            .website-card-caption {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 2px;
+                font-size: 9px;
+            }
+        }
+
+        /* ============================================================
            MISC
         ============================================================ */
         .pill-tag {
@@ -817,14 +1128,11 @@
                     </div>
                 </div>
 
-                <!-- Main Video Placeholder -->
-                <div class="media-placeholder ph-16x9 mb-3" style="border-radius:16px;">
-                    <div class="ph-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5,3 19,12 5,21"/></svg>
-                    </div>
-                    <span class="ph-label">TV Spot&nbsp;— Dubbel Voordeel<br>30-second broadcast version</span>
-                    <span class="ph-ratio">16:9 · 30 sec · with voiceover & subtitles</span>
-                </div>
+                <!-- Main TV spot -->
+                <video class="tv-spot-player mb-3" controls playsinline preload="metadata" aria-label="Van Calster Dubbel Voordeel TV spot">
+                    <source src="assets/images/projects/van-calster/1920x1080_TV.mp4" type="video/mp4">
+                    Your browser does not support HTML video.
+                </video>
                 <p class="mb-5" style="font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:0.12em;text-align:center;text-transform:uppercase;">Aired on RTV & RTV+ · Flanders · Prime Time · 2026</p>
 
                 <!-- Spot adaptations&nbsp;— 3 formats in a row -->
@@ -1172,12 +1480,84 @@
                 <!-- SMM -->
                 <div class="mb-5">
                     <p class="section-label" style="margin-bottom:20px;">SMM Content</p>
-                    <div class="media-placeholder ph-3x2" style="border-radius:12px;min-height:340px;">
-                        <div class="ph-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M16 8h.01M8.5 11.5l3 3 5-5"/></svg>
-                        </div>
-                        <span class="ph-label">Social Media Creatives</span>
-                        <span class="ph-ratio">Feed posts · Stories · Reels covers</span>
+                    <div class="smm-showcase mil-up">
+                        <section class="smm-platform" aria-labelledby="smm-instagram-title">
+                            <div class="smm-platform-head">
+                                <h3 class="smm-platform-name" id="smm-instagram-title">Instagram</h3>
+                                <span class="smm-platform-meta">Carousel · 6 selected slides · 1200×1200 px</span>
+                            </div>
+                            <div class="smm-instagram-grid">
+                                <figure class="smm-card">
+                                    <figcaption class="smm-card-caption"><span>Carousel 01</span><span>1200×1200</span></figcaption>
+                                    <div class="smm-card-media">
+                                        <span class="smm-slide-number" aria-hidden="true">01</span>
+                                        <img src="assets/images/projects/van-calster/SMM/SMM/1200x1200_Carousel_1.png" width="1200" height="1200" loading="lazy" decoding="async" alt="Instagram carousel opening slide for the Van Calster Dubbel Voordeel campaign">
+                                    </div>
+                                </figure>
+                                <figure class="smm-card">
+                                    <figcaption class="smm-card-caption"><span>Carousel 02</span><span>1200×1200</span></figcaption>
+                                    <div class="smm-card-media">
+                                        <span class="smm-slide-number" aria-hidden="true">02</span>
+                                        <img src="assets/images/projects/van-calster/SMM/SMM/1200x1200_Carousel_2.png" width="1200" height="1200" loading="lazy" decoding="async" alt="Instagram carousel slide showing a contemporary blue-tiled bathroom">
+                                    </div>
+                                </figure>
+                                <figure class="smm-card">
+                                    <figcaption class="smm-card-caption"><span>Carousel 03</span><span>1200×1200</span></figcaption>
+                                    <div class="smm-card-media">
+                                        <span class="smm-slide-number" aria-hidden="true">03</span>
+                                        <img src="assets/images/projects/van-calster/SMM/SMM/1200x1200_Carousel_3.png" width="1200" height="1200" loading="lazy" decoding="async" alt="Instagram carousel slide showing a light bathroom interior">
+                                    </div>
+                                </figure>
+                                <figure class="smm-card">
+                                    <figcaption class="smm-card-caption"><span>Carousel 04</span><span>1200×1200</span></figcaption>
+                                    <div class="smm-card-media">
+                                        <span class="smm-slide-number" aria-hidden="true">04</span>
+                                        <img src="assets/images/projects/van-calster/SMM/SMM/1200x1200_Carousel_4.png" width="1200" height="1200" loading="lazy" decoding="async" alt="Instagram carousel slide showing a green-tiled bathroom">
+                                    </div>
+                                </figure>
+                                <figure class="smm-card">
+                                    <figcaption class="smm-card-caption"><span>Carousel 06</span><span>1200×1200</span></figcaption>
+                                    <div class="smm-card-media">
+                                        <span class="smm-slide-number" aria-hidden="true">06</span>
+                                        <img src="assets/images/projects/van-calster/SMM/SMM/1200x1200_Carousel_6.png" width="1200" height="1200" loading="lazy" decoding="async" alt="Instagram carousel slide showing a dark bathroom interior">
+                                    </div>
+                                </figure>
+                                <figure class="smm-card">
+                                    <figcaption class="smm-card-caption"><span>Carousel 07</span><span>1200×1200</span></figcaption>
+                                    <div class="smm-card-media">
+                                        <span class="smm-slide-number" aria-hidden="true">07</span>
+                                        <img src="assets/images/projects/van-calster/SMM/SMM/1200x1200_Carousel_7.png" width="1200" height="1200" loading="lazy" decoding="async" alt="Instagram carousel closing slide with Van Calster locations and campaign offer">
+                                    </div>
+                                </figure>
+                            </div>
+                        </section>
+
+                        <section class="smm-platform" aria-labelledby="smm-facebook-title">
+                            <div class="smm-platform-head">
+                                <h3 class="smm-platform-name" id="smm-facebook-title">Facebook</h3>
+                                <span class="smm-platform-meta">Stories · Feed post · Cover</span>
+                            </div>
+                            <div class="smm-facebook-grid">
+                                <figure class="smm-card">
+                                    <figcaption class="smm-card-caption"><span>Stories</span><span>1080×1920</span></figcaption>
+                                    <div class="smm-card-media">
+                                        <img src="assets/images/projects/van-calster/SMM/SMM/1080x1920_Stories.png" width="1080" height="1920" loading="lazy" decoding="async" alt="Vertical Facebook Stories creative for the Van Calster Dubbel Voordeel campaign">
+                                    </div>
+                                </figure>
+                                <figure class="smm-card">
+                                    <figcaption class="smm-card-caption"><span>Feed post</span><span>1080×1350</span></figcaption>
+                                    <div class="smm-card-media">
+                                        <img src="assets/images/projects/van-calster/SMM/SMM/1080x1350_Post.png" width="1080" height="1350" loading="lazy" decoding="async" alt="Facebook feed post for the Van Calster Dubbel Voordeel campaign">
+                                    </div>
+                                </figure>
+                                <figure class="smm-card smm-facebook-cover">
+                                    <figcaption class="smm-card-caption"><span>Facebook cover</span><span>1636×651</span></figcaption>
+                                    <div class="smm-card-media">
+                                        <img src="assets/images/projects/van-calster/SMM/SMM/Facebook%20cover.png" width="1636" height="651" loading="lazy" decoding="async" alt="Facebook cover for the Van Calster Dubbel Voordeel campaign">
+                                    </div>
+                                </figure>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
@@ -1186,12 +1566,48 @@
                 <!-- Print -->
                 <div class="mb-5">
                     <p class="section-label" style="margin-bottom:20px;">Print / Polygraphy</p>
-                    <div class="media-placeholder" style="border-radius:12px;min-height:340px;aspect-ratio:3/2;">
-                        <div class="ph-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 12h6M9 17h4"/></svg>
-                        </div>
-                        <span class="ph-label">Print / Polygraphy</span>
-                        <span class="ph-ratio">Flyers · Posters · In-store materials</span>
+                    <div class="print-showcase">
+                        <section class="print-pair" aria-labelledby="print-rollup-title">
+                            <div class="print-pair-head">
+                                <h5 class="print-pair-title" id="print-rollup-title">Roll-up</h5>
+                                <span class="print-pair-size">85 × 210 cm</span>
+                            </div>
+                            <div class="print-pair-grid print-pair-grid--rollup">
+                                <figure class="print-card print-card--rollup-art">
+                                    <figcaption class="print-card-caption"><span>Final artwork</span><span>85 × 210 cm</span></figcaption>
+                                    <div class="print-card-media">
+                                        <img src="assets/images/projects/van-calster/print/85x210_Roll-up.png" width="798" height="1970" loading="lazy" decoding="async" alt="Roll-up artwork for the Van Calster Dubbel Voordeel campaign">
+                                    </div>
+                                </figure>
+                                <figure class="print-card">
+                                    <figcaption class="print-card-caption"><span>In-store application</span><span>Preview</span></figcaption>
+                                    <div class="print-card-media">
+                                        <img src="assets/images/projects/van-calster/print/rollup.png" width="1970" height="1970" loading="lazy" decoding="async" alt="Van Calster Dubbel Voordeel roll-up displayed in a showroom">
+                                    </div>
+                                </figure>
+                            </div>
+                        </section>
+
+                        <section class="print-pair" aria-labelledby="print-sticker-title">
+                            <div class="print-pair-head">
+                                <h5 class="print-pair-title" id="print-sticker-title">Window sticker</h5>
+                                <span class="print-pair-size">150 × 150 cm</span>
+                            </div>
+                            <div class="print-pair-grid print-pair-grid--sticker">
+                                <figure class="print-card">
+                                    <figcaption class="print-card-caption"><span>Final artwork</span><span>150 × 150 cm</span></figcaption>
+                                    <div class="print-card-media">
+                                        <img src="assets/images/projects/van-calster/print/150x150_Sticker.png" width="1752" height="1752" loading="lazy" decoding="async" alt="Round window sticker artwork for the Van Calster Dubbel Voordeel campaign">
+                                    </div>
+                                </figure>
+                                <figure class="print-card print-card--sticker-mockup">
+                                    <figcaption class="print-card-caption"><span>Window application</span><span>Preview</span></figcaption>
+                                    <div class="print-card-media">
+                                        <img src="assets/images/projects/van-calster/print/sticker.png" width="986" height="1752" loading="lazy" decoding="async" alt="Van Calster Dubbel Voordeel sticker applied to a showroom window">
+                                    </div>
+                                </figure>
+                            </div>
+                        </section>
                     </div>
                 </div>
 
@@ -1200,12 +1616,45 @@
                 <!-- Website content -->
                 <div class="mb-5">
                     <p class="section-label" style="margin-bottom:20px;">Website Content</p>
-                    <div class="media-placeholder ph-16x9" style="border-radius:12px;min-height:320px;">
-                        <div class="ph-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                    <div class="website-showcase">
+                        <div class="website-column website-column--left">
+                            <figure class="website-card">
+                                <figcaption class="website-card-caption"><span>Website action visual</span><span>1200 × 1000 px</span></figcaption>
+                                <div class="website-card-media">
+                                    <img src="assets/images/projects/van-calster/website/1200x1000_Website_Action_Pic.png" width="2400" height="2000" loading="lazy" decoding="async" alt="Main website action visual for the Van Calster Dubbel Voordeel campaign">
+                                </div>
+                            </figure>
+                            <figure class="website-card">
+                                <figcaption class="website-card-caption"><span>Website slider</span><span>1200 × 400 px</span></figcaption>
+                                <div class="website-card-media">
+                                    <img src="assets/images/projects/van-calster/website/1200x400_Website_Slider.png" width="2400" height="800" loading="lazy" decoding="async" alt="Website slider visual for the Van Calster Dubbel Voordeel campaign">
+                                </div>
+                            </figure>
                         </div>
-                        <span class="ph-label">Website Visuals & Banners</span>
-                        <span class="ph-ratio">Hero section · Campaign landing</span>
+
+                        <div class="website-column website-column--middle">
+                            <figure class="website-card">
+                                <figcaption class="website-card-caption"><span>Website CTA</span><span>720 × 320 px</span></figcaption>
+                                <div class="website-card-media">
+                                    <img src="assets/images/projects/van-calster/website/720x320_Website_CTA.png" width="1440" height="640" loading="lazy" decoding="async" alt="Website call-to-action visual for the Van Calster Dubbel Voordeel campaign">
+                                </div>
+                            </figure>
+                            <figure class="website-card">
+                                <figcaption class="website-card-caption"><span>Website news</span><span>720 × 520 px</span></figcaption>
+                                <div class="website-card-media">
+                                    <img src="assets/images/projects/van-calster/website/720x520_Website_News.png" width="1440" height="1040" loading="lazy" decoding="async" alt="Website news visual for the Van Calster Dubbel Voordeel campaign">
+                                </div>
+                            </figure>
+                        </div>
+
+                        <div class="website-column website-column--right">
+                            <figure class="website-card">
+                                <figcaption class="website-card-caption"><span>Website pop-up</span><span>1200 × 1200 px</span></figcaption>
+                                <div class="website-card-media">
+                                    <img src="assets/images/projects/van-calster/website/1200x1200_Website_Popup.png" width="2400" height="2400" loading="lazy" decoding="async" alt="Website pop-up visual for the Van Calster Dubbel Voordeel campaign">
+                                </div>
+                            </figure>
+                        </div>
                     </div>
                 </div>
 
@@ -1280,9 +1729,9 @@
 
             <!-- Project navigation -->
             <div class="mil-works-nav mil-up pt-5" style="display:flex;justify-content:space-between;">
-                <a href="#" class="link text-white d-flex align-items-center gap-2"><i class="icon icon-arrow-long-left"></i> PREV PROJECT</a>
+                <a href="project-maxmarkt.html" class="link text-white d-flex align-items-center gap-2"><i class="icon icon-arrow-long-left"></i> PREV PROJECT</a>
                 <a href="projects.html" class="link text-white-64">ALL PROJECTS</a>
-                <a href="#" class="link text-white d-flex align-items-center gap-2">NEXT PROJECT <i class="icon icon-arrow-long-right"></i></a>
+                <a href="project-van-calster-anniversary.html" class="link text-white d-flex align-items-center gap-2">NEXT PROJECT <i class="icon icon-arrow-long-right"></i></a>
             </div>
 
         </section>
