@@ -513,7 +513,7 @@
         .gdn-showcase-wrap {
             position: relative;
             overflow: hidden;
-            background: #444;
+            background: rgba(255,255,255,0.04);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 12px;
         }
@@ -871,6 +871,9 @@
             display: block;
             width: 100%;
             height: auto;
+        }
+        .website-section-group + .website-section-group {
+            margin-top: 56px;
         }
 
         @media (max-width: 991.98px) {
@@ -1642,10 +1645,15 @@
 
                 <hr class="content-divider">
 
-                <!-- Website content -->
+                <!-- Website -->
                 <div class="mb-5">
-                    <p class="section-label" style="margin-bottom:20px;">Website Content</p>
-                    <div class="website-showcase">
+                    <p class="section-label" style="margin-bottom:20px;">Website</p>
+
+                    <section class="print-pair website-section-group" aria-labelledby="website-content-title">
+                        <div class="print-pair-head">
+                            <h5 class="print-pair-title" id="website-content-title">Content</h5>
+                        </div>
+                        <div class="website-showcase">
                         <div class="website-column website-column--left">
                             <figure class="website-card">
                                 <figcaption class="website-card-caption"><span>Website action visual</span><span>1200 × 1000 px</span></figcaption>
@@ -1683,19 +1691,19 @@
                                     <img src="assets/images/projects/van-calster/website/1200x1200_Website_Popup.png" width="2400" height="2400" loading="lazy" decoding="async" alt="Website pop-up visual for the Van Calster Dubbel Voordeel campaign">
                                 </div>
                             </figure>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </section>
 
-                <hr class="content-divider">
+                    <!-- Before / After Interactive -->
+                    <section class="print-pair website-section-group" aria-labelledby="website-before-after-title">
+                        <div class="print-pair-head">
+                            <h5 class="print-pair-title" id="website-before-after-title">Interactive Before / After</h5>
+                        </div>
+                        <p class="fw-light mb-0" style="font-size:15px;line-height:1.7;color:rgba(255,255,255,0.45);">Move the divider to compare the before and after renovation states. Drag or hover across the image.</p>
 
-                <!-- Before / After Interactive -->
-                <div class="mb-5">
-                    <p class="section-label" style="margin-bottom:20px;">Interactive Before / After</p>
-                    <p class="fw-light mb-4" style="font-size:15px;line-height:1.7;color:rgba(255,255,255,0.45);">Move the divider to compare the before and after renovation states. Drag or hover across the image.</p>
-
-                    <!-- Before-after component -->
-                    <div class="before-after-wrap" id="ba-container" style="touch-action:none;">
+                        <!-- Before-after component -->
+                        <div class="before-after-wrap" id="ba-container" style="touch-action:none;">
 
                         <!-- AFTER&nbsp;— base layer, establishes container height -->
                         <img src="assets/images/projects/van-calster/After.webp" alt="After renovation" style="display:block;width:100%;height:auto;border-radius:0;">
@@ -1714,7 +1722,8 @@
                         <!-- Labels -->
                         <span class="ba-label ba-label-before">Before</span>
                         <span class="ba-label ba-label-after">After</span>
-                    </div>
+                        </div>
+                    </section>
                 </div>
             </div>
 
