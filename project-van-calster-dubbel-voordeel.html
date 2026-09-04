@@ -106,14 +106,60 @@
         .ph-3x2   { aspect-ratio: 3/2; }
         .ph-tall  { min-height: 500px; }
 
+        .tv-spot-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            border-radius: 16px;
+            background: #000;
+        }
         .tv-spot-player {
             display: block;
             width: 100%;
+            height: 100%;
             aspect-ratio: 16 / 9;
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 16px;
             background: #000;
             object-fit: contain;
+        }
+        .tv-spot-play {
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            display: grid;
+            place-items: center;
+            width: clamp(64px, 6vw, 88px);
+            aspect-ratio: 1;
+            padding: 0;
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 50%;
+            background: rgba(255,255,255,0.92);
+            color: #050505;
+            box-shadow: 0 14px 38px rgba(0,0,0,0.32);
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.25s ease, transform 0.25s ease, background 0.25s ease;
+        }
+        .tv-spot-play:hover {
+            background: #fff;
+            transform: translate(-50%, -50%) scale(1.06);
+        }
+        .tv-spot-play:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 4px;
+        }
+        .tv-spot-play svg {
+            width: 25%;
+            height: auto;
+            margin-left: 5%;
+        }
+        .tv-spot-frame.is-playing .tv-spot-play {
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(0.88);
         }
 
         /* ============================================================
@@ -1157,10 +1203,15 @@
                 </div>
 
                 <!-- Main TV spot -->
-                <video class="tv-spot-player mb-3" controls playsinline preload="metadata" poster="assets/images/projects/van-calster/video_cover.webp" aria-label="Van Calster Dubbel Voordeel TV spot">
-                    <source src="assets/images/projects/van-calster/1920x1080_TV.mp4" type="video/mp4">
-                    Your browser does not support HTML video.
-                </video>
+                <div class="tv-spot-frame mb-3" id="tv-spot-frame">
+                    <video class="tv-spot-player" id="tv-spot-player" controls playsinline preload="metadata" poster="assets/images/projects/van-calster/video_cover.webp" aria-label="Van Calster Dubbel Voordeel TV spot">
+                        <source src="assets/images/projects/van-calster/1920x1080_TV.mp4" type="video/mp4">
+                        Your browser does not support HTML video.
+                    </video>
+                    <button class="tv-spot-play" id="tv-spot-play" type="button" aria-label="Play TV spot">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.8v14.4L19 12 7 4.8Z" fill="currentColor"/></svg>
+                    </button>
+                </div>
                 <p class="mb-5" style="font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:0.12em;text-align:center;text-transform:uppercase;">Aired on RTV & RTV+ · Flanders · Prime Time · 2026</p>
 
                 <!-- Spot adaptations&nbsp;— 3 formats in a row -->
@@ -1861,6 +1912,30 @@
     <script src="assets/js/main.js"></script>
 
     <script>
+    /* =====================================================
+       MAIN TV SPOT — centered poster play control
+    ===================================================== */
+    (function() {
+        const frame = document.getElementById('tv-spot-frame');
+        const player = document.getElementById('tv-spot-player');
+        const playButton = document.getElementById('tv-spot-play');
+        if (!frame || !player || !playButton) return;
+
+        function syncPlayState() {
+            frame.classList.toggle('is-playing', !player.paused && !player.ended);
+        }
+
+        playButton.addEventListener('click', function() {
+            player.play().catch(function() {
+                syncPlayState();
+            });
+        });
+
+        player.addEventListener('play', syncPlayState);
+        player.addEventListener('pause', syncPlayState);
+        player.addEventListener('ended', syncPlayState);
+    })();
+
     /* =====================================================
        GDN BANNER SHOWCASE — smooth ping-pong auto pan
     ===================================================== */
