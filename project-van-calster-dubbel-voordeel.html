@@ -498,6 +498,100 @@
         }
 
         /* ============================================================
+           GDN BANNERS — panoramic, auto-panning campaign board
+        ============================================================ */
+        .gdn-showcase-wrap {
+            position: relative;
+            overflow: hidden;
+            background: #444;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+        }
+        .gdn-showcase {
+            position: relative;
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none;
+            cursor: grab;
+            touch-action: pan-y;
+            overscroll-behavior-inline: contain;
+        }
+        .gdn-showcase::-webkit-scrollbar { display: none; }
+        .gdn-showcase.is-dragging { cursor: grabbing; }
+        .gdn-showcase:focus-visible {
+            outline: 2px solid rgba(255,255,255,0.72);
+            outline-offset: -4px;
+        }
+        .gdn-board-frame {
+            position: relative;
+            width: 4806px;
+            height: 984px;
+            flex: 0 0 auto;
+        }
+        .gdn-board {
+            position: absolute;
+            inset: 0;
+            width: 4806px;
+            height: 984px;
+            transform-origin: top left;
+        }
+        .gdn-format {
+            position: absolute;
+            margin: 0;
+            user-select: none;
+        }
+        .gdn-format-label {
+            display: block;
+            position: absolute;
+            top: -22px;
+            left: 0;
+            margin: 0;
+            color: rgba(255,255,255,0.48);
+            font-size: 11px;
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: 0.02em;
+        }
+        .gdn-format img {
+            display: block;
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+            transition: opacity 0.45s ease;
+            pointer-events: none;
+        }
+        .gdn-showcase-wrap.is-ready .gdn-format img { opacity: 1; }
+
+        /* Reference layout: 56 px column gaps and 85 px between wide formats.
+           Banner artwork is displayed at 150% of its labelled GDN size. */
+        .gdn-format--120x600 { left: 84px;   top: 54px;    width: 180px; }
+        .gdn-format--160x600 { left: 348px;  top: 54px;    width: 240px; }
+        .gdn-format--200x400 { left: 672px;  top: 54px;    width: 300px; }
+        .gdn-format--250x250 { left: 1056px; top: 54px;    width: 375px; }
+        .gdn-format--300x250 { left: 1515px; top: 54px;    width: 450px; }
+        .gdn-format--300x600 { left: 2049px; top: 54px;    width: 450px; }
+        .gdn-format--336x280 { left: 2583px; top: 54px;    width: 504px; }
+        .gdn-format--728x90  { left: 3267px; top: 54px;    width: 1092px; }
+        .gdn-format--970x90  { left: 3267px; top: 316.5px; width: 1455px; }
+        .gdn-format--400x200 { left: 2583px; top: 654px;   width: 600px; }
+        .gdn-format--970x250 { left: 3267px; top: 579px;   width: 1455px; }
+
+        @media (max-width: 1199.98px) {
+            .gdn-board-frame { width: 3941px; height: 807px; }
+            .gdn-board { transform: scale(0.82); }
+        }
+        @media (max-width: 991.98px) {
+            .gdn-board-frame { width: 3365px; height: 689px; }
+            .gdn-board { transform: scale(0.7); }
+        }
+        @media (max-width: 767.98px) {
+            .gdn-board-frame { width: 2500px; height: 512px; }
+            .gdn-board { transform: scale(0.52); }
+        }
+
+        /* ============================================================
            MISC
         ============================================================ */
         .pill-tag {
@@ -1019,20 +1113,56 @@
                 <!-- GDN Banners -->
                 <div class="mb-5">
                     <p class="section-label" style="margin-bottom:20px;">GDN Banners</p>
-                    <div class="deliverables-grid mb-3">
-                        <div class="media-placeholder ph-16x9" style="border-radius:12px;min-height:260px;">
-                            <div class="ph-icon">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                    <div class="gdn-showcase-wrap mb-3 mil-up" id="gdn-showcase-wrap">
+                        <div class="gdn-showcase" id="gdn-showcase" tabindex="0" aria-label="Eleven Google Display Network banner formats. The gallery moves automatically and can also be dragged horizontally.">
+                            <div class="gdn-board-frame">
+                                <div class="gdn-board" id="gdn-board">
+                                    <figure class="gdn-format gdn-format--120x600">
+                                        <figcaption class="gdn-format-label">120×600</figcaption>
+                                        <img data-src="assets/images/projects/van-calster/GDN/120x600.png" width="240" height="1200" alt="Van Calster Dubbel Voordeel display banner, 120 by 600 pixels" draggable="false">
+                                    </figure>
+                                    <figure class="gdn-format gdn-format--160x600">
+                                        <figcaption class="gdn-format-label">160×600</figcaption>
+                                        <img data-src="assets/images/projects/van-calster/GDN/160x600.png" width="320" height="1200" alt="Van Calster Dubbel Voordeel display banner, 160 by 600 pixels" draggable="false">
+                                    </figure>
+                                    <figure class="gdn-format gdn-format--200x400">
+                                        <figcaption class="gdn-format-label">200×400</figcaption>
+                                        <img data-src="assets/images/projects/van-calster/GDN/200x400.png" width="400" height="800" alt="Van Calster Dubbel Voordeel display banner, 200 by 400 pixels" draggable="false">
+                                    </figure>
+                                    <figure class="gdn-format gdn-format--250x250">
+                                        <figcaption class="gdn-format-label">250×250</figcaption>
+                                        <img data-src="assets/images/projects/van-calster/GDN/250x250.png" width="500" height="500" alt="Van Calster Dubbel Voordeel display banner, 250 by 250 pixels" draggable="false">
+                                    </figure>
+                                    <figure class="gdn-format gdn-format--300x250">
+                                        <figcaption class="gdn-format-label">300×250</figcaption>
+                                        <img data-src="assets/images/projects/van-calster/GDN/300x250.png" width="600" height="500" alt="Van Calster Dubbel Voordeel display banner, 300 by 250 pixels" draggable="false">
+                                    </figure>
+                                    <figure class="gdn-format gdn-format--300x600">
+                                        <figcaption class="gdn-format-label">300×600</figcaption>
+                                        <img data-src="assets/images/projects/van-calster/GDN/300x600.png" width="600" height="1200" alt="Van Calster Dubbel Voordeel display banner, 300 by 600 pixels" draggable="false">
+                                    </figure>
+                                    <figure class="gdn-format gdn-format--336x280">
+                                        <figcaption class="gdn-format-label">336×280</figcaption>
+                                        <img data-src="assets/images/projects/van-calster/GDN/336x280.png" width="672" height="560" alt="Van Calster Dubbel Voordeel display banner, 336 by 280 pixels" draggable="false">
+                                    </figure>
+                                    <figure class="gdn-format gdn-format--728x90">
+                                        <figcaption class="gdn-format-label">728×90</figcaption>
+                                        <img data-src="assets/images/projects/van-calster/GDN/728x90.png" width="1456" height="180" alt="Van Calster Dubbel Voordeel display banner, 728 by 90 pixels" draggable="false">
+                                    </figure>
+                                    <figure class="gdn-format gdn-format--970x90">
+                                        <figcaption class="gdn-format-label">970×90</figcaption>
+                                        <img data-src="assets/images/projects/van-calster/GDN/970x90.png" width="1940" height="180" alt="Van Calster Dubbel Voordeel display banner, 970 by 90 pixels" draggable="false">
+                                    </figure>
+                                    <figure class="gdn-format gdn-format--400x200">
+                                        <figcaption class="gdn-format-label">400×200</figcaption>
+                                        <img data-src="assets/images/projects/van-calster/GDN/400x200.png" width="800" height="400" alt="Van Calster Dubbel Voordeel display banner, 400 by 200 pixels" draggable="false">
+                                    </figure>
+                                    <figure class="gdn-format gdn-format--970x250">
+                                        <figcaption class="gdn-format-label">970×250</figcaption>
+                                        <img data-src="assets/images/projects/van-calster/GDN/970x250.png" width="1940" height="500" alt="Van Calster Dubbel Voordeel display banner, 970 by 250 pixels" draggable="false">
+                                    </figure>
+                                </div>
                             </div>
-                            <span class="ph-label">GDN Banner Set</span>
-                            <span class="ph-ratio">Multiple formats · animated</span>
-                        </div>
-                        <div class="media-placeholder ph-16x9" style="border-radius:12px;min-height:260px;">
-                            <div class="ph-icon">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                            </div>
-                            <span class="ph-label">Responsive Display Ads</span>
-                            <span class="ph-ratio">Google Display Network</span>
                         </div>
                     </div>
                 </div>
@@ -1243,6 +1373,146 @@
     <script src="assets/js/main.js"></script>
 
     <script>
+    /* =====================================================
+       GDN BANNER SHOWCASE — smooth ping-pong auto pan
+    ===================================================== */
+    (function() {
+        const viewport = document.getElementById('gdn-showcase');
+        const wrap = document.getElementById('gdn-showcase-wrap');
+        if (!viewport || !wrap) return;
+
+        const images = Array.from(viewport.querySelectorAll('img[data-src]'));
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let inView = false;
+        let imagesRequested = false;
+        let dragging = false;
+        let dragStartX = 0;
+        let dragStartScroll = 0;
+        let direction = 1;
+        let lastFrame = 0;
+        let resumeAt = 0;
+        let edgePauseUntil = 0;
+        let rafId = null;
+
+        function requestImages() {
+            if (imagesRequested) return;
+            imagesRequested = true;
+
+            Promise.all(images.map(function(img) {
+                return new Promise(function(resolve) {
+                    function done() { resolve(); }
+                    img.addEventListener('load', done, { once: true });
+                    img.addEventListener('error', done, { once: true });
+                    img.src = img.dataset.src;
+                    if (img.complete) done();
+                });
+            })).then(function() {
+                wrap.classList.add('is-ready');
+            });
+        }
+
+        function animate(now) {
+            if (!inView || reduceMotion) {
+                rafId = null;
+                lastFrame = 0;
+                return;
+            }
+
+            if (!lastFrame) lastFrame = now;
+            const delta = Math.min((now - lastFrame) / 1000, 0.06);
+            lastFrame = now;
+
+            const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+            const canMove = inView && !dragging && now >= resumeAt;
+
+            if (canMove && maxScroll > 1 && now >= edgePauseUntil) {
+                let next = viewport.scrollLeft + direction * 34 * delta;
+
+                if (next >= maxScroll) {
+                    next = maxScroll;
+                    direction = -1;
+                    edgePauseUntil = now + 650;
+                } else if (next <= 0) {
+                    next = 0;
+                    direction = 1;
+                    edgePauseUntil = now + 650;
+                }
+
+                viewport.scrollLeft = next;
+            }
+
+            rafId = requestAnimationFrame(animate);
+        }
+
+        function startAnimation() {
+            if (!rafId) rafId = requestAnimationFrame(animate);
+        }
+
+        function stopAnimation() {
+            if (rafId) cancelAnimationFrame(rafId);
+            rafId = null;
+            lastFrame = 0;
+        }
+
+        viewport.addEventListener('pointerdown', function(event) {
+            if (event.button !== 0) return;
+            dragging = true;
+            dragStartX = event.clientX;
+            dragStartScroll = viewport.scrollLeft;
+            viewport.classList.add('is-dragging');
+            viewport.setPointerCapture(event.pointerId);
+        });
+
+        viewport.addEventListener('pointermove', function(event) {
+            if (!dragging) return;
+            const previous = viewport.scrollLeft;
+            viewport.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
+            if (viewport.scrollLeft > previous) direction = 1;
+            if (viewport.scrollLeft < previous) direction = -1;
+            if (event.cancelable) event.preventDefault();
+        });
+
+        function finishDrag(event) {
+            if (!dragging) return;
+            dragging = false;
+            viewport.classList.remove('is-dragging');
+            resumeAt = performance.now() + 1200;
+            if (viewport.hasPointerCapture(event.pointerId)) viewport.releasePointerCapture(event.pointerId);
+        }
+
+        viewport.addEventListener('pointerup', finishDrag);
+        viewport.addEventListener('pointercancel', finishDrag);
+
+        viewport.addEventListener('keydown', function(event) {
+            if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+            event.preventDefault();
+            direction = event.key === 'ArrowRight' ? 1 : -1;
+            viewport.scrollBy({ left: direction * 180, behavior: 'smooth' });
+            resumeAt = performance.now() + 1400;
+        });
+
+        document.addEventListener('visibilitychange', function() {
+            lastFrame = 0;
+        });
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(function(entries) {
+                inView = entries[0].isIntersecting;
+                if (inView) {
+                    requestImages();
+                    if (!reduceMotion) startAnimation();
+                } else {
+                    stopAnimation();
+                }
+            }, { rootMargin: '240px 0px', threshold: 0.01 });
+            observer.observe(viewport);
+        } else {
+            inView = true;
+            requestImages();
+            if (!reduceMotion) startAnimation();
+        }
+    })();
+
     /* =====================================================
        BEFORE / AFTER SLIDER
     ===================================================== */
