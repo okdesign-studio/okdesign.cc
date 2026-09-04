@@ -643,7 +643,7 @@
                         <div class="mars-compare-divider" id="mars-compare-divider"></div>
                         <div class="mars-compare-handle" id="mars-compare-handle" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round"><path d="M8 6l-4 6 4 6M16 6l4 6-4 6"/></svg></div>
                     </div>
-                    <p class="mars-compare-help">Swipe or drag to reveal the initial look</p>
+                    <p class="mars-compare-help">Move across the image or swipe to reveal the initial look</p>
                 </div>
                 <div class="mars-feed-grid mil-up" aria-label="Mars 2050 Instagram feed">
                     <div class="ig-grid-post"><img src="assets/images/projects/mars-2050/feed/01.webp" alt="Mars 2050 Instagram post 1" width="1073" height="1073" loading="lazy"></div>
@@ -795,6 +795,7 @@
 
             var current = 2;
             var dragging = false;
+            var hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
             function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
             function setComparison(percent) {
                 current = clamp(percent, 2, 98);
@@ -815,17 +816,32 @@
                 if (!rect.width) return;
                 setComparison(((event.clientX - rect.left) / rect.width) * 100);
             }
+            function isHoverPointer(event) {
+                return hoverCapable && event.pointerType !== 'touch';
+            }
+            compare.addEventListener('pointerenter', function (event) {
+                if (isHoverPointer(event)) setFromPointer(event);
+            });
             compare.addEventListener('pointerdown', function (event) {
+                if (isHoverPointer(event)) {
+                    setFromPointer(event);
+                    return;
+                }
                 dragging = true;
                 compare.setPointerCapture(event.pointerId);
                 setFromPointer(event);
             });
-            compare.addEventListener('pointermove', function (event) { if (dragging) setFromPointer(event); });
+            compare.addEventListener('pointermove', function (event) {
+                if (isHoverPointer(event) || dragging) setFromPointer(event);
+            });
             compare.addEventListener('pointerup', function (event) {
                 dragging = false;
                 if (compare.hasPointerCapture(event.pointerId)) compare.releasePointerCapture(event.pointerId);
             });
             compare.addEventListener('pointercancel', function () { dragging = false; });
+            compare.addEventListener('pointerleave', function (event) {
+                if (isHoverPointer(event)) setComparison(2);
+            });
             compare.addEventListener('keydown', function (event) {
                 var next = current;
                 if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') next -= 4;
