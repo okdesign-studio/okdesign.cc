@@ -17,9 +17,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300..800&family=Outfit:wght@300..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="viewer.css">
+<style>
+  .pl-proofcard { display: none !important; }
+  .nr-credit { position: fixed; right: 18px; bottom: 16px; z-index: 3001; margin: 0; text-align: right;
+    font: 400 11px/1.45 Outfit, Figtree, Arial, sans-serif; letter-spacing: .04em; color: rgba(255,255,255,.55); }
+  .nr-credit a { color: rgba(255,255,255,.9); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.35); }
+  .nr-credit a:hover { color: #fff; border-bottom-color: #fff; }
+  @media (max-width: 899px) { .nr-credit { right: 12px; bottom: 58px; } }
+</style>
 </head>
 <body class="pl-proof-page">
 <div id="plProof"></div>
+<p class="nr-credit">Designed by<br><a href="https://okdesign.cc/" target="_blank" rel="noopener">OK Design</a></p>
 <script>
 window.__OK_PROOF__ = {
   "v": 1,
