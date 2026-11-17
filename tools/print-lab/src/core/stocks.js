@@ -1,0 +1,45 @@
+// Paper and board presets. Thickness is an approximation from typical caliper values and is only
+// used for the 3D model; it never feeds into a template measurement.
+
+export const STOCKS = {
+  'offset-90': { name: 'Uncoated 90 g', gsm: 90, mm: 0.11, color: '#f7f6f1', rough: 0.92, kind: 'paper' },
+  'offset-120': { name: 'Uncoated 120 g', gsm: 120, mm: 0.15, color: '#f7f6f1', rough: 0.92, kind: 'paper' },
+  'silk-135': { name: 'Silk 135 g', gsm: 135, mm: 0.11, color: '#f9f8f4', rough: 0.55, kind: 'paper' },
+  'silk-170': { name: 'Silk 170 g', gsm: 170, mm: 0.14, color: '#f9f8f4', rough: 0.55, kind: 'paper' },
+  'gloss-170': { name: 'Gloss 170 g', gsm: 170, mm: 0.13, color: '#fbfaf7', rough: 0.3, kind: 'paper' },
+  'silk-250': { name: 'Silk 250 g', gsm: 250, mm: 0.22, color: '#f9f8f4', rough: 0.55, kind: 'card' },
+  'silk-300': { name: 'Silk 300 g', gsm: 300, mm: 0.27, color: '#f9f8f4', rough: 0.55, kind: 'card' },
+  'silk-350': { name: 'Silk 350 g', gsm: 350, mm: 0.33, color: '#f9f8f4', rough: 0.55, kind: 'card' },
+  'gloss-300': { name: 'Gloss 300 g', gsm: 300, mm: 0.26, color: '#fbfaf7', rough: 0.3, kind: 'card' },
+  'cotton-450': { name: 'Cotton 450 g', gsm: 450, mm: 0.6, color: '#f6f2e9', rough: 0.96, kind: 'card' },
+  'pastel-board-700': { name: 'Designer board 700 g · warm pastel', gsm: 700, mm: 0.9, color: '#f2e2d5', rough: 0.95, kind: 'card', multiply: true, felt: true, core: '#e2b3a2', inside: '#f2e2d5' },
+  'kraft-300': { name: 'Kraft 300 g', gsm: 300, mm: 0.36, color: '#b7936a', rough: 0.9, kind: 'kraft', multiply: true },
+  'black-300': { name: 'Black card 300 g', gsm: 300, mm: 0.34, color: '#17171a', rough: 0.72, kind: 'card', dark: true },
+  'env-90': { name: 'Envelope 90 g', gsm: 90, mm: 0.12, color: '#f6f5f0', rough: 0.9, kind: 'paper' },
+  'env-120': { name: 'Envelope 120 g', gsm: 120, mm: 0.16, color: '#f4f2ea', rough: 0.9, kind: 'paper' },
+  'kraft-120': { name: 'Kraft 120 g', gsm: 120, mm: 0.17, color: '#b7936a', rough: 0.9, kind: 'kraft', multiply: true },
+  'gc1-350': { name: 'GC1 carton 350 g', gsm: 350, mm: 0.45, color: '#f4f3ee', rough: 0.6, kind: 'board', inside: '#ece9df' },
+  'gc1-400': { name: 'GC1 carton 400 g', gsm: 400, mm: 0.52, color: '#f4f3ee', rough: 0.6, kind: 'board', inside: '#ece9df' },
+  'kraftboard-400': { name: 'Kraft carton 400 g', gsm: 400, mm: 0.55, color: '#b08a60', rough: 0.88, kind: 'kraft', multiply: true },
+  'eflute-white': { name: 'E-flute white', gsm: 0, mm: 1.5, color: '#f2f0ea', rough: 0.78, kind: 'corrugated', inside: '#efe7d6', flute: 3.2, core: '#d9c6a4' },
+  'eflute-kraft': { name: 'E-flute kraft', gsm: 0, mm: 1.5, color: '#b58f63', rough: 0.86, kind: 'corrugated', multiply: true, flute: 3.2, core: '#c9a97c' },
+  'bflute-kraft': { name: 'B-flute kraft', gsm: 0, mm: 3, color: '#b58f63', rough: 0.88, kind: 'corrugated', multiply: true, flute: 6.5, core: '#c9a97c' },
+  'bag-170': { name: 'Bag paper 170 g', gsm: 170, mm: 0.2, color: '#f6f5f0', rough: 0.7, kind: 'paper' },
+  'kraftbag-120': { name: 'Kraft bag 120 g', gsm: 120, mm: 0.18, color: '#b7936a', rough: 0.9, kind: 'kraft', multiply: true },
+  'label-90': { name: 'Label paper', gsm: 90, mm: 0.12, color: '#f9f8f4', rough: 0.5, kind: 'paper' },
+  'vinyl-100': { name: 'White vinyl', gsm: 0, mm: 0.1, color: '#fbfbfb', rough: 0.34, kind: 'paper' },
+  'beermat-1000': { name: 'Beer mat board', gsm: 1000, mm: 1.5, color: '#f5f2e8', rough: 0.9, kind: 'board' },
+  'poster-135': { name: 'Poster 135 g', gsm: 135, mm: 0.12, color: '#f9f8f4', rough: 0.5, kind: 'paper' },
+  'blueback-115': { name: 'Blueback 115 g', gsm: 115, mm: 0.13, color: '#f6f6f2', rough: 0.72, kind: 'paper', inside: '#5c7fa8' },
+  'pet-510': { name: 'Roll-up film 510 µm', gsm: 0, mm: 0.51, color: '#f4f4f2', rough: 0.45, kind: 'board' },
+  'pvc-5': { name: 'Forex 5 mm', gsm: 0, mm: 5, color: '#f8f8f6', rough: 0.45, kind: 'board' },
+  'pvc-banner': { name: 'PVC banner 510 g', gsm: 510, mm: 0.5, color: '#f5f5f3', rough: 0.55, kind: 'board' },
+  'corplast-3': { name: 'Corrugated plastic 3 mm', gsm: 0, mm: 3, color: '#f2f2ef', rough: 0.5, kind: 'board' },
+};
+
+export const FINISHES = {
+  none: { name: 'No lamination', rough: null, clearcoat: 0 },
+  matte: { name: 'Matte lamination', rough: 0.62, clearcoat: 0 },
+  gloss: { name: 'Gloss lamination', rough: 0.22, clearcoat: 0.6 },
+  soft: { name: 'Soft-touch', rough: 0.78, clearcoat: 0, sheen: 0.5 },
+};

@@ -1,0 +1,39 @@
+{
+  "v": 1,
+  "slug": "heybear",
+  "id": "box-mailer",
+  "size": "m",
+  "stock": "eflute-white",
+  "finish": "none",
+  "project": "HeyBear mailer box",
+  "client": "HeyBear",
+  "meta": "Packaging concept by Oleksandr Kukharyk",
+  "note": "Designed in Figma on a true-size FEFCO 0427 dieline. Drag to turn it, or try Outside, Inside, Folded and Open. HeyBear assets are used for this concept only.",
+  "version": "concept",
+  "date": "2026-11-08",
+  "email": "hello@okdesign.cc",
+  "art": {
+    "front": "outside.jpg",
+    "back": "inside.jpg"
+  },
+  "bookPages": {},
+  "links": [
+    {
+      "label": "Dieline + artwork (PDF)",
+      "href": "heybear-mailer-dieline.pdf",
+      "download": true
+    }
+  ],
+  "share": {
+    "title": "HeyBear mailer box, 3D concept by OK Design",
+    "description": "A HeyBear mailer box concept on a true-size FEFCO 0427 dieline, shown flat, folded and open in 3D. Designed by Oleksandr Kukharyk, OK Design.",
+    "ogTitle": "HeyBear mailer box, 3D concept",
+    "ogDescription": "Flat dieline, folded box and the unboxing, in one link. By Oleksandr Kukharyk, OK Design."
+  },
+  "format": {
+    "name": "Mailer box",
+    "size": "300 × 220 × 80 mm"
+  },
+  "created": "2026-11-08T20:43:12+01:00",
+  "updated": "2026-11-17T15:29:15.901Z"
+}

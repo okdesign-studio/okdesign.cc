@@ -1,0 +1,52 @@
+{
+  "v": 1,
+  "slug": "nathalie-rob-c",
+  "id": "invite-gate",
+  "size": "a6",
+  "stock": "cotton-450",
+  "finish": "none",
+  "project": "Nathalie & Rob · C · Photo on the doors",
+  "client": "Nathalie & Rob",
+  "meta": "Gatefold invitation by Oleksandr Kukharyk, OK Design",
+  "note": "Photo across the outer doors. Open and close it to see where the seam cuts the picture. Inside is the same as A. Photos are placeholders.",
+  "version": "C · Photo on the doors",
+  "date": "2026-11-15",
+  "email": "hello@okdesign.cc",
+  "art": {
+    "front": "outside.jpg",
+    "back": "inside.jpg"
+  },
+  "bookPages": {},
+  "links": [
+    {
+      "label": "Spreads, print proof (PDF)",
+      "href": "nathalie-rob-C-spreads-A5.pdf",
+      "download": true
+    },
+    {
+      "label": "A · Doorway",
+      "href": "/demo/nathalie-rob-a/"
+    },
+    {
+      "label": "A2 · Photo reveal",
+      "href": "/demo/nathalie-rob-a2/"
+    },
+    {
+      "label": "B · Initials",
+      "href": "/demo/nathalie-rob-b/"
+    }
+  ],
+  "card": "credit",
+  "share": {
+    "title": "Nathalie & Rob, gatefold invitation C in 3D, by OK Design",
+    "description": "The couple's photo across both doors, as requested. When the card is closed the seam runs right between them. 27.07.2027, Lago Tervuren. Designed by Oleksandr Kukharyk, OK Design.",
+    "ogTitle": "Nathalie & Rob, gatefold invitation · C · Photo on the doors",
+    "ogDescription": "The couple's photo across both doors, as requested. When the card is closed the seam runs right between them."
+  },
+  "format": {
+    "name": "Gatefold invitation",
+    "size": "210 × 148 → 106 × 148 mm"
+  },
+  "created": "2026-11-15T20:38:54+01:00",
+  "updated": "2026-11-17T15:29:15.901Z"
+}

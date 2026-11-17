@@ -1,0 +1,52 @@
+{
+  "v": 1,
+  "slug": "nathalie-rob-a",
+  "id": "invite-gate",
+  "size": "a6",
+  "stock": "cotton-450",
+  "finish": "none",
+  "project": "Nathalie & Rob · A · Doorway",
+  "client": "Nathalie & Rob",
+  "meta": "Gatefold invitation by Oleksandr Kukharyk, OK Design",
+  "note": "A5 gatefold, 210 × 148 mm flat, 106 × 148 mm folded. Drag to turn it, or try Outside, Inside, Folded and Open. Photos are placeholders.",
+  "version": "A · Doorway",
+  "date": "2026-11-15",
+  "email": "hello@okdesign.cc",
+  "art": {
+    "front": "outside.jpg",
+    "back": "inside.jpg"
+  },
+  "bookPages": {},
+  "links": [
+    {
+      "label": "Spreads, print proof (PDF)",
+      "href": "nathalie-rob-A-spreads-A5.pdf",
+      "download": true
+    },
+    {
+      "label": "A2 · Photo reveal",
+      "href": "/demo/nathalie-rob-a2/"
+    },
+    {
+      "label": "B · Initials",
+      "href": "/demo/nathalie-rob-b/"
+    },
+    {
+      "label": "C · Photo on the doors",
+      "href": "/demo/nathalie-rob-c/"
+    }
+  ],
+  "card": "credit",
+  "share": {
+    "title": "Nathalie & Rob, gatefold invitation A in 3D, by OK Design",
+    "description": "Watercolour doorway: one name on each door; the arch and the bouquets meet when the card closes. 27.07.2027, Lago Tervuren. Designed by Oleksandr Kukharyk, OK Design.",
+    "ogTitle": "Nathalie & Rob, gatefold invitation · A · Doorway",
+    "ogDescription": "Watercolour doorway: one name on each door; the arch and the bouquets meet when the card closes."
+  },
+  "format": {
+    "name": "Gatefold invitation",
+    "size": "210 × 148 → 106 × 148 mm"
+  },
+  "created": "2026-11-15T20:38:54+01:00",
+  "updated": "2026-11-17T15:29:15.901Z"
+}

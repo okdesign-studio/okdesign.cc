@@ -1,0 +1,52 @@
+{
+  "v": 1,
+  "slug": "nathalie-rob-b",
+  "id": "invite-gate",
+  "size": "a6",
+  "stock": "cotton-450",
+  "finish": "none",
+  "project": "Nathalie & Rob · B · Initials",
+  "client": "Nathalie & Rob",
+  "meta": "Gatefold invitation by Oleksandr Kukharyk, OK Design",
+  "note": "Minimal variant of the same system. Drag to turn it, or try Outside, Inside, Folded and Open. Photos are placeholders.",
+  "version": "B · Initials",
+  "date": "2026-11-15",
+  "email": "hello@okdesign.cc",
+  "art": {
+    "front": "outside.jpg",
+    "back": "inside.jpg"
+  },
+  "bookPages": {},
+  "links": [
+    {
+      "label": "Spreads, print proof (PDF)",
+      "href": "nathalie-rob-B-spreads-A5.pdf",
+      "download": true
+    },
+    {
+      "label": "A · Doorway",
+      "href": "/demo/nathalie-rob-a/"
+    },
+    {
+      "label": "A2 · Photo reveal",
+      "href": "/demo/nathalie-rob-a2/"
+    },
+    {
+      "label": "C · Photo on the doors",
+      "href": "/demo/nathalie-rob-c/"
+    }
+  ],
+  "card": "credit",
+  "share": {
+    "title": "Nathalie & Rob, gatefold invitation B in 3D, by OK Design",
+    "description": "Quiet version: large N and R initials, line-art flowers, one photo window inside. 27.07.2027, Lago Tervuren. Designed by Oleksandr Kukharyk, OK Design.",
+    "ogTitle": "Nathalie & Rob, gatefold invitation · B · Initials",
+    "ogDescription": "Quiet version: large N and R initials, line-art flowers, one photo window inside."
+  },
+  "format": {
+    "name": "Gatefold invitation",
+    "size": "210 × 148 → 106 × 148 mm"
+  },
+  "created": "2026-11-15T20:38:54+01:00",
+  "updated": "2026-11-17T15:29:15.901Z"
+}

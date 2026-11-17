@@ -1,0 +1,42 @@
+{
+  "v": 1,
+  "slug": "nathalie-rob",
+  "id": "invite-gate",
+  "size": "a6-flush",
+  "stock": "pastel-board-700",
+  "finish": "none",
+  "project": "Nathalie & Rob · wedding invitation",
+  "client": "Nathalie & Rob",
+  "meta": "Gatefold invitation by OK Design",
+  "note": "",
+  "version": "Gatefold A5",
+  "date": "2026-11-16",
+  "email": "hello@okdesign.cc",
+  "art": {
+    "front": "outside.jpg",
+    "back": "inside.jpg"
+  },
+  "bookPages": {},
+  "links": [],
+  "sticker": {
+    "src": "sticker.png",
+    "panel": "door-l",
+    "x": -0.25,
+    "y": 100,
+    "d": 22,
+    "edge": "#93736c"
+  },
+  "card": "credit",
+  "share": {
+    "title": "Nathalie & Rob, gatefold wedding invitation in 3D, by OK Design",
+    "description": "Gatefold wedding invitation for Nathalie & Rob, 27.07.2027, Lago Tervuren. Designed by OK Design.",
+    "ogTitle": "Nathalie & Rob · gatefold wedding invitation",
+    "ogDescription": "27.07.2027 · Lago Tervuren. Designed by OK Design."
+  },
+  "format": {
+    "name": "Gatefold invitation",
+    "size": "210 × 148 → 105 × 148 mm, doors meet"
+  },
+  "created": "2026-11-15T22:08:46+01:00",
+  "updated": "2026-11-17T15:29:15.901Z"
+}

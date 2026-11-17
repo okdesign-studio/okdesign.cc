@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Студия 3D-превью · OK Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Working tool of OK Design: not linked from the site, kept out of search engines. -->
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="/assets/fonts/fonts.css">
+    <link rel="stylesheet" href="/assets/icon/icomoon/style.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/projects-filter.css">
+    <link rel="stylesheet" href="/viewer/viewer.css">
+    <link rel="shortcut icon" href="/assets/images/logo/favicon.svg">
+    <style>
+        body { background: #000; color: #fff; overflow-x: hidden; }
+        .ds-top { position: sticky; top: 0; z-index: 20; background: rgba(0,0,0,.86); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.08); }
+        .ds-top .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+        .ds-top nav { display: flex; gap: 22px; }
+        .ds-top nav a { color: rgba(255,255,255,.72); text-decoration: none; font-size: 14px; letter-spacing: .5px; }
+        .ds-top nav a:hover { color: #fff; }
+        .ds-top .ds-brand { display: flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; font-weight: 600; }
+        .ds-top .ds-brand img { height: 28px; width: auto; }
+        .pl-intro { padding-top: 70px; }
+        .ds-eyebrow { color: var(--pl-blue); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; display: block; }
+        @media (max-width: 700px) { .ds-top nav { gap: 14px; } .ds-top nav a { font-size: 13px; } .ds-top .ds-brand span { display: none; } }
+    </style>
+</head>
+<body>
+    <header class="ds-top">
+        <div class="container">
+            <a class="ds-brand" href="/studio/"><img src="/assets/images/logo/logo.svg" alt="OK Design"><span>Студия 3D-превью</span></a>
+            <nav aria-label="Разделы студии">
+                <a href="#demos">Демо</a>
+                <a href="#catalog">Каталог</a>
+                <a href="#settings">Настройки</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="plApp" data-lang="ru">
+        <div class="section-page-title pl-intro">
+            <div class="container text-center">
+                <span class="pl-totals" id="plTotals"></span>
+                <h1 class="page-title text-display-2 fw-semibold letter-space--3 text-white mb-3">Студия 3D-превью</h1>
+                <p class="text-white-64 text-body-1 mb-0 mx-auto" style="max-width: 680px; line-height: 1.6;">
+                    Выбери формат, скачай шаблон, загрузи макет и опубликуй отдельную ссылку для клиента. Шаблоны в каталоге не меняются: каждое демо живёт в своей папке <b>okdesign.cc/demo/имя/</b>.
+                </p>
+            </div>
+        </div>
+
+        <section class="ds-section" id="demos" aria-label="Опубликованные демо">
+            <div class="container">
+                <div class="ds-headrow"><h2>Мои демо</h2><button type="button" class="pl-chip" id="dsRefresh">Обновить</button></div>
+                <div id="dsDemos"></div>
+            </div>
+        </section>
+
+        <section class="ds-section" aria-label="Как это работает">
+            <div class="container">
+                <ol class="ds-guide">
+                    <li><span class="ds-eyebrow">01 / Формат</span><b>Открой формат</b>Найди его в каталоге ниже, выбери размер и материал. На вкладке «Формат» написано, какой файл и какого размера нужен.</li>
+                    <li><span class="ds-eyebrow">02 / Шаблон</span><b>Сделай макет</b>Скачай шаблон снаружи и, если нужно, внутри. Рисуй прямо на нём: стрелки TOP показывают верх каждой панели.</li>
+                    <li><span class="ds-eyebrow">03 / Макет</span><b>Примерь</b>Перетащи PDF или PNG на модель. Студия сразу проверит разрешение, вылеты и размер.</li>
+                    <li><span class="ds-eyebrow">04 / Демо</span><b>Опубликуй</b>На вкладке «Демо» задай адрес и подписи и нажми «Опубликовать». Через минуту ссылка готова.</li>
+                </ol>
+            </div>
+        </section>
+
+        <div class="section-page-title pt-5" id="catalog">
+            <div class="container text-center">
+                <section class="projects-discovery text-start" aria-label="Фильтры форматов">
+                    <div class="projects-search-bar">
+                        <label class="visually-hidden" for="plSearch">Поиск форматов</label>
+                        <input type="search" id="plSearch" autocomplete="off" placeholder="Поиск: формат, размер, название на NL/FR">
+                        <span class="projects-search-action" aria-hidden="true"><i class="icon icon-search"></i></span>
+                    </div>
+                    <div class="pl-filters" id="plCats" role="group" aria-label="Категории"></div>
+                    <div class="projects-filter-meta"><span class="projects-result-count" id="plCount"></span></div>
+                </section>
+            </div>
+        </div>
+        <section class="section-blog flat-spacing pt-0">
+            <div class="container">
+                <div id="plGrid"></div>
+                <div class="projects-empty-state" id="plEmpty" hidden>
+                    <p class="h5 mb-2">Ничего не нашлось</p>
+                    <p class="text-white-64 mb-4">Попробуй другую категорию или другое слово.</p>
+                    <button type="button" class="tf-btn" id="plReset">СБРОСИТЬ ФИЛЬТРЫ</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="ds-section pb-5" id="settings" aria-label="Настройки">
+            <div class="container">
+                <div class="ds-headrow"><h2>Настройки</h2></div>
+                <div id="dsSettings"></div>
+            </div>
+        </section>
+    </main>
+
+    <div id="plStudioHost"></div>
+    <script src="/viewer/viewer.js"></script>
+</body>
+</html>
