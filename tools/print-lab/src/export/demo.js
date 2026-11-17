@@ -65,6 +65,7 @@ export function demoHTML(data) {
   const ogDesc = sh.ogDescription || desc;
   const page = { ...data };
   delete page.files;
+  delete page.client; // the client's name is for the studio list, the page does not need it
   return `<!doctype html>
 <html lang="en">
 <head>

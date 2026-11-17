@@ -1,7 +1,10 @@
 // Publishing demos straight from the browser to the site's GitHub repository.
 // GitHub Pages serves every file in the repository, so a demo is just a folder: /demo/<name>/.
 // The token is a fine-grained GitHub token with "Contents: read and write" on this one
-// repository. It is kept in this browser only (localStorage) and sent only to api.github.com.
+// repository. It is stored only encrypted with the studio password (see vault.js) and is sent
+// only to api.github.com.
+
+import { vault } from './vault.js';
 
 export const SITE = {
   repo: 'okdesign-studio/okdesign.cc',
@@ -11,24 +14,10 @@ export const SITE = {
 };
 
 const API = 'https://api.github.com';
-const KEY = 'okds.github.token';
 
+// The token of this tab after the studio password was entered; '' while the studio is locked.
 export const token = {
-  get() {
-    try {
-      return localStorage.getItem(KEY) || '';
-    } catch {
-      return '';
-    }
-  },
-  set(v) {
-    try {
-      if (v) localStorage.setItem(KEY, v.trim());
-      else localStorage.removeItem(KEY);
-    } catch {
-      /* private mode: the token lives until the tab closes */
-    }
-  },
+  get: () => vault.token(),
 };
 
 export const demoUrl = (slug) => `${SITE.origin}/${SITE.folder}/${slug}/`;
@@ -49,9 +38,9 @@ export function toSlug(s) {
 
 class GitHubError extends Error {}
 
-async function gh(path, { method = 'GET', body, raw = false } = {}) {
-  const t = token.get();
-  if (!t) throw new GitHubError('Нет токена GitHub. Добавь его в настройках студии.');
+async function gh(path, { method = 'GET', body, raw = false, auth } = {}) {
+  const t = auth || token.get();
+  if (!t) throw new GitHubError('Студия заблокирована. Обнови страницу и введи пароль.');
   let res;
   try {
     res = await fetch(`${API}${path}`, {
@@ -76,7 +65,7 @@ async function gh(path, { method = 'GET', body, raw = false } = {}) {
     } catch {
       /* no body */
     }
-    if (res.status === 401) throw new GitHubError('GitHub не принял токен: он неверный или истёк. Создай новый в настройках.');
+    if (res.status === 401) throw new GitHubError('GitHub не принял токен: он неверный или истёк. Создай новый токен и замени его в «Настройках» студии.');
     if (res.status === 403 || res.status === 404) throw new GitHubError(`У токена нет доступа к ${SITE.repo} на запись. ${msg}`.trim());
     if (res.status === 409 || res.status === 422) throw new GitHubError(`GitHub отклонил изменение: ${msg || res.status}. Попробуй ещё раз.`);
     throw new GitHubError(`GitHub ответил ${res.status}${msg ? `: ${msg}` : ''}`);
@@ -85,9 +74,9 @@ async function gh(path, { method = 'GET', body, raw = false } = {}) {
   return raw ? res.text() : res.json();
 }
 
-// Who the token belongs to and whether it can write to the site.
-export async function checkToken() {
-  const repo = await gh(`/repos/${SITE.repo}`);
+// Whether a token (by default the unlocked one) can write to the site.
+export async function checkToken(auth) {
+  const repo = await gh(`/repos/${SITE.repo}`, { auth });
   if (!repo) throw new GitHubError(`Токен не видит репозиторий ${SITE.repo}. При создании выбери его в "Repository access".`);
   if (!repo.permissions?.push) throw new GitHubError('Токен видит сайт, но не может в него писать. Дай ему "Contents: Read and write".');
   return { repo: repo.full_name, private: repo.private };

@@ -32,9 +32,10 @@ const LAB_STATE_LABELS = { flat: 'Снаружи', inside: 'Внутри', close
 const LAB_ROWS = { Outside: 'Габарит', Finished: 'Готовый размер', 'Flat sheet': 'Лист в развороте', 'With bleed': 'С вылетами', Stock: 'Материал', Finish: 'Отделка' };
 
 export class Studio {
-  constructor(host, { mode = 'lab', onClose, onChange, proof } = {}) {
+  constructor(host, { mode = 'lab', onClose, onChange, proof, back = true } = {}) {
     this.host = host;
     this.mode = mode;
+    this.back = back;
     this.onClose = onClose;
     this.onChange = onChange;
     this.proof = proof;
@@ -56,7 +57,7 @@ export class Studio {
         <div class="pl-stage">
           <div class="pl-canvas"></div>
           <div class="pl-head">
-            ${proof ? '' : `<a class="pl-back" href="#/"><span aria-hidden="true">←</span> ${lab ? 'Все форматы' : 'All formats'}</a>`}
+            ${proof || !this.back ? '' : `<a class="pl-back" href="#/"><span aria-hidden="true">←</span> ${lab ? 'Все форматы' : 'All formats'}</a>`}
             <div class="pl-title">
               <p class="pl-eyebrow"></p>
               <h2></h2>
@@ -590,7 +591,7 @@ export class Studio {
       <p class="pl-hint" data-slughint>${editing ? 'Адрес уже отправлен клиенту, поэтому он не меняется.' : 'Латиница, цифры и дефис. Получится читаемая ссылка, её не нужно прятать за кодом.'}</p>
       <div class="pl-fields">
         <label class="pl-field"><span>Название (крупно над моделью)</span><input type="text" data-f="project" value="${esc(f.project)}" placeholder="${esc(this.job.format.name)}"></label>
-        <label class="pl-field"><span>Клиент (видишь только ты)</span><input type="text" data-f="client" value="${esc(f.client)}" placeholder="Имя клиента"></label>
+        <label class="pl-field"><span>Клиент (для списка в студии)</span><input type="text" data-f="client" value="${esc(f.client)}" placeholder="Имя клиента"></label>
         <label class="pl-field"><span>Подпись под OK DESIGN</span><input type="text" data-f="meta" value="${esc(f.meta)}" placeholder="${esc(metaPh)}"></label>
         <label class="pl-field"><span>Текст для клиента</span><textarea rows="3" data-f="note" placeholder="Например: A5, 210 × 148 мм в развороте. Покрути модель или нажми Open.">${esc(f.note)}</textarea></label>
         <label class="pl-field"><span>Что видно на странице</span><select data-f="card">
@@ -618,7 +619,7 @@ export class Studio {
         <button type="button" class="pl-btn pl-btn-primary" data-publish ${hasArt && hasToken ? '' : 'disabled'}>${editing ? 'Обновить демо' : 'Опубликовать демо'}</button>
       </div>
       ${hasArt ? '' : '<p class="pl-hint">Сначала добавь макет на вкладке «Макет».</p>'}
-      ${hasToken ? '' : '<p class="pl-hint">Чтобы публиковать, один раз добавь токен GitHub: <a href="#settings" data-gosettings>Настройки студии</a>.</p>'}
+      ${hasToken ? '' : '<p class="pl-hint">Студия заблокировалась: прошло 12 часов или ты нажал «Выйти». Обнови страницу, введи пароль и брось макет ещё раз.</p>'}
       <div class="pl-status" hidden></div>
       <p class="pl-error" hidden></p>
       <p class="pl-label pl-gap">Другие способы</p>
@@ -789,11 +790,13 @@ export class Studio {
     this._markState('closed');
   }
 
+  // A public page with the blank model. It lives outside /studio/, so the client never sees the
+  // studio's address and needs no password.
   clientLink() {
     const { id, size, stock, finish, pages } = this.s;
-    const q = new URLSearchParams({ size, stock, finish, view: 'client' });
+    const q = new URLSearchParams({ size, stock, finish });
     if (pages) q.set('pages', pages);
-    return `${location.href.split('#')[0]}#/f/${id}?${q}`;
+    return `${location.origin}/model/#/f/${id}?${q}`;
   }
 
   // ---- artwork ------------------------------------------------------------------------------

@@ -5,6 +5,8 @@ import { mountCatalog } from './ui/catalog.js';
 import { formatById, stats } from './catalog.js';
 import { mountHome } from './ui/home.js';
 import { scriptBase } from './util/base.js';
+import { vault } from './export/vault.js';
+import { mountLock } from './ui/lock.js';
 
 function parseHash() {
   const m = /^#\/f\/([^?]+)(?:\?(.*))?$/.exec(location.hash);
@@ -21,9 +23,31 @@ function parseHash() {
   };
 }
 
+// /studio/ opens only after the studio password (see ui/lock.js). The page ships with
+// <html class="ds-locked">, which hides everything but the lock screen.
 function startLab() {
   const root = document.getElementById('plApp');
   if (!root) return;
+  const html = document.documentElement;
+  // Blank-model links of the first version pointed into the studio: send them to the public page.
+  if (parseHash()?.view === 'client') {
+    location.replace(`/model/${location.hash.replace(/([?&])view=client&?/, '$1').replace(/[?&]$/, '')}`);
+    return;
+  }
+  if (html.classList.contains('ds-locked') && !vault.unlocked()) {
+    mountLock({
+      onUnlock: () => {
+        html.classList.remove('ds-locked');
+        openLab(root);
+      },
+    });
+    return;
+  }
+  html.classList.remove('ds-locked');
+  openLab(root);
+}
+
+function openLab(root) {
   const host = document.getElementById('plStudioHost');
   const base = root.dataset.thumbs || `${scriptBase()}thumbs/`;
   mountCatalog(root, { thumbs: base });
@@ -133,8 +157,39 @@ function startProof(data) {
   window.__plStudio = () => studio;
 }
 
+// /model/#/f/<id>?size=…: the blank model of one format for a client, without the studio around it.
+function startModel() {
+  const root = document.getElementById('plModel');
+  let studio = null;
+  let key = '';
+  const show = () => {
+    const p = parseHash();
+    const k = p ? `${p.id}?${p.size}&${p.stock}&${p.finish}&${p.pages}` : '';
+    if (k === key) return;
+    key = k;
+    if (!p || !formatById[p.id]) {
+      studio?.close();
+      root.querySelector('.pl-model-missing')?.remove();
+      root.insertAdjacentHTML('beforeend', '<p class="pl-model-missing">This preview link is incomplete. Please ask OK Design for a new one.</p>');
+      return;
+    }
+    root.querySelector('.pl-model-missing')?.remove();
+    studio = studio || new Studio(root, { mode: 'client', back: false });
+    studio.open(p);
+    document.title = `${formatById[p.id].name}, 3D preview · OK Design`;
+    window.__plStudio = () => studio;
+  };
+  const credit = document.createElement('p');
+  credit.className = 'pl-credit';
+  credit.innerHTML = 'Designed by<br><a href="https://okdesign.cc/" target="_blank" rel="noopener">OK Design</a>';
+  document.body.appendChild(credit);
+  window.addEventListener('hashchange', show);
+  show();
+}
+
 const boot = () => {
   if (window.__OK_PROOF__) startProof(window.__OK_PROOF__);
+  else if (document.getElementById('plModel')) startModel();
   else startLab();
 };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

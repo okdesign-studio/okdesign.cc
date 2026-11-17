@@ -1288,3 +1288,145 @@ html.pl-lock #goTop {
     bottom: 58px;
   }
 }
+
+/* ---- studio lock (/studio/ ships with html.ds-locked until the password is entered) ---- */
+html.ds-locked #plApp,
+html.ds-locked #plStudioHost,
+html.ds-locked .ds-top nav {
+  display: none !important;
+}
+.ds-vh {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
+.ds-lock {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: calc(100vh - 64px);
+  padding: 12vh 16px 48px;
+  color: #fff;
+  font-family: Outfit, Figtree, Arial, sans-serif;
+}
+.ds-lockbox {
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  border: 1px solid var(--pl-line);
+  border-radius: 16px;
+  background: var(--pl-panel);
+}
+.ds-lockbox h1 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.ds-locklead {
+  margin: 0 0 20px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 14px;
+  line-height: 21px;
+}
+.ds-lockform {
+  display: grid;
+  gap: 12px;
+}
+.ds-lockfield {
+  display: grid;
+  gap: 6px;
+  color: var(--pl-muted);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+#dsLock .ds-lockfield input,
+#dsSettings .ds-form input {
+  width: 100%;
+  min-width: 0;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--pl-line);
+  border-radius: 10px;
+  background: var(--pl-field);
+  color: #fff;
+  font: 400 15px/1 Outfit, Figtree, Arial, sans-serif;
+  transition: border-color 0.2s ease;
+}
+#dsLock .ds-lockfield input:focus,
+#dsSettings .ds-form input:focus {
+  outline: none;
+  border-color: rgba(var(--pl-blue-rgb), 0.9);
+}
+.ds-lockform .pl-btn {
+  height: 42px;
+  margin-top: 4px;
+}
+.ds-lockhint {
+  margin: -2px 0 0;
+  color: var(--pl-muted);
+  font-size: 12px;
+  line-height: 17px;
+}
+.ds-lockmsg {
+  min-height: 20px;
+  margin: 0;
+  color: var(--pl-muted);
+  font-size: 13px;
+  line-height: 19px;
+}
+.ds-lockmsg.is-bad {
+  color: var(--pl-bad);
+}
+.ds-lockmore,
+.ds-more {
+  margin-top: 18px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+  line-height: 19px;
+}
+.ds-more {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--pl-line);
+}
+.ds-lockmore summary,
+.ds-more summary {
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+}
+.ds-lockmore p {
+  margin: 10px 0 12px;
+}
+.ds-lockmore a {
+  color: #6a9dff;
+}
+.ds-lockmore .ds-howto {
+  margin-top: 10px;
+}
+.ds-form {
+  display: grid;
+  gap: 8px;
+  max-width: 420px;
+  margin-top: 10px;
+}
+.ds-form .pl-btn {
+  justify-self: start;
+}
+
+/* ---- /model/: a blank format for a client ---- */
+.pl-model-missing {
+  margin: 0;
+  padding: 30vh 24px 0;
+  color: rgba(255, 255, 255, 0.72);
+  text-align: center;
+  font: 400 15px/1.5 Outfit, Figtree, Arial, sans-serif;
+}
